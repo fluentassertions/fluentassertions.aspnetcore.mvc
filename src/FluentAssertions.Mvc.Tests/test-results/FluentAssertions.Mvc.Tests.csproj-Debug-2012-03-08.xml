@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TestRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Tests>
+    <TestRecord Name="FluentAssertions">
+      <Tests>
+        <TestRecord Name="Mvc">
+          <Tests>
+            <TestRecord Name="Tests">
+              <Tests>
+                <TestRecord Name="ControllerAssertions_Tests">
+                  <Tests>
+                    <TestRecord Name="a">
+                      <Results>
+                        <UnitTestResult>
+                          <TestDate>2012-03-08T22:09:17</TestDate>
+                          <Status>Success</Status>
+                          <TotalFailures>0</TotalFailures>
+                          <TotalSuccess>1</TotalSuccess>
+                          <TotalIgnored>0</TotalIgnored>
+                          <Time />
+                          <Message>Test successful
+
+Execution time: 0.09ms</Message>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                      </Results>
+                    </TestRecord>
+                  </Tests>
+                </TestRecord>
+                <TestRecord Name="ActionResultAssertions_Tests">
+                  <Tests>
+                    <TestRecord Name="BeView_GivenView_ShouldPass">
+                      <Results>
+                        <UnitTestResult>
+                          <TestDate>2012-03-08T22:11:59</TestDate>
+                          <Status>Failure</Status>
+                          <TotalFailures>1</TotalFailures>
+                          <TotalSuccess>0</TotalSuccess>
+                          <TotalIgnored>0</TotalIgnored>
+                          <Time />
+                          <Message>Expected type to be System.String, but found System.Web.Mvc.ViewResult.</Message>
+                          <StackTrace>   at FluentAssertions.Frameworks.LateBoundTestFramework.Throw(String message) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Frameworks\LateBoundTestFramework.cs:line 21
+   at FluentAssertions.Verification.FailWith(String failureMessage, Object[] failureArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Verification.cs:line 158
+   at FluentAssertions.Assertions.TypeAssertions.Be(Type expected, String reason, Object[] reasonArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Assertions\TypeAssertions.cs:line 71
+   at FluentAssertions.Assertions.TypeAssertions.Be[TExpected](String reason, Object[] reasonArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Assertions\TypeAssertions.cs:line 46
+   at FluentAssertions.Assertions.ReferenceTypeAssertions`2.BeOfType[T](String reason, Object[] reasonArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Assertions\ReferenceTypeAssertions.cs:line 43
+   at FluentAssertions.Assertions.ReferenceTypeAssertions`2.BeOfType[T]() in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Assertions\ReferenceTypeAssertions.cs:line 27
+   at FluentAssertions.Mvc.Tests.ActionResultAssertions_Tests.BeView_GivenView_ShouldPass() in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc.Tests\ControllerAssertions_Tests.cs:line 16</StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                      </Results>
+                    </TestRecord>
+                  </Tests>
+                </TestRecord>
+              </Tests>
+            </TestRecord>
+          </Tests>
+        </TestRecord>
+      </Tests>
+    </TestRecord>
+  </Tests>
+</TestRecord>
