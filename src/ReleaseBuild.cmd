@@ -4,7 +4,7 @@ IF EXIST "%VS100COMNTOOLS%vsvars32.bat" GOTO MSBUILD
 IF EXIST "C:\Program Files\MonoDevelop\bin\mdtool.exe" GOTO MDTOOL_C
 IF EXIST "D:\Program Files\MonoDevelop\bin\mdtool.exe" GOTO MDTOOL_D
 
-ECHO ERROR: Cannnot find MSBUILD .net4 or MDTool
+ECHO ERROR: Cannnot find MSBUILD .net4 or MDTool.exe
 
 GOTO END
 
@@ -19,11 +19,20 @@ GOTO COPY
 
 #============================================================
 
+
+:MDTOOL_C
+
+"C:\Program Files\MonoDevelop\bin\mdtool.exe" build --configuration:RELEASE
+
+GOTO COPY
+
+#============================================================
+
 :MSBUILD
 
 CALL "%VS100COMNTOOLS%vsvars32.bat"
 
-
+msbuild /p:Configuration=Release /t:Rebuild
 
 GOTO COPY
 
