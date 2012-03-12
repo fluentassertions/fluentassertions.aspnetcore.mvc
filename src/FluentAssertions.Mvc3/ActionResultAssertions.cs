@@ -11,18 +11,18 @@ namespace FluentAssertions.Mvc
 			Subject = subject;
 		}
 		
-		public AndConstraint<ActionResultAssertions> BeView()
+		public AndConstraint<ActionResultAssertions> BeView ()
 		{
-			var andConstraint = BeView(string.Empty, new object[] { });
+			var andConstraint = BeView (string.Empty, new object[] { });
 			return andConstraint;
 		}
 		
-		public AndConstraint<ActionResultAssertions> BeView(string reason, params object [] reasonArgs)
+		public AndConstraint<ActionResultAssertions> BeView (string reason, params object [] reasonArgs)
 		{
 			Execute.Verification
-					.ForCondition(Subject is ViewResult)
-					.BecauseOf(reason, reasonArgs)
-					.FailWith("Expected ActionResult to be View but was {0}", Subject.GetType().Name);
+					.ForCondition (Subject is ViewResult)
+					.BecauseOf (reason, reasonArgs)
+					.FailWith ("Expected ActionResult to be View but was {0}", Subject.GetType ().Name);
 			
 			return new AndConstraint<ActionResultAssertions> (this);
 		}		

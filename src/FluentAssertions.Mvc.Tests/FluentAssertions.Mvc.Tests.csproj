@@ -54,9 +54,9 @@
     <Folder Include="Fakes\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FluentAssertions.Mvc\FluentAssertions.Mvc.csproj">
+    <ProjectReference Include="..\FluentAssertions.Mvc3\FluentAssertions.Mvc3.csproj">
       <Project>{53589F79-0908-409A-8366-3E18DC637600}</Project>
-      <Name>FluentAssertions.Mvc</Name>
+      <Name>FluentAssertions.Mvc3</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

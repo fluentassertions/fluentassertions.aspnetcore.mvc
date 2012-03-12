@@ -9,6 +9,42 @@
       <TotalIgnored>0</TotalIgnored>
       <Time />
     </UnitTestResult>
+    <UnitTestResult>
+      <TestDate>2012-03-08T22:52:16</TestDate>
+      <Status>Success Failure</Status>
+      <TotalFailures>1</TotalFailures>
+      <TotalSuccess>1</TotalSuccess>
+      <TotalIgnored>0</TotalIgnored>
+      <Time />
+      <Message>Child test failed</Message>
+    </UnitTestResult>
+    <UnitTestResult>
+      <TestDate>2012-03-08T22:52:58</TestDate>
+      <Status>Success Failure</Status>
+      <TotalFailures>1</TotalFailures>
+      <TotalSuccess>1</TotalSuccess>
+      <TotalIgnored>0</TotalIgnored>
+      <Time />
+      <Message>Child test failed</Message>
+    </UnitTestResult>
+    <UnitTestResult>
+      <TestDate>2012-03-08T22:53:58</TestDate>
+      <Status>Success Failure</Status>
+      <TotalFailures>1</TotalFailures>
+      <TotalSuccess>1</TotalSuccess>
+      <TotalIgnored>0</TotalIgnored>
+      <Time />
+      <Message>Child test failed</Message>
+    </UnitTestResult>
+    <UnitTestResult>
+      <TestDate>2012-03-08T22:54:31</TestDate>
+      <Status>Success Failure</Status>
+      <TotalFailures>1</TotalFailures>
+      <TotalSuccess>1</TotalSuccess>
+      <TotalIgnored>0</TotalIgnored>
+      <Time />
+      <Message>Child test failed</Message>
+    </UnitTestResult>
   </Results>
   <Tests>
     <TestRecord Name="FluentAssertions">
@@ -21,6 +57,42 @@
           <TotalIgnored>0</TotalIgnored>
           <Time />
         </UnitTestResult>
+        <UnitTestResult>
+          <TestDate>2012-03-08T22:52:16</TestDate>
+          <Status>Success Failure</Status>
+          <TotalFailures>1</TotalFailures>
+          <TotalSuccess>1</TotalSuccess>
+          <TotalIgnored>0</TotalIgnored>
+          <Time />
+          <Message>Child test failed</Message>
+        </UnitTestResult>
+        <UnitTestResult>
+          <TestDate>2012-03-08T22:52:58</TestDate>
+          <Status>Success Failure</Status>
+          <TotalFailures>1</TotalFailures>
+          <TotalSuccess>1</TotalSuccess>
+          <TotalIgnored>0</TotalIgnored>
+          <Time />
+          <Message>Child test failed</Message>
+        </UnitTestResult>
+        <UnitTestResult>
+          <TestDate>2012-03-08T22:53:58</TestDate>
+          <Status>Success Failure</Status>
+          <TotalFailures>1</TotalFailures>
+          <TotalSuccess>1</TotalSuccess>
+          <TotalIgnored>0</TotalIgnored>
+          <Time />
+          <Message>Child test failed</Message>
+        </UnitTestResult>
+        <UnitTestResult>
+          <TestDate>2012-03-08T22:54:31</TestDate>
+          <Status>Success Failure</Status>
+          <TotalFailures>1</TotalFailures>
+          <TotalSuccess>1</TotalSuccess>
+          <TotalIgnored>0</TotalIgnored>
+          <Time />
+          <Message>Child test failed</Message>
+        </UnitTestResult>
       </Results>
       <Tests>
         <TestRecord Name="Mvc">
@@ -32,6 +104,42 @@
               <TotalSuccess>1</TotalSuccess>
               <TotalIgnored>0</TotalIgnored>
               <Time />
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2012-03-08T22:52:16</TestDate>
+              <Status>Success Failure</Status>
+              <TotalFailures>1</TotalFailures>
+              <TotalSuccess>1</TotalSuccess>
+              <TotalIgnored>0</TotalIgnored>
+              <Time />
+              <Message>Child test failed</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2012-03-08T22:52:58</TestDate>
+              <Status>Success Failure</Status>
+              <TotalFailures>1</TotalFailures>
+              <TotalSuccess>1</TotalSuccess>
+              <TotalIgnored>0</TotalIgnored>
+              <Time />
+              <Message>Child test failed</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2012-03-08T22:53:58</TestDate>
+              <Status>Success Failure</Status>
+              <TotalFailures>1</TotalFailures>
+              <TotalSuccess>1</TotalSuccess>
+              <TotalIgnored>0</TotalIgnored>
+              <Time />
+              <Message>Child test failed</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2012-03-08T22:54:31</TestDate>
+              <Status>Success Failure</Status>
+              <TotalFailures>1</TotalFailures>
+              <TotalSuccess>1</TotalSuccess>
+              <TotalIgnored>0</TotalIgnored>
+              <Time />
+              <Message>Child test failed</Message>
             </UnitTestResult>
           </Results>
           <Tests>
@@ -52,6 +160,42 @@
                   <TotalSuccess>1</TotalSuccess>
                   <TotalIgnored>0</TotalIgnored>
                   <Time />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-03-08T22:52:16</TestDate>
+                  <Status>Success Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>Child test failed</Message>
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-03-08T22:52:58</TestDate>
+                  <Status>Success Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>Child test failed</Message>
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-03-08T22:53:58</TestDate>
+                  <Status>Success Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>Child test failed</Message>
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-03-08T22:54:31</TestDate>
+                  <Status>Success Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>Child test failed</Message>
                 </UnitTestResult>
               </Results>
               <Tests>
@@ -95,6 +239,42 @@ Execution time: 0.09ms</Message>
                       <TotalSuccess>1</TotalSuccess>
                       <TotalIgnored>0</TotalIgnored>
                       <Time />
+                    </UnitTestResult>
+                    <UnitTestResult>
+                      <TestDate>2012-03-08T22:52:16</TestDate>
+                      <Status>Success Failure</Status>
+                      <TotalFailures>1</TotalFailures>
+                      <TotalSuccess>1</TotalSuccess>
+                      <TotalIgnored>0</TotalIgnored>
+                      <Time />
+                      <Message>Child test failed</Message>
+                    </UnitTestResult>
+                    <UnitTestResult>
+                      <TestDate>2012-03-08T22:52:58</TestDate>
+                      <Status>Success Failure</Status>
+                      <TotalFailures>1</TotalFailures>
+                      <TotalSuccess>1</TotalSuccess>
+                      <TotalIgnored>0</TotalIgnored>
+                      <Time />
+                      <Message>Child test failed</Message>
+                    </UnitTestResult>
+                    <UnitTestResult>
+                      <TestDate>2012-03-08T22:53:58</TestDate>
+                      <Status>Success Failure</Status>
+                      <TotalFailures>1</TotalFailures>
+                      <TotalSuccess>1</TotalSuccess>
+                      <TotalIgnored>0</TotalIgnored>
+                      <Time />
+                      <Message>Child test failed</Message>
+                    </UnitTestResult>
+                    <UnitTestResult>
+                      <TestDate>2012-03-08T22:54:31</TestDate>
+                      <Status>Success Failure</Status>
+                      <TotalFailures>1</TotalFailures>
+                      <TotalSuccess>1</TotalSuccess>
+                      <TotalIgnored>0</TotalIgnored>
+                      <Time />
+                      <Message>Child test failed</Message>
                     </UnitTestResult>
                   </Results>
                   <Tests>
@@ -146,6 +326,258 @@ Execution time: 0.03ms</Message>
                         </UnitTestResult>
                       </Results>
                       <Tests />
+                    </TestRecord>
+                    <TestRecord Name="BeView_GivenRedirection_ShouldFail">
+                      <Results>
+                        <UnitTestResult>
+                          <TestDate>2012-03-08T22:52:16</TestDate>
+                          <Status>Failure</Status>
+                          <TotalFailures>1</TotalFailures>
+                          <TotalSuccess>0</TotalSuccess>
+                          <TotalIgnored>0</TotalIgnored>
+                          <Time />
+                          <Message>Did not expect any exception, but found a NUnit.Framework.AssertionException with message "Expected ActionResult to be View but was \"RedirectResult\"".</Message>
+                          <StackTrace>   at FluentAssertions.Frameworks.LateBoundTestFramework.Throw(String message) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Frameworks\LateBoundTestFramework.cs:line 21
+   at FluentAssertions.Verification.FailWith(String failureMessage, Object[] failureArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Verification.cs:line 158
+   at FluentAssertions.Assertions.ActionAssertions.ShouldNotThrow(String reason, Object[] reasonArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Assertions\ActionAssertions.cs:line 111
+   at FluentAssertions.AssertionExtensions.ShouldNotThrow(Action action) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\AssertionExtensions.cs:line 157
+   at FluentAssertions.Mvc.Tests.ActionResultAssertions_Tests.BeView_GivenRedirection_ShouldFail() in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc.Tests\ControllerAssertions_Tests.cs:line 23</StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2012-03-08T22:52:58</TestDate>
+                          <Status>Failure</Status>
+                          <TotalFailures>1</TotalFailures>
+                          <TotalSuccess>0</TotalSuccess>
+                          <TotalIgnored>0</TotalIgnored>
+                          <Time />
+                          <Message>Expected NUnit.Framework.AssertionException, but found NUnit.Framework.AssertionException: Expected ActionResult to be View but was "RedirectResult"
+   at FluentAssertions.Frameworks.LateBoundTestFramework.Throw(String message) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Frameworks\LateBoundTestFramework.cs:line 21
+   at FluentAssertions.Verification.FailWith(String failureMessage, Object[] failureArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Verification.cs:line 158
+   at FluentAssertions.Mvc.ActionResultAssertions.BeView(String reason, Object[] reasonArgs) in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc\ActionResultAssertions.cs:line 22
+   at FluentAssertions.Mvc.ActionResultAssertions.BeView() in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc\ActionResultAssertions.cs:line 16
+   at FluentAssertions.Mvc.Tests.ActionResultAssertions_Tests.&lt;&gt;c__DisplayClass1.&lt;BeView_GivenRedirection_ShouldFail&gt;b__0() in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc.Tests\ControllerAssertions_Tests.cs:line 22
+   at FluentAssertions.Assertions.ActionAssertions.ShouldThrow[TException](String reason, Object[] reasonArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Assertions\ActionAssertions.cs:line 35.</Message>
+                          <StackTrace>   at FluentAssertions.Frameworks.LateBoundTestFramework.Throw(String message) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Frameworks\LateBoundTestFramework.cs:line 21
+   at FluentAssertions.Verification.FailWith(String failureMessage, Object[] failureArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Verification.cs:line 158
+   at FluentAssertions.Assertions.ActionAssertions.ShouldThrow[TException](String reason, Object[] reasonArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Assertions\ActionAssertions.cs:line 52
+   at FluentAssertions.AssertionExtensions.ShouldThrow[TException](Action action, String reason, Object[] reasonArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\AssertionExtensions.cs:line 119
+   at FluentAssertions.AssertionExtensions.ShouldThrow[TException](Action action) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\AssertionExtensions.cs:line 96
+   at FluentAssertions.Mvc.Tests.ActionResultAssertions_Tests.BeView_GivenRedirection_ShouldFail() in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc.Tests\ControllerAssertions_Tests.cs:line 23</StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2012-03-08T22:53:04</TestDate>
+                          <Status>Failure</Status>
+                          <TotalFailures>1</TotalFailures>
+                          <TotalSuccess>0</TotalSuccess>
+                          <TotalIgnored>0</TotalIgnored>
+                          <Time />
+                          <Message>Expected NUnit.Framework.AssertionException, but found NUnit.Framework.AssertionException: Expected ActionResult to be View but was "RedirectResult"
+   at FluentAssertions.Frameworks.LateBoundTestFramework.Throw(String message) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Frameworks\LateBoundTestFramework.cs:line 21
+   at FluentAssertions.Verification.FailWith(String failureMessage, Object[] failureArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Verification.cs:line 158
+   at FluentAssertions.Mvc.ActionResultAssertions.BeView(String reason, Object[] reasonArgs) in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc\ActionResultAssertions.cs:line 22
+   at FluentAssertions.Mvc.ActionResultAssertions.BeView() in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc\ActionResultAssertions.cs:line 16
+   at FluentAssertions.Mvc.Tests.ActionResultAssertions_Tests.&lt;&gt;c__DisplayClass1.&lt;BeView_GivenRedirection_ShouldFail&gt;b__0() in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc.Tests\ControllerAssertions_Tests.cs:line 22
+   at FluentAssertions.Assertions.ActionAssertions.ShouldThrow[TException](String reason, Object[] reasonArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Assertions\ActionAssertions.cs:line 35.</Message>
+                          <StackTrace>   at FluentAssertions.Frameworks.LateBoundTestFramework.Throw(String message) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Frameworks\LateBoundTestFramework.cs:line 21
+   at FluentAssertions.Verification.FailWith(String failureMessage, Object[] failureArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Verification.cs:line 158
+   at FluentAssertions.Assertions.ActionAssertions.ShouldThrow[TException](String reason, Object[] reasonArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Assertions\ActionAssertions.cs:line 52
+   at FluentAssertions.AssertionExtensions.ShouldThrow[TException](Action action, String reason, Object[] reasonArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\AssertionExtensions.cs:line 119
+   at FluentAssertions.AssertionExtensions.ShouldThrow[TException](Action action) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\AssertionExtensions.cs:line 96
+   at FluentAssertions.Mvc.Tests.ActionResultAssertions_Tests.BeView_GivenRedirection_ShouldFail() in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc.Tests\ControllerAssertions_Tests.cs:line 23</StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2012-03-08T22:53:58</TestDate>
+                          <Status>Failure</Status>
+                          <TotalFailures>1</TotalFailures>
+                          <TotalSuccess>0</TotalSuccess>
+                          <TotalIgnored>0</TotalIgnored>
+                          <Time />
+                          <Message>Expected NUnit.Framework.AssertionException, but found NUnit.Framework.AssertionException: Expected ActionResult to be View but was "RedirectResult"
+   at FluentAssertions.Frameworks.LateBoundTestFramework.Throw(String message) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Frameworks\LateBoundTestFramework.cs:line 21
+   at FluentAssertions.Verification.FailWith(String failureMessage, Object[] failureArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Verification.cs:line 158
+   at FluentAssertions.Mvc.ActionResultAssertions.BeView(String reason, Object[] reasonArgs) in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc\ActionResultAssertions.cs:line 22
+   at FluentAssertions.Mvc.ActionResultAssertions.BeView() in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc\ActionResultAssertions.cs:line 16
+   at FluentAssertions.Mvc.Tests.ActionResultAssertions_Tests.&lt;&gt;c__DisplayClass1.&lt;BeView_GivenRedirection_ShouldFail&gt;b__0() in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc.Tests\ControllerAssertions_Tests.cs:line 22
+   at FluentAssertions.Assertions.ActionAssertions.ShouldThrow[TException](String reason, Object[] reasonArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Assertions\ActionAssertions.cs:line 35.</Message>
+                          <StackTrace>   at FluentAssertions.Frameworks.LateBoundTestFramework.Throw(String message) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Frameworks\LateBoundTestFramework.cs:line 21
+   at FluentAssertions.Verification.FailWith(String failureMessage, Object[] failureArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Verification.cs:line 158
+   at FluentAssertions.Assertions.ActionAssertions.ShouldThrow[TException](String reason, Object[] reasonArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Assertions\ActionAssertions.cs:line 52
+   at FluentAssertions.AssertionExtensions.ShouldThrow[TException](Action action, String reason, Object[] reasonArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\AssertionExtensions.cs:line 119
+   at FluentAssertions.AssertionExtensions.ShouldThrow[TException](Action action) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\AssertionExtensions.cs:line 96
+   at FluentAssertions.Mvc.Tests.ActionResultAssertions_Tests.BeView_GivenRedirection_ShouldFail() in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc.Tests\ControllerAssertions_Tests.cs:line 23</StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2012-03-08T22:54:31</TestDate>
+                          <Status>Failure</Status>
+                          <TotalFailures>1</TotalFailures>
+                          <TotalSuccess>0</TotalSuccess>
+                          <TotalIgnored>0</TotalIgnored>
+                          <Time />
+                          <Message>Expected NUnit.Framework.AssertionException, but found NUnit.Framework.AssertionException: Expected ActionResult to be View but was "RedirectResult"
+   at FluentAssertions.Frameworks.LateBoundTestFramework.Throw(String message) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Frameworks\LateBoundTestFramework.cs:line 21
+   at FluentAssertions.Verification.FailWith(String failureMessage, Object[] failureArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Verification.cs:line 158
+   at FluentAssertions.Mvc.ActionResultAssertions.BeView(String reason, Object[] reasonArgs) in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc\ActionResultAssertions.cs:line 22
+   at FluentAssertions.Mvc.ActionResultAssertions.BeView() in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc\ActionResultAssertions.cs:line 16
+   at FluentAssertions.Mvc.Tests.ActionResultAssertions_Tests.&lt;&gt;c__DisplayClass1.&lt;BeView_GivenRedirection_ShouldFail&gt;b__0() in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc.Tests\ControllerAssertions_Tests.cs:line 22
+   at FluentAssertions.Assertions.ActionAssertions.ShouldThrow[TException](String reason, Object[] reasonArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Assertions\ActionAssertions.cs:line 35.</Message>
+                          <StackTrace>   at FluentAssertions.Frameworks.LateBoundTestFramework.Throw(String message) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Frameworks\LateBoundTestFramework.cs:line 21
+   at FluentAssertions.Verification.FailWith(String failureMessage, Object[] failureArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Verification.cs:line 158
+   at FluentAssertions.Assertions.ActionAssertions.ShouldThrow[TException](String reason, Object[] reasonArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Assertions\ActionAssertions.cs:line 52
+   at FluentAssertions.AssertionExtensions.ShouldThrow[TException](Action action, String reason, Object[] reasonArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\AssertionExtensions.cs:line 119
+   at FluentAssertions.AssertionExtensions.ShouldThrow[TException](Action action) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\AssertionExtensions.cs:line 96
+   at FluentAssertions.Mvc.Tests.ActionResultAssertions_Tests.BeView_GivenRedirection_ShouldFail() in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc.Tests\ControllerAssertions_Tests.cs:line 23</StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2012-03-08T22:55:02</TestDate>
+                          <Status>Failure</Status>
+                          <TotalFailures>1</TotalFailures>
+                          <TotalSuccess>0</TotalSuccess>
+                          <TotalIgnored>0</TotalIgnored>
+                          <Time />
+                          <Message>Expected NUnit.Framework.AssertionException, but found NUnit.Framework.AssertionException: Expected ActionResult to be View but was "RedirectResult"
+   at FluentAssertions.Frameworks.LateBoundTestFramework.Throw(String message) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Frameworks\LateBoundTestFramework.cs:line 21
+   at FluentAssertions.Frameworks.AssertionHelper.Throw(String message) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Frameworks\AssertionHelper.cs:line 29
+   at FluentAssertions.Verification.FailWith(String failureMessage, Object[] failureArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Verification.cs:line 158
+   at FluentAssertions.Mvc.ActionResultAssertions.BeView(String reason, Object[] reasonArgs) in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc\ActionResultAssertions.cs:line 22
+   at FluentAssertions.Mvc.ActionResultAssertions.BeView() in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc\ActionResultAssertions.cs:line 16
+   at FluentAssertions.Mvc.Tests.ActionResultAssertions_Tests.&lt;&gt;c__DisplayClass1.&lt;BeView_GivenRedirection_ShouldFail&gt;b__0() in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc.Tests\ControllerAssertions_Tests.cs:line 22
+   at FluentAssertions.Assertions.ActionAssertions.ShouldThrow[TException](String reason, Object[] reasonArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Assertions\ActionAssertions.cs:line 39.</Message>
+                          <StackTrace>   at FluentAssertions.Frameworks.LateBoundTestFramework.Throw(String message) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Frameworks\LateBoundTestFramework.cs:line 21
+   at FluentAssertions.Frameworks.AssertionHelper.Throw(String message) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Frameworks\AssertionHelper.cs:line 29
+   at FluentAssertions.Verification.FailWith(String failureMessage, Object[] failureArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Verification.cs:line 158
+   at FluentAssertions.Assertions.ActionAssertions.ShouldThrow[TException](String reason, Object[] reasonArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Assertions\ActionAssertions.cs:line 52
+   at FluentAssertions.AssertionExtensions.ShouldThrow[TException](Action action, String reason, Object[] reasonArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\AssertionExtensions.cs:line 119
+   at FluentAssertions.AssertionExtensions.ShouldThrow[TException](Action action) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\AssertionExtensions.cs:line 96
+   at FluentAssertions.Mvc.Tests.ActionResultAssertions_Tests.BeView_GivenRedirection_ShouldFail() in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc.Tests\ControllerAssertions_Tests.cs:line 23</StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2012-03-08T22:55:25</TestDate>
+                          <Status>Failure</Status>
+                          <TotalFailures>0</TotalFailures>
+                          <TotalSuccess>0</TotalSuccess>
+                          <TotalIgnored>0</TotalIgnored>
+                          <Time />
+                          <Message>Object reference not set to an instance of an object.</Message>
+                          <StackTrace>   at MonoDevelop.NUnit.UnitTestResult.CreateFailure(String message, Exception ex)
+   at MonoDevelop.NUnit.NUnitAssemblyTestSuite.RunUnitTest(UnitTest test, String suiteName, String pathName, String testName, TestContext testContext)
+   at MonoDevelop.NUnit.NUnitTestCase.OnRun(TestContext testContext)
+   at MonoDevelop.NUnit.UnitTest.Run(TestContext testContext)</StackTrace>
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2012-03-08T22:56:08</TestDate>
+                          <Status>Failure</Status>
+                          <TotalFailures>1</TotalFailures>
+                          <TotalSuccess>0</TotalSuccess>
+                          <TotalIgnored>0</TotalIgnored>
+                          <Time />
+                          <Message>Expected NUnit.Framework.AssertionException, but found NUnit.Framework.AssertionException: Expected ActionResult to be View but was "RedirectResult"
+   at FluentAssertions.Frameworks.LateBoundTestFramework.Throw(String message) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Frameworks\LateBoundTestFramework.cs:line 21
+   at FluentAssertions.Verification.FailWith(String failureMessage, Object[] failureArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Verification.cs:line 158
+   at FluentAssertions.Mvc.ActionResultAssertions.BeView(String reason, Object[] reasonArgs) in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc\ActionResultAssertions.cs:line 22
+   at FluentAssertions.Mvc.ActionResultAssertions.BeView() in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc\ActionResultAssertions.cs:line 16
+   at FluentAssertions.Mvc.Tests.ActionResultAssertions_Tests.&lt;&gt;c__DisplayClass1.&lt;BeView_GivenRedirection_ShouldFail&gt;b__0() in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc.Tests\ControllerAssertions_Tests.cs:line 22
+   at FluentAssertions.Assertions.ActionAssertions.ShouldThrow[TException](String reason, Object[] reasonArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Assertions\ActionAssertions.cs:line 35.</Message>
+                          <StackTrace>   at FluentAssertions.Frameworks.LateBoundTestFramework.Throw(String message) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Frameworks\LateBoundTestFramework.cs:line 21
+   at FluentAssertions.Verification.FailWith(String failureMessage, Object[] failureArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Verification.cs:line 158
+   at FluentAssertions.Assertions.ActionAssertions.ShouldThrow[TException](String reason, Object[] reasonArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Assertions\ActionAssertions.cs:line 52
+   at FluentAssertions.AssertionExtensions.ShouldThrow[TException](Action action, String reason, Object[] reasonArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\AssertionExtensions.cs:line 119
+   at FluentAssertions.AssertionExtensions.ShouldThrow[TException](Action action) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\AssertionExtensions.cs:line 96
+   at FluentAssertions.Mvc.Tests.ActionResultAssertions_Tests.BeView_GivenRedirection_ShouldFail() in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc.Tests\ControllerAssertions_Tests.cs:line 23</StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2012-03-08T22:57:36</TestDate>
+                          <Status>Failure</Status>
+                          <TotalFailures>1</TotalFailures>
+                          <TotalSuccess>0</TotalSuccess>
+                          <TotalIgnored>0</TotalIgnored>
+                          <Time />
+                          <Message>Expected NUnit.Framework.AssertionException, but found NUnit.Framework.AssertionException: Expected ActionResult to be View but was "RedirectResult"
+   at FluentAssertions.Frameworks.LateBoundTestFramework.Throw(String message) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Frameworks\LateBoundTestFramework.cs:line 21
+   at FluentAssertions.Verification.FailWith(String failureMessage, Object[] failureArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Verification.cs:line 158
+   at FluentAssertions.Mvc.ActionResultAssertions.BeView(String reason, Object[] reasonArgs) in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc\ActionResultAssertions.cs:line 22
+   at FluentAssertions.Mvc.ActionResultAssertions.BeView() in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc\ActionResultAssertions.cs:line 16
+   at FluentAssertions.Mvc.Tests.ActionResultAssertions_Tests.&lt;&gt;c__DisplayClass1.&lt;BeView_GivenRedirection_ShouldFail&gt;b__0() in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc.Tests\ControllerAssertions_Tests.cs:line 22
+   at FluentAssertions.Assertions.ActionAssertions.ShouldThrow[TException](String reason, Object[] reasonArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Assertions\ActionAssertions.cs:line 35.</Message>
+                          <StackTrace>   at FluentAssertions.Frameworks.LateBoundTestFramework.Throw(String message) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Frameworks\LateBoundTestFramework.cs:line 21
+   at FluentAssertions.Verification.FailWith(String failureMessage, Object[] failureArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Verification.cs:line 158
+   at FluentAssertions.Assertions.ActionAssertions.ShouldThrow[TException](String reason, Object[] reasonArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\Assertions\ActionAssertions.cs:line 52
+   at FluentAssertions.AssertionExtensions.ShouldThrow[TException](Action action, String reason, Object[] reasonArgs) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\AssertionExtensions.cs:line 119
+   at FluentAssertions.AssertionExtensions.ShouldThrow[TException](Action action) in c:\Workspaces\codeplex05\fluentassertions\Main\FluentAssertions.Net35\AssertionExtensions.cs:line 96
+   at FluentAssertions.Mvc.Tests.ActionResultAssertions_Tests.BeView_GivenRedirection_ShouldFail() in d:\Development\Projects\FluentAssertions.MVC\src\FluentAssertions.Mvc.Tests\ControllerAssertions_Tests.cs:line 23</StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                      </Results>
+                    </TestRecord>
+                    <TestRecord Name="BeView_GivenViewResult_ShouldPass">
+                      <Results>
+                        <UnitTestResult>
+                          <TestDate>2012-03-08T22:52:16</TestDate>
+                          <Status>Success</Status>
+                          <TotalFailures>0</TotalFailures>
+                          <TotalSuccess>1</TotalSuccess>
+                          <TotalIgnored>0</TotalIgnored>
+                          <Time />
+                          <Message>Test successful
+
+Execution time: 0.02ms</Message>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2012-03-08T22:52:58</TestDate>
+                          <Status>Success</Status>
+                          <TotalFailures>0</TotalFailures>
+                          <TotalSuccess>1</TotalSuccess>
+                          <TotalIgnored>0</TotalIgnored>
+                          <Time />
+                          <Message>Test successful
+
+Execution time: 0.00ms</Message>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2012-03-08T22:53:58</TestDate>
+                          <Status>Success</Status>
+                          <TotalFailures>0</TotalFailures>
+                          <TotalSuccess>1</TotalSuccess>
+                          <TotalIgnored>0</TotalIgnored>
+                          <Time />
+                          <Message>Test successful
+
+Execution time: 0.00ms</Message>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2012-03-08T22:54:31</TestDate>
+                          <Status>Success</Status>
+                          <TotalFailures>0</TotalFailures>
+                          <TotalSuccess>1</TotalSuccess>
+                          <TotalIgnored>0</TotalIgnored>
+                          <Time />
+                          <Message>Test successful
+
+Execution time: 0.00ms</Message>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                      </Results>
                     </TestRecord>
                   </Tests>
                 </TestRecord>

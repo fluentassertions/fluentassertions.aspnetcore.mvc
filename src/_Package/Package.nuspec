@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>FluentAssertions.Mvc</id>
+    <version>1.0</version>
+    <authors>Casey Burns</authors>
+    <owners>Casey Burns</owners>
+    <licenseUrl>http://fluentassertionsmvc.codeplex.com/license</licenseUrl>
+    <projectUrl>http://fluentassertionsmvc.codeplex.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Fluent Assertion extension methods for unit testing Mvc objects</description>
+    <releaseNotes>First Release</releaseNotes>
+    <copyright>Copyright 2012</copyright>
+    <tags>MSTest xUnit NUnit MSpec TDD BDD Fluent MVC</tags>
+    <dependencies>
+      <dependency id="FluentAssertions" version="1.8.0" />
+    </dependencies>
+    <frameworkAssemblies>
+	  <frameworkAssembly assemblyName="System.Web"/>
+      <frameworkAssembly assemblyName="System.Web.Mvc"/>
+	  <frameworkAssembly assemblyName="System.Routing"/>
+	  <frameworkAssembly assemblyName="System"/>
+	  <frameworkAssembly assemblyName="System.Xml"/>
+	  <frameworkAssembly assemblyName="System.Xml.Linq"/>
+	</frameworkAssemblies>
+  </metadata>
+</package>
