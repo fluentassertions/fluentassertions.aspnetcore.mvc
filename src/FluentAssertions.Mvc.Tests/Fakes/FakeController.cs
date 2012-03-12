@@ -12,7 +12,7 @@ namespace FluentAssertions.Mvc.Tests.Fakes
 			_indexResult = indexResult;
 		}
 		
-		public ActionResult Index()
+		public ActionResult Index ()
 		{
 			return _indexResult;
 		}

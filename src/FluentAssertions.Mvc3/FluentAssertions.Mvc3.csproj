@@ -19,6 +19,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <GenerateDocumentation>true</GenerateDocumentation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -34,7 +35,6 @@
     <Reference Include="System" />
     <Reference Include="FluentAssertions">
       <HintPath>..\..\lib\FluentAssertions.1.7.0\Lib\net40\FluentAssertions.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <Private>False</Private>
@@ -49,7 +49,10 @@
     <Compile Include="AssertionsExtensions.cs" />
     <Compile Include="ControllerAssertions.cs" />
     <Compile Include="ActionResultAssertions.cs" />
-    <Compile Include="ViewResultAndConstraint.cs" />
+    <Compile Include="ActionResultAndConstraint.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <EmbeddedResource Include="AssertionFailureReasons.resources" />
+  </ItemGroup>
 </Project>

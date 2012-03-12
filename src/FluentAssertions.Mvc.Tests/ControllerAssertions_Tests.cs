@@ -21,13 +21,27 @@ namespace FluentAssertions.Mvc.Tests
 			var controller = new FakeController (new ViewResult { ViewName = "Index"});
 			controller.Index ().Should ().BeView ();
 		}
-		
+			
 		[Test]
 		public void BeView_GivenRedirection_ShouldFail ()
 		{
 			var controller = new FakeController (new RedirectResult ("/"));
 			Action action = () => controller.Index ().Should ().BeView ();
-			action.ShouldThrow<AssertionException> ().WithMessage ("Expected ActionResult to be ViewResult but was \"RedirectResult\"");
+			action.ShouldThrow<AssertionException> ();
+		}
+		
+		[Test]
+		public void a ()
+		{
+			var controller = new FakeController (new ViewResult { ViewName = "Index"});
+			controller.Index ().Should ().BeView ().WithViewName ("Index");
+		}
+
+		[Test]
+		public void b ()
+		{
+			var controller = new FakeController (new ViewResult { ViewName = "Index", MasterName="Fake"});
+			controller.Index ().Should ().BeView ().WithViewName ("Index").WithControllerName ("Fake");
 		}
 	}
 }
