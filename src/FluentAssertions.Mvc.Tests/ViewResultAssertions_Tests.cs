@@ -5,7 +5,7 @@ using System.Text;
 using NUnit.Framework;
 using System.Web.Mvc;
 using FluentAssertions.Mvc3;
-using FluentAssertions.Mvc.Tests.Fakes;
+using FluentAssertions.Mvc3.Tests.Fakes;
 
 namespace FluentAssertions.Mvc3.Tests
 {

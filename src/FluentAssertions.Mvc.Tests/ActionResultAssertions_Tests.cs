@@ -1,6 +1,6 @@
 using System;
 using NUnit.Framework;
-using FluentAssertions.Mvc.Tests.Fakes;
+using FluentAssertions.Mvc3.Tests.Fakes;
 using System.Web.Mvc;
 using FluentAssertions.Mvc3;
 
