@@ -1,21 +1,22 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="FluentAssertions.Mvc3\ViewResultAndConstraint.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FluentAssertions.Mvc.Tests\ActionResultAssertions_Tests.cs">
     <Files>
-      <File FileName="FluentAssertions.Mvc.Tests\ControllerAssertions_Tests.cs" Line="45" Column="4" />
-      <File FileName="d:\Development\FluentAssertions.MVC\src\FluentAssertions.Mvc3\AssertionsExtensions.cs" Line="16" Column="1" />
-      <File FileName="FluentAssertions.Mvc3\ActionResultAssertions.cs" Line="31" Column="4" />
-      <File FileName="FluentAssertions.Mvc.Tests\Fakes\FakeController.cs" Line="21" Column="1" />
-      <File FileName="FluentAssertions.Mvc3\ViewResultAndConstraint.cs" Line="1" Column="14" />
+      <File FileName="FluentAssertions.Mvc3\AssertionsExtensions.cs" Line="1" Column="1" />
+      <File FileName="FluentAssertions.Mvc.Tests\Fakes\FakeController.cs" Line="1" Column="1" />
+      <File FileName="FluentAssertions.Mvc.Tests\AssemblyInfo.cs" Line="1" Column="1" />
+      <File FileName="FluentAssertions.Mvc.Tests\ActionResultAssertions_Tests.cs" Line="14" Column="4" />
+      <File FileName="FluentAssertions.Mvc3\ActionResultAndConstraint.cs" Line="17" Column="3" />
+      <File FileName="FluentAssertions.Mvc3\ActionResultAssertions.cs" Line="1" Column="1" />
+      <File FileName="FluentAssertions.Mvc3\ViewResultAssertions.cs" Line="1" Column="1" />
+      <File FileName="FluentAssertions.Mvc3\AssemblyInfo.cs" Line="1" Column="1" />
       <File FileName="FluentAssertions.Mvc3\ControllerAssertions.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
+        <State expanded="True" selected="True">
           <Option id="ShowAllFiles" value="False" />
           <Option id="ShowVersionControlOverlays" value="True" />
-          <Node name="FluentAssertions.Mvc.Tests" expanded="True" />
-          <Node name="FluentAssertions.Mvc3" expanded="True" selected="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">
@@ -25,17 +26,7 @@
         <State />
       </Pad>
       <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True" selected="True">
-          <Node name="FluentAssertions.Mvc.Tests" expanded="True">
-            <Node name="FluentAssertions" expanded="True">
-              <Node name="Mvc" expanded="True">
-                <Node name="Tests" expanded="True">
-                  <Node name="ActionResultAssertions_Tests" expanded="True" />
-                </Node>
-              </Node>
-            </Node>
-          </Node>
-        </State>
+        <State expanded="True" selected="True" />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

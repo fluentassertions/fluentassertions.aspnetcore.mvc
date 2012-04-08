@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -47,12 +47,11 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Fakes\FakeController.cs" />
-    <Compile Include="ControllerAssertions_Tests.cs" />
+    <Compile Include="ActionResultAssertions_Tests.cs" />
+    <Compile Include="ViewResultAssertions_Tests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="Fakes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\FluentAssertions.Mvc3\FluentAssertions.Mvc3.csproj">
       <Project>{53589F79-0908-409A-8366-3E18DC637600}</Project>

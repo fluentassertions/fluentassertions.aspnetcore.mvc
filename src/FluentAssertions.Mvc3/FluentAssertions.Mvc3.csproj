@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -49,10 +49,14 @@
     <Compile Include="AssertionsExtensions.cs" />
     <Compile Include="ControllerAssertions.cs" />
     <Compile Include="ActionResultAssertions.cs" />
-    <Compile Include="ActionResultAndConstraint.cs" />
+    <Compile Include="Fakes\FakeHttpContext.cs" />
+    <Compile Include="Fakes\FakeHttpRequest.cs" />
+    <Compile Include="Fakes\FakeHttpResponse.cs" />
+    <Compile Include="PartialViewResultAssertions.cs" />
+    <Compile Include="RouteCollection_Extensions.cs" />
+    <Compile Include="RouteDataAssertions.cs" />
+    <Compile Include="ViewResultAssertions.cs" />
+    <Compile Include="ViewResultBaseAssertions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <EmbeddedResource Include="AssertionFailureReasons.resources" />
-  </ItemGroup>
 </Project>
