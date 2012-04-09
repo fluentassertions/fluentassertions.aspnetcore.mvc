@@ -11,7 +11,18 @@ namespace FluentAssertions.Mvc3.Fakes
         public FakeHttpRequest(string appPath, string relativePath)
         {
             _appPath = appPath;
-            _appRelativePath = relativePath;
+            _appRelativePath = fixRelativeUrl(relativePath);
+        }
+
+        private string fixRelativeUrl(string url)
+        {
+            if (url.StartsWith("/"))
+                return "~" + url;
+
+            if (!url.StartsWith("~/"))
+                return "~/" + url;
+
+            return url;
         }
 
         public override string ApplicationPath

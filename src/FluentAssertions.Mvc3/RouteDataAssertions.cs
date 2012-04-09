@@ -19,26 +19,63 @@ namespace FluentAssertions.Mvc3
 
         public RouteDataAssertions HaveController(string expectedControllerName)
         {
+            HaveController(expectedControllerName, string.Empty, null);
+            return this;
+        }
+
+        public RouteDataAssertions HaveController(string expectedControllerName, string reason, params object[] reasonArgs)
+        {
+            HaveValue("controller", expectedControllerName, reason, reasonArgs);
             return this;
         }
 
         public RouteDataAssertions HaveAction(string expectedActionName)
         {
+            HaveAction(expectedActionName, string.Empty, null);
             return this;
         }
 
-        public RouteDataAssertions HaveArea(string expectedAreaName)
+        public RouteDataAssertions HaveAction(string expectedActionName, string reason, params object[] reasonArgs)
         {
+            HaveValue("action", expectedActionName, reason, reasonArgs);
             return this;
         }
 
-        public RouteDataAssertions HaveDataToken(string tokenName, string expectedValue)
+        public RouteDataAssertions HaveDataToken(string key, object expectedValue)
         {
+            HaveDataToken(key, expectedValue, string.Empty, null);
             return this;
         }
 
-        public RouteDataAssertions HaveValue(string valueName, string expectedValue)
+        public RouteDataAssertions HaveDataToken(string key, object expectedValue, string reason, params object[] reasonArgs)
         {
+            Execute.Verification
+                    .ForCondition(Subject.DataTokens.ContainsKey(key))
+                    .BecauseOf(reason, reasonArgs)
+                    .FailWith("RouteData.DataTokens does not contain key '{0}'", key);
+
+            var actualValue = Subject.DataTokens[key];
+            actualValue.Should().Be(expectedValue);
+
+            return this;
+        }
+
+        public RouteDataAssertions HaveValue(string key, object expectedValue)
+        {
+            HaveValue(key, expectedValue, string.Empty, null);
+            return this;
+        }
+
+        public RouteDataAssertions HaveValue(string key, object expectedValue, string reason, params object[] reasonArgs)
+        {
+            Execute.Verification
+                    .ForCondition(Subject.Values.ContainsKey(key))
+                    .BecauseOf(reason, reasonArgs)
+                    .FailWith("RouteData.Values does not contain key '{0}'", key);
+
+            var actualValue = Subject.Values[key];
+            actualValue.Should().Be(expectedValue);
+
             return this;
         }
     }

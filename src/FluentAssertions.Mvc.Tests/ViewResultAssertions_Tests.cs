@@ -303,7 +303,6 @@ namespace FluentAssertions.Mvc3.Tests
             ActionResult result = _controller.Index();
 
             //ASSERT
-            result.Should().BeView().ModelAs<int>().Should().Be(2);
             Action a = () => result.Should().BeView().ModelAs<int>().Should().Be(2);
             a.ShouldThrow<Exception>();
         }

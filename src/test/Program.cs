@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using FluentAssertions.Mvc3.Tests;
+using System.Web.Mvc;
+using System.Web.Routing;
+using FluentAssertions.Mvc3;
+using FluentAssertions;
 
 namespace test
 {
@@ -14,12 +18,14 @@ namespace test
         [STAThread]
         static void Main()
         {
-            var test = new ViewResultAssertions_Tests();
-            test.WithMasterName_GivenUnexpectedValue_ShouldFail();
+            var test = new RouteDataAssertions_Tests();
+            test.HaveDataToken_GivenExpectedArea_ShouldPass();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
         }
+
+
     }
 }

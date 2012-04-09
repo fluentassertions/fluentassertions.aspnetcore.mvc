@@ -13,7 +13,7 @@ namespace FluentAssertions.Mvc3
     {
         public static RouteData GetRouteDataForUrl(this RouteCollection routes, string url)
         {
-            var context = new FakeHttpContext(url, string.Empty);
+            var context = new FakeHttpContext("/", url);
             var routeData = routes.GetRouteData(context);
             return routeData;
         }

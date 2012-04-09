@@ -9,7 +9,7 @@ using FluentAssertions.Mvc3.Samples.Models;
 
 namespace FluentAssertions.Mvc3.Samples
 {
-    public class ActionResultSamples
+    public class ActionResult_Samples
     {
         public void ViewResult_Sample()
         {
