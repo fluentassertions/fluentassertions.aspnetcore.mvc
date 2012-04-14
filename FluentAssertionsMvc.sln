@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C# Express 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentAssertions.Mvc3.Tests", "FluentAssertions.Mvc.Tests\FluentAssertions.Mvc3.Tests.csproj", "{3CB00FF9-3DC2-460F-82E8-EBFB6339247D}"
+# Visual Web Developer Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentAssertions.Mvc3", "src\FluentAssertions.Mvc3\FluentAssertions.Mvc3.csproj", "{53589F79-0908-409A-8366-3E18DC637600}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentAssertions.Mvc3", "FluentAssertions.Mvc3\FluentAssertions.Mvc3.csproj", "{53589F79-0908-409A-8366-3E18DC637600}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentAssertions.Mvc3.Tests", "tests\FluentAssertions.Mvc3.Tests\FluentAssertions.Mvc3.Tests.csproj", "{3CB00FF9-3DC2-460F-82E8-EBFB6339247D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{D29AE253-FEE8-4A54-BFBD-323CAD27F549}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "tests\test\test.csproj", "{D29AE253-FEE8-4A54-BFBD-323CAD27F549}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentAssertions.Mvc3.Samples", "FluentAssertions.Mvc3.Samples\FluentAssertions.Mvc3.Samples.csproj", "{7B9B969E-C3E1-47DD-89B1-AD17232D4A23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentAssertions.Mvc3.Samples", "samples\FluentAssertions.Mvc3.Samples\FluentAssertions.Mvc3.Samples.csproj", "{7B9B969E-C3E1-47DD-89B1-AD17232D4A23}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,16 +19,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3CB00FF9-3DC2-460F-82E8-EBFB6339247D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3CB00FF9-3DC2-460F-82E8-EBFB6339247D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3CB00FF9-3DC2-460F-82E8-EBFB6339247D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{3CB00FF9-3DC2-460F-82E8-EBFB6339247D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{3CB00FF9-3DC2-460F-82E8-EBFB6339247D}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{3CB00FF9-3DC2-460F-82E8-EBFB6339247D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3CB00FF9-3DC2-460F-82E8-EBFB6339247D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3CB00FF9-3DC2-460F-82E8-EBFB6339247D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{3CB00FF9-3DC2-460F-82E8-EBFB6339247D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{3CB00FF9-3DC2-460F-82E8-EBFB6339247D}.Release|x86.ActiveCfg = Release|Any CPU
 		{53589F79-0908-409A-8366-3E18DC637600}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{53589F79-0908-409A-8366-3E18DC637600}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53589F79-0908-409A-8366-3E18DC637600}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -39,6 +29,14 @@ Global
 		{53589F79-0908-409A-8366-3E18DC637600}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{53589F79-0908-409A-8366-3E18DC637600}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{53589F79-0908-409A-8366-3E18DC637600}.Release|x86.ActiveCfg = Release|Any CPU
+		{3CB00FF9-3DC2-460F-82E8-EBFB6339247D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CB00FF9-3DC2-460F-82E8-EBFB6339247D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3CB00FF9-3DC2-460F-82E8-EBFB6339247D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3CB00FF9-3DC2-460F-82E8-EBFB6339247D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3CB00FF9-3DC2-460F-82E8-EBFB6339247D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CB00FF9-3DC2-460F-82E8-EBFB6339247D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3CB00FF9-3DC2-460F-82E8-EBFB6339247D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3CB00FF9-3DC2-460F-82E8-EBFB6339247D}.Release|x86.ActiveCfg = Release|Any CPU
 		{D29AE253-FEE8-4A54-BFBD-323CAD27F549}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{D29AE253-FEE8-4A54-BFBD-323CAD27F549}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{D29AE253-FEE8-4A54-BFBD-323CAD27F549}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -46,7 +44,6 @@ Global
 		{D29AE253-FEE8-4A54-BFBD-323CAD27F549}.Debug|x86.Build.0 = Debug|x86
 		{D29AE253-FEE8-4A54-BFBD-323CAD27F549}.Release|Any CPU.ActiveCfg = Release|x86
 		{D29AE253-FEE8-4A54-BFBD-323CAD27F549}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{D29AE253-FEE8-4A54-BFBD-323CAD27F549}.Release|Mixed Platforms.Build.0 = Release|x86
 		{D29AE253-FEE8-4A54-BFBD-323CAD27F549}.Release|x86.ActiveCfg = Release|x86
 		{D29AE253-FEE8-4A54-BFBD-323CAD27F549}.Release|x86.Build.0 = Release|x86
 		{7B9B969E-C3E1-47DD-89B1-AD17232D4A23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -57,13 +54,9 @@ Global
 		{7B9B969E-C3E1-47DD-89B1-AD17232D4A23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B9B969E-C3E1-47DD-89B1-AD17232D4A23}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7B9B969E-C3E1-47DD-89B1-AD17232D4A23}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{7B9B969E-C3E1-47DD-89B1-AD17232D4A23}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{7B9B969E-C3E1-47DD-89B1-AD17232D4A23}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = FluentAssertions.Mvc3\FluentAssertions.Mvc3.csproj
 	EndGlobalSection
 EndGlobal

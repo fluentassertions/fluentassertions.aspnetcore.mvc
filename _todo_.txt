@@ -1,0 +1,2 @@
+﻿[ ] Check for ActionResult types that derive from basic types
+[ ] Change lib folder to use restorable nuget packages

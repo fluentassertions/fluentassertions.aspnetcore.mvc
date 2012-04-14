@@ -24,7 +24,7 @@ namespace FluentAssertions.Mvc3.Samples
                 Id = 444
             });
 
-            var routes = GetRoutes();
+            var routes = GetRoutes(); //Get Routes from MvcApplication
             routeValues.GenerateUrl(routes).Should().Be("~/product/edit/444");
         }
     }

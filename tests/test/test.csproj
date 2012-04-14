@@ -90,13 +90,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FluentAssertions.Mvc.Tests\FluentAssertions.Mvc3.Tests.csproj">
-      <Project>{3CB00FF9-3DC2-460F-82E8-EBFB6339247D}</Project>
-      <Name>FluentAssertions.Mvc3.Tests</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FluentAssertions.Mvc3\FluentAssertions.Mvc3.csproj">
+    <ProjectReference Include="..\..\src\FluentAssertions.Mvc3\FluentAssertions.Mvc3.csproj">
       <Project>{53589F79-0908-409A-8366-3E18DC637600}</Project>
       <Name>FluentAssertions.Mvc3</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FluentAssertions.Mvc3.Tests\FluentAssertions.Mvc3.Tests.csproj">
+      <Project>{3CB00FF9-3DC2-460F-82E8-EBFB6339247D}</Project>
+      <Name>FluentAssertions.Mvc3.Tests</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

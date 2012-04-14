@@ -5,3 +5,6 @@
 test-results
 *.pidb
 *.userprefs
+*.pfx
+cmd.exe
+[Pp]ackage
