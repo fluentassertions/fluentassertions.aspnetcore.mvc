@@ -1,2 +1,8 @@
 ﻿[ ] Check for ActionResult types that derive from basic types
 [ ] Change lib folder to use restorable nuget packages
+[ ] All ShouldThrow tests must assert the exception message
+[ ] Fix all fail messages to be like RedirectToRouteAssertions
+[ ] Change all dictionary asserts to us Subject.RouteValues.Should().Contain
+[ ] FluentAssertions should *not* blow up if given null reasonArgs and a reason
+[ ] Should because syntax in sample code
+[ ] XML comments every where
