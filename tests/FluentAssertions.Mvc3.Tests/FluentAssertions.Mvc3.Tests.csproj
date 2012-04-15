@@ -52,6 +52,7 @@
     <Compile Include="Fakes\FakeController.cs" />
     <Compile Include="ActionResultAssertions_Tests.cs" />
     <Compile Include="RedirectResultAssertions_Tests.cs" />
+    <Compile Include="RedirectToRoute_Tests.cs" />
     <Compile Include="RouteDataAssertions_Tests.cs" />
     <Compile Include="RouteValueDictionary_Extensions_Tests.cs" />
     <Compile Include="ViewResultAssertions_Tests.cs" />

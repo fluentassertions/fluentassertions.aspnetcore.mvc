@@ -8,3 +8,4 @@ test-results
 *.pfx
 cmd.exe
 [Pp]ackage
+[Gg]it [Bb]ash.lnk
