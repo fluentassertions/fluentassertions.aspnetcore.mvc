@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Routing;
 using System.Web.Mvc;
+using System.Web.Routing;
 using NUnit.Framework;
 
 namespace FluentAssertions.Mvc3.Tests
@@ -30,6 +27,13 @@ namespace FluentAssertions.Mvc3.Tests
                 })
             });
         }
+
+        [Test]
+		public void GetRouteDataForUrl_GivenRouteDoesntMap_ShouldReturnNull()
+		{
+            RouteData rd = _routes.GetRouteDataForUrl("/a/b/c/d/r");
+            rd.Should().BeNull();
+		}
 
         [Test]
         public void HaveValue_GivenKeyDoesExist_ShouldFail()

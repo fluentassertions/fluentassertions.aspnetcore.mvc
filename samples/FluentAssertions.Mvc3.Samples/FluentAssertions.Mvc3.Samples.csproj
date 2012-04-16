@@ -77,6 +77,7 @@
     <Compile Include="Services\IProductService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Tests\ProductController_Tests.cs" />
+    <Compile Include="Tests\Route_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />

@@ -6,3 +6,9 @@
 [ ] FluentAssertions should *not* blow up if given null reasonArgs and a reason
 [ ] Should because syntax in sample code
 [ ] XML comments every where
+[ ] Should assertions be more domain focused? i.e. routes.Should().MapTo()...
+[ ] Create RouteCollection.GenerateUrl(RouteValues)
+[ ] Need to test reason injection into fail messages
+[ ] Every mvc assertion type needs to inherit from ObjectAssertions
+[ ] If .BecauseOf isn't called FluentAssertions blows up
+[ ] Consolidate all messages into central resource file

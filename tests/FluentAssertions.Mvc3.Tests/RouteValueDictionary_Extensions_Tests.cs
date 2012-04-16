@@ -30,7 +30,6 @@ namespace FluentAssertions.Mvc3.Tests
         public void GenerateUrl_GivenNoRouteValues_ShouldReturnExpectedUrl()
         {
             var routeValues = new RouteValueDictionary();
-
             var url = routeValues.GenerateUrl(CreateDefaultRoutes());
             url.Should().Be("/");
         }

@@ -22,6 +22,15 @@ namespace FluentAssertions.Mvc3.Samples
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                    name: "ProductIndex",
+                    url: "Product/List",
+                    defaults: new
+                    {
+                        Controller = "Product",
+                        Action = "List"
+                    });
+
+            routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults

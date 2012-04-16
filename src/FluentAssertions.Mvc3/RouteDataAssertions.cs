@@ -10,9 +10,10 @@ using System.Diagnostics;
 namespace FluentAssertions.Mvc3
 {
     [DebuggerNonUserCode]
-    public class RouteDataAssertions : ReferenceTypeAssertions<RouteData, RouteDataAssertions>
+    public class RouteDataAssertions : ObjectAssertions
     {
         public RouteDataAssertions(RouteData subject)
+            : base(subject)
         {
             Subject = subject;
         }
@@ -49,12 +50,14 @@ namespace FluentAssertions.Mvc3
 
         public RouteDataAssertions HaveDataToken(string key, object expectedValue, string reason, params object[] reasonArgs)
         {
+            var subjectTyped = Subject as RouteData;
+
             Execute.Verification
-                    .ForCondition(Subject.DataTokens.ContainsKey(key))
+                    .ForCondition(subjectTyped.DataTokens.ContainsKey(key))
                     .BecauseOf(reason, reasonArgs)
                     .FailWith("RouteData.DataTokens does not contain key '{0}'", key);
 
-            var actualValue = Subject.DataTokens[key];
+            var actualValue = subjectTyped.DataTokens[key];
             actualValue.Should().Be(expectedValue);
 
             return this;
@@ -68,12 +71,14 @@ namespace FluentAssertions.Mvc3
 
         public RouteDataAssertions HaveValue(string key, object expectedValue, string reason, params object[] reasonArgs)
         {
+            var subjectTyped = Subject as RouteData;
+
             Execute.Verification
-                    .ForCondition(Subject.Values.ContainsKey(key))
+                    .ForCondition(subjectTyped.Values.ContainsKey(key))
                     .BecauseOf(reason, reasonArgs)
                     .FailWith("RouteData.Values does not contain key '{0}'", key);
 
-            var actualValue = Subject.Values[key];
+            var actualValue = subjectTyped.Values[key];
             actualValue.Should().Be(expectedValue);
 
             return this;

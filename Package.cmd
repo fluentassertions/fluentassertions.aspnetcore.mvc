@@ -8,7 +8,7 @@ echo.
 echo *** BUILD SUCCESSFUL ***
 echo.
 
-cd package
+cd release
 nuget pack
 if errorlevel 1 goto PackageFail
 

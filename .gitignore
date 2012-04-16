@@ -10,3 +10,6 @@ cmd.exe
 [Pp]ackage
 [Gg]it [Bb]ash.lnk
 [Ii]nore
+FluentAssertionsMvc.VisualState.xml
+[Rr]elease
+TestResult.xml

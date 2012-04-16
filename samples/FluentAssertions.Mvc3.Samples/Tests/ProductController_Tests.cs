@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using FluentAssertions.Mvc3.Samples.Controllers;
 using NUnit.Framework;
-using System.Web.Mvc;
-using FluentAssertions.Mvc3.Samples.Controllers;
-using FluentAssertions.Mvc3;
-using FluentAssertions;
 
 namespace FluentAssertions.Mvc3.Samples.Tests
 {
@@ -14,12 +7,12 @@ namespace FluentAssertions.Mvc3.Samples.Tests
     public class ProductController_Tests
     {
         [Test]
-		public void Index_ShouldReturnView()
+		public void List_ShouldReturnView()
 		{
             var controller = new ProductController();
-            controller.Index()
-                .Should()
-                .BeView();
+            controller.List().Should()
+                .BeView()
+                .WithViewName("Index");
 		}
     }
 }

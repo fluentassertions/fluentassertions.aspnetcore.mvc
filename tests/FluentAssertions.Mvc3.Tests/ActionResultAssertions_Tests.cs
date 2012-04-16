@@ -14,7 +14,8 @@ namespace FluentAssertions.Mvc3.Tests
         public void BeContent_GivenContent_ShouldPass()
         {
             ActionResult result = new ContentResult();
-            result.Should().BeContent();
+            result.Should()
+                    .BeContent();
         }
         
         [Test]
@@ -22,7 +23,8 @@ namespace FluentAssertions.Mvc3.Tests
         {
             ActionResult result = new ViewResult();
             Action a = () => result.Should().BeContent();
-            a.ShouldThrow<Exception>();
+            a.ShouldThrow<Exception>()
+                    .WithMessage("Expected ActionResult to be \"ContentResult\", but found \"ViewResult\"");
         }
 
         [Test]
@@ -37,7 +39,8 @@ namespace FluentAssertions.Mvc3.Tests
         {
             ActionResult result = new ViewResult();
             Action a = () => result.Should().BeEmpty();
-            a.ShouldThrow<Exception>();
+            a.ShouldThrow<Exception>()
+                    .WithMessage("Expected ActionResult to be \"EmptyResult\", but found \"ViewResult\"");
         }
 
         [Test]
@@ -52,7 +55,8 @@ namespace FluentAssertions.Mvc3.Tests
         {
             ActionResult result = new ViewResult();
             Action a = () => result.Should().BeRedirectToRoute();
-            a.ShouldThrow<Exception>();
+            a.ShouldThrow<Exception>()
+                    .WithMessage("Expected ActionResult to be \"RedirectToRouteResult\", but found \"ViewResult\"");
         }
 
         [Test]
@@ -66,8 +70,9 @@ namespace FluentAssertions.Mvc3.Tests
         public void BeRedirect_GivenNotRedirect_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            Action a = () => result.Should().BePartialView();
-            a.ShouldThrow<Exception>();
+            Action a = () => result.Should().BeRedirect();
+            a.ShouldThrow<Exception>()
+                    .WithMessage("Expected ActionResult to be \"RedirectResult\", but found \"ViewResult\"");
         }
 
         [Test]
@@ -82,7 +87,8 @@ namespace FluentAssertions.Mvc3.Tests
         {
             ActionResult result = new RedirectResult("/");
             Action a = () => result.Should().BePartialView();
-            a.ShouldThrow<Exception>();
+            a.ShouldThrow<Exception>()
+                    .WithMessage("Expected ActionResult to be \"PartialViewResult\", but found \"RedirectResult\"");
         }
 
         [Test]
@@ -97,7 +103,8 @@ namespace FluentAssertions.Mvc3.Tests
         {
             ActionResult result = new RedirectResult("/");
             Action a = () => result.Should().BeView();
-            a.ShouldThrow<Exception>();
+            a.ShouldThrow<Exception>()
+                    .WithMessage("Expected ActionResult to be \"ViewResult\", but found \"RedirectResult\"");
         }
 	}
 }
