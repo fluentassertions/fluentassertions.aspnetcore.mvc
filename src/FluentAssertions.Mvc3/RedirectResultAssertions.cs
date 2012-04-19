@@ -7,41 +7,42 @@ using FluentAssertions.Assertions;
 
 namespace FluentAssertions.Mvc3
 {
-    public class RedirectResultAssertions : ReferenceTypeAssertions<RedirectResult, RedirectResultAssertions>
+    public class RedirectResultAssertions : ObjectAssertions
     {
-        public RedirectResultAssertions(RedirectResult subject)
-        {
-            Subject = subject;
-        }
+        public RedirectResultAssertions(RedirectResult subject) : base(subject) { }
 
-        public RedirectResultAssertions HaveUrl(string expectedUrl)
+        public RedirectResultAssertions WithUrl(string expectedUrl)
         {
-            HaveUrl(expectedUrl, string.Empty, null);
+            WithUrl(expectedUrl, string.Empty, null);
             return this;
         }
 
-        public RedirectResultAssertions HaveUrl(string expectedUrl, string reason, string reasonArgs)
+        public RedirectResultAssertions WithUrl(string expectedUrl, string reason, string reasonArgs)
         {
+            string actualUrl = (Subject as RedirectResult).Url;
+
             Execute.Verification
-                    .ForCondition(string.Equals(Subject.Url, expectedUrl, StringComparison.InvariantCultureIgnoreCase))
+                    .ForCondition(string.Equals(actualUrl, expectedUrl, StringComparison.InvariantCultureIgnoreCase))
                     .BecauseOf(reason, reasonArgs)
-                    .FailWith("Expected RedirectResult.Url to be '{0}' but was '{1}'", expectedUrl, Subject.Url);
+                    .FailWith("Expected RedirectResult.Url to be {0}{reason} but was {1}", expectedUrl, actualUrl);
 
             return this;
         }
 
-        public RedirectResultAssertions HavePermanent(bool expectedPermanent)
+        public RedirectResultAssertions WithPermanent(bool expectedPermanent)
         {
-            HavePermanent(expectedPermanent, string.Empty, null);
+            WithPermanent(expectedPermanent, string.Empty, null);
             return this;
         }
 
-        public RedirectResultAssertions HavePermanent(bool expectedPermanent, string reason, string reasonArgs)
+        public RedirectResultAssertions WithPermanent(bool expectedPermanent, string reason, string reasonArgs)
         {
+            bool actualPermanent = (Subject as RedirectResult).Permanent;
+
             Execute.Verification
-                    .ForCondition(expectedPermanent == Subject.Permanent)
+                    .ForCondition(expectedPermanent == actualPermanent)
                     .BecauseOf(reason, reasonArgs)
-                    .FailWith("Expected RedirectResult.Permanent to be '{0}' but was '{1}'", expectedPermanent, Subject.Permanent);
+                    .FailWith("Expected RedirectResult.Permanent to be {0}{reason} but was {1}", expectedPermanent, actualPermanent);
 
             return this;
         }
