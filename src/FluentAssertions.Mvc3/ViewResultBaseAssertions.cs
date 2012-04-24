@@ -9,10 +9,10 @@ using System.Diagnostics;
 namespace FluentAssertions.Mvc3
 {
     [DebuggerNonUserCode]
-    public abstract class ViewResultBaseAssertions<T> : ReferenceTypeAssertions<T, ViewResultBaseAssertions<T>>
+    public abstract class ViewResultBaseAssertions<T> : ObjectAssertions
         where T : ViewResultBase
     {
-        public ViewResultBaseAssertions(ViewResultBase subject)
+        public ViewResultBaseAssertions(ViewResultBase subject) : base(subject)
         {
             Subject = (T)subject;
         }
@@ -25,10 +25,12 @@ namespace FluentAssertions.Mvc3
 
         public ViewResultBaseAssertions<T> WithViewName(string expectedViewName, string reason, params object[] reasonArgs)
         {
+            string actualViewName = (Subject as ViewResultBase).ViewName;
+
             Execute.Verification
-                    .ForCondition(string.Equals(expectedViewName, Subject.ViewName, StringComparison.InvariantCultureIgnoreCase))
+                    .ForCondition(string.Equals(expectedViewName, actualViewName, StringComparison.InvariantCultureIgnoreCase))
                     .BecauseOf(reason, reasonArgs)
-                    .FailWith("Expected ViewName to be '{0}' but was '{1}'", expectedViewName, Subject.ViewName);
+                    .FailWith("Expected ViewName to be '{0}' but was '{1}'", expectedViewName, actualViewName);
             return this;
         }
 
@@ -40,12 +42,14 @@ namespace FluentAssertions.Mvc3
 
         public ViewResultBaseAssertions<T> WithViewData(string key, object expectedValue, string reason, params object[] reasonArgs)
         {
+            ViewDataDictionary actualViewData = (Subject as ViewResultBase).ViewData;
+
             Execute.Verification
-                    .ForCondition(Subject.ViewData.ContainsKey(key))
+                    .ForCondition(actualViewData.ContainsKey(key))
                     .BecauseOf(reason, reasonArgs)
                     .FailWith("ViewData does not contain key of '{0}'", key);
 
-            Subject.ViewData[key].Should().Be(expectedValue);
+            actualViewData[key].Should().Be(expectedValue);
 
             return this;
         }
@@ -58,12 +62,14 @@ namespace FluentAssertions.Mvc3
 
         public ViewResultBaseAssertions<T> WithTempData(string key, object expectedValue, string reason, params object[] reasonArgs)
         {
+            TempDataDictionary actualTempData = (Subject as ViewResultBase).TempData;
+
             Execute.Verification
-                    .ForCondition(Subject.TempData.ContainsKey(key))
+                    .ForCondition(actualTempData.ContainsKey(key))
                     .BecauseOf(reason, reasonArgs)
                     .FailWith("TempData does not contain key of '{0}'", key);
 
-            Subject.TempData[key].Should().Be(expectedValue);
+            actualTempData[key].Should().Be(expectedValue);
 
             return this;
         }
@@ -72,17 +78,20 @@ namespace FluentAssertions.Mvc3
         {
             get
             {
-                return Subject.Model;
+                var model = (Subject as ViewResult).Model;
+                return model;
             }
         }
 
         public TModel ModelAs<TModel>()
         {
-            Execute.Verification
-                    .ForCondition(Subject.Model is TModel)
-                    .FailWith("Expected Model to be of type '{0}' but was '{1}'", typeof(TModel).Name, Subject.Model.GetType().Name);
+            object model = (Subject as ViewResultBase).Model;
 
-            return (TModel)Subject.Model;
+            Execute.Verification
+                    .ForCondition(model is TModel)
+                    .FailWith("Expected Model to be of type '{0}' but was '{1}'", typeof(TModel).Name, model.GetType().Name);
+
+            return (TModel)model;
         }
     }
 }

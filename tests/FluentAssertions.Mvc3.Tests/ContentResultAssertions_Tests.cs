@@ -22,7 +22,8 @@ namespace FluentAssertions.Mvc3.Tests
         {
             ActionResult result = new ContentResult { Content = "content" };
             Action a = () => result.Should().BeContent().WithContent("xyz");
-            a.ShouldThrow<Exception>();
+            a.ShouldThrow<Exception>()
+                    .WithMessage("");
         }
 
         [Test]
@@ -37,7 +38,8 @@ namespace FluentAssertions.Mvc3.Tests
         {
             ActionResult result = new ContentResult { ContentType = "text/html" };
             Action a = () => result.Should().BeContent().WithContentType("xyz");
-            a.ShouldThrow<Exception>();
+            a.ShouldThrow<Exception>()
+                    .WithMessage("");
         }
 
         [Test]
@@ -52,7 +54,8 @@ namespace FluentAssertions.Mvc3.Tests
         {
             ActionResult result = new ContentResult { ContentEncoding = Encoding.ASCII };
             Action a = () => result.Should().BeContent().WithContentEncoding(Encoding.Unicode);
-            a.ShouldThrow<Exception>();
+            a.ShouldThrow<Exception>()
+                    .WithMessage("");
         }
     }
 }

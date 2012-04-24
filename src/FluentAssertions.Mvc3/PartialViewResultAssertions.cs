@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using System.Diagnostics;
+using FluentAssertions.Assertions;
 
 namespace FluentAssertions.Mvc3
 {
     [DebuggerNonUserCode]
-    public class PartialViewResultAssertions : ViewResultBaseAssertions<PartialViewResult>
+    public class PartialViewResultAssertions : ObjectAssertions
     {
         public PartialViewResultAssertions(PartialViewResult viewResult) : base(viewResult) { }
     }

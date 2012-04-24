@@ -34,7 +34,8 @@ namespace FluentAssertions.Mvc3.Tests
             };
 
             Action action = () => result.Should().BeView().WithMasterName("xyz");
-            action.ShouldThrow<Exception>();
+            action.ShouldThrow<Exception>()
+                    .WithMessage("");
         }
 
         [Test]
@@ -57,7 +58,8 @@ namespace FluentAssertions.Mvc3.Tests
             };
 
             Action action = () => result.Should().BeView().WithViewName("xyz");
-            action.ShouldThrow<Exception>();
+            action.ShouldThrow<Exception>()
+                    .WithMessage("");
         }
 
         [Test]
@@ -149,7 +151,8 @@ namespace FluentAssertions.Mvc3.Tests
             };
 
             Action a = () => result.Should().BeView().WithViewData("key1", "xyz");
-            a.ShouldThrow<Exception>();
+            a.ShouldThrow<Exception>()
+                    .WithMessage("");
         }
 
         [Test]
@@ -161,7 +164,8 @@ namespace FluentAssertions.Mvc3.Tests
             };
 
             Action a = () => result.Should().BeView().WithViewData("xyz", "value1");
-            a.ShouldThrow<Exception>();
+            a.ShouldThrow<Exception>()
+                    .WithMessage("");
         }
 
         [Test]
@@ -184,7 +188,8 @@ namespace FluentAssertions.Mvc3.Tests
             };
 
             Action a = () => result.Should().BeView().Model.Should().Be("xyx");
-            a.ShouldThrow<Exception>();
+            a.ShouldThrow<Exception>()
+                    .WithMessage("");
         }
 
         [Test]
@@ -207,7 +212,8 @@ namespace FluentAssertions.Mvc3.Tests
             };
 
             Action a = () => result.Should().BeView().ModelAs<string>().Should().Be("xyx");
-            a.ShouldThrow<Exception>();
+            a.ShouldThrow<Exception>()
+                    .WithMessage("");
         }
 
         [Test]
@@ -219,7 +225,8 @@ namespace FluentAssertions.Mvc3.Tests
             };
 
             Action a = () => result.Should().BeView().ModelAs<int>().Should().Be(2);
-            a.ShouldThrow<Exception>();
+            a.ShouldThrow<Exception>()
+                    .WithMessage("");
         }
     }
 }

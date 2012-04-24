@@ -7,16 +7,15 @@ using System.Web.Mvc;
 
 namespace FluentAssertions.Mvc3
 {
-    public class ContentResultAssertions : ReferenceTypeAssertions<ContentResult, ContentResultAssertions>
+    public class ContentResultAssertions : ObjectAssertions
     {
         class Constants
         {
             public const string CommonFailMessage = "Expect {0} to be '{1}' but was '{2}'";
         }
 
-        public ContentResultAssertions(ContentResult subject)
+        public ContentResultAssertions(ContentResult subject) : base(subject)
         {
-            Subject = subject;
         }
 
         public ContentResultAssertions WithContent(string expectedContent)
@@ -27,10 +26,12 @@ namespace FluentAssertions.Mvc3
 
         public ContentResultAssertions WithContent(string expectedContent, string reason, params object[] reasonArgs)
         {
+            string actualContent = (Subject as ContentResult).Content;
+
             Execute.Verification
-                    .ForCondition(string.Equals(Subject.Content, expectedContent, StringComparison.InvariantCultureIgnoreCase))
+                    .ForCondition(string.Equals(actualContent, expectedContent, StringComparison.InvariantCultureIgnoreCase))
                     .BecauseOf(reason, reasonArgs)
-                    .FailWith(string.Format(Constants.CommonFailMessage, "ContentResult.Content", expectedContent, Subject.Content));
+                    .FailWith(string.Format(Constants.CommonFailMessage, "ContentResult.Content", expectedContent, actualContent));
 
             return this;
         }
@@ -43,10 +44,12 @@ namespace FluentAssertions.Mvc3
 
         public ContentResultAssertions WithContentType(string expectedContent, string reason, params object[] reasonArgs)
         {
+            string actualContentType = (Subject as ContentResult).ContentType;
+
             Execute.Verification
-                    .ForCondition(string.Equals(expectedContent, Subject.ContentType, StringComparison.InvariantCultureIgnoreCase))
+                    .ForCondition(string.Equals(expectedContent, actualContentType, StringComparison.InvariantCultureIgnoreCase))
                     .BecauseOf(reason, reasonArgs)
-                    .FailWith(Constants.CommonFailMessage, "ContentResult.ContentType", expectedContent, Subject.ContentType);
+                    .FailWith(Constants.CommonFailMessage, "ContentResult.ContentType", expectedContent, actualContentType);
 
             return this;
         }
@@ -59,10 +62,12 @@ namespace FluentAssertions.Mvc3
 
         public ContentResultAssertions WithContentEncoding(Encoding expectedEncoding, string reason, params object[] reasonArgs)
         {
+            Encoding actualContentEncoding = (Subject as ContentResult).ContentEncoding;
+
             Execute.Verification
-                    .ForCondition(expectedEncoding == Subject.ContentEncoding)
+                    .ForCondition(expectedEncoding == actualContentEncoding)
                     .BecauseOf(reason, reasonArgs)
-                    .FailWith(Constants.CommonFailMessage, "ContentResult.ContentType", expectedEncoding.ToString(), Subject.ContentEncoding.ToString());
+                    .FailWith(Constants.CommonFailMessage, "ContentResult.ContentType", expectedEncoding.ToString(), actualContentEncoding.ToString());
 
             return this;
         }

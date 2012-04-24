@@ -18,10 +18,12 @@ namespace FluentAssertions.Mvc3
 
         public ViewResultAssertions WithMasterName(string expectedMasterName, string reason, params object[] reasonArgs)
         {
+            string actualMasterName = (Subject as ViewResult).MasterName;
+
             Execute.Verification
-                    .ForCondition(string.Equals(expectedMasterName, Subject.MasterName, StringComparison.InvariantCultureIgnoreCase))
+                    .ForCondition(string.Equals(expectedMasterName, actualMasterName, StringComparison.InvariantCultureIgnoreCase))
                     .BecauseOf(reason, reasonArgs)
-                    .FailWith("Expected MasterName to be '{0}' but was '{1}'", expectedMasterName, Subject.MasterName);
+                    .FailWith("Expected MasterName to be '{0}' but was '{1}'", expectedMasterName, actualMasterName);
             return this;
         }
 	}

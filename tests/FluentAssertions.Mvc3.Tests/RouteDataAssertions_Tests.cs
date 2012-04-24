@@ -40,7 +40,8 @@ namespace FluentAssertions.Mvc3.Tests
         {
             var routeData = _routes.GetRouteDataForUrl("/accounts/check");
             Action a = () => routeData.Should().HaveValue("xyz", "");
-            a.ShouldThrow<Exception>();
+            a.ShouldThrow<Exception>()
+                    .WithMessage("");
         }
 
         [Test]
@@ -55,7 +56,8 @@ namespace FluentAssertions.Mvc3.Tests
         {
             var routeData = _routes.GetRouteDataForUrl("/accounts/check");
             Action a = () => routeData.Should().HaveValue("controller", "xyz");
-            a.ShouldThrow<Exception>();
+            a.ShouldThrow<Exception>()
+                    .WithMessage("");
         }
         
         [Test]
@@ -77,7 +79,8 @@ namespace FluentAssertions.Mvc3.Tests
         {
             var routeData = _routes.GetRouteDataForUrl("/accounts/check/44");
             Action a = () => routeData.Should().HaveValue("id", "999");
-            a.ShouldThrow<Exception>();
+            a.ShouldThrow<Exception>()
+                    .WithMessage("");
         }
 
         [Test]
@@ -92,7 +95,8 @@ namespace FluentAssertions.Mvc3.Tests
         {
             var routeData = _routes.GetRouteDataForUrl("/accounts/check/44");
             Action a = () => routeData.Should().HaveController("xyz");
-            a.ShouldThrow<Exception>();
+            a.ShouldThrow<Exception>()
+                    .WithMessage("");
         }
 
         [Test]
@@ -107,7 +111,8 @@ namespace FluentAssertions.Mvc3.Tests
         {
             var routeData = _routes.GetRouteDataForUrl("/accounts/check/44");
             Action a = () => routeData.Should().HaveAction("xyz");
-            a.ShouldThrow<Exception>();
+            a.ShouldThrow<Exception>()
+                    .WithMessage("");
         }
 
         [Test]
@@ -115,7 +120,8 @@ namespace FluentAssertions.Mvc3.Tests
         {
             var routeData = _routes.GetRouteDataForUrl("/accounts/check");
             Action a = () => routeData.Should().HaveDataToken("xyz", "");
-            a.ShouldThrow<Exception>();
+            a.ShouldThrow<Exception>()
+                    .WithMessage("");
         }
 
         [Test]
@@ -130,7 +136,8 @@ namespace FluentAssertions.Mvc3.Tests
         {
             var routeData = _routes.GetRouteDataForUrl("/accounts/check");
             Action a = () => routeData.Should().HaveDataToken("area", "xyz");
-            a.ShouldThrow<Exception>();
+            a.ShouldThrow<Exception>()
+                    .WithMessage("");
         }
     }
 }
