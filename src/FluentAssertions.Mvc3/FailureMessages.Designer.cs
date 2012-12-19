@@ -61,6 +61,15 @@ namespace FluentAssertions.Mvc3 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expected Model to be of type {0}, but no Model was supplied..
+        /// </summary>
+        internal static string ViewResultBase_NullModel {
+            get {
+                return ResourceManager.GetString("ViewResultBase_NullModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expected default view, but view {0} was rendered..
         /// </summary>
         internal static string ViewResultBase_WithDefaultViewName {

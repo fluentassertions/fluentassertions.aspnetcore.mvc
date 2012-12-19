@@ -230,6 +230,21 @@ namespace FluentAssertions.Mvc3.Tests
         }
 
         [Test]
+        public void ModelAs_Null_ShouldFail()
+        {
+            ActionResult result = new ViewResult();
+
+            // TODO: Improve the comparision of failure messages.
+            string value = String.Format("\"{0}\"", typeof(Object).Name);
+            string failureMessage = String.Format(FailureMessages.ViewResultBase_NullModel, value);
+
+            Action a = () => result.Should().BeView().ModelAs<Object>();
+            
+            a.ShouldThrow<Exception>()
+                    .WithMessage(failureMessage);
+        }
+
+        [Test]
         public void WithDefaultViewName_GivenExpectedValue_ShouldPass()
         {
             ActionResult result = new ViewResult
@@ -244,6 +259,8 @@ namespace FluentAssertions.Mvc3.Tests
         public void WithDefaultViewName_GivenUnexpectedValue_ShouldFail()
         {
             string viewName = "index";
+
+            // TODO: Improve the comparision of failure messages.
             string value = String.Format("\"{0}\"", viewName);
             string failureMessage = String.Format(FailureMessages.ViewResultBase_WithDefaultViewName, value);
 

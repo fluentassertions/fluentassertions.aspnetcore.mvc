@@ -88,6 +88,9 @@ namespace FluentAssertions.Mvc3
         {
             object model = (Subject as ViewResultBase).Model;
 
+            if (model == null)
+                Execute.Verification.FailWith(FailureMessages.ViewResultBase_NullModel, typeof(TModel).Name);
+
             Execute.Verification
                     .ForCondition(model is TModel)
                     .FailWith("Expected Model to be of type '{0}' but was '{1}'", typeof(TModel).Name, model.GetType().Name);
