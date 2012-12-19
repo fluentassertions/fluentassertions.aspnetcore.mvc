@@ -94,5 +94,23 @@ namespace FluentAssertions.Mvc3
 
             return (TModel)model;
         }
+
+        public ViewResultBaseAssertions<T> WithDefaultViewName()
+        {
+            WithDefaultView(string.Empty, null);
+            return this;
+        }
+
+        public ViewResultBaseAssertions<T> WithDefaultView(string reason, params object[] reasonArgs)
+        {
+            string viewName = (Subject as ViewResultBase).ViewName;
+
+            Execute.Verification
+                    .ForCondition(viewName == string.Empty)
+                    .BecauseOf(reason, reasonArgs)
+                    .FailWith(FailureMessages.ViewResultBase_WithDefaultViewName, viewName);
+            
+            return this;
+        }
     }
 }

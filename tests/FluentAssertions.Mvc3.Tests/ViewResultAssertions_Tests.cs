@@ -228,5 +228,34 @@ namespace FluentAssertions.Mvc3.Tests
             a.ShouldThrow<Exception>()
                     .WithMessage("");
         }
+
+        [Test]
+        public void WithDefaultViewName_GivenExpectedValue_ShouldPass()
+        {
+            ActionResult result = new ViewResult
+            {
+                ViewName = String.Empty
+            };
+
+            result.Should().BeView().WithDefaultViewName();
+        }
+
+        [Test]
+        public void WithDefaultViewName_GivenUnexpectedValue_ShouldFail()
+        {
+            string viewName = "index";
+            string value = String.Format("\"{0}\"", viewName);
+            string failureMessage = String.Format(FailureMessages.ViewResultBase_WithDefaultViewName, value);
+
+            ActionResult result = new ViewResult
+            {
+                ViewName = viewName
+            };
+
+            Action action = () => result.Should().BeView().WithDefaultViewName();
+
+            action.ShouldThrow<Exception>()
+                    .WithMessage(failureMessage);
+        }
     }
 }
