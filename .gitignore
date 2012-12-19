@@ -13,3 +13,5 @@ cmd.exe
 FluentAssertionsMvc.VisualState.xml
 [Rr]elease
 TestResult.xml
+
+*.gpState

@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Web.Routing;
 using FluentAssertions;
-using FluentAssertions.Assertions;
+using FluentAssertions.Execution;
+using FluentAssertions.Primitives;
 using System.Diagnostics;
 
 namespace FluentAssertions.Mvc3

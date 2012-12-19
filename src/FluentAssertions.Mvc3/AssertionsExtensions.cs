@@ -1,5 +1,4 @@
 using FluentAssertions;
-using FluentAssertions.Assertions;
 using System;
 using System.Web.Mvc;
 using FluentAssertions.Mvc3;

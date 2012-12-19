@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using FluentAssertions.Assertions;
+using FluentAssertions.Execution;
+using FluentAssertions.Primitives;
 using System.Web.Mvc;
 using System.Diagnostics;
 

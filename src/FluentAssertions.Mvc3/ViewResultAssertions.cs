@@ -1,6 +1,6 @@
+using FluentAssertions.Execution;
 using System;
 using System.Web.Mvc;
-using FluentAssertions.Assertions;
 using System.Diagnostics;
 
 namespace FluentAssertions.Mvc3

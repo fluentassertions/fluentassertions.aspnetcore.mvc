@@ -44,10 +44,11 @@
     <DocumentationFile>..\..\bin\Release\FluentAssertions.Mvc3.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="FluentAssertions">
-      <HintPath>..\..\lib\FluentAssertions.1.7.0\Lib\net40\FluentAssertions.dll</HintPath>
+    <Reference Include="FluentAssertions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\FluentAssertions.2.0.0.1\lib\net40\FluentAssertions.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <Private>False</Private>
     </Reference>
@@ -76,6 +77,9 @@
     <Compile Include="RouteValueDictionary_Extensions.cs" />
     <Compile Include="ViewResultAssertions.cs" />
     <Compile Include="ViewResultBaseAssertions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
