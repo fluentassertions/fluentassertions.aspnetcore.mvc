@@ -5,6 +5,7 @@ using System.Text;
 using NUnit.Framework;
 using System.Web.Mvc;
 using FluentAssertions.Mvc3;
+using FluentAssertions.Mvc3.Tests.Helpers;
 using FluentAssertions.Mvc3.Tests.Fakes;
 
 namespace FluentAssertions.Mvc3.Tests
@@ -233,10 +234,7 @@ namespace FluentAssertions.Mvc3.Tests
         public void ModelAs_Null_ShouldFail()
         {
             ActionResult result = new ViewResult();
-
-            // TODO: Improve the comparision of failure messages.
-            string value = String.Format("\"{0}\"", typeof(Object).Name);
-            string failureMessage = String.Format(FailureMessages.ViewResultBase_NullModel, value);
+            string failureMessage = FailureMessageHelper.Format(FailureMessages.ViewResultBase_NullModel, typeof(Object).Name);
 
             Action a = () => result.Should().BeView().ModelAs<Object>();
             
@@ -259,10 +257,7 @@ namespace FluentAssertions.Mvc3.Tests
         public void WithDefaultViewName_GivenUnexpectedValue_ShouldFail()
         {
             string viewName = "index";
-
-            // TODO: Improve the comparision of failure messages.
-            string value = String.Format("\"{0}\"", viewName);
-            string failureMessage = String.Format(FailureMessages.ViewResultBase_WithDefaultViewName, value);
+            string failureMessage = FailureMessageHelper.Format(FailureMessages.ViewResultBase_WithDefaultViewName, viewName);
 
             ActionResult result = new ViewResult
             {
