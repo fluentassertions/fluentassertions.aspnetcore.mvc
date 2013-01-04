@@ -31,7 +31,7 @@ namespace FluentAssertions.Mvc3
             Execute.Verification
                     .ForCondition(string.Equals(expectedViewName, actualViewName, StringComparison.InvariantCultureIgnoreCase))
                     .BecauseOf(reason, reasonArgs)
-                    .FailWith("Expected ViewName to be '{0}' but was '{1}'", expectedViewName, actualViewName);
+                    .FailWith(FailureMessages.ViewResultBase_ViewName, expectedViewName, actualViewName);
             return this;
         }
 
@@ -48,9 +48,14 @@ namespace FluentAssertions.Mvc3
             Execute.Verification
                     .ForCondition(actualViewData.ContainsKey(key))
                     .BecauseOf(reason, reasonArgs)
-                    .FailWith("ViewData does not contain key of '{0}'", key);
+                    .FailWith(FailureMessages.ViewResultBase_ViewData_ContainsKey, key);
 
-            actualViewData[key].Should().Be(expectedValue);
+            var actualValue = actualViewData[key];
+
+            Execute.Verification
+                    .ForCondition(actualValue.Equals(expectedValue))
+                    .BecauseOf(reason, reasonArgs)
+                    .FailWith(FailureMessages.ViewResultBase_ViewData_HaveValue, key, expectedValue, actualValue); 
 
             return this;
         }

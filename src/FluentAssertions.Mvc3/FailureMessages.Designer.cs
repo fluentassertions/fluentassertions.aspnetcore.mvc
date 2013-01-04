@@ -106,11 +106,47 @@ namespace FluentAssertions.Mvc3 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expected MasterName to be {0} but found {1}..
+        /// </summary>
+        internal static string ViewResult_MasterName {
+            get {
+                return ResourceManager.GetString("ViewResult_MasterName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expected Model to be of type {0}, but no Model was supplied..
         /// </summary>
         internal static string ViewResultBase_NullModel {
             get {
                 return ResourceManager.GetString("ViewResultBase_NullModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ViewData does not contain key of {0}..
+        /// </summary>
+        internal static string ViewResultBase_ViewData_ContainsKey {
+            get {
+                return ResourceManager.GetString("ViewResultBase_ViewData_ContainsKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected ViewData[{0}] to have value {1}, but found {2}..
+        /// </summary>
+        internal static string ViewResultBase_ViewData_HaveValue {
+            get {
+                return ResourceManager.GetString("ViewResultBase_ViewData_HaveValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected ViewName to be {0} but found {1}..
+        /// </summary>
+        internal static string ViewResultBase_ViewName {
+            get {
+                return ResourceManager.GetString("ViewResultBase_ViewName", resourceCulture);
             }
         }
         

@@ -29,14 +29,18 @@ namespace FluentAssertions.Mvc3.Tests
         [Test]
         public void WithMasterName_GivenUnexpectedValue_ShouldFail()
         {
+            var actualMasterName = "master";
+            var expectedMasterName = "xyz";
             ActionResult result = new ViewResult
             {
-                MasterName = "master",
+                MasterName = actualMasterName,
             };
+            var failureMessage = FailureMessageHelper.Format(FailureMessages.ViewResult_MasterName, expectedMasterName, actualMasterName);
 
-            Action action = () => result.Should().BeView().WithMasterName("xyz");
+            Action action = () => result.Should().BeView().WithMasterName(expectedMasterName);
+
             action.ShouldThrow<Exception>()
-                    .WithMessage("");
+                    .WithMessage(failureMessage);
         }
 
         [Test]
@@ -53,14 +57,18 @@ namespace FluentAssertions.Mvc3.Tests
         [Test]
         public void WithViewName_GivenUnexpectedValue_ShouldFail()
         {
+            var actualViewName = "index";
+            var expectedViewName = "xyz";
+            var failureMessage = FailureMessageHelper.Format(FailureMessages.ViewResultBase_ViewName, expectedViewName, actualViewName);
             ActionResult result = new ViewResult
             {
-                ViewName = "index",
+                ViewName = actualViewName,
             };
 
-            Action action = () => result.Should().BeView().WithViewName("xyz");
+            Action action = () => result.Should().BeView().WithViewName(expectedViewName);
+            
             action.ShouldThrow<Exception>()
-                    .WithMessage("");
+                    .WithMessage(failureMessage);
         }
 
         [Test]
@@ -146,27 +154,36 @@ namespace FluentAssertions.Mvc3.Tests
         [Test]
         public void WithViewData_GivenUnexpectedValue_ShouldFail()
         {
+            var key = "key1";
+            var actualValue = "value1";
+            var expectedValue = "abc";
+            var failureMessage = FailureMessageHelper.Format(FailureMessages.ViewResultBase_ViewData_HaveValue, key, expectedValue, actualValue);
             ActionResult result = new ViewResult
             {
-                ViewData = new ViewDataDictionary { { "key1", "value1" } }
+                ViewData = new ViewDataDictionary { { key, actualValue } }
             };
+            
+            Action a = () => result.Should().BeView().WithViewData(key, expectedValue);
 
-            Action a = () => result.Should().BeView().WithViewData("key1", "xyz");
             a.ShouldThrow<Exception>()
-                    .WithMessage("");
+                    .WithMessage(failureMessage);
         }
 
         [Test]
         public void WithViewData_GivenUnexpectedKey_ShouldFail()
         {
+            var actualKey = "key1";
+            var expectedKey = "xyz";
             ActionResult result = new ViewResult
             {
-                ViewData = new ViewDataDictionary { { "key1", "value1" } }
+                ViewData = new ViewDataDictionary { { actualKey, "value1" } }
             };
+            var failureMessage = FailureMessageHelper.Format(FailureMessages.ViewResultBase_ViewData_ContainsKey, expectedKey, actualKey);
 
-            Action a = () => result.Should().BeView().WithViewData("xyz", "value1");
+            Action a = () => result.Should().BeView().WithViewData(expectedKey, "value1");
+
             a.ShouldThrow<Exception>()
-                    .WithMessage("");
+                    .WithMessage(failureMessage);
         }
 
         [Test]
