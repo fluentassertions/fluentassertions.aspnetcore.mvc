@@ -3,6 +3,8 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using NUnit.Framework;
 
+using FluentAssertions.Mvc3.Tests.Helpers;
+
 namespace FluentAssertions.Mvc3.Tests
 {
     [TestFixture]
@@ -39,9 +41,13 @@ namespace FluentAssertions.Mvc3.Tests
         public void HaveValue_GivenKeyDoesExist_ShouldFail()
         {
             var routeData = _routes.GetRouteDataForUrl("/accounts/check");
-            Action a = () => routeData.Should().HaveValue("xyz", "");
+            var expectedKey = "xyz";
+            var failureMessage = FailureMessageHelper.Format(FailureMessages.RouteData_Values_ContainsKey, expectedKey);
+            
+            Action a = () => routeData.Should().HaveValue(expectedKey, "");
+            
             a.ShouldThrow<Exception>()
-                    .WithMessage("");
+                    .WithMessage(failureMessage);
         }
 
         [Test]
@@ -55,9 +61,13 @@ namespace FluentAssertions.Mvc3.Tests
         public void HaveValue_GivenUnexpectedController_ShouldFail()
         {
             var routeData = _routes.GetRouteDataForUrl("/accounts/check");
-            Action a = () => routeData.Should().HaveValue("controller", "xyz");
+            var controllerName = "xyz";
+            var failureMessage = FailureMessageHelper.Format(FailureMessages.RouteData_Values_HaveValue, "controller", controllerName, "accounts");
+
+            Action a = () => routeData.Should().HaveValue("controller", controllerName);
+            
             a.ShouldThrow<Exception>()
-                    .WithMessage("");
+                    .WithMessage(failureMessage);
         }
         
         [Test]
@@ -78,9 +88,12 @@ namespace FluentAssertions.Mvc3.Tests
         public void HaveValue_GivenUnexpectedId_ShouldFail()
         {
             var routeData = _routes.GetRouteDataForUrl("/accounts/check/44");
-            Action a = () => routeData.Should().HaveValue("id", "999");
+            var id = "999";
+            var failureMessage = FailureMessageHelper.Format(FailureMessages.RouteData_Values_HaveValue, "id", id, "44");
+
+            Action a = () => routeData.Should().HaveValue("id", id);
             a.ShouldThrow<Exception>()
-                    .WithMessage("");
+                    .WithMessage(failureMessage);
         }
 
         [Test]
@@ -94,9 +107,13 @@ namespace FluentAssertions.Mvc3.Tests
         public void HaveController_GivenUnexpectedValue_ShouldFail()
         {
             var routeData = _routes.GetRouteDataForUrl("/accounts/check/44");
-            Action a = () => routeData.Should().HaveController("xyz");
+            var controllerName = "xyz";
+            var failureMessage = FailureMessageHelper.Format(FailureMessages.RouteData_Values_HaveValue, "controller", controllerName, "accounts");
+
+            Action a = () => routeData.Should().HaveController(controllerName);
+            
             a.ShouldThrow<Exception>()
-                    .WithMessage("");
+                    .WithMessage(failureMessage);
         }
 
         [Test]
@@ -110,18 +127,26 @@ namespace FluentAssertions.Mvc3.Tests
         public void HaveAction_GivenUnexpectedValue_ShouldFail()
         {
             var routeData = _routes.GetRouteDataForUrl("/accounts/check/44");
-            Action a = () => routeData.Should().HaveAction("xyz");
+            var actionName = "xyz";
+            var failureMessage = FailureMessageHelper.Format(FailureMessages.RouteData_Values_HaveValue, "action", actionName, "check");
+
+            Action a = () => routeData.Should().HaveAction(actionName);
+            
             a.ShouldThrow<Exception>()
-                    .WithMessage("");
+                    .WithMessage(failureMessage);
         }
 
         [Test]
         public void HaveDataToken_GivenKeyDoesExist_ShouldFail()
         {
             var routeData = _routes.GetRouteDataForUrl("/accounts/check");
-            Action a = () => routeData.Should().HaveDataToken("xyz", "");
+            var expectedKey = "xyz";
+            var failureMessage = FailureMessageHelper.Format(FailureMessages.RouteData_DataTokens_ContainsKey, expectedKey);
+
+            Action a = () => routeData.Should().HaveDataToken(expectedKey, "");
+            
             a.ShouldThrow<Exception>()
-                    .WithMessage("");
+                    .WithMessage(failureMessage);
         }
 
         [Test]
@@ -135,9 +160,14 @@ namespace FluentAssertions.Mvc3.Tests
         public void HaveDataToken_GivenUnexpectedArea_ShouldFail()
         {
             var routeData = _routes.GetRouteDataForUrl("/accounts/check");
-            Action a = () => routeData.Should().HaveDataToken("area", "xyz");
+            var area = "xyz";
+            var failureMessage = FailureMessageHelper.Format(FailureMessages.RouteData_DataTokens_HaveValue, "area",  area, "area51");
+
+            Action a = () => routeData.Should().HaveDataToken("area", area);
+            
+            
             a.ShouldThrow<Exception>()
-                    .WithMessage("");
+                    .WithMessage(failureMessage);
         }
     }
 }

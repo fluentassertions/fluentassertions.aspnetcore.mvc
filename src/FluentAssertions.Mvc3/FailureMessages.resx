@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="RouteData_DataTokens_ContainsKey" xml:space="preserve">
+    <value>RouteData.DataTokens does not contain key {0}.</value>
+  </data>
+  <data name="RouteData_DataTokens_HaveValue" xml:space="preserve">
+    <value>Expected RouteData.DataTokens[{0}] to have value {1}, but found {2}.</value>
+  </data>
+  <data name="RouteData_Values_ContainsKey" xml:space="preserve">
+    <value>RouteData.Values does not contain key {0}.</value>
+  </data>
+  <data name="RouteData_Values_HaveValue" xml:space="preserve">
+    <value>Expected RouteData.Values[{0}] to have value {1}, but found {2}.</value>
+  </data>
   <data name="ViewResultBase_NullModel" xml:space="preserve">
     <value>Expected Model to be of type {0}, but no Model was supplied.</value>
   </data>
