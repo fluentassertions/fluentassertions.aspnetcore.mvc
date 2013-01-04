@@ -10,11 +10,6 @@ namespace FluentAssertions.Mvc3
 {
     public class ContentResultAssertions : ObjectAssertions
     {
-        class Constants
-        {
-            public const string CommonFailMessage = "Expect {0} to be '{1}' but was '{2}'";
-        }
-
         public ContentResultAssertions(ContentResult subject) : base(subject)
         {
         }
@@ -32,7 +27,7 @@ namespace FluentAssertions.Mvc3
             Execute.Verification
                     .ForCondition(string.Equals(actualContent, expectedContent, StringComparison.InvariantCultureIgnoreCase))
                     .BecauseOf(reason, reasonArgs)
-                    .FailWith(string.Format(Constants.CommonFailMessage, "ContentResult.Content", expectedContent, actualContent));
+                    .FailWith(string.Format(FailureMessages.CommonFailMessage, "ContentResult.Content", expectedContent, actualContent));
 
             return this;
         }
@@ -50,7 +45,7 @@ namespace FluentAssertions.Mvc3
             Execute.Verification
                     .ForCondition(string.Equals(expectedContent, actualContentType, StringComparison.InvariantCultureIgnoreCase))
                     .BecauseOf(reason, reasonArgs)
-                    .FailWith(Constants.CommonFailMessage, "ContentResult.ContentType", expectedContent, actualContentType);
+                    .FailWith(string.Format(FailureMessages.CommonFailMessage, "ContentResult.ContentType", expectedContent, actualContentType));
 
             return this;
         }
@@ -68,7 +63,7 @@ namespace FluentAssertions.Mvc3
             Execute.Verification
                     .ForCondition(expectedEncoding == actualContentEncoding)
                     .BecauseOf(reason, reasonArgs)
-                    .FailWith(Constants.CommonFailMessage, "ContentResult.ContentType", expectedEncoding.ToString(), actualContentEncoding.ToString());
+                    .FailWith(string.Format(FailureMessages.CommonFailMessage, "ContentResult.ContentType", expectedEncoding.ToString(), actualContentEncoding.ToString()));
 
             return this;
         }

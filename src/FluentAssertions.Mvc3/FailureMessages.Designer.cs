@@ -61,6 +61,15 @@ namespace FluentAssertions.Mvc3 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expected {0} to be &apos;{1}&apos; but found &apos;{2}&apos;.
+        /// </summary>
+        internal static string CommonFailMessage {
+            get {
+                return ResourceManager.GetString("CommonFailMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RouteData.DataTokens does not contain key {0}..
         /// </summary>
         internal static string RouteData_DataTokens_ContainsKey {

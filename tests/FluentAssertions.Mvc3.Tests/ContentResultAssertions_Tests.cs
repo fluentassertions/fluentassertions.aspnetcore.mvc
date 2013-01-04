@@ -20,10 +20,15 @@ namespace FluentAssertions.Mvc3.Tests
         [Test]
         public void WithContent_GivenUnexpected_ShouldFail()
         {
-            ActionResult result = new ContentResult { Content = "content" };
-            Action a = () => result.Should().BeContent().WithContent("xyz");
+            var actualContent = "content";
+            var expectedContent = "xyz";
+            ActionResult result = new ContentResult { Content = actualContent };
+            var failureMessage = String.Format(FailureMessages.CommonFailMessage, "ContentResult.Content", expectedContent, actualContent);
+
+            Action a = () => result.Should().BeContent().WithContent(expectedContent);
+            
             a.ShouldThrow<Exception>()
-                    .WithMessage("");
+                    .WithMessage(failureMessage);
         }
 
         [Test]
@@ -36,10 +41,15 @@ namespace FluentAssertions.Mvc3.Tests
         [Test]
         public void WithContentType_GivenUnexpected_ShouldFail()
         {
-            ActionResult result = new ContentResult { ContentType = "text/html" };
-            Action a = () => result.Should().BeContent().WithContentType("xyz");
+            var actualContentType = "text/html";
+            var expectedContentType = "xyz";
+            ActionResult result = new ContentResult { ContentType = actualContentType };
+            var failureMessage = String.Format(FailureMessages.CommonFailMessage, "ContentResult.ContentType", expectedContentType, actualContentType);
+
+            Action a = () => result.Should().BeContent().WithContentType(expectedContentType);
+            
             a.ShouldThrow<Exception>()
-                    .WithMessage("");
+                    .WithMessage(failureMessage);
         }
 
         [Test]
@@ -52,10 +62,15 @@ namespace FluentAssertions.Mvc3.Tests
         [Test]
         public void WithContentEncoding_GivenUnexpected_ShouldFail()
         {
-            ActionResult result = new ContentResult { ContentEncoding = Encoding.ASCII };
-            Action a = () => result.Should().BeContent().WithContentEncoding(Encoding.Unicode);
+            var actualEncoding = Encoding.ASCII;
+            var expectedEncoding = Encoding.Unicode;
+            ActionResult result = new ContentResult { ContentEncoding = actualEncoding };
+            var failureMessage = String.Format(FailureMessages.CommonFailMessage, "ContentResult.ContentType", expectedEncoding, actualEncoding);
+
+            Action a = () => result.Should().BeContent().WithContentEncoding(expectedEncoding);
+            
             a.ShouldThrow<Exception>()
-                    .WithMessage("");
+                    .WithMessage(failureMessage);
         }
     }
 }
