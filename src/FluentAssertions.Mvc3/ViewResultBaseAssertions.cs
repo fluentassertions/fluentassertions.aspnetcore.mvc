@@ -105,11 +105,11 @@ namespace FluentAssertions.Mvc3
 
         public ViewResultBaseAssertions<T> WithDefaultViewName()
         {
-            WithDefaultView(string.Empty, null);
+            WithDefaultViewName(string.Empty, null);
             return this;
         }
 
-        public ViewResultBaseAssertions<T> WithDefaultView(string reason, params object[] reasonArgs)
+        public ViewResultBaseAssertions<T> WithDefaultViewName(string reason, params object[] reasonArgs)
         {
             string viewName = (Subject as ViewResultBase).ViewName;
 
