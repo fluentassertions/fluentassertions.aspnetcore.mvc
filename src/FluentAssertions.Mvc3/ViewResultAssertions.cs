@@ -3,7 +3,7 @@ using System;
 using System.Web.Mvc;
 using System.Diagnostics;
 
-namespace FluentAssertions.Mvc3
+namespace FluentAssertions.Mvc
 {
     [DebuggerNonUserCode]
 	public class ViewResultAssertions : ViewResultBaseAssertions<ViewResult>

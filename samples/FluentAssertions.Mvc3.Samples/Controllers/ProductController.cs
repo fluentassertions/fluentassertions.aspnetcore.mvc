@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace FluentAssertions.Mvc3.Samples.Controllers
+namespace FluentAssertions.Mvc.Samples.Controllers
 {
     public class ProductController : Controller
     {

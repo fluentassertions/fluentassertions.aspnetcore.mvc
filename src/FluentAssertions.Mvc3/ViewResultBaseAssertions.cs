@@ -7,7 +7,7 @@ using FluentAssertions.Primitives;
 using System.Web.Mvc;
 using System.Diagnostics;
 
-namespace FluentAssertions.Mvc3
+namespace FluentAssertions.Mvc
 {
     [DebuggerNonUserCode]
     public abstract class ViewResultBaseAssertions<T> : ObjectAssertions

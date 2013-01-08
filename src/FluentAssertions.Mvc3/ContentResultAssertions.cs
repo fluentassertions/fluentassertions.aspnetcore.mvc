@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 
-namespace FluentAssertions.Mvc3
+namespace FluentAssertions.Mvc
 {
     public class ContentResultAssertions : ObjectAssertions
     {

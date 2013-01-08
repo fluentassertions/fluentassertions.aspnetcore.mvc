@@ -1,13 +1,12 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions.Mvc.Tests.Helpers;
+using NUnit.Framework;
 using FluentAssertions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using FluentAssertions.Mvc3.Tests.Helpers;
-
-namespace FluentAssertions.Mvc3.Tests
+namespace FluentAssertions.Mvc.Tests
 {
     [TestFixture]
     class FailureMessageHelper_Tests

@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FluentAssertions.Mvc.Tests.Fakes;
+using FluentAssertions.Mvc.Tests.Helpers;
 using NUnit.Framework;
 using System.Web.Mvc;
-using FluentAssertions.Mvc3;
-using FluentAssertions.Mvc3.Tests.Helpers;
-using FluentAssertions.Mvc3.Tests.Fakes;
+using FluentAssertions.Mvc;
 
-namespace FluentAssertions.Mvc3.Tests
+namespace FluentAssertions.Mvc.Tests
 {
     [TestFixture]
     public class ViewResultAssertions_Tests

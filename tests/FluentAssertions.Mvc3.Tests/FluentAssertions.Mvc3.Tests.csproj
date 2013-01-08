@@ -8,7 +8,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3CB00FF9-3DC2-460F-82E8-EBFB6339247D}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>FluentAssertions.Mvc3.Tests</RootNamespace>
+    <RootNamespace>FluentAssertions.Mvc.Tests</RootNamespace>
     <AssemblyName>FluentAssertions.Mvc3.Tests</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

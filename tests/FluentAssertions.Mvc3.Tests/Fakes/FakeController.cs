@@ -1,7 +1,7 @@
 using System;
 using System.Web.Mvc;
 
-namespace FluentAssertions.Mvc3.Tests.Fakes
+namespace FluentAssertions.Mvc.Tests.Fakes
 {
 	public class FakeController : Controller
 	{

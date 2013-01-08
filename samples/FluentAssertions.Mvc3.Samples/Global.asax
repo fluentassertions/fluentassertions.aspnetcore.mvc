@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="FluentAssertions.Mvc3.Samples.MvcApplication" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="FluentAssertions.Mvc.Samples.MvcApplication" Language="C#" %>

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using System.Web.Routing;
 using System.Web.Mvc;
 using FluentAssertions;
-using FluentAssertions.Mvc3;
+using FluentAssertions.Mvc;
 
 namespace test
 {
