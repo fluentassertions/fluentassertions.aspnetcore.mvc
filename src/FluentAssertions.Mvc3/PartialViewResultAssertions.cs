@@ -9,7 +9,7 @@ using FluentAssertions.Primitives;
 namespace FluentAssertions.Mvc3
 {
     [DebuggerNonUserCode]
-    public class PartialViewResultAssertions : ViewResultBaseAssertions<ViewResult>
+    public class PartialViewResultAssertions : ViewResultBaseAssertions<PartialViewResult>
     {
         public PartialViewResultAssertions(PartialViewResult viewResult) : base(viewResult) { }
     }
