@@ -15,3 +15,5 @@ FluentAssertionsMvc.VisualState.xml
 TestResult.xml
 
 *.gpState
+[Pp]ackages/
+*.nupkg
