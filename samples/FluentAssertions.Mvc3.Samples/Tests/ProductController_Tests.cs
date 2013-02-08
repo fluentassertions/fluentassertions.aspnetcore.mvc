@@ -11,7 +11,7 @@ namespace FluentAssertions.Mvc.Samples.Tests
 		{
             var controller = new ProductController();
             controller.List().Should()
-                .BeView()
+                .BeViewResult()
                 .WithViewName("Index");
 		}
     }

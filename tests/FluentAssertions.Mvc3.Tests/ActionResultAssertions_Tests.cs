@@ -15,14 +15,14 @@ namespace FluentAssertions.Mvc.Tests
         {
             ActionResult result = new ContentResult();
             result.Should()
-                    .BeContent();
+                    .BeContentResult();
         }
         
         [Test]
         public void BeContent_GivenNotContent_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            Action a = () => result.Should().BeContent();
+            Action a = () => result.Should().BeContentResult();
             a.ShouldThrow<Exception>()
                     .WithMessage("Expected ActionResult to be \"ContentResult\", but found \"ViewResult\"");
         }
@@ -31,14 +31,14 @@ namespace FluentAssertions.Mvc.Tests
         public void BeEmpty_GivenEmpty_ShouldPass()
         {
             ActionResult result = new EmptyResult();
-            result.Should().BeEmpty();
+            result.Should().BeEmptyResult();
         }
 
         [Test]
         public void BeEmpty_GivenNotEmpty_ShouldPass()
         {
             ActionResult result = new ViewResult();
-            Action a = () => result.Should().BeEmpty();
+            Action a = () => result.Should().BeEmptyResult();
             a.ShouldThrow<Exception>()
                     .WithMessage("Expected ActionResult to be \"EmptyResult\", but found \"ViewResult\"");
         }
@@ -47,14 +47,14 @@ namespace FluentAssertions.Mvc.Tests
         public void BeRedirectToRoute_GivenRedirectToRoute_ShouldPass()
         {
             ActionResult result = new RedirectToRouteResult(new RouteValueDictionary());
-            result.Should().BeRedirectToRoute();
+            result.Should().BeRedirectToRouteResult();
         }
 
         [Test]
         public void BeRedirectToRoute_GivenNotRedirectToRoute_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            Action a = () => result.Should().BeRedirectToRoute();
+            Action a = () => result.Should().BeRedirectToRouteResult();
             a.ShouldThrow<Exception>()
                     .WithMessage("Expected ActionResult to be \"RedirectToRouteResult\", but found \"ViewResult\"");
         }
@@ -63,14 +63,14 @@ namespace FluentAssertions.Mvc.Tests
         public void BeRedirect_GivenRedirect_ShouldPass()
         {
             ActionResult result = new RedirectResult("/");
-            result.Should().BeRedirect();
+            result.Should().BeRedirectResult();
         }
 
         [Test]
         public void BeRedirect_GivenNotRedirect_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            Action a = () => result.Should().BeRedirect();
+            Action a = () => result.Should().BeRedirectResult();
             a.ShouldThrow<Exception>()
                     .WithMessage("Expected ActionResult to be \"RedirectResult\", but found \"ViewResult\"");
         }
@@ -79,14 +79,14 @@ namespace FluentAssertions.Mvc.Tests
         public void BePartialView_GivenPartial_ShouldPass()
         {
             ActionResult result = new PartialViewResult();
-            result.Should().BePartialView();
+            result.Should().BePartialViewResult();
         }
 
         [Test]
         public void BePartialView_GivenNotPartial_ShouldFail()
         {
             ActionResult result = new RedirectResult("/");
-            Action a = () => result.Should().BePartialView();
+            Action a = () => result.Should().BePartialViewResult();
             a.ShouldThrow<Exception>()
                     .WithMessage("Expected ActionResult to be \"PartialViewResult\", but found \"RedirectResult\"");
         }
@@ -95,14 +95,14 @@ namespace FluentAssertions.Mvc.Tests
         public void BeView_GivenView_ShouldPass()
         {
             ActionResult result = new ViewResult();
-            result.Should().BeView();
+            result.Should().BeViewResult();
         }
 
         [Test]
         public void BeView_GivenNotView_ShouldFail()
         {
             ActionResult result = new RedirectResult("/");
-            Action a = () => result.Should().BeView();
+            Action a = () => result.Should().BeViewResult();
             a.ShouldThrow<Exception>()
                     .WithMessage("Expected ActionResult to be \"ViewResult\", but found \"RedirectResult\"");
         }

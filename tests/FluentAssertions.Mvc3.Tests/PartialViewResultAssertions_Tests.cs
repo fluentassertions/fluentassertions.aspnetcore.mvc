@@ -18,7 +18,7 @@ namespace FluentAssertions.Mvc.Tests
                 ViewName = String.Empty
             };
 
-            result.Should().BePartialView().WithDefaultViewName();
+            result.Should().BePartialViewResult().WithDefaultViewName();
         }
     }
 }

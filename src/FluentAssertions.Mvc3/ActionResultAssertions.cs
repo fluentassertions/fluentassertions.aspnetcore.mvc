@@ -19,12 +19,12 @@ namespace FluentAssertions.Mvc
 			Subject = subject;
 		}
 
-        public ContentResultAssertions BeContent()
+        public ContentResultAssertions BeContentResult()
         {
-            return BeContent(string.Empty, null);
+            return BeContentResult(string.Empty, null);
         }
 
-        public ContentResultAssertions BeContent(string reason, params object[] reasonArgs)
+        public ContentResultAssertions BeContentResult(string reason, params object[] reasonArgs)
         {
             Execute.Verification
                     .BecauseOf(reason, reasonArgs)
@@ -34,12 +34,12 @@ namespace FluentAssertions.Mvc
             return new ContentResultAssertions(Subject as ContentResult);
         }
 
-        public EmptyResult BeEmpty()
+        public EmptyResult BeEmptyResult()
         {
-            return BeEmpty(string.Empty, null);
+            return BeEmptyResult(string.Empty, null);
         }
 
-        public EmptyResult BeEmpty(string reason, params object[] reasonArgs)
+        public EmptyResult BeEmptyResult(string reason, params object[] reasonArgs)
         {
             Execute.Verification
                     .BecauseOf(reason, reasonArgs)
@@ -49,12 +49,12 @@ namespace FluentAssertions.Mvc
             return Subject as EmptyResult;
         }
 
-        public RedirectToRouteAssertions BeRedirectToRoute()
+        public RedirectToRouteAssertions BeRedirectToRouteResult()
         {
-            return BeRedirectToRoute(string.Empty, null);
+            return BeRedirectToRouteResult(string.Empty, null);
         }
 
-        public RedirectToRouteAssertions BeRedirectToRoute(string reason, params object[] reasonArgs)
+        public RedirectToRouteAssertions BeRedirectToRouteResult(string reason, params object[] reasonArgs)
         {
             Execute.Verification
                     .BecauseOf(reason, reasonArgs)
@@ -64,12 +64,12 @@ namespace FluentAssertions.Mvc
             return new RedirectToRouteAssertions(Subject as RedirectToRouteResult);
         }
 
-        public PartialViewResultAssertions BePartialView()
+        public PartialViewResultAssertions BePartialViewResult()
         {
-            return BePartialView(string.Empty, null);
+            return BePartialViewResult(string.Empty, null);
         }
 
-        public PartialViewResultAssertions BePartialView(string reason, params object[] reasonArgs)
+        public PartialViewResultAssertions BePartialViewResult(string reason, params object[] reasonArgs)
         {
             Execute.Verification
                     .BecauseOf(reason, reasonArgs)
@@ -79,12 +79,12 @@ namespace FluentAssertions.Mvc
             return new PartialViewResultAssertions(Subject as PartialViewResult);
         }
 
-        public RedirectResultAssertions BeRedirect()
+        public RedirectResultAssertions BeRedirectResult()
         {
-            return BeRedirect(string.Empty, null);
+            return BeRedirectResult(string.Empty, null);
         }
 
-        public RedirectResultAssertions BeRedirect(string reason, params object[] reasonArgs)
+        public RedirectResultAssertions BeRedirectResult(string reason, params object[] reasonArgs)
         {
             Execute.Verification
                     .BecauseOf(reason, reasonArgs)
@@ -94,12 +94,12 @@ namespace FluentAssertions.Mvc
             return new RedirectResultAssertions(Subject as RedirectResult);
         }
 
-        public ViewResultAssertions BeView()
+        public ViewResultAssertions BeViewResult()
         {
-            return BeView(string.Empty, null);
+            return BeViewResult(string.Empty, null);
         }
 
-        public ViewResultAssertions BeView(string reason, params object[] reasonArgs)
+        public ViewResultAssertions BeViewResult(string reason, params object[] reasonArgs)
 		{
 			Execute.Verification
                     .BecauseOf(reason, reasonArgs)
