@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>FluentAssertions.Mvc4</id>
+    <title>Fluent Assertions Mvc4</title>
+    <version>$version$</version>
+    <authors>Casey Burns, Kevin Kuszyk</authors>
+    <owners>Casey Burns, Kevin Kuszyk</owners>
+    <licenseUrl>http://raw.github.com/kevinkuszyk/FluentAssertions.MVC/master/license.txt</licenseUrl>
+    <projectUrl>http://github.com/CaseyBurns/FluentAssertions.MVC</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A set of extensions to the Fluent Assertions framework to enable more expressive testing of the MVC applications.</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <tags>TDD, TDD, Fluent, Mvc, AspNetMvc</tags>
+    <dependencies>
+      <dependency id="FluentAssertions" version="2.0.0.1" />
+    </dependencies>
+   </metadata>
+</package>

@@ -8,8 +8,8 @@ echo.
 echo *** BUILD SUCCESSFUL ***
 echo.
 
-cd release
-nuget pack
+.nuget\nuget pack src\FluentAssertions.Mvc3\FluentAssertions.Mvc3.csproj
+.nuget\nuget pack src\FluentAssertions.Mvc4\FluentAssertions.Mvc4.csproj
 if errorlevel 1 goto PackageFail
 
 echo.
