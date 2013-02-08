@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 
-namespace FluentAssertions.Mvc3
+namespace FluentAssertions.Mvc
 {
     public class RedirectResultAssertions : ObjectAssertions
     {

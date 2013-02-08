@@ -1,11 +1,11 @@
 using FluentAssertions;
 using System;
 using System.Web.Mvc;
-using FluentAssertions.Mvc3;
+using FluentAssertions.Mvc;
 using System.Web.Routing;
 using System.Diagnostics;
 
-namespace FluentAssertions.Mvc3
+namespace FluentAssertions.Mvc
 {
     [DebuggerNonUserCode]
 	public static class AssertionsExtensions

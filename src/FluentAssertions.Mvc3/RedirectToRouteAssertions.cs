@@ -7,7 +7,7 @@ using FluentAssertions.Primitives;
 using System.Web.Mvc;
 using FluentAssertions;
 
-namespace FluentAssertions.Mvc3
+namespace FluentAssertions.Mvc
 {
     public class RedirectToRouteAssertions : ReferenceTypeAssertions<RedirectToRouteResult, RedirectToRouteAssertions>
     {

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Diagnostics;
 using FluentAssertions.Primitives;
 
-namespace FluentAssertions.Mvc3
+namespace FluentAssertions.Mvc
 {
     [DebuggerNonUserCode]
     public class PartialViewResultAssertions : ViewResultBaseAssertions<PartialViewResult>

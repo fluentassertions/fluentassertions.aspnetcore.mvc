@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.Routing;
+using FluentAssertions.Mvc.Tests.Helpers;
 using NUnit.Framework;
 
-using FluentAssertions.Mvc3.Tests.Helpers;
-
-namespace FluentAssertions.Mvc3.Tests
+namespace FluentAssertions.Mvc.Tests
 {
     [TestFixture]
     public class RouteDataAssertions_Tests

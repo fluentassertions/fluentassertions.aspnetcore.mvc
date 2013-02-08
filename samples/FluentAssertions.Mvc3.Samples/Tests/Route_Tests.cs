@@ -1,7 +1,7 @@
 ﻿using System.Web.Routing;
 using NUnit.Framework;
 
-namespace FluentAssertions.Mvc3.Samples.Tests
+namespace FluentAssertions.Mvc.Samples.Tests
 {
     [TestFixture]
     public class Route_Tests

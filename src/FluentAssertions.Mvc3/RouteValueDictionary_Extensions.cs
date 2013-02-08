@@ -1,8 +1,8 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using FluentAssertions.Mvc3.Fakes;
+using FluentAssertions.Mvc.Fakes;
 
-namespace FluentAssertions.Mvc3
+namespace FluentAssertions.Mvc
 {
     public static class RouteValueDictionary_Extensions
     {

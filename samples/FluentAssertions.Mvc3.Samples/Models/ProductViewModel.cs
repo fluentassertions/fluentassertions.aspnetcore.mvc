@@ -1,5 +1,5 @@
 ﻿
-namespace FluentAssertions.Mvc3.Samples.Models
+namespace FluentAssertions.Mvc.Samples.Models
 {
     public class ProductViewModel
     {

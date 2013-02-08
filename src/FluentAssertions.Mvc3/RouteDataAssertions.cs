@@ -8,7 +8,7 @@ using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using System.Diagnostics;
 
-namespace FluentAssertions.Mvc3
+namespace FluentAssertions.Mvc
 {
     [DebuggerNonUserCode]
     public class RouteDataAssertions : ObjectAssertions

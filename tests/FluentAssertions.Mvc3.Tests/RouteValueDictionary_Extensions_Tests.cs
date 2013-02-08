@@ -6,7 +6,7 @@ using NUnit.Framework;
 using System.Web.Routing;
 using System.Web.Mvc;
 
-namespace FluentAssertions.Mvc3.Tests
+namespace FluentAssertions.Mvc.Tests
 {
     [TestFixture]
     public class RouteValueDictionary_Extensions_Tests

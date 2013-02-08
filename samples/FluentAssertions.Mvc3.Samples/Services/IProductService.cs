@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using FluentAssertions.Mvc3.Samples.Models;
+using FluentAssertions.Mvc.Samples.Models;
 
-namespace FluentAssertions.Mvc3.Samples.Services
+namespace FluentAssertions.Mvc.Samples.Services
 {
     public interface IProductService
     {

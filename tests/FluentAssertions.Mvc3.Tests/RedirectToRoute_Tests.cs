@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using NUnit.Framework;
 using System.Web.Routing;
 
-namespace FluentAssertions.Mvc3.Tests
+namespace FluentAssertions.Mvc.Tests
 {
     [TestFixture]
     public class RedirectToRoute_Tests

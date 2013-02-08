@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Routing;
-using FluentAssertions.Mvc3.Fakes;
+using FluentAssertions.Mvc.Fakes;
 using System.Diagnostics;
 
-namespace FluentAssertions.Mvc3
+namespace FluentAssertions.Mvc
 {
     [DebuggerNonUserCode]
     public static class RouteCollection_Extensions
