@@ -5,7 +5,7 @@ using System.Text;
 using System.Web.Mvc;
 using NUnit.Framework;
 
-namespace FluentAssertions.Mvc3.Tests
+namespace FluentAssertions.Mvc.Tests
 {
     [TestFixture]
     public class PartialViewResultAssertions_Tests
