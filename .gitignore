@@ -13,7 +13,7 @@ cmd.exe
 FluentAssertionsMvc.VisualState.xml
 [Rr]elease
 TestResult.xml
-
+[Tt]est[Rr]esults/
 *.gpState
 [Pp]ackages/
 *.nupkg
