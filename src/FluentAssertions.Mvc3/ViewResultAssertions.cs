@@ -1,9 +1,9 @@
+using FluentAssertions.Execution;
 using System;
 using System.Web.Mvc;
-using FluentAssertions.Assertions;
 using System.Diagnostics;
 
-namespace FluentAssertions.Mvc3
+namespace FluentAssertions.Mvc
 {
     [DebuggerNonUserCode]
 	public class ViewResultAssertions : ViewResultBaseAssertions<ViewResult>
@@ -23,7 +23,7 @@ namespace FluentAssertions.Mvc3
             Execute.Verification
                     .ForCondition(string.Equals(expectedMasterName, actualMasterName, StringComparison.InvariantCultureIgnoreCase))
                     .BecauseOf(reason, reasonArgs)
-                    .FailWith("Expected MasterName to be '{0}' but was '{1}'", expectedMasterName, actualMasterName);
+                    .FailWith(FailureMessages.ViewResult_MasterName, expectedMasterName, actualMasterName);
             return this;
         }
 	}

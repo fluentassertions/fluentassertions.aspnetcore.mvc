@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FluentAssertions.Mvc.Tests.Fakes;
+using FluentAssertions.Mvc.Tests.Helpers;
 using NUnit.Framework;
 using System.Web.Mvc;
-using FluentAssertions.Mvc3;
-using FluentAssertions.Mvc3.Tests.Fakes;
+using FluentAssertions.Mvc;
 
-namespace FluentAssertions.Mvc3.Tests
+namespace FluentAssertions.Mvc.Tests
 {
     [TestFixture]
     public class ViewResultAssertions_Tests
@@ -22,20 +23,24 @@ namespace FluentAssertions.Mvc3.Tests
                 MasterName = "master",
             };
 
-            result.Should().BeView().WithMasterName("master");
+            result.Should().BeViewResult().WithMasterName("master");
         }
 
         [Test]
         public void WithMasterName_GivenUnexpectedValue_ShouldFail()
         {
+            var actualMasterName = "master";
+            var expectedMasterName = "xyz";
             ActionResult result = new ViewResult
             {
-                MasterName = "master",
+                MasterName = actualMasterName,
             };
+            var failureMessage = FailureMessageHelper.Format(FailureMessages.ViewResult_MasterName, expectedMasterName, actualMasterName);
 
-            Action action = () => result.Should().BeView().WithMasterName("xyz");
+            Action action = () => result.Should().BeViewResult().WithMasterName(expectedMasterName);
+
             action.ShouldThrow<Exception>()
-                    .WithMessage("");
+                    .WithMessage(failureMessage);
         }
 
         [Test]
@@ -46,20 +51,24 @@ namespace FluentAssertions.Mvc3.Tests
                 ViewName = "index",
             };
 
-            result.Should().BeView().WithViewName("index");
+            result.Should().BeViewResult().WithViewName("index");
         }
 
         [Test]
         public void WithViewName_GivenUnexpectedValue_ShouldFail()
         {
+            var actualViewName = "index";
+            var expectedViewName = "xyz";
+            var failureMessage = FailureMessageHelper.Format(FailureMessages.ViewResultBase_ViewName, expectedViewName, actualViewName);
             ActionResult result = new ViewResult
             {
-                ViewName = "index",
+                ViewName = actualViewName,
             };
 
-            Action action = () => result.Should().BeView().WithViewName("xyz");
+            Action action = () => result.Should().BeViewResult().WithViewName(expectedViewName);
+            
             action.ShouldThrow<Exception>()
-                    .WithMessage("");
+                    .WithMessage(failureMessage);
         }
 
         [Test]
@@ -70,7 +79,7 @@ namespace FluentAssertions.Mvc3.Tests
                 TempData = new TempDataDictionary { { "key1", "value1" } }
             };
 
-            result.Should().BeView().WithTempData("key1", "value1");
+            result.Should().BeViewResult().WithTempData("key1", "value1");
         }
 
         [Test]
@@ -85,7 +94,7 @@ namespace FluentAssertions.Mvc3.Tests
                 }
             };
             
-            result.Should().BeView()
+            result.Should().BeViewResult()
                     .WithTempData("key1", "value1")
                     .WithTempData("key2", "value2");
         }
@@ -98,7 +107,7 @@ namespace FluentAssertions.Mvc3.Tests
                 TempData = new TempDataDictionary { { "key1", "value1" } }
             };
 
-            Action a = () => result.Should().BeView().WithTempData("key1", "xyz");
+            Action a = () => result.Should().BeViewResult().WithTempData("key1", "xyz");
             a.ShouldThrow<Exception>();
         }
 
@@ -110,7 +119,7 @@ namespace FluentAssertions.Mvc3.Tests
                 TempData = new TempDataDictionary { { "key1", "value1" } }
             };
 
-            Action a = () => result.Should().BeView().WithTempData("xyz", "value1");
+            Action a = () => result.Should().BeViewResult().WithTempData("xyz", "value1");
             a.ShouldThrow<Exception>();
         }
 
@@ -122,7 +131,7 @@ namespace FluentAssertions.Mvc3.Tests
                 ViewData = new ViewDataDictionary { { "key1", "value1" } }
             };
 
-            result.Should().BeView().WithViewData("key1", "value1");
+            result.Should().BeViewResult().WithViewData("key1", "value1");
         }
 
         [Test]
@@ -137,7 +146,7 @@ namespace FluentAssertions.Mvc3.Tests
                 }
             };
 
-            result.Should().BeView()
+            result.Should().BeViewResult()
                     .WithViewData("key1", "value1")
                     .WithViewData("key2", "value2");
         }
@@ -145,27 +154,36 @@ namespace FluentAssertions.Mvc3.Tests
         [Test]
         public void WithViewData_GivenUnexpectedValue_ShouldFail()
         {
+            var key = "key1";
+            var actualValue = "value1";
+            var expectedValue = "abc";
+            var failureMessage = FailureMessageHelper.Format(FailureMessages.ViewResultBase_ViewData_HaveValue, key, expectedValue, actualValue);
             ActionResult result = new ViewResult
             {
-                ViewData = new ViewDataDictionary { { "key1", "value1" } }
+                ViewData = new ViewDataDictionary { { key, actualValue } }
             };
+            
+            Action a = () => result.Should().BeViewResult().WithViewData(key, expectedValue);
 
-            Action a = () => result.Should().BeView().WithViewData("key1", "xyz");
             a.ShouldThrow<Exception>()
-                    .WithMessage("");
+                    .WithMessage(failureMessage);
         }
 
         [Test]
         public void WithViewData_GivenUnexpectedKey_ShouldFail()
         {
+            var actualKey = "key1";
+            var expectedKey = "xyz";
             ActionResult result = new ViewResult
             {
-                ViewData = new ViewDataDictionary { { "key1", "value1" } }
+                ViewData = new ViewDataDictionary { { actualKey, "value1" } }
             };
+            var failureMessage = FailureMessageHelper.Format(FailureMessages.ViewResultBase_ViewData_ContainsKey, expectedKey, actualKey);
 
-            Action a = () => result.Should().BeView().WithViewData("xyz", "value1");
+            Action a = () => result.Should().BeViewResult().WithViewData(expectedKey, "value1");
+
             a.ShouldThrow<Exception>()
-                    .WithMessage("");
+                    .WithMessage(failureMessage);
         }
 
         [Test]
@@ -176,7 +194,7 @@ namespace FluentAssertions.Mvc3.Tests
                 ViewData = new ViewDataDictionary("hello")
             };
 
-            result.Should().BeView().Model.Should().Be("hello");
+            result.Should().BeViewResult().Model.Should().Be("hello");
         }
 
         [Test]
@@ -187,7 +205,7 @@ namespace FluentAssertions.Mvc3.Tests
                 ViewData = new ViewDataDictionary("hello")
             };
 
-            Action a = () => result.Should().BeView().Model.Should().Be("xyx");
+            Action a = () => result.Should().BeViewResult().Model.Should().Be("xyx");
             a.ShouldThrow<Exception>()
                     .WithMessage("");
         }
@@ -200,7 +218,7 @@ namespace FluentAssertions.Mvc3.Tests
                 ViewData = new ViewDataDictionary("hello")
             };
 
-            result.Should().BeView().ModelAs<string>().Should().Be("hello");
+            result.Should().BeViewResult().ModelAs<string>().Should().Be("hello");
         }
 
         [Test]
@@ -211,7 +229,7 @@ namespace FluentAssertions.Mvc3.Tests
                 ViewData = new ViewDataDictionary("hello")
             };
 
-            Action a = () => result.Should().BeView().ModelAs<string>().Should().Be("xyx");
+            Action a = () => result.Should().BeViewResult().ModelAs<string>().Should().Be("xyx");
             a.ShouldThrow<Exception>()
                     .WithMessage("");
         }
@@ -224,9 +242,49 @@ namespace FluentAssertions.Mvc3.Tests
                 ViewData = new ViewDataDictionary("hello")
             };
 
-            Action a = () => result.Should().BeView().ModelAs<int>().Should().Be(2);
+            Action a = () => result.Should().BeViewResult().ModelAs<int>().Should().Be(2);
             a.ShouldThrow<Exception>()
                     .WithMessage("");
+        }
+
+        [Test]
+        public void ModelAs_Null_ShouldFail()
+        {
+            ActionResult result = new ViewResult();
+            string failureMessage = FailureMessageHelper.Format(FailureMessages.ViewResultBase_NullModel, typeof(Object).Name);
+
+            Action a = () => result.Should().BeViewResult().ModelAs<Object>();
+            
+            a.ShouldThrow<Exception>()
+                    .WithMessage(failureMessage);
+        }
+
+        [Test]
+        public void WithDefaultViewName_GivenExpectedValue_ShouldPass()
+        {
+            ActionResult result = new ViewResult
+            {
+                ViewName = String.Empty
+            };
+
+            result.Should().BeViewResult().WithDefaultViewName();
+        }
+
+        [Test]
+        public void WithDefaultViewName_GivenUnexpectedValue_ShouldFail()
+        {
+            string viewName = "index";
+            string failureMessage = FailureMessageHelper.Format(FailureMessages.ViewResultBase_WithDefaultViewName, viewName);
+
+            ActionResult result = new ViewResult
+            {
+                ViewName = viewName
+            };
+
+            Action action = () => result.Should().BeViewResult().WithDefaultViewName();
+
+            action.ShouldThrow<Exception>()
+                    .WithMessage(failureMessage);
         }
     }
 }

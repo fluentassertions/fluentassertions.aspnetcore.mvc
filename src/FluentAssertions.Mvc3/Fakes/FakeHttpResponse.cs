@@ -1,6 +1,6 @@
 ﻿using System.Web;
 
-namespace FluentAssertions.Mvc3.Fakes
+namespace FluentAssertions.Mvc.Fakes
 {
     public class FakeHttpResponse : HttpResponseBase
     {

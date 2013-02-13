@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
-using FluentAssertions.Assertions;
+using FluentAssertions.Execution;
+using FluentAssertions.Primitives;
 
-namespace FluentAssertions.Mvc3
+namespace FluentAssertions.Mvc
 {
     public class RedirectResultAssertions : ObjectAssertions
     {

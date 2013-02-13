@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Collections.Specialized;
 
-namespace FluentAssertions.Mvc3.Fakes
+namespace FluentAssertions.Mvc.Fakes
 {
     public class FakeHttpRequest : HttpRequestBase
     {

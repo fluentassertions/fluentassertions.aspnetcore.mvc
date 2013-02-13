@@ -1,7 +1,7 @@
-﻿using FluentAssertions.Mvc3.Samples.Controllers;
+﻿using FluentAssertions.Mvc.Samples.Controllers;
 using NUnit.Framework;
 
-namespace FluentAssertions.Mvc3.Samples.Tests
+namespace FluentAssertions.Mvc.Samples.Tests
 {
     [TestFixture]
     public class ProductController_Tests
@@ -11,7 +11,7 @@ namespace FluentAssertions.Mvc3.Samples.Tests
 		{
             var controller = new ProductController();
             controller.List().Should()
-                .BeView()
+                .BeViewResult()
                 .WithViewName("Index");
 		}
     }

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using FluentAssertions.Mvc3.Tests;
+using FluentAssertions.Mvc.Tests;
 using System.Web.Mvc;
 using System.Web.Routing;
-using FluentAssertions.Mvc3;
+using FluentAssertions.Mvc;
 using FluentAssertions;
 
 namespace test

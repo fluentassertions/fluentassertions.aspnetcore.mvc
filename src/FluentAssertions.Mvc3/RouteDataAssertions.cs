@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Web.Routing;
 using FluentAssertions;
-using FluentAssertions.Assertions;
+using FluentAssertions.Execution;
+using FluentAssertions.Primitives;
 using System.Diagnostics;
 
-namespace FluentAssertions.Mvc3
+namespace FluentAssertions.Mvc
 {
     [DebuggerNonUserCode]
     public class RouteDataAssertions : ObjectAssertions
@@ -55,10 +56,14 @@ namespace FluentAssertions.Mvc3
             Execute.Verification
                     .ForCondition(subjectTyped.DataTokens.ContainsKey(key))
                     .BecauseOf(reason, reasonArgs)
-                    .FailWith("RouteData.DataTokens does not contain key '{0}'", key);
+                    .FailWith(FailureMessages.RouteData_DataTokens_ContainsKey, key);
 
             var actualValue = subjectTyped.DataTokens[key];
-            actualValue.Should().Be(expectedValue);
+
+            Execute.Verification
+                    .ForCondition(expectedValue.Equals(actualValue))
+                    .BecauseOf(reason, reasonArgs)
+                    .FailWith(FailureMessages.RouteData_DataTokens_HaveValue, key, expectedValue, actualValue);
 
             return this;
         }
@@ -76,10 +81,14 @@ namespace FluentAssertions.Mvc3
             Execute.Verification
                     .ForCondition(subjectTyped.Values.ContainsKey(key))
                     .BecauseOf(reason, reasonArgs)
-                    .FailWith("RouteData.Values does not contain key '{0}'", key);
+                    .FailWith(FailureMessages.RouteData_Values_ContainsKey, key);
 
             var actualValue = subjectTyped.Values[key];
-            actualValue.Should().Be(expectedValue);
+
+            Execute.Verification
+                    .ForCondition(expectedValue.Equals(actualValue))
+                    .BecauseOf(reason, reasonArgs)
+                    .FailWith(FailureMessages.RouteData_Values_HaveValue, key, expectedValue, actualValue);
 
             return this;
         }

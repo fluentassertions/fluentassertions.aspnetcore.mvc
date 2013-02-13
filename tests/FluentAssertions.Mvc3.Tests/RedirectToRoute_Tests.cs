@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using NUnit.Framework;
 using System.Web.Routing;
 
-namespace FluentAssertions.Mvc3.Tests
+namespace FluentAssertions.Mvc.Tests
 {
     [TestFixture]
     public class RedirectToRoute_Tests
@@ -13,7 +13,7 @@ namespace FluentAssertions.Mvc3.Tests
 		{
             ActionResult result = new RedirectToRouteResult("", null, true);
             result.Should()
-                    .BeRedirectToRoute()
+                    .BeRedirectToRouteResult()
                     .WithPermanent(true);
 		}
 
@@ -22,7 +22,7 @@ namespace FluentAssertions.Mvc3.Tests
         {
             ActionResult result = new RedirectToRouteResult("", null, true);
             Action a = () => result.Should()
-                    .BeRedirectToRoute()
+                    .BeRedirectToRouteResult()
                     .WithPermanent(false);
             a.ShouldThrow<Exception>()
                     .WithMessage("Expected RedirectToRoute.Permanent to be False, but found True");
@@ -33,7 +33,7 @@ namespace FluentAssertions.Mvc3.Tests
         {
             ActionResult result = new RedirectToRouteResult("default", null);
             result.Should()
-                    .BeRedirectToRoute()
+                    .BeRedirectToRouteResult()
                     .WithRouteName("default");
         }
 
@@ -42,7 +42,7 @@ namespace FluentAssertions.Mvc3.Tests
         {
             ActionResult result = new RedirectToRouteResult("default", null);
             Action a = () => result.Should()
-                    .BeRedirectToRoute()
+                    .BeRedirectToRouteResult()
                     .WithRouteName("xyz");
             a.ShouldThrow<Exception>()
                 .WithMessage("Expected RedirectToRoute.RouteName to be \"xyz\", but found \"default\"");
@@ -58,7 +58,7 @@ namespace FluentAssertions.Mvc3.Tests
                 }));
 
             result.Should()
-                    .BeRedirectToRoute()
+                    .BeRedirectToRouteResult()
                     .WithRouteValue("Id", "22");
         }
 
@@ -72,7 +72,7 @@ namespace FluentAssertions.Mvc3.Tests
                 }));
 
             Action a = () => result.Should()
-                    .BeRedirectToRoute()
+                    .BeRedirectToRouteResult()
                     .WithRouteValue("Id", "11");
             a.ShouldThrow<Exception>()
                     .WithMessage("Expected dictionary to contain value \"11\" at key \"Id\", but found \"22\".");            
@@ -88,7 +88,7 @@ namespace FluentAssertions.Mvc3.Tests
                 }));
 
             result.Should()
-                    .BeRedirectToRoute()
+                    .BeRedirectToRouteResult()
                     .WithController("home");
         }
 
@@ -102,7 +102,7 @@ namespace FluentAssertions.Mvc3.Tests
                 }));
 
             Action a = () => result.Should()
-                    .BeRedirectToRoute()
+                    .BeRedirectToRouteResult()
                     .WithController("xyz");
             a.ShouldThrow<Exception>()
                     .WithMessage("Expected dictionary to contain value \"xyz\" at key \"Controller\", but found \"home\".");
@@ -118,7 +118,7 @@ namespace FluentAssertions.Mvc3.Tests
                 }));
 
             result.Should()
-                    .BeRedirectToRoute()
+                    .BeRedirectToRouteResult()
                     .WithAction("index");
         }
 
@@ -132,7 +132,7 @@ namespace FluentAssertions.Mvc3.Tests
                 }));
 
             Action a = () => result.Should()
-                    .BeRedirectToRoute()
+                    .BeRedirectToRouteResult()
                     .WithAction("xyz");
             a.ShouldThrow<Exception>()
                     .WithMessage("Expected dictionary to contain value \"xyz\" at key \"Action\", but found \"index\".");
@@ -148,7 +148,7 @@ namespace FluentAssertions.Mvc3.Tests
                 }));
 
             result.Should()
-                    .BeRedirectToRoute()
+                    .BeRedirectToRouteResult()
                     .WithArea("accounts");
         }
 
@@ -162,7 +162,7 @@ namespace FluentAssertions.Mvc3.Tests
                 }));
 
             Action a = () => result.Should()
-                    .BeRedirectToRoute()
+                    .BeRedirectToRouteResult()
                     .WithArea("xyz");
             a.ShouldThrow<Exception>()
                     .WithMessage("Expected dictionary to contain value \"xyz\" at key \"Area\", but found \"accounts\".");

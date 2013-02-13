@@ -1,8 +1,9 @@
 using System.Reflection;
 
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("")]
+[assembly: AssemblyProduct("FluentAssertions.Mvc")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("0.0.0.0")]
+
+[assembly: AssemblyVersion("0.1.0")]
