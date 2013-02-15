@@ -64,6 +64,9 @@
     <Compile Include="..\FluentAssertions.Mvc3.Tests\Helpers\FailureMessageHelper.cs">
       <Link>Helpers\FailureMessageHelper.cs</Link>
     </Compile>
+    <Compile Include="..\FluentAssertions.Mvc3.Tests\PartialViewResultAssertions_Tests.cs">
+      <Link>PartialViewResultAssertions_Tests.cs</Link>
+    </Compile>
     <Compile Include="..\FluentAssertions.Mvc3.Tests\RedirectResultAssertions_Tests.cs">
       <Link>RedirectResultAssertions_Tests.cs</Link>
     </Compile>
