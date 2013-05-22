@@ -65,7 +65,7 @@ namespace FluentAssertions.Mvc.Tests
             var actualEncoding = Encoding.ASCII;
             var expectedEncoding = Encoding.Unicode;
             ActionResult result = new ContentResult { ContentEncoding = actualEncoding };
-            var failureMessage = String.Format(FailureMessages.CommonFailMessage, "ContentResult.ContentType", expectedEncoding, actualEncoding);
+            var failureMessage = String.Format(FailureMessages.CommonFailMessage, "ContentResult.ContentEncoding", expectedEncoding, actualEncoding);
 
             Action a = () => result.Should().BeContentResult().WithContentEncoding(expectedEncoding);
             
