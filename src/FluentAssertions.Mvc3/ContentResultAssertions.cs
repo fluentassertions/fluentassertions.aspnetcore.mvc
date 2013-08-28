@@ -24,7 +24,7 @@ namespace FluentAssertions.Mvc
         {
             string actualContent = (Subject as ContentResult).Content;
 
-            Execute.Verification
+            Execute.Assertion
                     .ForCondition(string.Equals(actualContent, expectedContent, StringComparison.InvariantCultureIgnoreCase))
                     .BecauseOf(reason, reasonArgs)
                     .FailWith(string.Format(FailureMessages.CommonFailMessage, "ContentResult.Content", expectedContent, actualContent));
@@ -42,7 +42,7 @@ namespace FluentAssertions.Mvc
         {
             string actualContentType = (Subject as ContentResult).ContentType;
 
-            Execute.Verification
+            Execute.Assertion
                     .ForCondition(string.Equals(expectedContent, actualContentType, StringComparison.InvariantCultureIgnoreCase))
                     .BecauseOf(reason, reasonArgs)
                     .FailWith(string.Format(FailureMessages.CommonFailMessage, "ContentResult.ContentType", expectedContent, actualContentType));
@@ -60,7 +60,7 @@ namespace FluentAssertions.Mvc
         {
             Encoding actualContentEncoding = (Subject as ContentResult).ContentEncoding;
 
-            Execute.Verification
+            Execute.Assertion
                     .ForCondition(expectedEncoding == actualContentEncoding)
                     .BecauseOf(reason, reasonArgs)
                     .FailWith(string.Format(FailureMessages.CommonFailMessage, "ContentResult.ContentType", expectedEncoding.ToString(), actualContentEncoding.ToString()));
