@@ -39,7 +39,7 @@ namespace FluentAssertions.Mvc
         {
             string actualViewName = (Subject as ViewResultBase).ViewName;
 
-            Execute.Verification
+            Execute.Assertion
                     .ForCondition(string.Equals(expectedViewName, actualViewName, StringComparison.InvariantCultureIgnoreCase))
                     .BecauseOf(reason, reasonArgs)
                     .FailWith(FailureMessages.ViewResultBase_ViewName, expectedViewName, actualViewName);
@@ -62,14 +62,14 @@ namespace FluentAssertions.Mvc
         {
             ViewDataDictionary actualViewData = (Subject as ViewResultBase).ViewData;
 
-            Execute.Verification
+            Execute.Assertion
                     .ForCondition(actualViewData.ContainsKey(key))
                     .BecauseOf(reason, reasonArgs)
                     .FailWith(FailureMessages.ViewResultBase_ViewData_ContainsKey, key);
 
             var actualValue = actualViewData[key];
 
-            Execute.Verification
+            Execute.Assertion
                     .ForCondition(actualValue.Equals(expectedValue))
                     .BecauseOf(reason, reasonArgs)
                     .FailWith(FailureMessages.ViewResultBase_ViewData_HaveValue, key, expectedValue, actualValue); 
@@ -93,7 +93,7 @@ namespace FluentAssertions.Mvc
         {
             TempDataDictionary actualTempData = (Subject as ViewResultBase).TempData;
 
-            Execute.Verification
+            Execute.Assertion
                     .ForCondition(actualTempData.ContainsKey(key))
                     .BecauseOf(reason, reasonArgs)
                     .FailWith("TempData does not contain key of '{0}'", key);
@@ -126,9 +126,9 @@ namespace FluentAssertions.Mvc
             object model = (Subject as ViewResultBase).Model;
 
             if (model == null)
-                Execute.Verification.FailWith(FailureMessages.ViewResultBase_NullModel, typeof(TModel).Name);
+                Execute.Assertion.FailWith(FailureMessages.ViewResultBase_NullModel, typeof(TModel).Name);
 
-            Execute.Verification
+            Execute.Assertion
                     .ForCondition(model is TModel)
                     .FailWith("Expected Model to be of type '{0}' but was '{1}'", typeof(TModel).Name, model.GetType().Name);
 
@@ -149,7 +149,7 @@ namespace FluentAssertions.Mvc
         {
             string viewName = (Subject as ViewResultBase).ViewName;
 
-            Execute.Verification
+            Execute.Assertion
                     .ForCondition(viewName == string.Empty)
                     .BecauseOf(reason, reasonArgs)
                     .FailWith(FailureMessages.ViewResultBase_WithDefaultViewName, viewName);

@@ -31,7 +31,7 @@ namespace FluentAssertions.Mvc
         {
             string actualMasterName = (Subject as ViewResult).MasterName;
 
-            Execute.Verification
+            Execute.Assertion
                     .ForCondition(string.Equals(expectedMasterName, actualMasterName, StringComparison.InvariantCultureIgnoreCase))
                     .BecauseOf(reason, reasonArgs)
                     .FailWith(FailureMessages.ViewResult_MasterName, expectedMasterName, actualMasterName);

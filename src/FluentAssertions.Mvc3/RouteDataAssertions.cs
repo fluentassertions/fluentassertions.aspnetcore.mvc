@@ -75,14 +75,14 @@ namespace FluentAssertions.Mvc
         {
             var subjectTyped = Subject as RouteData;
 
-            Execute.Verification
+            Execute.Assertion
                     .ForCondition(subjectTyped.DataTokens.ContainsKey(key))
                     .BecauseOf(reason, reasonArgs)
                     .FailWith(FailureMessages.RouteData_DataTokens_ContainsKey, key);
 
             var actualValue = subjectTyped.DataTokens[key];
 
-            Execute.Verification
+            Execute.Assertion
                     .ForCondition(expectedValue.Equals(actualValue))
                     .BecauseOf(reason, reasonArgs)
                     .FailWith(FailureMessages.RouteData_DataTokens_HaveValue, key, expectedValue, actualValue);
@@ -106,14 +106,14 @@ namespace FluentAssertions.Mvc
         {
             var subjectTyped = Subject as RouteData;
 
-            Execute.Verification
+            Execute.Assertion
                     .ForCondition(subjectTyped.Values.ContainsKey(key))
                     .BecauseOf(reason, reasonArgs)
                     .FailWith(FailureMessages.RouteData_Values_ContainsKey, key);
 
             var actualValue = subjectTyped.Values[key];
 
-            Execute.Verification
+            Execute.Assertion
                     .ForCondition(expectedValue.Equals(actualValue))
                     .BecauseOf(reason, reasonArgs)
                     .FailWith(FailureMessages.RouteData_Values_HaveValue, key, expectedValue, actualValue);

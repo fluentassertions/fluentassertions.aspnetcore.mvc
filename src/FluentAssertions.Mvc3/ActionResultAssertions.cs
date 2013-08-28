@@ -45,7 +45,7 @@ namespace FluentAssertions.Mvc
         /// </param>
         public ContentResultAssertions BeContentResult(string reason, params object[] reasonArgs)
         {
-            Execute.Verification
+            Execute.Assertion
                     .BecauseOf(reason, reasonArgs)
                     .ForCondition(Subject is ContentResult)
                     .FailWith(Constants.CommonFailMessage, typeof(ContentResult).Name, Subject.GetType().Name);
@@ -73,7 +73,7 @@ namespace FluentAssertions.Mvc
         /// </param>
         public EmptyResult BeEmptyResult(string reason, params object[] reasonArgs)
         {
-            Execute.Verification
+            Execute.Assertion
                     .BecauseOf(reason, reasonArgs)
                     .ForCondition(Subject is EmptyResult)
                     .FailWith(Constants.CommonFailMessage, typeof(EmptyResult).Name, Subject.GetType().Name);
@@ -101,7 +101,7 @@ namespace FluentAssertions.Mvc
         /// </param>
         public RedirectToRouteAssertions BeRedirectToRouteResult(string reason, params object[] reasonArgs)
         {
-            Execute.Verification
+            Execute.Assertion
                     .BecauseOf(reason, reasonArgs)
                     .ForCondition(Subject is RedirectToRouteResult)
                     .FailWith(Constants.CommonFailMessage, typeof(RedirectToRouteResult).Name, Subject.GetType().Name);
@@ -129,7 +129,7 @@ namespace FluentAssertions.Mvc
         /// </param>
         public PartialViewResultAssertions BePartialViewResult(string reason, params object[] reasonArgs)
         {
-            Execute.Verification
+            Execute.Assertion
                     .BecauseOf(reason, reasonArgs)
                     .ForCondition(Subject is PartialViewResult)
                     .FailWith(Constants.CommonFailMessage, typeof(PartialViewResult).Name, Subject.GetType().Name);
@@ -157,7 +157,7 @@ namespace FluentAssertions.Mvc
         /// </param>
         public RedirectResultAssertions BeRedirectResult(string reason, params object[] reasonArgs)
         {
-            Execute.Verification
+            Execute.Assertion
                     .BecauseOf(reason, reasonArgs)
                     .ForCondition(Subject is RedirectResult)
                     .FailWith(Constants.CommonFailMessage, "RedirectResult", Subject.GetType().Name);
@@ -185,7 +185,7 @@ namespace FluentAssertions.Mvc
         /// </param>
         public ViewResultAssertions BeViewResult(string reason, params object[] reasonArgs)
 		{
-			Execute.Verification
+			Execute.Assertion
                     .BecauseOf(reason, reasonArgs)
 					.ForCondition (Subject is ViewResult)
                     .FailWith(Constants.CommonFailMessage, "ViewResult", Subject.GetType().Name);
