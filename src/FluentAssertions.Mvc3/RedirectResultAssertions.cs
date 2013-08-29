@@ -22,7 +22,7 @@ namespace FluentAssertions.Mvc
         {
             string actualUrl = (Subject as RedirectResult).Url;
 
-            Execute.Verification
+            Execute.Assertion
                     .ForCondition(string.Equals(actualUrl, expectedUrl, StringComparison.InvariantCultureIgnoreCase))
                     .BecauseOf(reason, reasonArgs)
                     .FailWith("Expected RedirectResult.Url to be {0}{reason} but was {1}", expectedUrl, actualUrl);
@@ -40,7 +40,7 @@ namespace FluentAssertions.Mvc
         {
             bool actualPermanent = (Subject as RedirectResult).Permanent;
 
-            Execute.Verification
+            Execute.Assertion
                     .ForCondition(expectedPermanent == actualPermanent)
                     .BecauseOf(reason, reasonArgs)
                     .FailWith("Expected RedirectResult.Permanent to be {0}{reason} but was {1}", expectedPermanent, actualPermanent);

@@ -24,7 +24,7 @@ namespace FluentAssertions.Mvc
 
         public RedirectToRouteAssertions WithPermanent(bool expectedPermanent, string reason, params object[] reasonArgs)
         {
-            Execute.Verification
+            Execute.Assertion 
                     .BecauseOf(reason, reasonArgs)
                     .ForCondition(expectedPermanent == Subject.Permanent)
                     .FailWith("Expected RedirectToRoute.Permanent to be {0}{reason}, but found {1}", expectedPermanent, Subject.Permanent);
@@ -39,7 +39,7 @@ namespace FluentAssertions.Mvc
 
         public RedirectToRouteAssertions WithRouteName(string expectedRouteName, string reason, params object[] reasonArgs)
         {
-            Execute.Verification
+            Execute.Assertion 
                     .BecauseOf(reason, reasonArgs)
                     .ForCondition(string.Equals(expectedRouteName, Subject.RouteName, StringComparison.InvariantCultureIgnoreCase))
                     .FailWith("Expected RedirectToRoute.RouteName to be {0}{reason}, but found {1}", expectedRouteName, Subject.RouteName);
@@ -93,6 +93,14 @@ namespace FluentAssertions.Mvc
         {
             WithRouteValue("Area", expectedArea, reason, reasonArgs);
             return this;
+        }
+
+        /// <summary>
+        /// Returns the type of the subject the assertion applies on.
+        /// </summary>
+        protected override string Context
+        {
+            get { return "RedirectToRouteResult"; }
         }
     }
 }
