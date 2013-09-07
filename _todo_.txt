@@ -5,7 +5,7 @@
 [ ] Change all dictionary asserts to us Subject.RouteValues.Should().Contain
 [ ] FluentAssertions should *not* blow up if given null reasonArgs and a reason
 [ ] Should because syntax in sample code
-[ ] XML comments every where
+[x] XML comments every where
 [ ] Should assertions be more domain focused? i.e. routes.Should().MapTo()...
 [ ] Create RouteCollection.GenerateUrl(RouteValues)
 [ ] Need to test reason injection into fail messages

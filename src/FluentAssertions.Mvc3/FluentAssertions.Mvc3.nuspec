@@ -10,11 +10,11 @@
     <projectUrl>http://fluentassertionsmvc.codeplex.com</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>FluentAssertions MVC is a set of MVC focused assertions and helper extensions to the excellent FluentAssertions library.</description>
-    <releaseNotes>Initial release.</releaseNotes>
+    <releaseNotes>Xml comments added and Fluent Assertions dependency upgraded to v2.1</releaseNotes>
     <copyright>Copyright 2013</copyright>
     <tags>TDD, TDD, Fluent, Mvc, AspNetMvc</tags>
     <dependencies>
-      <dependency id="FluentAssertions" version="[2.0.0.1,2.1)" />
+      <dependency id="FluentAssertions" version="2.1" />
     </dependencies>
    </metadata>
 </package>
