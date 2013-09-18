@@ -10,7 +10,7 @@ The [build][1] is generously hosted and run on the [CodeBetter TeamCity][2] infr
 | :------ | :------: |
 | **master** | [![master][3]][4] |
  
- [1]: http://teamcity.codebetter.com/project.html?projectId=project396
+ [1]: http://teamcity.codebetter.com/project.html?projectId=project396&guest=1
  [2]: http://codebetter.com/codebetter-ci/
  [3]: http://teamcity.codebetter.com/app/rest/builds/buildType:(id:bt1090)/statusIcon
  [4]: http://teamcity.codebetter.com/viewType.html?buildTypeId=bt1090&guest=1
