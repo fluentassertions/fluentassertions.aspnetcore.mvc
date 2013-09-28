@@ -1,6 +1,38 @@
 #Project Description
 
-FluentAssertions MVC is a set of MVC focused assertions and helper extensions to the excellent [FluentAssertions](https://github.com/dennisdoomen/FluentAssertions) library.
+FluentAssertions MVC is a set of MVC focused assertions and helper extensions to the excellent [FluentAssertions][fa-home] library.
+
+## Installation
+
+Add the [MVC 3][nuget-mvc3] or [MVC 4][nuget-mvc4] NuGet package to your unit test project:
+
+````
+PM> Install-Package FluentAssertions.Mvc3
+````
+or
+````
+PM> Install-Package FluentAssertions.Mvc4
+````
+
+## Getting Started
+
+Write a unit test for your controller using one of the [supported test frameworks][fa-frameworks].  For exampe with NUnit:
+
+```` C#
+[Test]
+public void Index_Action_Returns_View()
+{
+    // Arrange
+    var controller = new HomeController();
+
+    // Act
+    var result = controller.Index();
+
+    // Assert
+    result.Should().BeViewResult();
+}
+
+````
 
 ## Continuous Integration
 
@@ -16,3 +48,8 @@ The [build][1] is generously hosted and run on the [CodeBetter TeamCity][2] infr
  [4]: http://teamcity.codebetter.com/viewType.html?buildTypeId=bt1090&guest=1
 
 ![YouTrack and TeamCity](http://www.jetbrains.com/img/banners/Codebetter300x250.png)
+
+[fa-home]: https://github.com/dennisdoomen/FluentAssertions
+[fa-frameworks]: https://github.com/dennisdoomen/fluentassertions/wiki/Documentation#supported-test-frameworks
+[nuget-mvc3]: https://www.nuget.org/packages/FluentAssertions.Mvc3
+[nuget-mvc4]: https://www.nuget.org/packages/FluentAssertions.Mvc4
