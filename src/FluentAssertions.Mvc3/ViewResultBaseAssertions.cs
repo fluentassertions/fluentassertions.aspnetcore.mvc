@@ -111,7 +111,7 @@ namespace FluentAssertions.Mvc
         {
             get
             {
-                var model = (Subject as ViewResult).Model;
+                var model = (Subject as ViewResultBase).Model;
                 return model;
             }
         }
