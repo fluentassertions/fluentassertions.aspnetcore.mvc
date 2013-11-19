@@ -4,14 +4,14 @@ FluentAssertions MVC is a set of MVC focused assertions and helper extensions to
 
 ## Installation
 
-Add the [MVC 3][nuget-mvc3] or [MVC 4][nuget-mvc4] NuGet package to your unit test project:
+For MVC 4 or 5 projects, add the [MVC 4][nuget-mvc4] NuGet package to your unit test project:
 
 ````
-PM> Install-Package FluentAssertions.Mvc3
-````
-or
-````
 PM> Install-Package FluentAssertions.Mvc4
+````
+There is also an [MVC 3][nuget-mvc3] package:
+````
+PM> Install-Package FluentAssertions.Mvc3
 ````
 
 ## Getting Started
