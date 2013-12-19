@@ -30,8 +30,7 @@
     <ConsolePause>false</ConsolePause>
     <GenerateDocumentation>true</GenerateDocumentation>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-    <DocumentationFile>
-    </DocumentationFile>
+    <DocumentationFile>..\..\bin\Debug\FluentAssertions.Mvc3.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -41,7 +40,7 @@
     <ConsolePause>false</ConsolePause>
     <DebugSymbols>true</DebugSymbols>
     <GenerateDocumentation>true</GenerateDocumentation>
-    <DocumentationFile>..\..\bin\Release\FluentAssertions.Mvc3.XML</DocumentationFile>
+    <DocumentationFile>..\..\bin\Release\FluentAssertions.Mvc3.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FluentAssertions, Version=2.1.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
