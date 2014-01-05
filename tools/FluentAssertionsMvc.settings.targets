@@ -3,12 +3,12 @@
     <PropertyGroup>
         <FluentAssertionsMvcRootPath>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\'))</FluentAssertionsMvcRootPath>
         <FluentAssertionsMvcToolsPath>$(MSBuildThisFileDirectory)</FluentAssertionsMvcToolsPath>
-		
+    
         <!-- Define default configuration (so building from command line is consistent) -->
         <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
-		
+    
         <!-- Define basic output paths -->
         <OutputPath Condition=" '$(OutputPath)' == '' ">$(FluentAssertionsMvcRootPath)bin\$(Configuration)\</OutputPath>
-		
-	</PropertyGroup>
+    
+  </PropertyGroup>
 </Project>

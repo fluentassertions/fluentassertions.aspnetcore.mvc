@@ -11,10 +11,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>FluentAssertions MVC is a set of MVC focused assertions and helper extensions to the excellent FluentAssertions library.</description>
     <releaseNotes>Fixed NullReferenceException bug in partial view result assertions.</releaseNotes>
-    <copyright>Copyright 2013</copyright>
+    <copyright>Copyright 2014</copyright>
     <tags>TDD, TDD, Fluent, Mvc, AspNetMvc</tags>
     <dependencies>
-      <dependency id="FluentAssertions" version="2.1" />
+      <dependency id="FluentAssertions" version="2.2" />
     </dependencies>
    </metadata>
 </package>

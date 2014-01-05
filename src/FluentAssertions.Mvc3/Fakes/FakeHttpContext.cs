@@ -1,4 +1,7 @@
-﻿using System.Web;
+﻿using System;
+using System.IO;
+using System.Web;
+using System.Web.Hosting;
 
 namespace FluentAssertions.Mvc.Fakes
 {
@@ -28,5 +31,21 @@ namespace FluentAssertions.Mvc.Fakes
                 return _response;
             }
         }
+
+        public override object GetService(Type serviceType)
+        {
+            return new FakeHttpWorkerRequest();
+        }
+
+        class FakeHttpWorkerRequest : SimpleWorkerRequest
+        {
+            public FakeHttpWorkerRequest()
+                : base(null, null, new StringWriter())
+            {
+
+            }
+        }
     }
+
+
 }

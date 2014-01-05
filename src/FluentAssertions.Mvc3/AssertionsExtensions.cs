@@ -11,16 +11,16 @@ namespace FluentAssertions.Mvc
     /// Contains extension methods for custom assertions in unit tests.
     /// </summary>
     [DebuggerNonUserCode]
-	public static class AssertionsExtensions
-	{
+    public static class AssertionsExtensions
+    {
         /// <summary>
         /// Returns an <see cref="ActionResultAssertions"/> object that can be used to assert the
         /// current <see cref="ActionResult"/>.
         /// </summary>
-		public static ActionResultAssertions Should (this ActionResult actual)
-		{
-			return new ActionResultAssertions (actual);
-		}
+        public static ActionResultAssertions Should (this ActionResult actual)
+        {
+            return new ActionResultAssertions (actual);
+        }
 
         /// <summary>
         /// Returns an <see cref="RouteDataAssertions"/> object that can be used to assert the
@@ -30,5 +30,5 @@ namespace FluentAssertions.Mvc
         {
             return new RouteDataAssertions(routeData);
         }
-	}
+    }
 }
