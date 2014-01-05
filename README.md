@@ -4,23 +4,14 @@ FluentAssertions MVC is a set of MVC focused assertions and helper extensions to
 
 ## Installation
 
-Follow the instructions for the version of MVC you are using. For [MVC 3](#mvc-3) and [4](#mvc-4) just add the NuGet package.  [MVC 5](#mvc-5) also requires a binding redirect.
+Add the NuGet package which matches the version of MVC you are using to your test project..
 
 ### MVC 5
 
-Add the [MVC 4][nuget-mvc4] NuGet package to your unit test project:
+Add the [MVC 5][nuget-mvc5] NuGet package to your unit test project:
 
 ````
-PM> Install-Package FluentAssertions.Mvc4
-````
-
-And add the following binding redirect to you test project's ````app.config```` file:
-
-```` xml
-<dependentAssembly>
-  <assemblyIdentity name="System.Web.Mvc" publicKeyToken="31bf3856ad364e35" />
-  <bindingRedirect oldVersion="1.0.0.0-5.0.0.0" newVersion="5.0.0.0" />
-</dependentAssembly>
+PM> Install-Package FluentAssertions.Mvc5
 ````
 
 ### MVC 4
@@ -78,3 +69,4 @@ The [build][1] is generously hosted and run on the [CodeBetter TeamCity][2] infr
 [fa-frameworks]: https://github.com/dennisdoomen/fluentassertions/wiki/Documentation#supported-test-frameworks
 [nuget-mvc3]: https://www.nuget.org/packages/FluentAssertions.Mvc3
 [nuget-mvc4]: https://www.nuget.org/packages/FluentAssertions.Mvc4
+[nuget-mvc5]: https://www.nuget.org/packages/FluentAssertions.Mvc5
