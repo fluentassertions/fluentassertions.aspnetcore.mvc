@@ -4,7 +4,7 @@ FluentAssertions MVC is a set of MVC focused assertions and helper extensions to
 
 ## Installation
 
-Add the NuGet package which matches the version of MVC you are using to your test project..
+Add the NuGet package which matches the version of MVC you are using to your test project.
 
 ### MVC 5
 
