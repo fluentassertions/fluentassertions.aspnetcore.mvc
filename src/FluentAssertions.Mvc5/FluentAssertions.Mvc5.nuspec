@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>FluentAssertions.Mvc4</id>
-    <title>Fluent Assertions Mvc4</title>
+    <id>FluentAssertions.Mvc5</id>
+    <title>Fluent Assertions Mvc5</title>
     <version>$version$</version>
     <authors>Casey Burns, Kevin Kuszyk</authors>
     <owners>Casey Burns, Kevin Kuszyk</owners>
@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/CaseyBurns/FluentAssertions.MVC</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>FluentAssertions MVC is a set of MVC focused assertions and helper extensions to the excellent FluentAssertions library.</description>
-    <releaseNotes>Fixed NullReferenceException bug in partial view result assertions.</releaseNotes>
+    <releaseNotes>Updated to support FluentAssertions 2.2.0, added .Net 4.5 support.</releaseNotes>
     <copyright>Copyright 2014</copyright>
     <tags>TDD, TDD, Fluent, Mvc, AspNetMvc</tags>
     <dependencies>
