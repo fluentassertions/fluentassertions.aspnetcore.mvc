@@ -18,6 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		_todo_.txt = _todo_.txt
 		Contributors.txt = Contributors.txt
+		src\SolutionInfo.cs = src\SolutionInfo.cs
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentAssertions.Mvc3", "src\FluentAssertions.Mvc3\FluentAssertions.Mvc3.csproj", "{53589F79-0908-409A-8366-3E18DC637600}"
