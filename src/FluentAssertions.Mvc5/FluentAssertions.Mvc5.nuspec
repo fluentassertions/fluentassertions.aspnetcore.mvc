@@ -16,8 +16,5 @@
     </releaseNotes>
     <copyright>Copyright 2014</copyright>
     <tags>TDD, TDD, Fluent, Mvc, AspNetMvc</tags>
-    <dependencies>
-      <dependency id="FluentAssertions" version="2.2" />
-    </dependencies>
    </metadata>
 </package>
