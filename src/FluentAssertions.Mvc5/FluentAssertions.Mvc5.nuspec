@@ -11,9 +11,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>FluentAssertions MVC is a set of MVC focused assertions and helper extensions to the excellent FluentAssertions library.</description>
     <releaseNotes>
-- New: Updated to support FluentAssertions 2.2.0.
-- New: Added an MVC 5 package.
-- Fix: Added missing xml documentation to NuGet packages.
+- New: Updated to support FluentAssertions 3.0.90.
+- New: Updated .net 4 projects to framework version 4.0.3.
     </releaseNotes>
     <copyright>Copyright 2014</copyright>
     <tags>TDD, TDD, Fluent, Mvc, AspNetMvc</tags>
