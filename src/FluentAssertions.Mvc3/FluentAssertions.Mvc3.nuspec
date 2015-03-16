@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>FluentAssertions MVC is a set of MVC focused assertions and helper extensions to the excellent FluentAssertions library.</description>
     <releaseNotes>See https://github.com/CaseyBurns/FluentAssertions.MVC/releases </releaseNotes>
-    <copyright>Copyright 2014</copyright>
+    <copyright>Copyright 2015</copyright>
     <tags>TDD, TDD, Fluent, Mvc, AspNetMvc</tags>
    </metadata>
 </package>
