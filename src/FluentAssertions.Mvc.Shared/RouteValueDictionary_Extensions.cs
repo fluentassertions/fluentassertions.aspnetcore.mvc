@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿#if !NETSTANDARD1_6
+using System.Web.Mvc;
 using System.Web.Routing;
 using FluentAssertions.Mvc.Fakes;
 
@@ -15,3 +16,4 @@ namespace FluentAssertions.Mvc
         }
     }
 }
+#endif
