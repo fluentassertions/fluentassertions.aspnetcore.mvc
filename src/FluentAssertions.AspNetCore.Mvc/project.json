@@ -10,6 +10,8 @@
   },
 
   "dependencies": {
+    "FluentAssertions": "4.13.0",
+    "Microsoft.AspNetCore.Mvc": "1.0.0",
     "NETStandard.Library": "1.6.0"
   },
 
