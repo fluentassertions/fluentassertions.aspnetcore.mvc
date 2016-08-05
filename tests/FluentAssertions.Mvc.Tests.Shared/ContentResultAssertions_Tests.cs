@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
+
+#if NETCOREAPP1_0
+using Microsoft.AspNetCore.Mvc;
+#else
 using System.Web.Mvc;
+#endif
 
 namespace FluentAssertions.Mvc.Tests
 {
@@ -52,6 +57,7 @@ namespace FluentAssertions.Mvc.Tests
                     .WithMessage(failureMessage);
         }
 
+#if !NETCOREAPP1_0
         [Test]
         public void WithContentEncoding_GivenExpected_ShouldPass()
         {
@@ -72,5 +78,6 @@ namespace FluentAssertions.Mvc.Tests
             a.ShouldThrow<Exception>()
                     .WithMessage(failureMessage);
         }
+#endif
     }
 }

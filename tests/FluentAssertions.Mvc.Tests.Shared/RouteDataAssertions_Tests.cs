@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !NETCOREAPP1_0
+using System;
 using System.Web.Mvc;
 using System.Web.Routing;
 using FluentAssertions.Mvc.Tests.Helpers;
@@ -170,3 +171,4 @@ namespace FluentAssertions.Mvc.Tests
         }
     }
 }
+#endif

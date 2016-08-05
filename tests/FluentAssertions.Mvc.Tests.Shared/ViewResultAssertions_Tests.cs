@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FluentAssertions.Mvc;
 using FluentAssertions.Mvc.Tests.Fakes;
 using FluentAssertions.Mvc.Tests.Helpers;
 using NUnit.Framework;
+
+#if NETCOREAPP1_0
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+#else
 using System.Web.Mvc;
-using FluentAssertions.Mvc;
+#endif
 
 namespace FluentAssertions.Mvc.Tests
 {
@@ -15,6 +21,7 @@ namespace FluentAssertions.Mvc.Tests
     {
         private FakeController _controller = new FakeController();
 
+#if !NETCOREAPP1_0
         [Test]
         public void WithMasterName_GivenExpectedValue_ShouldPass()
         {
@@ -42,6 +49,7 @@ namespace FluentAssertions.Mvc.Tests
             action.ShouldThrow<Exception>()
                     .WithMessage(failureMessage);
         }
+#endif
 
         [Test]
         public void WithViewName_GivenExpectedValue_ShouldPass()
@@ -74,10 +82,15 @@ namespace FluentAssertions.Mvc.Tests
         [Test]
         public void WithTempData_GivenExpectedValue_ShouldPass()
         {
+#if NETCOREAPP1_0
+            var result = new ViewResult();
+            result.TempData.Add("key1", "value1");
+#else
             ActionResult result = new ViewResult
             {
                 TempData = new TempDataDictionary { { "key1", "value1" } }
             };
+#endif
 
             result.Should().BeViewResult().WithTempData("key1", "value1");
         }
@@ -85,6 +98,11 @@ namespace FluentAssertions.Mvc.Tests
         [Test]
         public void WithTempData_GivenTwoExpectedValues_ShouldPass()
         {
+#if NETCOREAPP1_0
+            var result = new ViewResult();
+            result.TempData.Add("key1", "value1");
+            result.TempData.Add("key2", "value2");
+#else
             ActionResult result = new ViewResult
             {
                 TempData = new TempDataDictionary
@@ -93,7 +111,8 @@ namespace FluentAssertions.Mvc.Tests
                     { "key2", "value2" },
                 }
             };
-            
+#endif
+
             result.Should().BeViewResult()
                     .WithTempData("key1", "value1")
                     .WithTempData("key2", "value2");
@@ -102,10 +121,15 @@ namespace FluentAssertions.Mvc.Tests
         [Test]
         public void WithTempData_GivenUnexpectedValue_ShouldFail()
         {
+#if NETCOREAPP1_0
+            var result = new ViewResult();
+            result.TempData.Add("key1", "value1");
+#else
             ActionResult result = new ViewResult
             {
                 TempData = new TempDataDictionary { { "key1", "value1" } }
             };
+#endif
 
             Action a = () => result.Should().BeViewResult().WithTempData("key1", "xyz");
             a.ShouldThrow<Exception>();
@@ -114,10 +138,15 @@ namespace FluentAssertions.Mvc.Tests
         [Test]
         public void WithTempData_GivenUnexpectedKey_ShouldFail()
         {
+#if NETCOREAPP1_0
+            var result = new ViewResult();
+            result.TempData.Add("key1", "value1");
+#else
             ActionResult result = new ViewResult
             {
                 TempData = new TempDataDictionary { { "key1", "value1" } }
             };
+#endif
 
             Action a = () => result.Should().BeViewResult().WithTempData("xyz", "value1");
             a.ShouldThrow<Exception>();
@@ -126,10 +155,15 @@ namespace FluentAssertions.Mvc.Tests
         [Test]
         public void WithViewData_GivenExpectedValue_ShouldPass()
         {
+#if NETCOREAPP1_0
+            var result = new ViewResult();
+            result.TempData.Add("key1", "value1");
+#else
             ActionResult result = new ViewResult
             {
-                ViewData = new ViewDataDictionary { { "key1", "value1" } }
+                TempData = new TempDataDictionary { { "key1", "value1" } }
             };
+#endif
 
             result.Should().BeViewResult().WithViewData("key1", "value1");
         }
@@ -137,6 +171,11 @@ namespace FluentAssertions.Mvc.Tests
         [Test]
         public void WithViewData_GivenTwoExpectedValues_ShouldPass()
         {
+#if NETCOREAPP1_0
+            var result = new ViewResult();
+            result.ViewData.Add("key1", "value1");
+            result.ViewData.Add("key2", "value2");
+#else
             ActionResult result = new ViewResult
             {
                 ViewData = new ViewDataDictionary
@@ -145,6 +184,7 @@ namespace FluentAssertions.Mvc.Tests
                     { "key2", "value2" },
                 }
             };
+#endif
 
             result.Should().BeViewResult()
                     .WithViewData("key1", "value1")
@@ -158,11 +198,17 @@ namespace FluentAssertions.Mvc.Tests
             var actualValue = "value1";
             var expectedValue = "abc";
             var failureMessage = FailureMessageHelper.Format(FailureMessages.ViewResultBase_ViewData_HaveValue, key, expectedValue, actualValue);
+
+#if NETCOREAPP1_0
+            var result = new ViewResult();
+            result.ViewData.Add(key, actualValue);
+#else
             ActionResult result = new ViewResult
             {
                 ViewData = new ViewDataDictionary { { key, actualValue } }
             };
-            
+#endif
+
             Action a = () => result.Should().BeViewResult().WithViewData(key, expectedValue);
 
             a.ShouldThrow<Exception>()
@@ -174,10 +220,16 @@ namespace FluentAssertions.Mvc.Tests
         {
             var actualKey = "key1";
             var expectedKey = "xyz";
+
+#if NETCOREAPP1_0
+            var result = new ViewResult();
+            result.ViewData.Add(actualKey, "value1");
+#else
             ActionResult result = new ViewResult
             {
                 ViewData = new ViewDataDictionary { { actualKey, "value1" } }
             };
+#endif
             var failureMessage = FailureMessageHelper.Format(FailureMessages.ViewResultBase_ViewData_ContainsKey, expectedKey, actualKey);
 
             Action a = () => result.Should().BeViewResult().WithViewData(expectedKey, "value1");
@@ -189,10 +241,15 @@ namespace FluentAssertions.Mvc.Tests
         [Test]
         public void Model_GivenExpectedValue_ShouldPass()
         {
+#if NETCOREAPP1_0
+            var result = new ViewResult();
+            result.ViewData.Model = "hello";
+#else
             ActionResult result = new ViewResult
             {
                 ViewData = new ViewDataDictionary("hello")
             };
+#endif
 
             result.Should().BeViewResult().Model.Should().Be("hello");
         }
@@ -200,10 +257,15 @@ namespace FluentAssertions.Mvc.Tests
         [Test]
         public void Model_GivenUnexpectedValue_ShouldFail()
         {
+#if NETCOREAPP1_0
+            var result = new ViewResult();
+            result.ViewData.Model = "hello";
+#else
             ActionResult result = new ViewResult
             {
                 ViewData = new ViewDataDictionary("hello")
             };
+#endif
 
             Action a = () => result.Should().BeViewResult().Model.Should().Be("xyx");
             a.ShouldThrow<Exception>();
@@ -212,10 +274,15 @@ namespace FluentAssertions.Mvc.Tests
         [Test]
         public void ModelAs_GivenExpectedValue_ShouldPass()
         {
+#if NETCOREAPP1_0
+            var result = new ViewResult();
+            result.ViewData.Model = "hello";
+#else
             ActionResult result = new ViewResult
             {
                 ViewData = new ViewDataDictionary("hello")
             };
+#endif
 
             result.Should().BeViewResult().ModelAs<string>().Should().Be("hello");
         }
@@ -223,10 +290,15 @@ namespace FluentAssertions.Mvc.Tests
         [Test]
         public void ModelAs_GivenUnexpectedValue_ShouldFail()
         {
+#if NETCOREAPP1_0
+            var result = new ViewResult();
+            result.ViewData.Model = "hello";
+#else
             ActionResult result = new ViewResult
             {
                 ViewData = new ViewDataDictionary("hello")
             };
+#endif
 
             Action a = () => result.Should().BeViewResult().ModelAs<string>().Should().Be("xyx");
             a.ShouldThrow<Exception>();
@@ -235,10 +307,15 @@ namespace FluentAssertions.Mvc.Tests
         [Test]
         public void ModelAs_GivenWrongType_ShouldFail()
         {
+#if NETCOREAPP1_0
+            var result = new ViewResult();
+            result.ViewData.Model = "hello";
+#else
             ActionResult result = new ViewResult
             {
                 ViewData = new ViewDataDictionary("hello")
             };
+#endif
 
             Action a = () => result.Should().BeViewResult().ModelAs<int>().Should().Be(2);
             a.ShouldThrow<Exception>();

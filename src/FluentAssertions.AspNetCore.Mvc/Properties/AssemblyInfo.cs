@@ -17,3 +17,5 @@ using System.Runtime.InteropServices;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("ea71d220-089e-4cb1-b187-d9bb4dfd8624")]
+
+[assembly: InternalsVisibleTo("FluentAssertions.AspNetCore.Mvc.Tests")]

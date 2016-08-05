@@ -1,9 +1,15 @@
 using System;
 using NUnit.Framework;
 using FluentAssertions.Mvc.Tests.Fakes;
-using System.Web.Mvc;
 using FluentAssertions.Mvc;
+
+#if NETCOREAPP1_0
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
+#else
+using System.Web.Mvc;
 using System.Web.Routing;
+#endif
 
 namespace FluentAssertions.Mvc.Tests
 {
