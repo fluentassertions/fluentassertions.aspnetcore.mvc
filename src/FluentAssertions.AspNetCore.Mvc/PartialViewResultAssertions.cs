@@ -4,7 +4,7 @@ using FluentAssertions.Mvc;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FluentAssertions.AspNetCore.Mvc
+namespace FluentAssertions.Mvc
 {
     public class PartialViewResultAssertions : ObjectAssertions
     {

@@ -1,28 +1,26 @@
 ﻿using System;
 using System.Diagnostics;
 using FluentAssertions.Execution;
-using FluentAssertions.Mvc;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FluentAssertions.AspNetCore.Mvc
+namespace FluentAssertions.Mvc
 {
     /// <summary>
     ///     Contains a number of methods to assert that a <see cref="ViewResult" /> is in the expected state.
     /// </summary>
     [DebuggerNonUserCode]
-    public class ViewResultAssertions<T> : ObjectAssertions
-        where T : ViewResult
+    public class ViewResultAssertions : ObjectAssertions
     {
         /// <summary>
         ///     Initializes a new instance of the <see cref="T:ViewResultAssertions" /> class.
         /// </summary>
         /// <param name="subject">The object to test assertion on</param>
-        public ViewResultAssertions(T subject) : base(subject)
+        public ViewResultAssertions(ViewResult subject) : base(subject)
         {
         }
 
-        private T ViewResultSubject => (T) Subject;
+        private ViewResult ViewResultSubject => (ViewResult) Subject;
 
         /// <summary>
         ///     The model.
@@ -40,7 +38,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <param name="reasonArgs">
         ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
         /// </param>
-        public ViewResultAssertions<T> WithViewName(string expectedViewName, string reason = "",
+        public ViewResultAssertions WithViewName(string expectedViewName, string reason = "",
             params object[] reasonArgs)
         {
             var actualViewName = ViewResultSubject.ViewName;
@@ -64,7 +62,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <param name="reasonArgs">
         ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
         /// </param>
-        public ViewResultAssertions<T> WithViewData(string key, object expectedValue, string reason = "",
+        public ViewResultAssertions WithViewData(string key, object expectedValue, string reason = "",
             params object[] reasonArgs)
         {
             var actualViewData = ViewResultSubject.ViewData;
@@ -96,7 +94,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <param name="reasonArgs">
         ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
         /// </param>
-        public ViewResultAssertions<T> WithTempData(string key, object expectedValue, string reason = "",
+        public ViewResultAssertions WithTempData(string key, object expectedValue, string reason = "",
             params object[] reasonArgs)
         {
             var actualTempData = ViewResultSubject.TempData;
@@ -140,7 +138,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <param name="reasonArgs">
         ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
         /// </param>
-        public ViewResultAssertions<T> WithDefaultViewName(string reason = "", params object[] reasonArgs)
+        public ViewResultAssertions WithDefaultViewName(string reason = "", params object[] reasonArgs)
         {
             var viewName = ViewResultSubject.ViewName;
 
