@@ -6,7 +6,8 @@
         "NUnit": "3.4.1",
         "dotnet-test-nunit": "3.4.0-beta-1",
         "Microsoft.AspNetCore.Mvc": "1.0.0",
-        "FluentAssertions.AspNetCore.Mvc": "1.0.0-*"
+        "FluentAssertions.AspNetCore.Mvc": "1.0.0-*",
+        "Moq": "4.6.36-alpha"
     },
     
     "buildOptions": {

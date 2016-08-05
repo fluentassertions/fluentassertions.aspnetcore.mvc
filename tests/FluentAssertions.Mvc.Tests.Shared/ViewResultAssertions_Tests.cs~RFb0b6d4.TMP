@@ -151,7 +151,7 @@ namespace FluentAssertions.Mvc.Tests
         public void WithViewData_GivenExpectedValue_ShouldPass()
         {
 #if NETCOREAPP1_0
-            var result = new TestController().ViewWithOneViewData();
+            var result = new TestController().ViewWithOneTempData();
 #else
             ActionResult result = new ViewResult
             {
@@ -192,7 +192,8 @@ namespace FluentAssertions.Mvc.Tests
             var failureMessage = FailureMessageHelper.Format(FailureMessages.ViewResultBase_ViewData_HaveValue, key, expectedValue, actualValue);
 
 #if NETCOREAPP1_0
-            var result = new TestController().ViewWithOneViewData();
+            var result = new ViewResult();
+            result.ViewData.Add(key, actualValue);
 #else
             ActionResult result = new ViewResult
             {
@@ -213,7 +214,8 @@ namespace FluentAssertions.Mvc.Tests
             var expectedKey = "xyz";
 
 #if NETCOREAPP1_0
-            var result = new TestController().ViewWithTwoViewData();
+            var result = new ViewResult();
+            result.ViewData.Add(actualKey, "value1");
 #else
             ActionResult result = new ViewResult
             {

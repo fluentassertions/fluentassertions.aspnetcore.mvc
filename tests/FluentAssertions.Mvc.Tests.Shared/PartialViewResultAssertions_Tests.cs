@@ -29,8 +29,7 @@ namespace FluentAssertions.Mvc.Tests
         public void Model_GivenExpectedValue_ShouldPass()
         {
 #if NETCOREAPP1_0
-            var result = new PartialViewResult();
-            result.ViewData.Model = "hello";
+            var result = new TestController().PartialViewSimpleModel();
 #else
             ActionResult result = new PartialViewResult
             {
@@ -44,8 +43,7 @@ namespace FluentAssertions.Mvc.Tests
         public void Model_GivenUnexpectedValue_ShouldFail()
         {
 #if NETCOREAPP1_0
-            var result = new PartialViewResult();
-            result.ViewData.Model = "hello";
+            var result = new TestController().PartialViewSimpleModel();
 #else
             ActionResult result = new PartialViewResult
             {
@@ -60,8 +58,7 @@ namespace FluentAssertions.Mvc.Tests
         public void ModelAs_GivenExpectedValue_ShouldPass()
         {
 #if NETCOREAPP1_0
-            var result = new PartialViewResult();
-            result.ViewData.Model = "hello";
+            var result = new TestController().PartialViewSimpleModel();
 #else
             ActionResult result = new PartialViewResult
             {
@@ -75,8 +72,7 @@ namespace FluentAssertions.Mvc.Tests
         public void ModelAs_GivenUnexpectedValue_ShouldFail()
         {
 #if NETCOREAPP1_0
-            var result = new PartialViewResult();
-            result.ViewData.Model = "hello";
+            var result = new TestController().PartialViewSimpleModel();
 #else
             ActionResult result = new PartialViewResult
             {
@@ -91,8 +87,7 @@ namespace FluentAssertions.Mvc.Tests
         public void ModelAs_GivenWrongType_ShouldFail()
         {
 #if NETCOREAPP1_0
-            var result = new PartialViewResult();
-            result.ViewData.Model = "hello";
+            var result = new TestController().PartialViewSimpleModel();
 #else
             ActionResult result = new PartialViewResult
             {
