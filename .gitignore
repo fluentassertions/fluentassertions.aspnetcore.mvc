@@ -17,3 +17,4 @@ TestResult.xml
 *.gpState
 [Pp]ackages/
 *.nupkg
+/.vs
