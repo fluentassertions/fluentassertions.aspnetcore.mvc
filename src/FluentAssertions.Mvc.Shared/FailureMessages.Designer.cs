@@ -10,8 +10,10 @@
 
 namespace FluentAssertions.Mvc {
     using System;
-    
-    
+#if NETSTANDARD1_6
+    using System.Reflection;
+#endif
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -39,7 +41,12 @@ namespace FluentAssertions.Mvc {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
+#if NETSTANDARD1_6
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FluentAssertions.Mvc.FailureMessages", typeof(FailureMessages).GetTypeInfo().Assembly);
+#else
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FluentAssertions.Mvc.FailureMessages", typeof(FailureMessages).Assembly);
+#endif
+
                     resourceMan = temp;
                 }
                 return resourceMan;

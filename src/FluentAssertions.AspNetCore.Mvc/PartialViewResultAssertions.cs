@@ -1,6 +1,5 @@
 ﻿using System;
 using FluentAssertions.Execution;
-using FluentAssertions.Mvc;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
 

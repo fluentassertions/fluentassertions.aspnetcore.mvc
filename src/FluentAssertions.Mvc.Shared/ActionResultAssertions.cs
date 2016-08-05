@@ -1,7 +1,11 @@
 using FluentAssertions.Primitives;
 using FluentAssertions.Execution;
 using System;
+#if NETSTANDARD1_6
+using Microsoft.AspNetCore.Mvc;
+#else
 using System.Web.Mvc;
+#endif
 using System.Diagnostics;
 
 namespace FluentAssertions.Mvc

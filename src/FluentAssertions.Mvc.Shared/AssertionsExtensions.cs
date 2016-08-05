@@ -1,8 +1,13 @@
 using FluentAssertions;
 using System;
+#if NETSTANDARD1_6
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
+#else
 using System.Web.Mvc;
-using FluentAssertions.Mvc;
 using System.Web.Routing;
+#endif
+using FluentAssertions.Mvc;
 using System.Diagnostics;
 
 namespace FluentAssertions.Mvc

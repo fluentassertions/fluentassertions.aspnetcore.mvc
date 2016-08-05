@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+#if NETSTANDARD1_6
+using Microsoft.AspNetCore.Routing;
+#else
 using System.Web.Routing;
+#endif
 using FluentAssertions;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
