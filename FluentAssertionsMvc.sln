@@ -43,6 +43,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A4C33565
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "FluentAssertions.AspNetCore.Mvc", "src\FluentAssertions.AspNetCore.Mvc\FluentAssertions.AspNetCore.Mvc.xproj", "{EA71D220-089E-4CB1-B187-D9BB4DFD8624}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "FluentAssertions.AspNetCore.Mvc.Tests", "tests\FluentAssertions.AspNetCore.Mvc.Tests\FluentAssertions.AspNetCore.Mvc.Tests.xproj", "{9F29BCB2-B780-49E0-8F16-EE2572AF1BBD}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\FluentAssertions.Mvc.Shared\FluentAssertions.Mvc.Shared.projitems*{0e46fc22-eb6a-431e-bfb3-47fbc4fc500f}*SharedItemsImports = 13
@@ -143,6 +145,18 @@ Global
 		{EA71D220-089E-4CB1-B187-D9BB4DFD8624}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{EA71D220-089E-4CB1-B187-D9BB4DFD8624}.Release|x86.ActiveCfg = Release|Any CPU
 		{EA71D220-089E-4CB1-B187-D9BB4DFD8624}.Release|x86.Build.0 = Release|Any CPU
+		{9F29BCB2-B780-49E0-8F16-EE2572AF1BBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F29BCB2-B780-49E0-8F16-EE2572AF1BBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F29BCB2-B780-49E0-8F16-EE2572AF1BBD}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9F29BCB2-B780-49E0-8F16-EE2572AF1BBD}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9F29BCB2-B780-49E0-8F16-EE2572AF1BBD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9F29BCB2-B780-49E0-8F16-EE2572AF1BBD}.Debug|x86.Build.0 = Debug|Any CPU
+		{9F29BCB2-B780-49E0-8F16-EE2572AF1BBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F29BCB2-B780-49E0-8F16-EE2572AF1BBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F29BCB2-B780-49E0-8F16-EE2572AF1BBD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{9F29BCB2-B780-49E0-8F16-EE2572AF1BBD}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{9F29BCB2-B780-49E0-8F16-EE2572AF1BBD}.Release|x86.ActiveCfg = Release|Any CPU
+		{9F29BCB2-B780-49E0-8F16-EE2572AF1BBD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -158,5 +172,6 @@ Global
 		{0E46FC22-EB6A-431E-BFB3-47FBC4FC500F} = {89B09C65-4F1E-4B5A-AD58-E244113F2C02}
 		{AEEA0A6D-F5B6-42DB-9AF0-82164ECCA21B} = {A4C33565-1E6E-4AE7-8F02-1911DBA00263}
 		{EA71D220-089E-4CB1-B187-D9BB4DFD8624} = {89B09C65-4F1E-4B5A-AD58-E244113F2C02}
+		{9F29BCB2-B780-49E0-8F16-EE2572AF1BBD} = {A4C33565-1E6E-4AE7-8F02-1911DBA00263}
 	EndGlobalSection
 EndGlobal
