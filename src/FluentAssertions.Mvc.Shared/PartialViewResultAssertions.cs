@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !NETSTANDARD1_6
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,3 +15,4 @@ namespace FluentAssertions.Mvc
         public PartialViewResultAssertions(PartialViewResult viewResult) : base(viewResult) { }
     }
 }
+#endif

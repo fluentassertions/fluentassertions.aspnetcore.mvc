@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using FluentAssertions.Execution;
 using FluentAssertions.Mvc;
 using FluentAssertions.Primitives;
@@ -7,27 +6,22 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FluentAssertions.AspNetCore.Mvc
 {
-    /// <summary>
-    ///     Contains a number of methods to assert that a <see cref="ViewResult" /> is in the expected state.
-    /// </summary>
-    [DebuggerNonUserCode]
-    public class ViewResultAssertions<T> : ObjectAssertions
-        where T : ViewResult
+    public class PartialViewResultAssertions : ObjectAssertions
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="T:ViewResultAssertions" /> class.
+        ///     Initializes a new instance of the <see cref="T:PartialViewResultAssertions" /> class.
         /// </summary>
         /// <param name="subject">The object to test assertion on</param>
-        public ViewResultAssertions(T subject) : base(subject)
+        public PartialViewResultAssertions(PartialViewResult subject) : base(subject)
         {
         }
 
-        private T ViewResultSubject => (T) Subject;
+        private PartialViewResult PartialViewResultSubject => (PartialViewResult) Subject;
 
         /// <summary>
         ///     The model.
         /// </summary>
-        public object Model => ViewResultSubject.Model;
+        public object Model => PartialViewResultSubject.ViewData.Model;
 
         /// <summary>
         ///     Asserts that the view name is the expected view name.
@@ -40,10 +34,10 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <param name="reasonArgs">
         ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
         /// </param>
-        public ViewResultAssertions<T> WithViewName(string expectedViewName, string reason = "",
+        public PartialViewResultAssertions WithViewName(string expectedViewName, string reason = "",
             params object[] reasonArgs)
         {
-            var actualViewName = ViewResultSubject.ViewName;
+            var actualViewName = PartialViewResultSubject.ViewName;
 
             Execute.Assertion
                 .ForCondition(string.Equals(expectedViewName, actualViewName, StringComparison.OrdinalIgnoreCase))
@@ -64,10 +58,10 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <param name="reasonArgs">
         ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
         /// </param>
-        public ViewResultAssertions<T> WithViewData(string key, object expectedValue, string reason = "",
+        public PartialViewResultAssertions WithViewData(string key, object expectedValue, string reason = "",
             params object[] reasonArgs)
         {
-            var actualViewData = ViewResultSubject.ViewData;
+            var actualViewData = PartialViewResultSubject.ViewData;
 
             Execute.Assertion
                 .ForCondition(actualViewData.ContainsKey(key))
@@ -96,10 +90,10 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <param name="reasonArgs">
         ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
         /// </param>
-        public ViewResultAssertions<T> WithTempData(string key, object expectedValue, string reason = "",
+        public PartialViewResultAssertions WithTempData(string key, object expectedValue, string reason = "",
             params object[] reasonArgs)
         {
-            var actualTempData = ViewResultSubject.TempData;
+            var actualTempData = PartialViewResultSubject.TempData;
 
             Execute.Assertion
                 .ForCondition(actualTempData.ContainsKey(key))
@@ -118,7 +112,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <returns>The typed model.</returns>
         public TModel ModelAs<TModel>()
         {
-            var model = ViewResultSubject.Model;
+            var model = PartialViewResultSubject.ViewData.Model;
 
             if (model == null)
                 Execute.Assertion.FailWith(FailureMessages.ViewResultBase_NullModel, typeof(TModel).Name);
@@ -140,9 +134,9 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <param name="reasonArgs">
         ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
         /// </param>
-        public ViewResultAssertions<T> WithDefaultViewName(string reason = "", params object[] reasonArgs)
+        public PartialViewResultAssertions WithDefaultViewName(string reason = "", params object[] reasonArgs)
         {
-            var viewName = ViewResultSubject.ViewName;
+            var viewName = PartialViewResultSubject.ViewName;
 
             Execute.Assertion
                 .ForCondition(viewName == string.Empty)
