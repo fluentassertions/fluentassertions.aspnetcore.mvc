@@ -104,7 +104,10 @@ namespace FluentAssertions.Mvc.Tests
             ActionResult result = new PartialViewResult();
             string failureMessage = FailureMessageHelper.Format(FailureMessages.ViewResultBase_NullModel, typeof(Object).Name);
 
-            Action a = () => result.Should().BePartialViewResult().ModelAs<Object>();
+            Action a = () =>
+            {
+                result.Should().BePartialViewResult().ModelAs<Object>();
+            };
 
             a.ShouldThrow<Exception>()
                     .WithMessage(failureMessage);

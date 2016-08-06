@@ -10,9 +10,12 @@ namespace FluentAssertions.Mvc.Tests
 {
     public class TestController : Controller
     {
+        private Mock<ITempDataDictionary> _mockTempDataDictionary;
+
         public TestController()
         {
-            TempData = new Mock<ITempDataDictionary>().Object;
+            _mockTempDataDictionary = new Mock<ITempDataDictionary>();
+            TempData = _mockTempDataDictionary.Object;
         }
 
         public PartialViewResult PartialViewSimpleModel()
@@ -27,14 +30,22 @@ namespace FluentAssertions.Mvc.Tests
 
         public ViewResult ViewWithOneTempData()
         {
-            TempData.Add("key1", "value1");
+            var mock = new Mock<ITempDataDictionary>();
+            mock.Setup(t => t.ContainsKey("key1")).Returns(true);
+            mock.Setup(t => t["key1"]).Returns("value1");
+            TempData = mock.Object;
             return View();
         }
 
         public ViewResult ViewWithTwoTempData()
         {
-            TempData.Add("key1", "value1");
-            TempData.Add("key2", "value2");
+            var mock = new Mock<ITempDataDictionary>();
+            mock.Setup(t => t.ContainsKey("key1")).Returns(true);
+            mock.Setup(t => t.ContainsKey("key2")).Returns(true);
+            mock.Setup(t => t["key1"]).Returns("value1");
+            mock.Setup(t => t["key2"]).Returns("value2");
+
+            TempData = mock.Object;
             return View();
         }
 

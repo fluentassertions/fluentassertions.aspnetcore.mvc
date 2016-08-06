@@ -111,7 +111,7 @@ namespace FluentAssertions.Mvc
         /// <returns>The typed model.</returns>
         public TModel ModelAs<TModel>()
         {
-            var model = PartialViewResultSubject.ViewData.Model;
+            var model = PartialViewResultSubject.ViewData?.Model;
 
             if (model == null)
                 Execute.Assertion.FailWith(FailureMessages.ViewResultBase_NullModel, typeof(TModel).Name);
