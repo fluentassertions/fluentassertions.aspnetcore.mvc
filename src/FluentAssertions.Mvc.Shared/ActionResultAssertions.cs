@@ -29,6 +29,13 @@ namespace FluentAssertions.Mvc
 			Subject = subject;
 		}
 
+#if NETSTANDARD1_6
+        public ActionResultAssertions (IActionResult subject): base(subject)
+        {
+            Subject = subject;
+        }
+#endif
+
         /// <summary>
         /// Asserts that the subject is a <see cref="ContentResult"/>.
         /// </summary>

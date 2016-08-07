@@ -27,6 +27,17 @@ namespace FluentAssertions.Mvc
             return new ActionResultAssertions (actual);
         }
 
+#if NETSTANDARD1_6
+        /// <summary>
+        /// Returns an <see cref="ActionResultAssertions"/> object that can be used to assert the
+        /// current <see cref="IActionResult"/>.
+        /// </summary>
+        public static ActionResultAssertions Should (this IActionResult actual)
+        {
+            return new ActionResultAssertions (actual);
+        }
+#endif
+
         /// <summary>
         /// Returns an <see cref="RouteDataAssertions"/> object that can be used to assert the
         /// current <see cref="RouteData"/>.
