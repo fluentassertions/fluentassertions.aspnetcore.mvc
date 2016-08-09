@@ -1,11 +1,19 @@
 # Project Description
 [![Build status](https://ci.appveyor.com/api/projects/status/wlt5yp8m66y9rw4f?svg=true)](https://ci.appveyor.com/project/kevinkuszyk/fluentassertions-mvc)
 
-FluentAssertions MVC is a set of MVC focused assertions and helper extensions to the excellent [FluentAssertions][fa-home] library.
+Fluent Assertions for MVC is a set of MVC focused assertions and helper extensions to the excellent [Fluent Assertions][fa-home] library.
 
 ## Installation
 
 Add the NuGet package which matches the version of MVC you are using to your test project.
+
+### MVC Core
+
+Add the [MVC Core][nuget-mvc-core] NuGet package to your unit test project:
+
+````
+PM> FluentAssertions.AspNetCore.Mvc -Pre
+````
 
 ### MVC 5
 
@@ -56,3 +64,4 @@ public void Index_Action_Returns_View()
 [nuget-mvc3]: https://www.nuget.org/packages/FluentAssertions.Mvc3
 [nuget-mvc4]: https://www.nuget.org/packages/FluentAssertions.Mvc4
 [nuget-mvc5]: https://www.nuget.org/packages/FluentAssertions.Mvc5
+[nuget-mvc-core]: https://www.nuget.org/packages/FluentAssertions.AspNetCore.Mvc
