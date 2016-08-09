@@ -1,7 +1,11 @@
 using FluentAssertions.Primitives;
 using FluentAssertions.Execution;
 using System;
+#if NETSTANDARD1_6
+using Microsoft.AspNetCore.Mvc;
+#else
 using System.Web.Mvc;
+#endif
 using System.Diagnostics;
 
 namespace FluentAssertions.Mvc
@@ -24,6 +28,13 @@ namespace FluentAssertions.Mvc
 		{
 			Subject = subject;
 		}
+
+#if NETSTANDARD1_6
+        public ActionResultAssertions (IActionResult subject): base(subject)
+        {
+            Subject = subject;
+        }
+#endif
 
         /// <summary>
         /// Asserts that the subject is a <see cref="ContentResult"/>.

@@ -1,3 +1,4 @@
+#if !NETSTANDARD1_6
 using FluentAssertions.Execution;
 using System;
 using System.Web.Mvc;
@@ -39,3 +40,4 @@ namespace FluentAssertions.Mvc
         }
 	}
 }
+#endif

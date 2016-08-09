@@ -1,0 +1,23 @@
+﻿{
+    "version": "1.0.0-*",
+
+    "buildOptions": {
+        "compile": {
+            "include": [
+                "..\\FluentAssertions.Mvc.Shared\\**\\*.cs"
+            ]
+        }
+    },
+
+    "dependencies": {
+        "FluentAssertions": "4.13.0",
+        "Microsoft.AspNetCore.Mvc": "1.0.0",
+        "NETStandard.Library": "1.6.0"
+    },
+
+    "frameworks": {
+        "netstandard1.6": {
+            "imports": "dnxcore50"
+        }
+    }
+}

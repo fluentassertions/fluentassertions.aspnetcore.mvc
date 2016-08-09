@@ -1,7 +1,12 @@
 ﻿using System;
+#if NETCOREAPP1_0
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
+#else
 using System.Web.Mvc;
-using NUnit.Framework;
 using System.Web.Routing;
+#endif
+using NUnit.Framework;
 
 namespace FluentAssertions.Mvc.Tests
 {
