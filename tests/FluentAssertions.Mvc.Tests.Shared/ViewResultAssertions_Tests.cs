@@ -155,7 +155,7 @@ namespace FluentAssertions.Mvc.Tests
 #else
             ActionResult result = new ViewResult
             {
-                TempData = new TempDataDictionary { { "key1", "value1" } }
+                ViewData = new ViewDataDictionary { { "key1", "value1" } }
             };
 #endif
 
