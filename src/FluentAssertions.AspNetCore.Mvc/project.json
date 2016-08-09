@@ -1,23 +1,39 @@
 ﻿{
-    "version": "1.0.0-*",
+  "version": "0.7.0-beta1",
+  "title": "Fluent Assertions for MVC Core",
+  "description": "Fluent Assertions for MVC is a set of MVC focused assertions and helper extensions to the excellent Fluent Assertions library.",
+  "authors": [ "Casey Burns", "Kevin Kuszyk" ],
+  "copyright": "Copyright 2016",
+  "compilationOptions": {
+    "xmlDoc": true
+  },
 
-    "buildOptions": {
-        "compile": {
-            "include": [
-                "..\\FluentAssertions.Mvc.Shared\\**\\*.cs"
-            ]
-        }
-    },
+  "packOptions": {
+    "licenseUrl": "https://raw.github.com/KevinKuszyk/FluentAssertions.MVC/master/license.txt",
+    "projectUrl": "https://github.com/KevinKuszyk/FluentAssertions.MVC",
+    "requireLicenseAcceptance": false,
+    "releaseNotes": "See https://github.com/KevinKuszyk/FluentAssertions.MVC/releases",
+    "owners": [ "Kevin Kuszyk" ],
+    "tags": [ "TDD", "TDD", "Fluent", "Mvc", "AspNetMvc", "aspnetcore", "aspnetcoremvc" ]
+  },
 
-    "dependencies": {
-        "FluentAssertions": "4.13.0",
-        "Microsoft.AspNetCore.Mvc": "1.0.0",
-        "NETStandard.Library": "1.6.0"
-    },
-
-    "frameworks": {
-        "netstandard1.6": {
-            "imports": "dnxcore50"
-        }
+  "buildOptions": {
+    "compile": {
+      "include": [
+        "..\\FluentAssertions.Mvc.Shared\\**\\*.cs"
+      ]
     }
+  },
+
+  "dependencies": {
+    "FluentAssertions": "4.13.0",
+    "Microsoft.AspNetCore.Mvc": "1.0.0",
+    "NETStandard.Library": "1.6.0"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  }
 }
