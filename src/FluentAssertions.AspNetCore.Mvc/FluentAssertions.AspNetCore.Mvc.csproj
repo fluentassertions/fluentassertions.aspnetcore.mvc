@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Fluent Assertions for MVC is a set of MVC focused assertions and helper extensions to the excellent Fluent Assertions library.</Description>
+    <Copyright>Copyright 2016</Copyright>
+    <AssemblyTitle>Fluent Assertions for MVC Core</AssemblyTitle>
+    <VersionPrefix>0.7.0-beta1</VersionPrefix>
+    <Authors>Casey Burns;Kevin Kuszyk</Authors>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <AssemblyName>FluentAssertions.AspNetCore.Mvc</AssemblyName>
+    <PackageId>FluentAssertions.AspNetCore.Mvc</PackageId>
+    <PackageTags>TDD;TDD;Fluent;Mvc;AspNetMvc;aspnetcore;aspnetcoremvc</PackageTags>
+    <PackageReleaseNotes>See https://github.com/KevinKuszyk/FluentAssertions.MVC/releases</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/KevinKuszyk/FluentAssertions.MVC</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.github.com/KevinKuszyk/FluentAssertions.MVC/master/license.txt</PackageLicenseUrl>
+    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\FluentAssertions.Mvc.Shared\**\*.cs" Exclude="bin\**;obj\**;**\*.xproj;packages\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="4.13.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.0.3" />
+  </ItemGroup>
+
+</Project>

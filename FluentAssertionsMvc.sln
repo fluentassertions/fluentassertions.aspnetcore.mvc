@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{4E91D524-3DC0-4E08-82FE-6FDAEB89212B}"
 EndProject
@@ -16,9 +16,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		_todo_.txt = _todo_.txt
 		Contributors.txt = Contributors.txt
-		global.json = global.json
 		src\SolutionInfo.cs = src\SolutionInfo.cs
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{89B09C65-4F1E-4B5A-AD58-E244113F2C02}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A4C33565-1E6E-4AE7-8F02-1911DBA00263}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentAssertions.Mvc3", "src\FluentAssertions.Mvc3\FluentAssertions.Mvc3.csproj", "{53589F79-0908-409A-8366-3E18DC637600}"
 EndProject
@@ -34,21 +37,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentAssertions.Mvc5", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentAssertions.Mvc5.Tests", "tests\FluentAssertions.Mvc5.Tests\FluentAssertions.Mvc5.Tests.csproj", "{650A92FF-8874-41CD-BCDA-BE583F3F2638}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{89B09C65-4F1E-4B5A-AD58-E244113F2C02}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "FluentAssertions.Mvc.Shared", "src\FluentAssertions.Mvc.Shared\FluentAssertions.Mvc.Shared.shproj", "{0E46FC22-EB6A-431E-BFB3-47FBC4FC500F}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "FluentAssertions.Mvc.Tests.Shared", "tests\FluentAssertions.Mvc.Tests.Shared\FluentAssertions.Mvc.Tests.Shared.shproj", "{AEEA0A6D-F5B6-42DB-9AF0-82164ECCA21B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A4C33565-1E6E-4AE7-8F02-1911DBA00263}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentAssertions.AspNetCore.Mvc", "src\FluentAssertions.AspNetCore.Mvc\FluentAssertions.AspNetCore.Mvc.csproj", "{EA71D220-089E-4CB1-B187-D9BB4DFD8624}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "FluentAssertions.AspNetCore.Mvc", "src\FluentAssertions.AspNetCore.Mvc\FluentAssertions.AspNetCore.Mvc.xproj", "{EA71D220-089E-4CB1-B187-D9BB4DFD8624}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentAssertions.AspNetCore.Mvc.Tests", "tests\FluentAssertions.AspNetCore.Mvc.Tests\FluentAssertions.AspNetCore.Mvc.Tests.csproj", "{9F29BCB2-B780-49E0-8F16-EE2572AF1BBD}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "FluentAssertions.AspNetCore.Mvc.Tests", "tests\FluentAssertions.AspNetCore.Mvc.Tests\FluentAssertions.AspNetCore.Mvc.Tests.xproj", "{9F29BCB2-B780-49E0-8F16-EE2572AF1BBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentAssertions.AspNetCore.Mvc.Sample", "samples\FluentAssertions.AspNetCore.Mvc.Sample\FluentAssertions.AspNetCore.Mvc.Sample.csproj", "{8156D339-E8DE-4A68-8828-9DA927D2949D}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "FluentAssertions.AspNetCore.Mvc.Sample", "samples\FluentAssertions.AspNetCore.Mvc.Sample\FluentAssertions.AspNetCore.Mvc.Sample.xproj", "{8156D339-E8DE-4A68-8828-9DA927D2949D}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "FluentAssertions.AspNetCore.Mvc.Sample.Tests", "samples\FluentAssertions.AspNetCore.Mvc.Sample.Tests\FluentAssertions.AspNetCore.Mvc.Sample.Tests.xproj", "{80E3D9C6-F6F6-40CF-93A6-BCD7C26118D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentAssertions.AspNetCore.Mvc.Sample.Tests", "samples\FluentAssertions.AspNetCore.Mvc.Sample.Tests\FluentAssertions.AspNetCore.Mvc.Sample.Tests.csproj", "{80E3D9C6-F6F6-40CF-93A6-BCD7C26118D8}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -204,5 +203,8 @@ Global
 		{9F29BCB2-B780-49E0-8F16-EE2572AF1BBD} = {A4C33565-1E6E-4AE7-8F02-1911DBA00263}
 		{8156D339-E8DE-4A68-8828-9DA927D2949D} = {4E91D524-3DC0-4E08-82FE-6FDAEB89212B}
 		{80E3D9C6-F6F6-40CF-93A6-BCD7C26118D8} = {4E91D524-3DC0-4E08-82FE-6FDAEB89212B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D1CB0506-FC11-4EA6-A715-DF5845427FE7}
 	EndGlobalSection
 EndGlobal
