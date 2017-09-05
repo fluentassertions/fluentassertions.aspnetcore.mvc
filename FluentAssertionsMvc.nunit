@@ -1,9 +1,0 @@
-﻿<NUnitProject>
-  <Settings activeconfig="Debug" />
-  <Config name="Debug" binpathtype="Auto">
-    <assembly path="bin\Debug\Test\FluentAssertions.Mvc3.Tests.dll" />
-  </Config>
-  <Config name="Release" binpathtype="Auto">
-    <assembly path="bin\Release\Test\FluentAssertions.Mvc3.Tests.dll" />
-  </Config>
-</NUnitProject>
