@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-#if NETSTANDARD1_6
 using Microsoft.AspNetCore.Mvc;
-#else
-using System.Web.Mvc;
-#endif
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 
@@ -38,13 +31,9 @@ namespace FluentAssertions.Mvc
             string actualUrl = (Subject as RedirectResult).Url;
 
             Execute.Assertion
-#if NETSTANDARD1_6
-                    .ForCondition(string.Equals(actualUrl, expectedUrl, StringComparison.OrdinalIgnoreCase))
-#else
-                    .ForCondition(string.Equals(actualUrl, expectedUrl, StringComparison.InvariantCultureIgnoreCase))
-#endif
-                    .BecauseOf(reason, reasonArgs)
-                    .FailWith("Expected RedirectResult.Url to be {0}{reason} but was {1}", expectedUrl, actualUrl);
+                   .ForCondition(string.Equals(actualUrl, expectedUrl, StringComparison.OrdinalIgnoreCase))
+                   .BecauseOf(reason, reasonArgs)
+                   .FailWith("Expected RedirectResult.Url to be {0}{reason} but was {1}", expectedUrl, actualUrl);
 
             return this;
         }

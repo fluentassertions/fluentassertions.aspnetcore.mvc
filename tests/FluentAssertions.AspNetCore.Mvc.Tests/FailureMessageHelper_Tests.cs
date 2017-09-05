@@ -1,10 +1,5 @@
 ﻿using FluentAssertions.Mvc.Tests.Helpers;
 using NUnit.Framework;
-using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FluentAssertions.Mvc.Tests
 {

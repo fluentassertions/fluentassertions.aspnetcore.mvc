@@ -1,14 +1,6 @@
-using FluentAssertions;
-using System;
-#if NETSTANDARD1_6
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-#else
-using System.Web.Mvc;
-using System.Web.Routing;
-#endif
-using FluentAssertions.Mvc;
-using System.Diagnostics;
 
 namespace FluentAssertions.Mvc
 {
@@ -27,7 +19,6 @@ namespace FluentAssertions.Mvc
             return new ActionResultAssertions (actual);
         }
 
-#if NETSTANDARD1_6
         /// <summary>
         /// Returns an <see cref="ActionResultAssertions"/> object that can be used to assert the
         /// current <see cref="IActionResult"/>.
@@ -36,7 +27,6 @@ namespace FluentAssertions.Mvc
         {
             return new ActionResultAssertions (actual);
         }
-#endif
 
         /// <summary>
         /// Returns an <see cref="RouteDataAssertions"/> object that can be used to assert the

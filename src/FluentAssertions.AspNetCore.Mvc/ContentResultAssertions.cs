@@ -1,14 +1,7 @@
-﻿using FluentAssertions.Execution;
+﻿using System;
+using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-#if NETSTANDARD1_6
 using Microsoft.AspNetCore.Mvc;
-#else
-using System.Web.Mvc;
-#endif
 
 namespace FluentAssertions.Mvc
 {
@@ -40,13 +33,9 @@ namespace FluentAssertions.Mvc
             string actualContent = (Subject as ContentResult).Content;
 
             Execute.Assertion
-#if NETSTANDARD1_6
-                    .ForCondition(string.Equals(actualContent, expectedContent, StringComparison.OrdinalIgnoreCase))
-#else
-                    .ForCondition(string.Equals(actualContent, expectedContent, StringComparison.InvariantCultureIgnoreCase))
-#endif
-                    .BecauseOf(reason, reasonArgs)
-                    .FailWith(string.Format(FailureMessages.CommonFailMessage, "ContentResult.Content", expectedContent, actualContent));
+                   .ForCondition(string.Equals(actualContent, expectedContent, StringComparison.OrdinalIgnoreCase))
+                   .BecauseOf(reason, reasonArgs)
+                   .FailWith(string.Format(FailureMessages.CommonFailMessage, "ContentResult.Content", expectedContent, actualContent));
 
             return this;
         }
@@ -67,41 +56,11 @@ namespace FluentAssertions.Mvc
             string actualContentType = (Subject as ContentResult).ContentType;
 
             Execute.Assertion
-#if NETSTANDARD1_6
-                    .ForCondition(string.Equals(expectedContentType, actualContentType, StringComparison.OrdinalIgnoreCase))
-#else
-                    .ForCondition(string.Equals(expectedContentType, actualContentType, StringComparison.InvariantCultureIgnoreCase))
-#endif
-                    .BecauseOf(reason, reasonArgs)
-                    .FailWith(string.Format(FailureMessages.CommonFailMessage, "ContentResult.ContentType", expectedContentType, actualContentType));
+                   .ForCondition(string.Equals(expectedContentType, actualContentType, StringComparison.OrdinalIgnoreCase))
+                   .BecauseOf(reason, reasonArgs)
+                   .FailWith(string.Format(FailureMessages.CommonFailMessage, "ContentResult.ContentType", expectedContentType, actualContentType));
 
             return this;
         }
-
-        // ContentEncoding seems to have vanished from .NetCore... weird.
-#if !NETSTANDARD1_6
-        /// <summary>
-        /// Asserts that the content encoding is the expected content encoding type.
-        /// </summary>
-        /// <param name="expectedEncoding">The expected content encoding type.</param>
-        /// <param name="reason">
-        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion 
-        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
-        /// </param>
-        /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
-        /// </param>
-        public ContentResultAssertions WithContentEncoding(Encoding expectedEncoding, string reason = "", params object[] reasonArgs)
-        {
-            Encoding actualContentEncoding = (Subject as ContentResult).ContentEncoding;
-
-            Execute.Assertion
-                    .ForCondition(expectedEncoding == actualContentEncoding)
-                    .BecauseOf(reason, reasonArgs)
-                    .FailWith(string.Format(FailureMessages.CommonFailMessage, "ContentResult.ContentEncoding", expectedEncoding.ToString(), actualContentEncoding.ToString()));
-
-            return this;
-        }
-#endif
     }
 }

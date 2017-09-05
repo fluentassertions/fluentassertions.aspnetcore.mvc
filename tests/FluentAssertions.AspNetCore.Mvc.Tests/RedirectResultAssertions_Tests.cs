@@ -1,9 +1,5 @@
 ﻿using System;
-#if NETCOREAPP1_0
 using Microsoft.AspNetCore.Mvc;
-#else
-using System.Web.Mvc;
-#endif
 using NUnit.Framework;
 
 namespace FluentAssertions.Mvc.Tests
