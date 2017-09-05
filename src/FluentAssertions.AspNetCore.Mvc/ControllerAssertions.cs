@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace FluentAssertions.Mvc
+namespace FluentAssertions.AspNetCore.Mvc
 {
     [DebuggerNonUserCode]
 	public class ControllerAssertions

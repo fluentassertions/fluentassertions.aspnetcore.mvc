@@ -1,8 +1,8 @@
 ﻿using System;
-using NUnit.Framework;
 using Microsoft.AspNetCore.Mvc;
+using NUnit.Framework;
 
-namespace FluentAssertions.Mvc.Tests
+namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
     [TestFixture]
     public class ContentResultAssertions_Tests
@@ -10,7 +10,7 @@ namespace FluentAssertions.Mvc.Tests
         [Test]
         public void WithContent_GivenExpected_ShouldPass()
         {
-            ActionResult result = new ContentResult {Content = "content"};
+            ActionResult result = new ContentResult { Content = "content" };
             result.Should().BeContentResult().WithContent("content");
         }
 
@@ -23,9 +23,9 @@ namespace FluentAssertions.Mvc.Tests
             var failureMessage = String.Format(FailureMessages.CommonFailMessage, "ContentResult.Content", expectedContent, actualContent);
 
             Action a = () => result.Should().BeContentResult().WithContent(expectedContent);
-            
+
             a.ShouldThrow<Exception>()
-                    .WithMessage(failureMessage);
+                .WithMessage(failureMessage);
         }
 
         [Test]
@@ -44,9 +44,9 @@ namespace FluentAssertions.Mvc.Tests
             var failureMessage = String.Format(FailureMessages.CommonFailMessage, "ContentResult.ContentType", expectedContentType, actualContentType);
 
             Action a = () => result.Should().BeContentResult().WithContentType(expectedContentType);
-            
+
             a.ShouldThrow<Exception>()
-                    .WithMessage(failureMessage);
+                .WithMessage(failureMessage);
         }
     }
 }

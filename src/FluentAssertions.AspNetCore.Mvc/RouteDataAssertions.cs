@@ -3,7 +3,7 @@ using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Routing;
 
-namespace FluentAssertions.Mvc
+namespace FluentAssertions.AspNetCore.Mvc
 {
     [DebuggerNonUserCode]
     /// <summary>

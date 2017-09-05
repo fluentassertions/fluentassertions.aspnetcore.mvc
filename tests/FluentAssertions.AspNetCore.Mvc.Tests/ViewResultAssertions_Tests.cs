@@ -1,10 +1,10 @@
 ﻿using System;
 using FluentAssertions.Mvc.Tests.Fakes;
 using FluentAssertions.Mvc.Tests.Helpers;
-using NUnit.Framework;
 using Microsoft.AspNetCore.Mvc;
+using NUnit.Framework;
 
-namespace FluentAssertions.Mvc.Tests
+namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
     [TestFixture]
     public class ViewResultAssertions_Tests
@@ -34,9 +34,9 @@ namespace FluentAssertions.Mvc.Tests
             };
 
             Action action = () => result.Should().BeViewResult().WithViewName(expectedViewName);
-            
+
             action.ShouldThrow<Exception>()
-                    .WithMessage(failureMessage);
+                .WithMessage(failureMessage);
         }
 
         [Test]
@@ -53,8 +53,8 @@ namespace FluentAssertions.Mvc.Tests
             var result = new TestController().ViewWithTwoTempData();
 
             result.Should().BeViewResult()
-                    .WithTempData("key1", "value1")
-                    .WithTempData("key2", "value2");
+                .WithTempData("key1", "value1")
+                .WithTempData("key2", "value2");
         }
 
         [Test]
@@ -89,8 +89,8 @@ namespace FluentAssertions.Mvc.Tests
             var result = new TestController().ViewWithTwoViewData();
 
             result.Should().BeViewResult()
-                    .WithViewData("key1", "value1")
-                    .WithViewData("key2", "value2");
+                .WithViewData("key1", "value1")
+                .WithViewData("key2", "value2");
         }
 
         [Test]
@@ -106,7 +106,7 @@ namespace FluentAssertions.Mvc.Tests
             Action a = () => result.Should().BeViewResult().WithViewData(key, expectedValue);
 
             a.ShouldThrow<Exception>()
-                    .WithMessage(failureMessage);
+                .WithMessage(failureMessage);
         }
 
         [Test]
@@ -122,7 +122,7 @@ namespace FluentAssertions.Mvc.Tests
             Action a = () => result.Should().BeViewResult().WithViewData(expectedKey, "value1");
 
             a.ShouldThrow<Exception>()
-                    .WithMessage(failureMessage);
+                .WithMessage(failureMessage);
         }
 
         [Test]
@@ -132,7 +132,7 @@ namespace FluentAssertions.Mvc.Tests
 
             result.Should().BeViewResult().Model.Should().Be("hello");
         }
-        
+
         [Test]
         public void Model_GivenUnexpectedValue_ShouldFail()
         {
@@ -141,7 +141,7 @@ namespace FluentAssertions.Mvc.Tests
             Action a = () => result.Should().BeViewResult().Model.Should().Be("xyx");
             a.ShouldThrow<Exception>();
         }
-        
+
         [Test]
         public void ModelAs_GivenExpectedValue_ShouldPass()
         {
@@ -158,7 +158,7 @@ namespace FluentAssertions.Mvc.Tests
             Action a = () => result.Should().BeViewResult().ModelAs<string>().Should().Be("xyx");
             a.ShouldThrow<Exception>();
         }
-        
+
         [Test]
         public void ModelAs_GivenWrongType_ShouldFail()
         {
@@ -167,7 +167,7 @@ namespace FluentAssertions.Mvc.Tests
             Action a = () => result.Should().BeViewResult().ModelAs<int>().Should().Be(2);
             a.ShouldThrow<Exception>();
         }
-        
+
         [Test]
         public void ModelAs_Null_ShouldFail()
         {
@@ -175,11 +175,11 @@ namespace FluentAssertions.Mvc.Tests
             string failureMessage = FailureMessageHelper.Format(FailureMessages.ViewResultBase_NullModel, typeof(Object).Name);
 
             Action a = () => result.Should().BeViewResult().ModelAs<Object>();
-            
+
             a.ShouldThrow<Exception>()
-                    .WithMessage(failureMessage);
+                .WithMessage(failureMessage);
         }
-        
+
         [Test]
         public void WithDefaultViewName_GivenExpectedValue_ShouldPass()
         {
@@ -205,7 +205,7 @@ namespace FluentAssertions.Mvc.Tests
             Action action = () => result.Should().BeViewResult().WithDefaultViewName();
 
             action.ShouldThrow<Exception>()
-                    .WithMessage(failureMessage);
+                .WithMessage(failureMessage);
         }
     }
 }

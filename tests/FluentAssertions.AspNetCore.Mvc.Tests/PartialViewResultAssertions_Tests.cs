@@ -1,9 +1,9 @@
 ﻿using System;
+using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
-using FluentAssertions.Mvc.Tests.Helpers;
 
-namespace FluentAssertions.Mvc.Tests
+namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
     [TestFixture]
     public class PartialViewResultAssertions_Tests
@@ -16,7 +16,7 @@ namespace FluentAssertions.Mvc.Tests
                 ViewName = String.Empty
             };
 
-            result.Should().BePartialViewResult().WithDefaultViewName();
+            AssertionsExtensions.Should(result).BePartialViewResult().WithDefaultViewName();
         }
 
         [Test]
@@ -24,7 +24,7 @@ namespace FluentAssertions.Mvc.Tests
         {
             var result = new TestController().PartialViewSimpleModel();
 
-            result.Should().BePartialViewResult().Model.Should().Be("hello");
+            AssertionsExtensions.Should(result).BePartialViewResult().Model.Should().Be("hello");
         }
 
         [Test]
@@ -32,7 +32,7 @@ namespace FluentAssertions.Mvc.Tests
         {
             var result = new TestController().PartialViewSimpleModel();
 
-            Action a = () => result.Should().BePartialViewResult().Model.Should().Be("xyx");
+            Action a = () => AssertionsExtensions.Should(result).BePartialViewResult().Model.Should().Be("xyx");
             a.ShouldThrow<Exception>();
         }
 
@@ -41,7 +41,7 @@ namespace FluentAssertions.Mvc.Tests
         {
             var result = new TestController().PartialViewSimpleModel();
 
-            result.Should().BePartialViewResult().ModelAs<string>().Should().Be("hello");
+            AssertionsExtensions.Should(result).BePartialViewResult().ModelAs<string>().Should().Be("hello");
         }
 
         [Test]
@@ -49,7 +49,7 @@ namespace FluentAssertions.Mvc.Tests
         {
             var result = new TestController().PartialViewSimpleModel();
 
-            Action a = () => result.Should().BePartialViewResult().ModelAs<string>().Should().Be("xyx");
+            Action a = () => AssertionsExtensions.Should(result).BePartialViewResult().ModelAs<string>().Should().Be("xyx");
             a.ShouldThrow<Exception>();
         }
 
@@ -58,7 +58,7 @@ namespace FluentAssertions.Mvc.Tests
         {
             var result = new TestController().PartialViewSimpleModel();
 
-            Action a = () => result.Should().BePartialViewResult().ModelAs<int>().Should().Be(2);
+            Action a = () => AssertionsExtensions.Should(result).BePartialViewResult().ModelAs<int>().Should().Be(2);
             a.ShouldThrow<Exception>();
         }
 
@@ -70,7 +70,7 @@ namespace FluentAssertions.Mvc.Tests
 
             Action a = () =>
             {
-                result.Should().BePartialViewResult().ModelAs<Object>();
+                AssertionsExtensions.Should(result).BePartialViewResult().ModelAs<Object>();
             };
 
             a.ShouldThrow<Exception>()

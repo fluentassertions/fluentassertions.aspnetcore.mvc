@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
 
-namespace FluentAssertions.Mvc.Tests
+namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
     [TestFixture]
     public class RedirectResultAssertions_Tests
@@ -22,9 +22,9 @@ namespace FluentAssertions.Mvc.Tests
             ActionResult result = new RedirectResult("/abc");
 
             Action a = () => result.Should().BeRedirectResult()
-                    .WithUrl("/xyz");
+                .WithUrl("/xyz");
             a.ShouldThrow<Exception>()
-                    .WithMessage("Expected RedirectResult.Url to be \"/xyz\" but was \"/abc\"");
+                .WithMessage("Expected RedirectResult.Url to be \"/xyz\" but was \"/abc\"");
         }
 
         [Test]
@@ -42,9 +42,9 @@ namespace FluentAssertions.Mvc.Tests
             ActionResult result = new RedirectResult("/abc", true);
 
             Action a = () => result.Should().BeRedirectResult()
-                    .WithPermanent(false);
+                .WithPermanent(false);
             a.ShouldThrow<Exception>()
-                    .WithMessage("Expected RedirectResult.Permanent to be False but was True");
+                .WithMessage("Expected RedirectResult.Permanent to be False but was True");
         }
     }
 }

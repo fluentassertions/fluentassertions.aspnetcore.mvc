@@ -1,7 +1,7 @@
 ﻿using FluentAssertions.Mvc.Tests.Helpers;
 using NUnit.Framework;
 
-namespace FluentAssertions.Mvc.Tests
+namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
     [TestFixture]
     class FailureMessageHelper_Tests

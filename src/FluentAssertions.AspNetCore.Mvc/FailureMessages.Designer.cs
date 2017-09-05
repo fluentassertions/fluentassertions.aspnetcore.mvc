@@ -8,11 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FluentAssertions.Mvc {
-    using System;
-    using System.Reflection;
-    
-    
+using System.Reflection;
+
+namespace FluentAssertions.AspNetCore.Mvc {
     /// <summary>
     ///    A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>

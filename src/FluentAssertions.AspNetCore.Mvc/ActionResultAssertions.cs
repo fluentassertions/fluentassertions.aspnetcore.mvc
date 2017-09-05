@@ -1,9 +1,9 @@
 using System.Diagnostics;
-using FluentAssertions.Primitives;
 using FluentAssertions.Execution;
+using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FluentAssertions.Mvc
+namespace FluentAssertions.AspNetCore.Mvc
 {
     /// <summary>
     /// Contains a number of methods to assert that an <see cref="ActionResult"/> is in the expected state.

@@ -1,9 +1,9 @@
 ﻿using System;
-using Microsoft.AspNetCore.Mvc;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
+using Microsoft.AspNetCore.Mvc;
 
-namespace FluentAssertions.Mvc
+namespace FluentAssertions.AspNetCore.Mvc
 {
     /// <summary>
     /// Contains a number of methods to assert that a <see cref="RedirectResult"/> is in the expected state.

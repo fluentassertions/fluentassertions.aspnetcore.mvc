@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using FluentAssertions.AspNetCore.Mvc.Sample.Models;
 
-namespace FluentAssertions.Mvc.Samples.Services
+namespace FluentAssertions.AspNetCore.Mvc.Sample.Services
 {
     public class ProductService : IProductService
     {

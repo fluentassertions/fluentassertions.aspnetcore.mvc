@@ -1,28 +1,28 @@
 using System;
-using NUnit.Framework;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using NUnit.Framework;
 
-namespace FluentAssertions.Mvc.Tests
+namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
-	[TestFixture]
-	public class ActionResultAssertions_Tests
-	{
+    [TestFixture]
+    public class ActionResultAssertions_Tests
+    {
         [Test]
         public void BeContent_GivenContent_ShouldPass()
         {
             ActionResult result = new ContentResult();
             result.Should()
-                    .BeContentResult();
+                .BeContentResult();
         }
-        
+
         [Test]
         public void BeContent_GivenNotContent_ShouldFail()
         {
             ActionResult result = new ViewResult();
             Action a = () => result.Should().BeContentResult();
             a.ShouldThrow<Exception>()
-                    .WithMessage("Expected ActionResult to be \"ContentResult\", but found \"ViewResult\"");
+                .WithMessage("Expected ActionResult to be \"ContentResult\", but found \"ViewResult\"");
         }
 
         [Test]
@@ -38,7 +38,7 @@ namespace FluentAssertions.Mvc.Tests
             ActionResult result = new ViewResult();
             Action a = () => result.Should().BeEmptyResult();
             a.ShouldThrow<Exception>()
-                    .WithMessage("Expected ActionResult to be \"EmptyResult\", but found \"ViewResult\"");
+                .WithMessage("Expected ActionResult to be \"EmptyResult\", but found \"ViewResult\"");
         }
 
         [Test]
@@ -54,7 +54,7 @@ namespace FluentAssertions.Mvc.Tests
             ActionResult result = new ViewResult();
             Action a = () => result.Should().BeRedirectToRouteResult();
             a.ShouldThrow<Exception>()
-                    .WithMessage("Expected ActionResult to be \"RedirectToRouteResult\", but found \"ViewResult\"");
+                .WithMessage("Expected ActionResult to be \"RedirectToRouteResult\", but found \"ViewResult\"");
         }
 
         [Test]
@@ -70,7 +70,7 @@ namespace FluentAssertions.Mvc.Tests
             ActionResult result = new ViewResult();
             Action a = () => result.Should().BeRedirectResult();
             a.ShouldThrow<Exception>()
-                    .WithMessage("Expected ActionResult to be \"RedirectResult\", but found \"ViewResult\"");
+                .WithMessage("Expected ActionResult to be \"RedirectResult\", but found \"ViewResult\"");
         }
 
         [Test]
@@ -86,7 +86,7 @@ namespace FluentAssertions.Mvc.Tests
             ActionResult result = new RedirectResult("/");
             Action a = () => result.Should().BePartialViewResult();
             a.ShouldThrow<Exception>()
-                    .WithMessage("Expected ActionResult to be \"PartialViewResult\", but found \"RedirectResult\"");
+                .WithMessage("Expected ActionResult to be \"PartialViewResult\", but found \"RedirectResult\"");
         }
 
         [Test]
@@ -102,7 +102,7 @@ namespace FluentAssertions.Mvc.Tests
             ActionResult result = new RedirectResult("/");
             Action a = () => result.Should().BeViewResult();
             a.ShouldThrow<Exception>()
-                    .WithMessage("Expected ActionResult to be \"ViewResult\", but found \"RedirectResult\"");
+                .WithMessage("Expected ActionResult to be \"ViewResult\", but found \"RedirectResult\"");
         }
-	}
+    }
 }
