@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace FluentAssertions.AspNetCore.Mvc.Sample.Models
+﻿namespace FluentAssertions.AspNetCore.Mvc.Sample.Models
 {
     public class ProductViewModel
     {
