@@ -2,16 +2,16 @@
 using FluentAssertions.Mvc.Tests.Fakes;
 using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
-using NUnit.Framework;
+using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
-    [TestFixture]
+    
     public class ViewResultAssertions_Tests
     {
         private FakeController _controller = new FakeController();
 
-        [Test]
+        [Fact]
         public void WithViewName_GivenExpectedValue_ShouldPass()
         {
             ActionResult result = new ViewResult
@@ -22,7 +22,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             result.Should().BeViewResult().WithViewName("index");
         }
 
-        [Test]
+        [Fact]
         public void WithViewName_GivenUnexpectedValue_ShouldFail()
         {
             var actualViewName = "index";
@@ -39,7 +39,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithMessage(failureMessage);
         }
 
-        [Test]
+        [Fact]
         public void WithTempData_GivenExpectedValue_ShouldPass()
         {
             var result = new TestController().ViewWithOneTempData();
@@ -47,7 +47,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             result.Should().BeViewResult().WithTempData("key1", "value1");
         }
 
-        [Test]
+        [Fact]
         public void WithTempData_GivenTwoExpectedValues_ShouldPass()
         {
             var result = new TestController().ViewWithTwoTempData();
@@ -57,7 +57,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithTempData("key2", "value2");
         }
 
-        [Test]
+        [Fact]
         public void WithTempData_GivenUnexpectedValue_ShouldFail()
         {
             var result = new TestController().ViewWithOneTempData();
@@ -66,7 +66,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             a.ShouldThrow<Exception>();
         }
 
-        [Test]
+        [Fact]
         public void WithTempData_GivenUnexpectedKey_ShouldFail()
         {
             var result = new TestController().ViewWithOneTempData();
@@ -75,7 +75,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             a.ShouldThrow<Exception>();
         }
 
-        [Test]
+        [Fact]
         public void WithViewData_GivenExpectedValue_ShouldPass()
         {
             var result = new TestController().ViewWithOneViewData();
@@ -83,7 +83,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             result.Should().BeViewResult().WithViewData("key1", "value1");
         }
 
-        [Test]
+        [Fact]
         public void WithViewData_GivenTwoExpectedValues_ShouldPass()
         {
             var result = new TestController().ViewWithTwoViewData();
@@ -93,7 +93,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithViewData("key2", "value2");
         }
 
-        [Test]
+        [Fact]
         public void WithViewData_GivenUnexpectedValue_ShouldFail()
         {
             var key = "key1";
@@ -109,7 +109,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithMessage(failureMessage);
         }
 
-        [Test]
+        [Fact]
         public void WithViewData_GivenUnexpectedKey_ShouldFail()
         {
             var actualKey = "key1";
@@ -125,7 +125,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithMessage(failureMessage);
         }
 
-        [Test]
+        [Fact]
         public void Model_GivenExpectedValue_ShouldPass()
         {
             var result = new TestController().ViewSimpleModel();
@@ -133,7 +133,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             result.Should().BeViewResult().Model.Should().Be("hello");
         }
 
-        [Test]
+        [Fact]
         public void Model_GivenUnexpectedValue_ShouldFail()
         {
             var result = new TestController().ViewSimpleModel();
@@ -142,7 +142,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             a.ShouldThrow<Exception>();
         }
 
-        [Test]
+        [Fact]
         public void ModelAs_GivenExpectedValue_ShouldPass()
         {
             var result = new TestController().ViewSimpleModel();
@@ -150,7 +150,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             result.Should().BeViewResult().ModelAs<string>().Should().Be("hello");
         }
 
-        [Test]
+        [Fact]
         public void ModelAs_GivenUnexpectedValue_ShouldFail()
         {
             var result = new TestController().ViewSimpleModel();
@@ -159,7 +159,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             a.ShouldThrow<Exception>();
         }
 
-        [Test]
+        [Fact]
         public void ModelAs_GivenWrongType_ShouldFail()
         {
             var result = new TestController().ViewSimpleModel();
@@ -168,7 +168,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             a.ShouldThrow<Exception>();
         }
 
-        [Test]
+        [Fact]
         public void ModelAs_Null_ShouldFail()
         {
             ActionResult result = new ViewResult();
@@ -180,7 +180,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithMessage(failureMessage);
         }
 
-        [Test]
+        [Fact]
         public void WithDefaultViewName_GivenExpectedValue_ShouldPass()
         {
             ActionResult result = new ViewResult
@@ -191,7 +191,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             result.Should().BeViewResult().WithDefaultViewName();
         }
 
-        [Test]
+        [Fact]
         public void WithDefaultViewName_GivenUnexpectedValue_ShouldFail()
         {
             string viewName = "index";

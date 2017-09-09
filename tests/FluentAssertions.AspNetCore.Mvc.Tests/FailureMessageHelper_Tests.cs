@@ -1,12 +1,12 @@
 ﻿using FluentAssertions.Mvc.Tests.Helpers;
-using NUnit.Framework;
+using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
-    [TestFixture]
+    
     class FailureMessageHelper_Tests
     {
-        [Test]
+        [Fact]
         public void FailureMessageHelper_WithOneArg_Formats()
         {
             // Arrange
@@ -22,7 +22,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             result.Should().Be(expected);
         }
 
-        [Test]
+        [Fact]
         public void FailureMessageHelper_WithMultipleArgs_Formats()
         {
             // Arrange

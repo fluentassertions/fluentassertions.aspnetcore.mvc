@@ -1,14 +1,13 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-using NUnit.Framework;
+using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
-    [TestFixture]
     public class ActionResultAssertions_Tests
     {
-        [Test]
+        [Fact]
         public void BeContent_GivenContent_ShouldPass()
         {
             ActionResult result = new ContentResult();
@@ -16,7 +15,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .BeContentResult();
         }
 
-        [Test]
+        [Fact]
         public void BeContent_GivenNotContent_ShouldFail()
         {
             ActionResult result = new ViewResult();
@@ -25,14 +24,14 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithMessage("Expected ActionResult to be \"ContentResult\", but found \"ViewResult\"");
         }
 
-        [Test]
+        [Fact]
         public void BeEmpty_GivenEmpty_ShouldPass()
         {
             ActionResult result = new EmptyResult();
             result.Should().BeEmptyResult();
         }
 
-        [Test]
+        [Fact]
         public void BeEmpty_GivenNotEmpty_ShouldPass()
         {
             ActionResult result = new ViewResult();
@@ -41,14 +40,14 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithMessage("Expected ActionResult to be \"EmptyResult\", but found \"ViewResult\"");
         }
 
-        [Test]
+        [Fact]
         public void BeRedirectToRoute_GivenRedirectToRoute_ShouldPass()
         {
             ActionResult result = new RedirectToRouteResult(new RouteValueDictionary());
             result.Should().BeRedirectToRouteResult();
         }
 
-        [Test]
+        [Fact]
         public void BeRedirectToRoute_GivenNotRedirectToRoute_ShouldFail()
         {
             ActionResult result = new ViewResult();
@@ -57,14 +56,14 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithMessage("Expected ActionResult to be \"RedirectToRouteResult\", but found \"ViewResult\"");
         }
 
-        [Test]
+        [Fact]
         public void BeRedirect_GivenRedirect_ShouldPass()
         {
             ActionResult result = new RedirectResult("/");
             result.Should().BeRedirectResult();
         }
 
-        [Test]
+        [Fact]
         public void BeRedirect_GivenNotRedirect_ShouldFail()
         {
             ActionResult result = new ViewResult();
@@ -73,14 +72,14 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithMessage("Expected ActionResult to be \"RedirectResult\", but found \"ViewResult\"");
         }
 
-        [Test]
+        [Fact]
         public void BePartialView_GivenPartial_ShouldPass()
         {
             ActionResult result = new PartialViewResult();
             result.Should().BePartialViewResult();
         }
 
-        [Test]
+        [Fact]
         public void BePartialView_GivenNotPartial_ShouldFail()
         {
             ActionResult result = new RedirectResult("/");
@@ -89,14 +88,14 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithMessage("Expected ActionResult to be \"PartialViewResult\", but found \"RedirectResult\"");
         }
 
-        [Test]
+        [Fact]
         public void BeView_GivenView_ShouldPass()
         {
             ActionResult result = new ViewResult();
             result.Should().BeViewResult();
         }
 
-        [Test]
+        [Fact]
         public void BeView_GivenNotView_ShouldFail()
         {
             ActionResult result = new RedirectResult("/");

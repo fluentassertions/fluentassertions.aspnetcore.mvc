@@ -1,13 +1,13 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
-using NUnit.Framework;
+using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
-    [TestFixture]
+    
     public class RedirectResultAssertions_Tests
     {
-        [Test]
+        [Fact]
         public void WithUrl_GivenExpectedUrl_ShouldPass()
         {
             ActionResult result = new RedirectResult("/abc");
@@ -16,7 +16,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithUrl("/abc");
         }
 
-        [Test]
+        [Fact]
         public void WithUrl_GivenUnexpectedUrl_ShouldFail()
         {
             ActionResult result = new RedirectResult("/abc");
@@ -27,7 +27,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithMessage("Expected RedirectResult.Url to be \"/xyz\" but was \"/abc\"");
         }
 
-        [Test]
+        [Fact]
         public void WithPermanent_GivenExpectedUrl_ShouldPass()
         {
             ActionResult result = new RedirectResult("/abc", true);
@@ -36,7 +36,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithPermanent(true);
         }
 
-        [Test]
+        [Fact]
         public void WithPermanent_GivenUnexpectedUrl_ShouldFail()
         {
             ActionResult result = new RedirectResult("/abc", true);

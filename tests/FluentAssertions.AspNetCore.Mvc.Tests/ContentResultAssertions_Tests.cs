@@ -1,20 +1,20 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
-using NUnit.Framework;
+using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
-    [TestFixture]
+    
     public class ContentResultAssertions_Tests
     {
-        [Test]
+        [Fact]
         public void WithContent_GivenExpected_ShouldPass()
         {
             ActionResult result = new ContentResult { Content = "content" };
             result.Should().BeContentResult().WithContent("content");
         }
 
-        [Test]
+        [Fact]
         public void WithContent_GivenUnexpected_ShouldFail()
         {
             var actualContent = "content";
@@ -28,14 +28,14 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithMessage(failureMessage);
         }
 
-        [Test]
+        [Fact]
         public void WithContentType_GivenExpected_ShouldPass()
         {
             ActionResult result = new ContentResult { ContentType = "text/html" };
             result.Should().BeContentResult().WithContentType("text/html");
         }
 
-        [Test]
+        [Fact]
         public void WithContentType_GivenUnexpected_ShouldFail()
         {
             var actualContentType = "text/html";
