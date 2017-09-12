@@ -1,11 +1,18 @@
 version: 1.0.{build}
 
+environment:
+    CLI_VERSION: Latest
+
 image: Visual Studio 2017
 
 configuration: Release
 
 before_build:
-- cmd: nuget restore
+- cmd: dotnet restore
 
 build:
   verbosity: minimal
+ 
+test_script:
+  - cmd: dotnet test samples\FluentAssertions.AspNetCore.Mvc.Sample.Tests\FluentAssertions.AspNetCore.Mvc.Sample.Tests.csproj
+  - cmd: dotnet test tests\FluentAssertions.AspNetCore.Mvc.Tests\FluentAssertions.AspNetCore.Mvc.Tests.csproj

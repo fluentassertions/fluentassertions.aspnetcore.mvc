@@ -1,18 +1,17 @@
-﻿using FluentAssertions.AspNetCore.Mvc.Sample.Controllers;
-using NUnit.Framework;
+using FluentAssertions.AspNetCore.Mvc.Sample.Controllers;
+using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Sample.Tests
 {
-    [TestFixture]
     public class ProductController_Tests
     {
-        [Test]
-		public void List_ShouldReturnView()
-		{
+        [Fact]
+        public void List_ShouldReturnView()
+        {
             var controller = new ProductController();
-		    controller.List().Should()
+            controller.List().Should()
                 .BeViewResult()
                 .WithViewName("Index");
-		}
+        }
     }
 }

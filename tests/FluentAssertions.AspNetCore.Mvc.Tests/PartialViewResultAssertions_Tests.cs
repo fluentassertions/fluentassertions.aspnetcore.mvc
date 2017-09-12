@@ -1,14 +1,14 @@
 ﻿using System;
 using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
-using NUnit.Framework;
+using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
-    [TestFixture]
+    
     public class PartialViewResultAssertions_Tests
     {
-        [Test]
+        [Fact]
         public void WithDefaultViewName_GivenExpectedValue_ShouldPass()
         {
             ActionResult result = new PartialViewResult
@@ -19,7 +19,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             AssertionsExtensions.Should(result).BePartialViewResult().WithDefaultViewName();
         }
 
-        [Test]
+        [Fact]
         public void Model_GivenExpectedValue_ShouldPass()
         {
             var result = new TestController().PartialViewSimpleModel();
@@ -27,7 +27,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             AssertionsExtensions.Should(result).BePartialViewResult().Model.Should().Be("hello");
         }
 
-        [Test]
+        [Fact]
         public void Model_GivenUnexpectedValue_ShouldFail()
         {
             var result = new TestController().PartialViewSimpleModel();
@@ -36,7 +36,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             a.ShouldThrow<Exception>();
         }
 
-        [Test]
+        [Fact]
         public void ModelAs_GivenExpectedValue_ShouldPass()
         {
             var result = new TestController().PartialViewSimpleModel();
@@ -44,7 +44,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             AssertionsExtensions.Should(result).BePartialViewResult().ModelAs<string>().Should().Be("hello");
         }
 
-        [Test]
+        [Fact]
         public void ModelAs_GivenUnexpectedValue_ShouldFail()
         {
             var result = new TestController().PartialViewSimpleModel();
@@ -53,7 +53,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             a.ShouldThrow<Exception>();
         }
 
-        [Test]
+        [Fact]
         public void ModelAs_GivenWrongType_ShouldFail()
         {
             var result = new TestController().PartialViewSimpleModel();
@@ -62,7 +62,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             a.ShouldThrow<Exception>();
         }
 
-        [Test]
+        [Fact]
         public void ModelAs_Null_ShouldFail()
         {
             ActionResult result = new PartialViewResult();
