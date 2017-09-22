@@ -55,6 +55,23 @@ namespace FluentAssertions.AspNetCore.Mvc
         }
 
         /// <summary>
+        /// Asserts that the route data has the expected area name.
+        /// </summary>
+        /// <param name="expectedAreaName">The expected area name.</param>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion 
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// </param>
+        public RouteDataAssertions HaveArea(string expectedAreaName, string reason = "", params object[] reasonArgs)
+        {
+            HaveValue("area", expectedAreaName, reason, reasonArgs);
+            return this;
+        }
+
+        /// <summary>
         /// Asserts that the route data has the expected data token.
         /// </summary>
         /// <param name="key">The expected data token key value.</param>
