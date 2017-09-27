@@ -4,7 +4,7 @@
     <Description>Fluent Assertions for MVC Core is a set of MVC focused assertions and helper extensions to the excellent Fluent Assertions library.</Description>
     <Copyright>Copyright 2017</Copyright>
     <AssemblyTitle>Fluent Assertions for MVC Core</AssemblyTitle>
-    <VersionPrefix>0.7.0-beta1</VersionPrefix>
+    <VersionPrefix>1.0.0</VersionPrefix>
     <Authors>Casey Burns;Kevin Kuszyk</Authors>
     <TargetFramework>netstandard1.6</TargetFramework>
     <AssemblyName>FluentAssertions.AspNetCore.Mvc</AssemblyName>
