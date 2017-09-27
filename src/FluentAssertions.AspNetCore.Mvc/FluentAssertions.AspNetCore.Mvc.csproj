@@ -21,10 +21,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\FluentAssertions.Mvc.Shared\**\*.cs" Exclude="bin\**;obj\**;**\*.xproj;packages\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="4.13.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.0.3" />
   </ItemGroup>
