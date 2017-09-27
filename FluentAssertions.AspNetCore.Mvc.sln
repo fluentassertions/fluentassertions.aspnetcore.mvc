@@ -9,7 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		appveyor.yml = appveyor.yml
 		Contributors.txt = Contributors.txt
-		src\SolutionInfo.cs = src\SolutionInfo.cs
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{89B09C65-4F1E-4B5A-AD58-E244113F2C02}"
@@ -18,11 +17,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A4C33565
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentAssertions.AspNetCore.Mvc", "src\FluentAssertions.AspNetCore.Mvc\FluentAssertions.AspNetCore.Mvc.csproj", "{EA71D220-089E-4CB1-B187-D9BB4DFD8624}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentAssertions.AspNetCore.Mvc.Tests", "tests\FluentAssertions.AspNetCore.Mvc.Tests\FluentAssertions.AspNetCore.Mvc.Tests.csproj", "{5DD9D1EB-F3CB-48AA-862C-269A01225810}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentAssertions.AspNetCore.Mvc.Tests", "tests\FluentAssertions.AspNetCore.Mvc.Tests\FluentAssertions.AspNetCore.Mvc.Tests.csproj", "{5DD9D1EB-F3CB-48AA-862C-269A01225810}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentAssertions.AspNetCore.Mvc.Sample", "samples\FluentAssertions.AspNetCore.Mvc.Sample\FluentAssertions.AspNetCore.Mvc.Sample.csproj", "{6DCC13DB-3226-4529-ADAA-10BB04A9F397}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentAssertions.AspNetCore.Mvc.Sample", "samples\FluentAssertions.AspNetCore.Mvc.Sample\FluentAssertions.AspNetCore.Mvc.Sample.csproj", "{6DCC13DB-3226-4529-ADAA-10BB04A9F397}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentAssertions.AspNetCore.Mvc.Sample.Tests", "samples\FluentAssertions.AspNetCore.Mvc.Sample.Tests\FluentAssertions.AspNetCore.Mvc.Sample.Tests.csproj", "{FE001B08-AD54-4694-AEE6-410824DE6A46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentAssertions.AspNetCore.Mvc.Sample.Tests", "samples\FluentAssertions.AspNetCore.Mvc.Sample.Tests\FluentAssertions.AspNetCore.Mvc.Sample.Tests.csproj", "{FE001B08-AD54-4694-AEE6-410824DE6A46}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
