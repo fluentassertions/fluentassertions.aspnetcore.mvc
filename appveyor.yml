@@ -16,3 +16,6 @@ build:
 test_script:
   - cmd: dotnet test samples\FluentAssertions.AspNetCore.Mvc.Sample.Tests\FluentAssertions.AspNetCore.Mvc.Sample.Tests.csproj
   - cmd: dotnet test tests\FluentAssertions.AspNetCore.Mvc.Tests\FluentAssertions.AspNetCore.Mvc.Tests.csproj
+
+artifacts:
+  - path: '**\*.nupkg'
