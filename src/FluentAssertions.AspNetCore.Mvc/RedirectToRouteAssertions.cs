@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using FluentAssertions.Execution;
+﻿using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace FluentAssertions.AspNetCore.Mvc
 {
@@ -11,6 +11,8 @@ namespace FluentAssertions.AspNetCore.Mvc
     /// </summary>
     public class RedirectToRouteAssertions : ReferenceTypeAssertions<RedirectToRouteResult, RedirectToRouteAssertions>
     {
+        #region Public Constructors
+
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ContentResultAssertions" /> class.
         /// </summary>
@@ -19,12 +21,25 @@ namespace FluentAssertions.AspNetCore.Mvc
             Subject = subject;
         }
 
+        #endregion Public Constructors
+
+        #region Protected Properties
+
+        /// <summary>
+        /// Returns the type of the subject the assertion applies on.
+        /// </summary>
+        protected override string Identifier => "RedirectToRouteResult";
+
+        #endregion Protected Properties
+
+        #region Public Methods
+
         /// <summary>
         /// Asserts that the redirect is permanent.
         /// </summary>
         /// <param name="expectedPermanent">Should the redirect be permanent.</param>
         /// <param name="reason">
-        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion 
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
@@ -32,7 +47,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </param>
         public RedirectToRouteAssertions WithPermanent(bool expectedPermanent, string reason = "", params object[] reasonArgs)
         {
-            Execute.Assertion 
+            Execute.Assertion
                     .BecauseOf(reason, reasonArgs)
                     .ForCondition(expectedPermanent == Subject.Permanent)
                     .FailWith("Expected RedirectToRoute.Permanent to be {0}{reason}, but found {1}", expectedPermanent, Subject.Permanent);
@@ -44,7 +59,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </summary>
         /// <param name="expectedRouteName">The expected route name.</param>
         /// <param name="reason">
-        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion 
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
@@ -52,7 +67,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </param>
         public RedirectToRouteAssertions WithRouteName(string expectedRouteName, string reason = "", params object[] reasonArgs)
         {
-            Execute.Assertion 
+            Execute.Assertion
                    .BecauseOf(reason, reasonArgs)
                    .ForCondition(string.Equals(expectedRouteName, Subject.RouteName, StringComparison.OrdinalIgnoreCase))
                    .FailWith("Expected RedirectToRoute.RouteName to be {0}{reason}, but found {1}", expectedRouteName, Subject.RouteName);
@@ -66,7 +81,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <param name="key">The expected route value key.</param>
         /// <param name="expectedValue">The expected route value.</param>
         /// <param name="reason">
-        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion 
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
@@ -83,7 +98,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </summary>
         /// <param name="expectedControllerName">The expected controller name.</param>
         /// <param name="reason">
-        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion 
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
@@ -100,7 +115,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </summary>
         /// <param name="expectedAction">The expected action.</param>
         /// <param name="reason">
-        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion 
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
@@ -117,7 +132,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </summary>
         /// <param name="expectedArea">The expected area.</param>
         /// <param name="reason">
-        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion 
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
@@ -129,12 +144,6 @@ namespace FluentAssertions.AspNetCore.Mvc
             return this;
         }
 
-        /// <summary>
-        /// Returns the type of the subject the assertion applies on.
-        /// </summary>
-        protected override string Context
-        {
-            get { return "RedirectToRouteResult"; }
-        }
+        #endregion Public Methods
     }
 }

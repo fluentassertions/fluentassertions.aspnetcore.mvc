@@ -26,7 +26,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             Action a = () => _routeData.Should().HaveValue(expectedKey, "");
 
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
         }
 
@@ -44,7 +44,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             Action a = () => _routeData.Should().HaveValue("controller", controllerName);
 
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
         }
 
@@ -62,7 +62,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             Action a = () => _routeData.Should().HaveController(controllerName);
 
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
         }
 
@@ -80,7 +80,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             Action a = () => _routeData.Should().HaveAction(actionName);
 
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
         }
 
@@ -98,7 +98,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             Action a = () => _routeData.Should().HaveArea(area);
 
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
         }
 
@@ -110,7 +110,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             Action a = () => _routeData.Should().HaveDataToken(expectedKey, "");
 
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
         }
 
@@ -129,7 +129,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             Action a = () => _routeData.Should().HaveDataToken("token", value);
 
 
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
         }
     }
