@@ -75,7 +75,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithRouteValue("Id", "11");
 
             a.Should().Throw<Exception>()
-                .WithMessage("Expected Subject.RouteValues to contain value \"11\" at key \"Id\", but found \"22\".");
+                .WithMessage("Expected result to contain value \"11\" at key \"Id\", but found \"22\".");
         }
 
         [Fact]
@@ -103,7 +103,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .BeRedirectToRouteResult()
                 .WithController("xyz");
             a.Should().Throw<Exception>()
-                .WithMessage("Expected Subject.RouteValues to contain value \"xyz\" at key \"Controller\", but found \"home\".");
+                .WithMessage("Expected dictionary to contain value \"xyz\" at key \"Controller\", but found \"home\".");
         }
 
         [Fact]
@@ -132,7 +132,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithAction("xyz");
 
             a.Should().Throw<Exception>()
-                .WithMessage("Expected Subject.RouteValues to contain value \"xyz\" at key \"Action\", but found \"index\".");
+                .WithMessage("Expected dictionary to contain value \"xyz\" at key \"Action\", but found \"index\".");
         }
 
         [Fact]
@@ -161,7 +161,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithArea("xyz");
 
             a.Should().Throw<Exception>()
-                .WithMessage("Expected Subject.RouteValues to contain value \"xyz\" at key \"Area\", but found \"accounts\".");
+                .WithMessage("Expected dictionary to contain value \"xyz\" at key \"Area\", but found \"accounts\".");
         }
 
         #endregion Public Methods
