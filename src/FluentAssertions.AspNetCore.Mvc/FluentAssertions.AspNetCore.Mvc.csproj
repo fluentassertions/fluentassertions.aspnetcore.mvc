@@ -14,7 +14,6 @@
     <PackageReleaseNotes>See https://github.com/KevinKuszyk/FluentAssertions.AspNetCore.Mvc/releases</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/KevinKuszyk/FluentAssertions.AspNetCore.Mvc</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.github.com/KevinKuszyk/FluentAssertions.AspNetCore.Mvc/master/license.txt</PackageLicenseUrl>
-    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
