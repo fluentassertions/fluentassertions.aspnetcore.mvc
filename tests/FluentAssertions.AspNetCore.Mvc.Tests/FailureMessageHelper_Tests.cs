@@ -3,9 +3,10 @@ using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
-    
-    class FailureMessageHelper_Tests
+    public class FailureMessageHelper_Tests
     {
+        #region Public Methods
+
         [Fact]
         public void FailureMessageHelper_WithOneArg_Formats()
         {
@@ -39,5 +40,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             // Assert
             result.Should().Be(expected);
         }
+
+        #endregion Public Methods
     }
 }

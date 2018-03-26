@@ -23,7 +23,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             Action a = () => result.Should().BeRedirectResult()
                 .WithUrl("/xyz");
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                 .WithMessage("Expected RedirectResult.Url to be \"/xyz\" but was \"/abc\"");
         }
 
@@ -43,7 +43,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             Action a = () => result.Should().BeRedirectResult()
                 .WithPermanent(false);
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                 .WithMessage("Expected RedirectResult.Permanent to be False but was True");
         }
     }

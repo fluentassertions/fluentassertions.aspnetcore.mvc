@@ -1,21 +1,25 @@
-﻿using System;
-using FluentAssertions.Mvc.Tests.Fakes;
+﻿using FluentAssertions.Mvc.Tests.Fakes;
 using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
-    
     public class ViewResultAssertions_Tests
     {
+        #region Private Fields
+
         private FakeController _controller = new FakeController();
+
+        #endregion Private Fields
+
+        #region Public Methods
 
         [Fact]
         public void WithViewName_GivenExpectedValue_ShouldPass()
         {
-            ActionResult result = new ViewResult
-            {
+            ActionResult result = new ViewResult {
                 ViewName = "index",
             };
 
@@ -28,14 +32,13 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualViewName = "index";
             var expectedViewName = "xyz";
             var failureMessage = FailureMessageHelper.Format(FailureMessages.ViewResultBase_ViewName, expectedViewName, actualViewName);
-            ActionResult result = new ViewResult
-            {
+            ActionResult result = new ViewResult {
                 ViewName = actualViewName,
             };
 
             Action action = () => result.Should().BeViewResult().WithViewName(expectedViewName);
 
-            action.ShouldThrow<Exception>()
+            action.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
         }
 
@@ -63,7 +66,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var result = new TestController().ViewWithOneTempData();
 
             Action a = () => result.Should().BeViewResult().WithTempData("key1", "xyz");
-            a.ShouldThrow<Exception>();
+            a.Should().Throw<Exception>();
         }
 
         [Fact]
@@ -72,7 +75,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var result = new TestController().ViewWithOneTempData();
 
             Action a = () => result.Should().BeViewResult().WithTempData("xyz", "value1");
-            a.ShouldThrow<Exception>();
+            a.Should().Throw<Exception>();
         }
 
         [Fact]
@@ -105,7 +108,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             Action a = () => result.Should().BeViewResult().WithViewData(key, expectedValue);
 
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
         }
 
@@ -121,7 +124,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             Action a = () => result.Should().BeViewResult().WithViewData(expectedKey, "value1");
 
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
         }
 
@@ -139,7 +142,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var result = new TestController().ViewSimpleModel();
 
             Action a = () => result.Should().BeViewResult().Model.Should().Be("xyx");
-            a.ShouldThrow<Exception>();
+            a.Should().Throw<Exception>();
         }
 
         [Fact]
@@ -156,7 +159,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var result = new TestController().ViewSimpleModel();
 
             Action a = () => result.Should().BeViewResult().ModelAs<string>().Should().Be("xyx");
-            a.ShouldThrow<Exception>();
+            a.Should().Throw<Exception>();
         }
 
         [Fact]
@@ -165,7 +168,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var result = new TestController().ViewSimpleModel();
 
             Action a = () => result.Should().BeViewResult().ModelAs<int>().Should().Be(2);
-            a.ShouldThrow<Exception>();
+            a.Should().Throw<Exception>();
         }
 
         [Fact]
@@ -176,15 +179,14 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             Action a = () => result.Should().BeViewResult().ModelAs<Object>();
 
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
         }
 
         [Fact]
         public void WithDefaultViewName_GivenExpectedValue_ShouldPass()
         {
-            ActionResult result = new ViewResult
-            {
+            ActionResult result = new ViewResult {
                 ViewName = String.Empty
             };
 
@@ -197,15 +199,16 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             string viewName = "index";
             string failureMessage = FailureMessageHelper.Format(FailureMessages.ViewResultBase_WithDefaultViewName, viewName);
 
-            ActionResult result = new ViewResult
-            {
+            ActionResult result = new ViewResult {
                 ViewName = viewName
             };
 
             Action action = () => result.Should().BeViewResult().WithDefaultViewName();
 
-            action.ShouldThrow<Exception>()
+            action.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
         }
+
+        #endregion Public Methods
     }
 }

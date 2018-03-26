@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/samples/FluentAssertions.AspNetCore.Mvc.Sample/FluentAssertions.AspNetCore.Mvc.Sample.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}

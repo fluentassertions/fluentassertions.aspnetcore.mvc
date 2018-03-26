@@ -1,8 +1,8 @@
-﻿using System;
-using System.Diagnostics;
-using FluentAssertions.Execution;
+﻿using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Diagnostics;
 
 namespace FluentAssertions.AspNetCore.Mvc
 {
@@ -12,6 +12,8 @@ namespace FluentAssertions.AspNetCore.Mvc
     [DebuggerNonUserCode]
     public class ViewResultAssertions : ObjectAssertions
     {
+        #region Public Constructors
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="T:ViewResultAssertions" /> class.
         /// </summary>
@@ -20,12 +22,24 @@ namespace FluentAssertions.AspNetCore.Mvc
         {
         }
 
-        private ViewResult ViewResultSubject => (ViewResult) Subject;
+        #endregion Public Constructors
+
+        #region Public Properties
 
         /// <summary>
         ///     The model.
         /// </summary>
         public object Model => ViewResultSubject.Model;
+
+        #endregion Public Properties
+
+        #region Private Properties
+
+        private ViewResult ViewResultSubject => (ViewResult)Subject;
+
+        #endregion Private Properties
+
+        #region Public Methods
 
         /// <summary>
         ///     Asserts that the view name is the expected view name.
@@ -125,7 +139,7 @@ namespace FluentAssertions.AspNetCore.Mvc
                 .ForCondition(model is TModel)
                 .FailWith("Expected Model to be of type '{0}' but was '{1}'", typeof(TModel).Name, model.GetType().Name);
 
-            return (TModel) model;
+            return (TModel)model;
         }
 
         /// <summary>
@@ -143,11 +157,13 @@ namespace FluentAssertions.AspNetCore.Mvc
             var viewName = ViewResultSubject.ViewName;
 
             Execute.Assertion
-                .ForCondition(viewName == string.Empty)
+                .ForCondition(string.IsNullOrEmpty(viewName))
                 .BecauseOf(reason, reasonArgs)
                 .FailWith(FailureMessages.ViewResultBase_WithDefaultViewName, viewName);
 
             return this;
         }
+
+        #endregion Public Methods
     }
 }
