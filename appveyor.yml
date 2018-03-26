@@ -1,21 +1,9 @@
-version: 1.0.{build}
-
-environment:
-    CLI_VERSION: Latest
-
+version: '{build}'
 image: Visual Studio 2017
-
 configuration: Release
 
 before_build:
 - cmd: dotnet restore
-
-build:
-  verbosity: minimal
- 
-test_script:
-  - cmd: dotnet test samples\FluentAssertions.AspNetCore.Mvc.Sample.Tests\FluentAssertions.AspNetCore.Mvc.Sample.Tests.csproj
-  - cmd: dotnet test tests\FluentAssertions.AspNetCore.Mvc.Tests\FluentAssertions.AspNetCore.Mvc.Tests.csproj
 
 artifacts:
   - path: '**\*.nupkg'
@@ -25,5 +13,4 @@ deploy:
   api_key:
     secure: /4N7ion7O3kWuiM5LEiU9oyfmPYGAbJxic7AFKSX/4Z1iiMwdxAUf3v7v6EvFgyZ
   on:
-    branch: master
     appveyor_repo_tag: true
