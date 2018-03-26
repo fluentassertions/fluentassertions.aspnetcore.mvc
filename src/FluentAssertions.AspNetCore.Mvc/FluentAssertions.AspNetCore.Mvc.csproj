@@ -1,19 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>Fluent Assertions for MVC Core is a set of MVC focused assertions and helper extensions to the excellent Fluent Assertions library.</Description>
-    <Copyright>Copyright 2017</Copyright>
-    <AssemblyTitle>Fluent Assertions for MVC Core</AssemblyTitle>
-    <Title>Fluent Assertions for MVC Core</Title>
+    <Description>Fluent Assertions extensions for ASP.NET Core MVC.</Description>
+    <Copyright>Copyright 2018</Copyright>
+    <AssemblyTitle>Fluent Assertions extensions for ASP.NET Core MVC</AssemblyTitle>
+    <Title>Fluent Assertions for ASP.NET Core MVC</Title>
     <VersionPrefix>2.0.0</VersionPrefix>
     <Authors>Casey Burns;Kevin Kuszyk</Authors>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>FluentAssertions.AspNetCore.Mvc</AssemblyName>
     <PackageId>FluentAssertions.AspNetCore.Mvc</PackageId>
     <PackageTags>TDD;TDD;Fluent;Mvc;AspNetMvc;aspnetcore;aspnetcoremvc</PackageTags>
-    <PackageReleaseNotes>See https://github.com/KevinKuszyk/FluentAssertions.AspNetCore.Mvc/releases</PackageReleaseNotes>
-    <PackageProjectUrl>https://github.com/KevinKuszyk/FluentAssertions.AspNetCore.Mvc</PackageProjectUrl>
-    <PackageLicenseUrl>https://raw.github.com/KevinKuszyk/FluentAssertions.AspNetCore.Mvc/master/license.txt</PackageLicenseUrl>
+    <PackageReleaseNotes>See https://github.com/fluentassertions/fluentassertions.aspnetcore.mvc/releases </PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/fluentassertions/fluentassertions.aspnetcore.mvc</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/fluentassertions/fluentassertions.aspnetcore.mvc/blob/master/license.txt</PackageLicenseUrl>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
