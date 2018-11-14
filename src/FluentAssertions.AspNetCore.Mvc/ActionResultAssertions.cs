@@ -1,7 +1,7 @@
-using System.Diagnostics;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace FluentAssertions.AspNetCore.Mvc
 {
@@ -11,23 +11,24 @@ namespace FluentAssertions.AspNetCore.Mvc
     [DebuggerNonUserCode]
     public class ActionResultAssertions : ObjectAssertions
     {
-        public struct Constants
-        {
-            public const string CommonFailMessage = "Expected ActionResult to be {0}{reason}, but found {1}";
-        }
+        #region Public Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ActionResultAssertions" /> class.
         /// </summary>
-        public ActionResultAssertions (ActionResult subject) : base(subject)
+        public ActionResultAssertions(ActionResult subject) : base(subject)
         {
             Subject = subject;
         }
 
-        public ActionResultAssertions (IActionResult subject): base(subject)
+        public ActionResultAssertions(IActionResult subject) : base(subject)
         {
             Subject = subject;
         }
+
+        #endregion Public Constructors
+
+        #region Public Methods
 
         /// <summary>
         /// Asserts that the subject is a <see cref="ContentResult"/>.
@@ -41,7 +42,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// Asserts that the subject is a <see cref="ContentResult"/>.
         /// </summary>
         /// <param name="reason">
-        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion 
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
@@ -69,7 +70,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// Asserts that the subject is an <see cref="EmptyResult"/>.
         /// </summary>
         /// <param name="reason">
-        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion 
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
@@ -88,6 +89,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <summary>
         /// Asserts that the subject is a <see cref="RedirectToRouteResult"/>.
         /// </summary>
+        [CustomAssertion]
         public RedirectToRouteAssertions BeRedirectToRouteResult()
         {
             return BeRedirectToRouteResult(string.Empty, null);
@@ -97,12 +99,13 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// Asserts that the subject is a <see cref="RedirectToRouteResult"/>.
         /// </summary>
         /// <param name="reason">
-        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion 
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
         /// Zero or more objects to format using the placeholders in <see cref="reason" />.
         /// </param>
+        [CustomAssertion]
         public RedirectToRouteAssertions BeRedirectToRouteResult(string reason, params object[] reasonArgs)
         {
             Execute.Assertion
@@ -125,7 +128,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// Asserts that the subject is a <see cref="PartialViewResult"/>.
         /// </summary>
         /// <param name="reason">
-        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion 
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
@@ -153,7 +156,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// Asserts that the subject is a <see cref="RedirectResult"/>.
         /// </summary>
         /// <param name="reason">
-        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion 
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
@@ -181,7 +184,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// Asserts that the subject is a <see cref="ViewResult"/>.
         /// </summary>
         /// <param name="reason">
-        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion 
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
@@ -191,10 +194,25 @@ namespace FluentAssertions.AspNetCore.Mvc
         {
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
-                .ForCondition (Subject is ViewResult)
+                .ForCondition(Subject is ViewResult)
                 .FailWith(Constants.CommonFailMessage, "ViewResult", Subject.GetType().Name);
-			
-            return new ViewResultAssertions (Subject as ViewResult);
+
+            return new ViewResultAssertions(Subject as ViewResult);
         }
+
+        #endregion Public Methods
+
+        #region Public Structs
+
+        public struct Constants
+        {
+            #region Public Fields
+
+            public const string CommonFailMessage = "Expected ActionResult to be {0}{reason}, but found {1}";
+
+            #endregion Public Fields
+        }
+
+        #endregion Public Structs
     }
 }

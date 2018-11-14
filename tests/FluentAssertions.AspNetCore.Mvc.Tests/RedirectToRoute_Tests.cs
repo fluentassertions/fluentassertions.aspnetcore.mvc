@@ -1,13 +1,14 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using System;
 using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
-    
     public class RedirectToRoute_Tests
     {
+        #region Public Methods
+
         [Fact]
         public void WithPermanent_GivenExpected_ShouldPass()
         {
@@ -24,7 +25,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             Action a = () => result.Should()
                 .BeRedirectToRouteResult()
                 .WithPermanent(false);
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                 .WithMessage("Expected RedirectToRoute.Permanent to be False, but found True");
         }
 
@@ -44,7 +45,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             Action a = () => result.Should()
                 .BeRedirectToRouteResult()
                 .WithRouteName("xyz");
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                 .WithMessage("Expected RedirectToRoute.RouteName to be \"xyz\", but found \"default\"");
         }
 
@@ -52,8 +53,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithRouteValue_GivenExpected_ShouldPass()
         {
             ActionResult result = new RedirectToRouteResult("", new RouteValueDictionary(
-                new
-                {
+                new {
                     Id = "22"
                 }));
 
@@ -66,24 +66,23 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithRouteValue_GivenUnexpected_ShouldFail()
         {
             ActionResult result = new RedirectToRouteResult("", new RouteValueDictionary(
-                new
-                {
+                new {
                     Id = "22"
                 }));
 
             Action a = () => result.Should()
                 .BeRedirectToRouteResult()
                 .WithRouteValue("Id", "11");
-            a.ShouldThrow<Exception>()
-                .WithMessage("Expected dictionary to contain value \"11\" at key \"Id\", but found \"22\".");
+
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected result to contain value \"11\" at key \"Id\", but found \"22\".");
         }
 
         [Fact]
         public void WithController_GivenExpected_ShouldPass()
         {
             ActionResult result = new RedirectToRouteResult("", new RouteValueDictionary(
-                new
-                {
+                new {
                     Controller = "home"
                 }));
 
@@ -96,15 +95,14 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithController_GivenUnexpected_ShouldFail()
         {
             ActionResult result = new RedirectToRouteResult("", new RouteValueDictionary(
-                new
-                {
+                new {
                     Controller = "home"
                 }));
 
             Action a = () => result.Should()
                 .BeRedirectToRouteResult()
                 .WithController("xyz");
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                 .WithMessage("Expected dictionary to contain value \"xyz\" at key \"Controller\", but found \"home\".");
         }
 
@@ -112,8 +110,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithAction_GivenExpected_ShouldPass()
         {
             ActionResult result = new RedirectToRouteResult("", new RouteValueDictionary(
-                new
-                {
+                new {
                     Action = "index"
                 }));
 
@@ -126,15 +123,15 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithAction_GivenUnexpected_ShouldFail()
         {
             ActionResult result = new RedirectToRouteResult("", new RouteValueDictionary(
-                new
-                {
+                new {
                     Action = "index"
                 }));
 
             Action a = () => result.Should()
                 .BeRedirectToRouteResult()
                 .WithAction("xyz");
-            a.ShouldThrow<Exception>()
+
+            a.Should().Throw<Exception>()
                 .WithMessage("Expected dictionary to contain value \"xyz\" at key \"Action\", but found \"index\".");
         }
 
@@ -142,8 +139,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithArea_GivenExpected_ShouldPass()
         {
             ActionResult result = new RedirectToRouteResult("", new RouteValueDictionary(
-                new
-                {
+                new {
                     Area = "accounts"
                 }));
 
@@ -156,16 +152,18 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithArea_GivenUnexpected_ShouldFail()
         {
             ActionResult result = new RedirectToRouteResult("", new RouteValueDictionary(
-                new
-                {
+                new {
                     Area = "accounts"
                 }));
 
             Action a = () => result.Should()
                 .BeRedirectToRouteResult()
                 .WithArea("xyz");
-            a.ShouldThrow<Exception>()
+
+            a.Should().Throw<Exception>()
                 .WithMessage("Expected dictionary to contain value \"xyz\" at key \"Area\", but found \"accounts\".");
         }
+
+        #endregion Public Methods
     }
 }
