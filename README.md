@@ -10,7 +10,7 @@ Add the NuGet package to your test project.
 Add the [Fluent Assertions for MVC Core][nuget-mvc-core] NuGet package to your unit test project:
 
 ````
-PM> FluentAssertions.AspNetCore.Mvc
+PM> Install-Package FluentAssertions.AspNetCore.Mvc
 ````
 
 ## Getting Started
