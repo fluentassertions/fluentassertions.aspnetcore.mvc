@@ -228,6 +228,34 @@ namespace FluentAssertions.AspNetCore.Mvc
             return new RedirectToActionResultAssertions(Subject as RedirectToActionResult);
         }
 
+        /// <summary>
+        /// Asserts that the subject is a <see cref="StatusCodeResult"/>.
+        /// </summary>
+        public StatusCodeResultAssertions BeStatusCodeResult()
+        {
+            return BeStatusCodeResult(string.Empty, null);
+        }
+
+        /// <summary>
+        /// Asserts that the subject is a <see cref="StatusCodeResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// </param>
+        public StatusCodeResultAssertions BeStatusCodeResult(string reason, params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is StatusCodeResult)
+                .FailWith(Constants.CommonFailMessage, "StatusCodeResult", Subject.GetType().Name);
+
+            return new StatusCodeResultAssertions(Subject as StatusCodeResult);
+        }
+
         #endregion Public Methods
 
         #region Public Structs

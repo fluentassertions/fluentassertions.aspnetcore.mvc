@@ -138,6 +138,9 @@
   <data name="RouteData_Values_HaveValue" xml:space="preserve">
     <value>Expected RouteData.Values[{0}] to have value {1}, but found {2}.</value>
   </data>
+  <data name="StatusCodeResultBase_WithStatusCode" xml:space="preserve">
+    <value>Expected status code to be {0} but found {1}.</value>
+  </data>
   <data name="ViewResultBase_NullModel" xml:space="preserve">
     <value>Expected Model to be of type {0}, but no Model was supplied.</value>
   </data>
