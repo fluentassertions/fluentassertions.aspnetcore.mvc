@@ -86,6 +86,21 @@ namespace FluentAssertions.AspNetCore.Mvc
             return Subject as EmptyResult;
         }
 
+        public JsonResultAssertions BeJsonResult()
+        {
+            return BeJsonResult(string.Empty, null);
+        }
+
+        public JsonResultAssertions BeJsonResult(string reason, params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is JsonResult)
+                .FailWith(Constants.CommonFailMessage, typeof(JsonResult).Name, Subject.GetType().Name);
+
+            return new JsonResultAssertions(Subject as JsonResult);
+        }
+
         /// <summary>
         /// Asserts that the subject is a <see cref="RedirectToRouteResult"/>.
         /// </summary>

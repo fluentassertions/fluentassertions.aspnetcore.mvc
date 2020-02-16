@@ -43,6 +43,23 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         }
 
         [Fact]
+        public void BeJson_GivenJson_ShouldPass()
+        {
+            ActionResult result = new JsonResult(new object());
+            result.Should()
+                .BeJsonResult();
+        }
+
+        [Fact]
+        public void BeJson_GivenNotJson_ShouldFail()
+        {
+            ActionResult result = new ViewResult();
+            Action a = () => result.Should().BeJsonResult();
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ActionResult to be \"JsonResult\", but found \"ViewResult\"");
+        }
+
+        [Fact]
         public void BeRedirectToRoute_GivenRedirectToRoute_ShouldPass()
         {
             ActionResult result = new RedirectToRouteResult(new RouteValueDictionary());
