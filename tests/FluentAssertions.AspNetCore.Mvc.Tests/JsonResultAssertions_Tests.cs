@@ -8,21 +8,28 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
     public class JsonResultAssertions_Tests
     {
         [Fact]
-        public void WithValue_GivenValue_ShouldPass()
+        public void WithContentType_GivenValue_ShouldPass()
         {
-            ActionResult result = new JsonResult("value");
-            result.Should().BeJsonResult().WithValue("value");
+            ActionResult result = new JsonResult("value")
+            {
+                ContentType = "text/plain"
+            };
+
+            result.Should().BeJsonResult().WithContentType("text/plain");
         }
 
         [Fact]
-        public void WithValue_GivenUnexpected_ShouldFail()
+        public void WithContentType_GivenUnexpected_ShouldFail()
         {
-            var actualValue = "xyz";
-            var expectedValue = "value";
-            ActionResult result = new JsonResult(actualValue);
-            var failureMessage = FailureMessageHelper.Format(FailureMessages.CommonFailMessage, "JsonResult.Value", expectedValue, actualValue);
+            var actualValue = "text/css";
+            var expectedValue = "text/plain";
+            ActionResult result = new JsonResult("value")
+            {
+                ContentType = actualValue
+            };
+            var failureMessage = FailureMessageHelper.Format(FailureMessages.CommonFailMessage, "JsonResult.ContentType", expectedValue, actualValue);
 
-            Action a = () => result.Should().BeJsonResult().WithValue(expectedValue);
+            Action a = () => result.Should().BeJsonResult().WithContentType(expectedValue);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);

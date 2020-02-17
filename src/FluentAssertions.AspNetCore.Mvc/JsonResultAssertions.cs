@@ -43,9 +43,9 @@ namespace FluentAssertions.AspNetCore.Mvc
         #region Public Methods
 
         /// <summary>
-        ///     Asserts that the value is the expected value using Equals.
+        ///     Asserts that the content type is the expected content type.
         /// </summary>
-        /// <param name="expectedValue">The expected value.</param>
+        /// <param name="expectedContentType">The expected content type.</param>
         /// <param name="reason">
         ///     A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
@@ -53,16 +53,15 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <param name="reasonArgs">
         ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
         /// </param>
-        /// <returns></returns>
-        public JsonResultAssertions WithValue(object expectedValue, string reason = "",
+        public JsonResultAssertions WithContentType(string expectedContentType, string reason = "",
             params object[] reasonArgs)
         {
-            var actualValue = JsonResultSubject.Value;
+            var actualContentType = JsonResultSubject.ContentType;
 
             Execute.Assertion
-                .ForCondition(Equals(expectedValue, actualValue))
+                .ForCondition(string.Equals(expectedContentType, actualContentType, StringComparison.OrdinalIgnoreCase))
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(FailureMessages.CommonFailMessage, "JsonResult.Value", expectedValue, actualValue);
+                .FailWith(FailureMessages.CommonFailMessage, "JsonResult.ContentType", expectedContentType, actualContentType);
             return this;
         }
 
