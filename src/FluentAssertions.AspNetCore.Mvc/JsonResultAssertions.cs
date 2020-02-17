@@ -1,6 +1,7 @@
 ﻿using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
 
@@ -26,6 +27,11 @@ namespace FluentAssertions.AspNetCore.Mvc
         #endregion
 
         #region Public Properties
+
+        /// <summary>
+        ///     The serializer settings of the JsonResult.
+        /// </summary>
+        public JsonSerializerSettings SerializerSettings => JsonResultSubject.SerializerSettings;
 
         /// <summary>
         ///     The value on the JsonResult

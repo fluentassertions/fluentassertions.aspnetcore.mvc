@@ -1,5 +1,6 @@
 ﻿using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using Xunit;
 
@@ -90,5 +91,13 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithMessage(failureMessage);
         }
 
+        [Fact]
+        public void SerializerSettings_GivenExpectedValue_ShouldPass()
+        {
+            var expectedValue = new JsonSerializerSettings();
+            var result = new JsonResult("value", expectedValue);
+
+            result.Should().BeJsonResult().SerializerSettings.Should().BeSameAs(expectedValue);
+        }
     }
 }
