@@ -27,5 +27,61 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
         }
+
+        [Fact]
+        public void Value_GivenExpectedValue_ShouldPass()
+        {
+            var result = new TestController().JsonSimpleValue();
+
+            result.Should().BeJsonResult().Value.Should().Be("hello");
+        }
+
+        [Fact]
+        public void Json_GivenUnexpectedValue_ShouldFail()
+        {
+            var result = new TestController().JsonSimpleValue();
+
+            Action a = () => result.Should().BeJsonResult().Value.Should().Be("xyx");
+            a.Should().Throw<Exception>();
+        }
+
+        [Fact]
+        public void ValueAs_GivenExpectedValue_ShouldPass()
+        {
+            var result = new TestController().JsonSimpleValue();
+
+            result.Should().BeJsonResult().ValueAs<string>().Should().Be("hello");
+        }
+
+        [Fact]
+        public void ValueAs_GivenUnexpectedValue_ShouldFail()
+        {
+            var result = new TestController().JsonSimpleValue();
+
+            Action a = () => result.Should().BeJsonResult().ValueAs<string>().Should().Be("xyx");
+            a.Should().Throw<Exception>();
+        }
+
+        [Fact]
+        public void ValueAs_GivenWrongType_ShouldFail()
+        {
+            var result = new TestController().JsonSimpleValue();
+
+            Action a = () => result.Should().BeJsonResult().ValueAs<int>().Should().Be(2);
+            a.Should().Throw<Exception>();
+        }
+
+        [Fact]
+        public void ValueAs_Null_ShouldFail()
+        {
+            ActionResult result = new JsonResult(null);
+            string failureMessage = FailureMessageHelper.Format(FailureMessages.CommonNullWasSuppliedFailMessage, "Value", typeof(Object).Name);
+
+            Action a = () => result.Should().BeJsonResult().ValueAs<Object>();
+
+            a.Should().Throw<Exception>()
+                .WithMessage(failureMessage);
+        }
+
     }
 }

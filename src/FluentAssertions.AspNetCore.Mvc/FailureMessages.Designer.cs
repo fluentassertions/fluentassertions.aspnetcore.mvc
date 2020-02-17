@@ -19,7 +19,7 @@ namespace FluentAssertions.AspNetCore.Mvc {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class FailureMessages {
@@ -66,6 +66,24 @@ namespace FluentAssertions.AspNetCore.Mvc {
         internal static string CommonFailMessage {
             get {
                 return ResourceManager.GetString("CommonFailMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected {0} to be of type {1}, but no {0} was supplied..
+        /// </summary>
+        internal static string CommonNullWasSuppliedFailMessage {
+            get {
+                return ResourceManager.GetString("CommonNullWasSuppliedFailMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected {0} to be of type &apos;{1}&apos; but was &apos;{2}&apos;.
+        /// </summary>
+        internal static string CommonTypeFailMessage {
+            get {
+                return ResourceManager.GetString("CommonTypeFailMessage", resourceCulture);
             }
         }
         
@@ -129,15 +147,6 @@ namespace FluentAssertions.AspNetCore.Mvc {
         internal static string ViewResult_MasterName {
             get {
                 return ResourceManager.GetString("ViewResult_MasterName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Expected Model to be of type {0}, but no Model was supplied..
-        /// </summary>
-        internal static string ViewResultBase_NullModel {
-            get {
-                return ResourceManager.GetString("ViewResultBase_NullModel", resourceCulture);
             }
         }
         

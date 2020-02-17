@@ -120,6 +120,12 @@
   <data name="CommonFailMessage" xml:space="preserve">
     <value>Expected {0} to be '{1}' but found '{2}'</value>
   </data>
+  <data name="CommonNullWasSuppliedFailMessage" xml:space="preserve">
+    <value>Expected {0} to be of type {1}, but no {0} was supplied.</value>
+  </data>
+  <data name="CommonTypeFailMessage" xml:space="preserve">
+    <value>Expected {0} to be of type '{1}' but was '{2}'</value>
+  </data>
   <data name="RedirectToActionResult_RouteValues_ContainsKey" xml:space="preserve">
     <value>RedirectToActionResult.RouteValues does not contain key {0}.</value>
   </data>
@@ -137,9 +143,6 @@
   </data>
   <data name="RouteData_Values_HaveValue" xml:space="preserve">
     <value>Expected RouteData.Values[{0}] to have value {1}, but found {2}.</value>
-  </data>
-  <data name="ViewResultBase_NullModel" xml:space="preserve">
-    <value>Expected Model to be of type {0}, but no Model was supplied.</value>
   </data>
   <data name="ViewResultBase_ViewData_ContainsKey" xml:space="preserve">
     <value>ViewData does not contain key of {0}.</value>

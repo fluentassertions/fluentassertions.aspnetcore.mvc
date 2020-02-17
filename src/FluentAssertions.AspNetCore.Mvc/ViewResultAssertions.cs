@@ -133,11 +133,11 @@ namespace FluentAssertions.AspNetCore.Mvc
             var model = ViewResultSubject.Model;
 
             if (model == null)
-                Execute.Assertion.FailWith(FailureMessages.ViewResultBase_NullModel, typeof(TModel).Name);
+                Execute.Assertion.FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, "Model", typeof(TModel).Name);
 
             Execute.Assertion
                 .ForCondition(model is TModel)
-                .FailWith("Expected Model to be of type '{0}' but was '{1}'", typeof(TModel).Name, model.GetType().Name);
+                .FailWith(FailureMessages.CommonTypeFailMessage, "Model", typeof(TModel).Name, model.GetType().Name);
 
             return (TModel)model;
         }

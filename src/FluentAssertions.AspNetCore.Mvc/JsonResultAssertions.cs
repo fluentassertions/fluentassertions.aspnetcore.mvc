@@ -66,6 +66,24 @@ namespace FluentAssertions.AspNetCore.Mvc
             return this;
         }
 
+        /// <summary>
+        ///     Asserts the value is of the expected type.
+        /// </summary>
+        /// <typeparam name="TValue">The expected type.</typeparam>
+        /// <returns>The typed value.</returns>
+        public TValue ValueAs<TValue>()
+        {
+            var value = JsonResultSubject.Value;
+
+            if (value == null)
+                Execute.Assertion.FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, "Value", typeof(TValue).Name);
+
+            Execute.Assertion
+                .ForCondition(value is TValue)
+                .FailWith(FailureMessages.CommonTypeFailMessage, "Value", typeof(TValue).Name, value.GetType().Name);
+
+            return (TValue)value;
+        }
         #endregion
     }
 }
