@@ -2,13 +2,22 @@
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Diagnostics;
 
 namespace FluentAssertions.AspNetCore.Mvc
 {
+    /// <summary>
+    ///     Contains a number of methods to assert that a <see cref="JsonResult" /> is in the expected state.
+    /// </summary>
+    [DebuggerNonUserCode]
     public class JsonResultAssertions : ObjectAssertions
     {
         #region Public Constructors
 
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="T:JsonResultAssertions" /> class.
+        /// </summary>
+        /// <param name="subject">The object to test assertion on</param>
         public JsonResultAssertions(JsonResult subject) : base(subject)
         {
 
@@ -17,6 +26,11 @@ namespace FluentAssertions.AspNetCore.Mvc
         #endregion
 
         #region Public Properties
+
+        /// <summary>
+        ///     The value on the JsonResult
+        /// </summary>
+        public object Value => JsonResultSubject.Value;
 
         #endregion
 
@@ -28,6 +42,18 @@ namespace FluentAssertions.AspNetCore.Mvc
 
         #region Public Methods
 
+        /// <summary>
+        ///     Asserts that the value is the expected value using Equals.
+        /// </summary>
+        /// <param name="expectedValue">The expected value.</param>
+        /// <param name="reason">
+        ///     A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// </param>
+        /// <returns></returns>
         public JsonResultAssertions WithValue(object expectedValue, string reason = "",
             params object[] reasonArgs)
         {
