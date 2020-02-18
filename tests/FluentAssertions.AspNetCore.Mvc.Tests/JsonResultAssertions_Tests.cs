@@ -37,6 +37,34 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         }
 
         [Fact]
+        public void WithStatusCode_GivenValue_ShouldPass()
+        {
+            ActionResult result = new JsonResult("value")
+            {
+                StatusCode = 200
+            };
+
+            result.Should().BeJsonResult().WithStatusCode(200);
+        }
+
+        [Fact]
+        public void WithStatusCode_GivenUnexpected_ShouldFail()
+        {
+            var actualStatusCode = 401;
+            var expectedStatusCode = 200;
+            ActionResult result = new JsonResult("value")
+            {
+                StatusCode = actualStatusCode
+            };
+            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "\"JsonResult.StatusCode\"", expectedStatusCode, actualStatusCode);
+
+            Action a = () => result.Should().BeJsonResult().WithStatusCode(expectedStatusCode);
+
+            a.Should().Throw<Exception>()
+                .WithMessage(failureMessage);
+        }
+
+        [Fact]
         public void Value_GivenExpectedValue_ShouldPass()
         {
             var result = new TestController().JsonSimpleValue();
@@ -45,7 +73,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         }
 
         [Fact]
-        public void Json_GivenUnexpectedValue_ShouldFail()
+        public void Value_GivenUnexpectedValue_ShouldFail()
         {
             var result = new TestController().JsonSimpleValue();
 
