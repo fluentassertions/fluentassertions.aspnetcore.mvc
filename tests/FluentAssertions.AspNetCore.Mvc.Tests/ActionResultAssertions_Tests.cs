@@ -123,6 +123,22 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithMessage("Expected ActionResult to be \"ViewResult\", but found \"RedirectResult\"");
         }
 
+        [Fact]
+        public void BeStatusCodeResult_GivenStatusCodeResult_ShouldPass()
+        {
+            ActionResult result = new StatusCodeResult(200);
+            result.Should().BeStatusCodeResult();
+        }
+
+        [Fact]
+        public void BeStatusCodeResult_GivenNotStatusCodeResult_ShouldFail()
+        {
+            ActionResult result = new RedirectResult("/");
+            Action a = () => result.Should().BeStatusCodeResult();
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ActionResult to be \"StatusCodeResult\", but found \"RedirectResult\"");
+        }
+
         #endregion Public Methods
     }
 }

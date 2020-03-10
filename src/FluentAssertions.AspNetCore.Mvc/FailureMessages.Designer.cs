@@ -142,11 +142,29 @@ namespace FluentAssertions.AspNetCore.Mvc {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expected status code to be {0} but found {1}..
+        /// </summary>
+        internal static string StatusCodeResultBase_WithStatusCode {
+            get {
+                return ResourceManager.GetString("StatusCodeResultBase_WithStatusCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expected MasterName to be {0} but found {1}..
         /// </summary>
         internal static string ViewResult_MasterName {
             get {
                 return ResourceManager.GetString("ViewResult_MasterName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected Model to be of type {0}, but no Model was supplied..
+        /// </summary>
+        internal static string ViewResultBase_NullModel {
+            get {
+                return ResourceManager.GetString("ViewResultBase_NullModel", resourceCulture);
             }
         }
         
