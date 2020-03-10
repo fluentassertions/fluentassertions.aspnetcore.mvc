@@ -175,7 +175,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void ModelAs_Null_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            string failureMessage = FailureMessageHelper.Format(FailureMessages.ViewResultBase_NullModel, typeof(Object).Name);
+            string failureMessage = FailureMessageHelper.Format(FailureMessages.CommonNullWasSuppliedFailMessage, "Model", typeof(Object).Name);
 
             Action a = () => result.Should().BeViewResult().ModelAs<Object>();
 

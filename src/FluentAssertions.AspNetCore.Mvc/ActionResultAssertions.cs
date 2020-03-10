@@ -87,6 +87,34 @@ namespace FluentAssertions.AspNetCore.Mvc
         }
 
         /// <summary>
+        /// Asserts that the subject is an <see cref="JsonResult"/>.
+        /// </summary>
+        public JsonResultAssertions BeJsonResult()
+        {
+            return BeJsonResult(string.Empty, null);
+        }
+
+        /// <summary>
+        /// Asserts that the subject is an <see cref="JsonResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// </param>
+        public JsonResultAssertions BeJsonResult(string reason, params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is JsonResult)
+                .FailWith(Constants.CommonFailMessage, typeof(JsonResult).Name, Subject.GetType().Name);
+
+            return new JsonResultAssertions(Subject as JsonResult);
+        }
+
+        /// <summary>
         /// Asserts that the subject is a <see cref="RedirectToRouteResult"/>.
         /// </summary>
         [CustomAssertion]

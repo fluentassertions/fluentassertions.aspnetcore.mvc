@@ -22,7 +22,7 @@ namespace FluentAssertions.AspNetCore.Mvc {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class FailureMessages {
+    internal class FailureMessages {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace FluentAssertions.AspNetCore.Mvc {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FluentAssertions.AspNetCore.Mvc.FailureMessages", typeof(FailureMessages).Assembly);
@@ -51,7 +51,7 @@ namespace FluentAssertions.AspNetCore.Mvc {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,16 +63,34 @@ namespace FluentAssertions.AspNetCore.Mvc {
         /// <summary>
         ///   Looks up a localized string similar to Expected {0} to be &apos;{1}&apos; but found &apos;{2}&apos;.
         /// </summary>
-        public static string CommonFailMessage {
+        internal static string CommonFailMessage {
             get {
                 return ResourceManager.GetString("CommonFailMessage", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expected {0} to be of type {1}, but no {0} was supplied..
+        /// </summary>
+        internal static string CommonNullWasSuppliedFailMessage {
+            get {
+                return ResourceManager.GetString("CommonNullWasSuppliedFailMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected {0} to be of type &apos;{1}&apos; but was &apos;{2}&apos;.
+        /// </summary>
+        internal static string CommonTypeFailMessage {
+            get {
+                return ResourceManager.GetString("CommonTypeFailMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RedirectToActionResult.RouteValues does not contain key {0}..
         /// </summary>
-        public static string RedirectToActionResult_RouteValues_ContainsKey {
+        internal static string RedirectToActionResult_RouteValues_ContainsKey {
             get {
                 return ResourceManager.GetString("RedirectToActionResult_RouteValues_ContainsKey", resourceCulture);
             }
@@ -81,7 +99,7 @@ namespace FluentAssertions.AspNetCore.Mvc {
         /// <summary>
         ///   Looks up a localized string similar to Expected RedirectToActionResult.RouteValues[{0}] to have value {1}, but found {2}..
         /// </summary>
-        public static string RedirectToActionResult_RouteValues_HaveValue {
+        internal static string RedirectToActionResult_RouteValues_HaveValue {
             get {
                 return ResourceManager.GetString("RedirectToActionResult_RouteValues_HaveValue", resourceCulture);
             }
@@ -90,7 +108,7 @@ namespace FluentAssertions.AspNetCore.Mvc {
         /// <summary>
         ///   Looks up a localized string similar to RouteData.DataTokens does not contain key {0}..
         /// </summary>
-        public static string RouteData_DataTokens_ContainsKey {
+        internal static string RouteData_DataTokens_ContainsKey {
             get {
                 return ResourceManager.GetString("RouteData_DataTokens_ContainsKey", resourceCulture);
             }
@@ -99,7 +117,7 @@ namespace FluentAssertions.AspNetCore.Mvc {
         /// <summary>
         ///   Looks up a localized string similar to Expected RouteData.DataTokens[{0}] to have value {1}, but found {2}..
         /// </summary>
-        public static string RouteData_DataTokens_HaveValue {
+        internal static string RouteData_DataTokens_HaveValue {
             get {
                 return ResourceManager.GetString("RouteData_DataTokens_HaveValue", resourceCulture);
             }
@@ -108,7 +126,7 @@ namespace FluentAssertions.AspNetCore.Mvc {
         /// <summary>
         ///   Looks up a localized string similar to RouteData.Values does not contain key {0}..
         /// </summary>
-        public static string RouteData_Values_ContainsKey {
+        internal static string RouteData_Values_ContainsKey {
             get {
                 return ResourceManager.GetString("RouteData_Values_ContainsKey", resourceCulture);
             }
@@ -117,7 +135,7 @@ namespace FluentAssertions.AspNetCore.Mvc {
         /// <summary>
         ///   Looks up a localized string similar to Expected RouteData.Values[{0}] to have value {1}, but found {2}..
         /// </summary>
-        public static string RouteData_Values_HaveValue {
+        internal static string RouteData_Values_HaveValue {
             get {
                 return ResourceManager.GetString("RouteData_Values_HaveValue", resourceCulture);
             }
@@ -126,7 +144,7 @@ namespace FluentAssertions.AspNetCore.Mvc {
         /// <summary>
         ///   Looks up a localized string similar to Expected status code to be {0} but found {1}..
         /// </summary>
-        public static string StatusCodeResultBase_WithStatusCode {
+        internal static string StatusCodeResultBase_WithStatusCode {
             get {
                 return ResourceManager.GetString("StatusCodeResultBase_WithStatusCode", resourceCulture);
             }
@@ -135,7 +153,7 @@ namespace FluentAssertions.AspNetCore.Mvc {
         /// <summary>
         ///   Looks up a localized string similar to Expected MasterName to be {0} but found {1}..
         /// </summary>
-        public static string ViewResult_MasterName {
+        internal static string ViewResult_MasterName {
             get {
                 return ResourceManager.GetString("ViewResult_MasterName", resourceCulture);
             }
@@ -144,7 +162,7 @@ namespace FluentAssertions.AspNetCore.Mvc {
         /// <summary>
         ///   Looks up a localized string similar to Expected Model to be of type {0}, but no Model was supplied..
         /// </summary>
-        public static string ViewResultBase_NullModel {
+        internal static string ViewResultBase_NullModel {
             get {
                 return ResourceManager.GetString("ViewResultBase_NullModel", resourceCulture);
             }
@@ -153,7 +171,7 @@ namespace FluentAssertions.AspNetCore.Mvc {
         /// <summary>
         ///   Looks up a localized string similar to ViewData does not contain key of {0}..
         /// </summary>
-        public static string ViewResultBase_ViewData_ContainsKey {
+        internal static string ViewResultBase_ViewData_ContainsKey {
             get {
                 return ResourceManager.GetString("ViewResultBase_ViewData_ContainsKey", resourceCulture);
             }
@@ -162,7 +180,7 @@ namespace FluentAssertions.AspNetCore.Mvc {
         /// <summary>
         ///   Looks up a localized string similar to Expected ViewData[{0}] to have value {1}, but found {2}..
         /// </summary>
-        public static string ViewResultBase_ViewData_HaveValue {
+        internal static string ViewResultBase_ViewData_HaveValue {
             get {
                 return ResourceManager.GetString("ViewResultBase_ViewData_HaveValue", resourceCulture);
             }
@@ -171,7 +189,7 @@ namespace FluentAssertions.AspNetCore.Mvc {
         /// <summary>
         ///   Looks up a localized string similar to Expected ViewName to be {0} but found {1}..
         /// </summary>
-        public static string ViewResultBase_ViewName {
+        internal static string ViewResultBase_ViewName {
             get {
                 return ResourceManager.GetString("ViewResultBase_ViewName", resourceCulture);
             }
@@ -180,7 +198,7 @@ namespace FluentAssertions.AspNetCore.Mvc {
         /// <summary>
         ///   Looks up a localized string similar to Expected default view, but view {0} was rendered..
         /// </summary>
-        public static string ViewResultBase_WithDefaultViewName {
+        internal static string ViewResultBase_WithDefaultViewName {
             get {
                 return ResourceManager.GetString("ViewResultBase_WithDefaultViewName", resourceCulture);
             }

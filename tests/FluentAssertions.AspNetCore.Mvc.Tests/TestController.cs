@@ -57,5 +57,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             ViewData["key2"] = "value2";
             return View();
         }
+
+        public JsonResult JsonSimpleValue()
+        {
+            return Json(data: "hello");
+        }
     }
 }
