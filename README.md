@@ -1,7 +1,7 @@
 # Fluent Assertions for ASP.NET Core MVC
 [![Build status](https://ci.appveyor.com/api/projects/status/rt5vutjvy2no75cv?svg=true)](https://ci.appveyor.com/project/kevinkuszyk/fluentassertions-aspnetcore-mvc)
 
-This repro contains the Fluent Assertions extensions for ASP.NET Core MVC.  It is maintained by [@kevinkuszyk](https://github.com/kevinkuszyk).
+This repo contains the Fluent Assertions extensions for ASP.NET Core MVC.  It is maintained by [@kevinkuszyk](https://github.com/kevinkuszyk).
 
 ## Installation
 
@@ -35,7 +35,7 @@ public void Index_Action_Returns_View()
 
 ## Building
 
-Simply clone this repro and build the `FluentAssertions.AspNetCore.Mvc.sln` solution.
+Simply clone this repo and build the `FluentAssertions.AspNetCore.Mvc.sln` solution.
 
 [fa-frameworks]: https://github.com/dennisdoomen/fluentassertions/wiki/Documentation#supported-test-frameworks
 [nuget-mvc-core]: https://www.nuget.org/packages/FluentAssertions.AspNetCore.Mvc
