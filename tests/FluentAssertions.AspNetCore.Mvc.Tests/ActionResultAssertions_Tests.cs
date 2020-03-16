@@ -22,6 +22,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             ActionResult result = new ViewResult();
             Action a = () => result.Should().BeContentResult();
+
             a.Should().Throw<Exception>()
                 .WithMessage("Expected ActionResult to be \"ContentResult\", but found \"ViewResult\"");
         }
@@ -30,6 +31,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeEmpty_GivenEmpty_ShouldPass()
         {
             ActionResult result = new EmptyResult();
+
             result.Should().BeEmptyResult();
         }
 
@@ -38,14 +40,36 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             ActionResult result = new ViewResult();
             Action a = () => result.Should().BeEmptyResult();
+
             a.Should().Throw<Exception>()
                 .WithMessage("Expected ActionResult to be \"EmptyResult\", but found \"ViewResult\"");
         }
 
         [Fact]
+        public void BeFileResult_GivenFileResult_ShouldPass()
+        {
+            ActionResult result = new FileContentResult(Array.Empty<byte>(), "text/plain");
+
+            result.Should()
+                .BeFileResult();
+        }
+
+        [Fact]
+        public void BeFileResult_GivenNotFileResult_ShouldFail()
+        {
+            ActionResult result = new ViewResult();
+            Action a = () => result.Should().BeFileResult();
+
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ActionResult to be \"FileResult\", but found \"ViewResult\"");
+        }
+
+
+        [Fact]
         public void BeJson_GivenJson_ShouldPass()
         {
             ActionResult result = new JsonResult(new object());
+
             result.Should()
                 .BeJsonResult();
         }
@@ -55,6 +79,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             ActionResult result = new ViewResult();
             Action a = () => result.Should().BeJsonResult();
+
             a.Should().Throw<Exception>()
                 .WithMessage("Expected ActionResult to be \"JsonResult\", but found \"ViewResult\"");
         }
@@ -63,6 +88,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeRedirectToRoute_GivenRedirectToRoute_ShouldPass()
         {
             ActionResult result = new RedirectToRouteResult(new RouteValueDictionary());
+
             result.Should().BeRedirectToRouteResult();
         }
 
@@ -71,6 +97,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             ActionResult result = new ViewResult();
             Action a = () => result.Should().BeRedirectToRouteResult();
+
             a.Should().Throw<Exception>()
                 .WithMessage("Expected ActionResult to be \"RedirectToRouteResult\", but found \"ViewResult\"");
         }
@@ -79,6 +106,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeRedirect_GivenRedirect_ShouldPass()
         {
             ActionResult result = new RedirectResult("/");
+
             result.Should().BeRedirectResult();
         }
 
@@ -87,6 +115,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             ActionResult result = new ViewResult();
             Action a = () => result.Should().BeRedirectResult();
+
             a.Should().Throw<Exception>()
                 .WithMessage("Expected ActionResult to be \"RedirectResult\", but found \"ViewResult\"");
         }
@@ -95,6 +124,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BePartialView_GivenPartial_ShouldPass()
         {
             ActionResult result = new PartialViewResult();
+
             result.Should().BePartialViewResult();
         }
 
@@ -103,6 +133,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             ActionResult result = new RedirectResult("/");
             Action a = () => result.Should().BePartialViewResult();
+
             a.Should().Throw<Exception>()
                 .WithMessage("Expected ActionResult to be \"PartialViewResult\", but found \"RedirectResult\"");
         }
@@ -111,6 +142,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeView_GivenView_ShouldPass()
         {
             ActionResult result = new ViewResult();
+
             result.Should().BeViewResult();
         }
 
@@ -119,6 +151,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             ActionResult result = new RedirectResult("/");
             Action a = () => result.Should().BeViewResult();
+
             a.Should().Throw<Exception>()
                 .WithMessage("Expected ActionResult to be \"ViewResult\", but found \"RedirectResult\"");
         }
@@ -127,6 +160,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeStatusCodeResult_GivenStatusCodeResult_ShouldPass()
         {
             ActionResult result = new StatusCodeResult(200);
+
             result.Should().BeStatusCodeResult();
         }
 
@@ -135,6 +169,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             ActionResult result = new RedirectResult("/");
             Action a = () => result.Should().BeStatusCodeResult();
+
             a.Should().Throw<Exception>()
                 .WithMessage("Expected ActionResult to be \"StatusCodeResult\", but found \"RedirectResult\"");
         }
