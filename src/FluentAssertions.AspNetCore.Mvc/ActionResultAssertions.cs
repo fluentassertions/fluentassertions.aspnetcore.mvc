@@ -108,6 +108,27 @@ namespace FluentAssertions.AspNetCore.Mvc
         }
 
         /// <summary>
+        /// Asserts that the subject is an <see cref="FileResult"/>.
+        /// </summary>
+        public FileContentResultAssertions BeFileContentResult()
+        {
+            return BeFileContentResult(string.Empty, null);
+        }
+
+        /// <summary>
+        /// Asserts that the subject is an <see cref="FileResult"/>.
+        /// </summary>
+        public FileContentResultAssertions BeFileContentResult(string reason, params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is FileContentResult)
+                .FailWith(Constants.CommonFailMessage, typeof(FileContentResult).Name, Subject.GetType().Name);
+
+            return new FileContentResultAssertions(Subject as FileContentResult);
+        }
+
+        /// <summary>
         /// Asserts that the subject is an <see cref="JsonResult"/>.
         /// </summary>
         public JsonResultAssertions BeJsonResult()

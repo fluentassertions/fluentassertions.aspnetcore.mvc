@@ -11,7 +11,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
     public class FileResultAssertions_Tests
     {
         [Fact]
-        public void WithContentType_GivenValue_ShouldPass()
+        public void WithContentType_GivenExpectedValue_ShouldPass()
         {
             ActionResult result = new FileContentResult(Array.Empty<byte>(), "text/plain");
 
@@ -33,7 +33,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         }
 
         [Fact]
-        public void WithFileDownloadName_GivenValue_ShouldPass()
+        public void WithFileDownloadName_GivenExpectedValue_ShouldPass()
         {
             ActionResult result = new FileContentResult(Array.Empty<byte>(), "text/plain")
             {
@@ -61,7 +61,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         }
 
         [Fact]
-        public void WithLastModified_GivenValue_ShouldPass()
+        public void WithLastModified_GivenExpectedValue_ShouldPass()
         {
             ActionResult result = new FileContentResult(Array.Empty<byte>(), "text/plain")
             {
@@ -90,7 +90,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
 
         [Fact]
-        public void WithEntityTag_GivenValue_ShouldPass()
+        public void WithEntityTag_GivenExpectedValue_ShouldPass()
         {
             var actualValue = new EntityTagHeaderValue("\"sha256 value 1\"");
             var expectedValue = new EntityTagHeaderValue("\"sha256 value 1\"");

@@ -13,16 +13,22 @@ namespace FluentAssertions.AspNetCore.Mvc
     [DebuggerNonUserCode]
     public class FileResultAssertions : ObjectAssertions
     {
+        #region Public Constructors
+
         public FileResultAssertions(FileResult fileResult)
             : base(fileResult)
         {
         }
+
+        #endregion
 
         #region Private Properties
 
         private FileResult FileResultSubject => (FileResult)Subject;
 
         #endregion Private Properties
+
+        #region Public Methods
 
         /// <summary>
         ///     Asserts that the content type is the expected content type.
@@ -115,5 +121,7 @@ namespace FluentAssertions.AspNetCore.Mvc
                 .FailWith(FailureMessages.CommonFailMessage, "FileResult.LastModified", expectedLastModified, actualLastModified);
             return this;
         }
+
+        #endregion
     }
 }

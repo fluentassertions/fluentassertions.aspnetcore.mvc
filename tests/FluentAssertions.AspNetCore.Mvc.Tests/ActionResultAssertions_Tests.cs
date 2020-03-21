@@ -64,6 +64,24 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithMessage("Expected ActionResult to be \"FileResult\", but found \"ViewResult\"");
         }
 
+        [Fact]
+        public void BeFileContentResult_GivenFileContentResult_ShouldPass()
+        {
+            ActionResult result = new FileContentResult(Array.Empty<byte>(), "text/plain");
+
+            result.Should()
+                .BeFileContentResult();
+        }
+
+        [Fact]
+        public void BeFileContentResult_GivenNotFileContentResult_ShouldFail()
+        {
+            ActionResult result = new ViewResult();
+            Action a = () => result.Should().BeFileContentResult();
+
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ActionResult to be \"FileContentResult\", but found \"ViewResult\"");
+        }
 
         [Fact]
         public void BeJson_GivenJson_ShouldPass()
