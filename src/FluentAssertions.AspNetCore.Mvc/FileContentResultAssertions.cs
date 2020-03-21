@@ -1,6 +1,7 @@
 ﻿using FluentAssertions.Execution;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 
 namespace FluentAssertions.AspNetCore.Mvc
 {
@@ -18,6 +19,17 @@ namespace FluentAssertions.AspNetCore.Mvc
         }
 
         #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        ///     The <see cref="FileContentResult.FileContents">FileContents</see> on the <see cref="FileContentResult"/>.
+        /// </summary>
+        [SuppressMessage("Performance", "CA1819:Properties should not return arrays",
+            Justification = "It needs to return the same instance as FileContentResult")]
+        public byte[] FileContents => FileContentResultSubject.FileContents;
+
+        #endregion Private Properties
 
         #region Private Properties
 

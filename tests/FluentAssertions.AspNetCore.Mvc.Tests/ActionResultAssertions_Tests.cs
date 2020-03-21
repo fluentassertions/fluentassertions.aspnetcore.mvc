@@ -1,3 +1,4 @@
+using FluentAssertions.AspNetCore.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System;
@@ -48,7 +49,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         [Fact]
         public void BeFileResult_GivenFileResult_ShouldPass()
         {
-            ActionResult result = new FileContentResult(Array.Empty<byte>(), "text/plain");
+            ActionResult result = TestDataGenerator.CreateFileContentResult();
 
             result.Should()
                 .BeFileResult();
@@ -67,7 +68,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         [Fact]
         public void BeFileContentResult_GivenFileContentResult_ShouldPass()
         {
-            ActionResult result = new FileContentResult(Array.Empty<byte>(), "text/plain");
+            ActionResult result = TestDataGenerator.CreateFileContentResult();
 
             result.Should()
                 .BeFileContentResult();
@@ -81,6 +82,25 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             a.Should().Throw<Exception>()
                 .WithMessage("Expected ActionResult to be \"FileContentResult\", but found \"ViewResult\"");
+        }
+
+        [Fact]
+        public void BeFileStreamResult_GivenFileStreamResult_ShouldPass()
+        {
+            ActionResult result = TestDataGenerator.CreateFileStreamResult();
+
+            result.Should()
+                .BeFileStreamResult();
+        }
+
+        [Fact]
+        public void BeFileStreamResult_GivenNotFileStreamResult_ShouldFail()
+        {
+            ActionResult result = new ViewResult();
+            Action a = () => result.Should().BeFileStreamResult();
+
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ActionResult to be \"FileStreamResult\", but found \"ViewResult\"");
         }
 
         [Fact]

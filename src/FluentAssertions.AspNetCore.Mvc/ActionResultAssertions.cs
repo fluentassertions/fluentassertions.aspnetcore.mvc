@@ -1,6 +1,7 @@
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Diagnostics;
 
 namespace FluentAssertions.AspNetCore.Mvc
@@ -108,7 +109,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         }
 
         /// <summary>
-        /// Asserts that the subject is an <see cref="FileResult"/>.
+        /// Asserts that the subject is an <see cref="FileContentResult"/>.
         /// </summary>
         public FileContentResultAssertions BeFileContentResult()
         {
@@ -116,7 +117,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         }
 
         /// <summary>
-        /// Asserts that the subject is an <see cref="FileResult"/>.
+        /// Asserts that the subject is an <see cref="FileContentResult"/>.
         /// </summary>
         public FileContentResultAssertions BeFileContentResult(string reason, params object[] reasonArgs)
         {
@@ -126,6 +127,28 @@ namespace FluentAssertions.AspNetCore.Mvc
                 .FailWith(Constants.CommonFailMessage, typeof(FileContentResult).Name, Subject.GetType().Name);
 
             return new FileContentResultAssertions(Subject as FileContentResult);
+        }
+
+        /// <summary>
+        /// Asserts that the subject is an <see cref="FileStreamResult"/>.
+        /// </summary>
+        internal FileStreamResultAssertions BeFileStreamResult()
+        {
+            return BeFileStreamResult(string.Empty, null);
+
+        }
+
+        /// <summary>
+        /// Asserts that the subject is an <see cref="FileStreamResult"/>.
+        /// </summary>
+        internal FileStreamResultAssertions BeFileStreamResult(string reason, params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is FileStreamResult)
+                .FailWith(Constants.CommonFailMessage, typeof(FileStreamResult).Name, Subject.GetType().Name);
+
+            return new FileStreamResultAssertions(Subject as FileStreamResult);
         }
 
         /// <summary>
