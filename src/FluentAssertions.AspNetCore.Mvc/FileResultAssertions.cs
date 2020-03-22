@@ -110,7 +110,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <param name="reasonArgs">
         ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
         /// </param>
-        public FileResultAssertions WithLastModified(DateTimeOffset expectedLastModified, string reason = "",
+        public FileResultAssertions WithLastModified(DateTimeOffset? expectedLastModified, string reason = "",
             params object[] reasonArgs)
         {
             var actualLastModified = FileResultSubject.LastModified;

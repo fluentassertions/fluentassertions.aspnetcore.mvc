@@ -57,23 +57,30 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithMessage(failureMessage);
         }
 
-        [Fact]
-        public void WithLastModified_GivenExpectedValue_ShouldPass()
+        [Theory]
+        [InlineData("2009-06-15 13:45:30 -7h")]
+        [InlineData(null)]
+        public void WithLastModified_GivenExpectedValue_ShouldPass(string dateText)
         {
             var result = TestDataGenerator.CreateFileContentResult();
-            result.LastModified = DateTimeOffset.Parse("2009-06-15T13:45:30.0000000-07:00");
+            result.LastModified = TestDataGenerator.CreateDateTimeOffset(dateText);
 
-            result.Should().BeFileResult().WithLastModified(DateTimeOffset.Parse("2009-06-15T13:45:30.0000000-07:00"));
+            result.Should().BeFileResult()
+                .WithLastModified(TestDataGenerator.CreateDateTimeOffset(dateText));
         }
 
-        [Fact]
-        public void WithLastModified_GivenUnexpected_ShouldFail()
+        [Theory]
+        [InlineData("2010-07-16 14:46:31 -6h", "2009-06-15 13:45:30 -7h")]
+        [InlineData(null, "2009-06-15 13:45:30 -7h")]
+        [InlineData("2010-07-16 14:46:31 -6h", null)]
+        public void WithLastModified_GivenUnexpected_ShouldFail(
+            string expected, string actual)
         {
-            var actualValue = DateTimeOffset.Parse("2009-06-15T13:45:30.0000000-07:00");
-            var expectedValue = DateTimeOffset.Parse("2010-07-16T14:46:31.0000000-06:00");
+            var actualValue = TestDataGenerator.CreateDateTimeOffset(actual);
+            var expectedValue = TestDataGenerator.CreateDateTimeOffset(expected);
             var result = TestDataGenerator.CreateFileContentResult();
             result.LastModified = actualValue;
-            var failureMessage = "Expected \"FileResult.LastModified\" to be '<2010-07-16 14:46:31 -6h>' but found '<2009-06-15 13:45:30 -7h>'";
+            var failureMessage = $"Expected \"FileResult.LastModified\" to be '<{expected ?? "null"}>' but found '<{actual ?? "null"}>'";
 
             Action a = () => result.Should().BeFileResult().WithLastModified(expectedValue);
 

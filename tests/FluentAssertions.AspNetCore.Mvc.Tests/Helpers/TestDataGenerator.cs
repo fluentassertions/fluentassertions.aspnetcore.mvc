@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Globalization;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace FluentAssertions.AspNetCore.Mvc.Tests.Helpers
 {
@@ -45,5 +48,19 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests.Helpers
             var bytes = Encoding.UTF8.GetBytes(content);
             return bytes;
         }
+
+        public static DateTimeOffset? CreateDateTimeOffset(string dateText)
+        {
+            if (dateText == null)
+                return null;
+            var match = dateRegex.Match(dateText);
+            return new DateTimeOffset(
+                DateTime.Parse(match.Groups[1].Value, CultureInfo.InvariantCulture),
+                TimeSpan.FromHours(int.Parse(match.Groups[2].Value, CultureInfo.InvariantCulture)));
+        }
+
+        private static readonly Regex dateRegex
+            = new Regex(@"^(\d{4}-\d{2}-\d{2} \d{1,2}:\d{2}:\d{2}) (-?\d+)h$");
+
     }
 }
