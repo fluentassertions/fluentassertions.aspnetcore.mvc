@@ -1,7 +1,6 @@
 ﻿using FluentAssertions.AspNetCore.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Text;
 using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Tests

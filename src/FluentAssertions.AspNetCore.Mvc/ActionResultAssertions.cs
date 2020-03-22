@@ -98,6 +98,13 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <summary>
         /// Asserts that the subject is an <see cref="FileResult"/>.
         /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// </param>
         public FileResultAssertions BeFileResult(string reason, params object[] reasonArgs)
         {
             Execute.Assertion
@@ -119,6 +126,13 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <summary>
         /// Asserts that the subject is an <see cref="FileContentResult"/>.
         /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// </param>
         public FileContentResultAssertions BeFileContentResult(string reason, params object[] reasonArgs)
         {
             Execute.Assertion
@@ -141,6 +155,13 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <summary>
         /// Asserts that the subject is an <see cref="FileStreamResult"/>.
         /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// </param>
         internal FileStreamResultAssertions BeFileStreamResult(string reason, params object[] reasonArgs)
         {
             Execute.Assertion
@@ -177,6 +198,34 @@ namespace FluentAssertions.AspNetCore.Mvc
                 .FailWith(Constants.CommonFailMessage, typeof(JsonResult).Name, Subject.GetType().Name);
 
             return new JsonResultAssertions(Subject as JsonResult);
+        }
+
+        /// <summary>
+        /// Asserts that the subject is an <see cref="PhysicalFileResult"/>.
+        /// </summary>
+        internal PhysicalFileResultAssertions BePhysicalFileResult()
+        {
+            return BePhysicalFileResult(string.Empty, null);
+        }
+
+        /// <summary>
+        /// Asserts that the subject is an <see cref="FileStreamResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// </param>
+        internal PhysicalFileResultAssertions BePhysicalFileResult(string reason, params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is PhysicalFileResult)
+                .FailWith(Constants.CommonFailMessage, typeof(PhysicalFileResult).Name, Subject.GetType().Name);
+
+            return new PhysicalFileResultAssertions(Subject as PhysicalFileResult);
         }
 
         /// <summary>

@@ -40,7 +40,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         #region Public Methods
 
         /// <summary>
-        ///     Asserts that the file contents is the expected file contents.
+        ///     Asserts that the file contents is the expected bytes.
         /// </summary>
         /// <param name="expectedFileContents">The expected file contents.</param>
         /// <param name="reason">

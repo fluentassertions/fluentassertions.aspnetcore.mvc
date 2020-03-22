@@ -6,19 +6,24 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests.Helpers
 {
     public static class TestDataGenerator
     {
-        public static FileContentResult CreateFileContentResult(string content = "")
+        public static FileContentResult CreateFileContentResult(string content = "", string contentType = "text/plain")
         {
-            return CreateFileContentResult(CreateBytes(content));
+            return CreateFileContentResult(CreateBytes(content), contentType);
         }
 
-        public static FileContentResult CreateFileContentResult(byte[] fileContents)
+        public static FileContentResult CreateFileContentResult(byte[] fileContents, string contentType = "text/plain")
         {
-            return new FileContentResult(fileContents, "text/plain");
+            return new FileContentResult(fileContents, contentType);
         }
 
         public static FileStreamResult CreateFileStreamResult(string content = "")
         {
             return CreateFileStreamResult(CreateStream(content));
+        }
+
+        public static PhysicalFileResult CreatePhysicalFileResult(string fileName = "c:\\temp.txt")
+        {
+            return new PhysicalFileResult(fileName, "text/plain");
         }
 
         public static FileStreamResult CreateFileStreamResult(Stream stream)

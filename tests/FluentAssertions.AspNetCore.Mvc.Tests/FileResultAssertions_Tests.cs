@@ -1,9 +1,8 @@
-﻿using FluentAssertions.Mvc.Tests.Helpers;
+﻿using FluentAssertions.AspNetCore.Mvc.Tests.Helpers;
+using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using Microsoft.Net.Http.Headers;
-using System.Text;
+using System;
 using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Tests
@@ -13,9 +12,11 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         [Fact]
         public void WithContentType_GivenExpectedValue_ShouldPass()
         {
-            ActionResult result = new FileContentResult(Array.Empty<byte>(), "text/plain");
+            var actualValue = "text/plain";
+            var expectedValue = string.Copy(actualValue);
+            ActionResult result = TestDataGenerator.CreateFileContentResult(contentType: actualValue);
 
-            result.Should().BeFileResult().WithContentType("text/plain");
+            result.Should().BeFileResult().WithContentType(expectedValue);
         }
 
         [Fact]
@@ -23,7 +24,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var actualValue = "text/css";
             var expectedValue = "text/plain";
-            ActionResult result = new FileContentResult(Array.Empty<byte>(), actualValue);
+            ActionResult result = TestDataGenerator.CreateFileContentResult(contentType: actualValue);
             var failureMessage = FailureMessageHelper.Format(FailureMessages.CommonFailMessage, "FileResult.ContentType", expectedValue, actualValue);
 
             Action a = () => result.Should().BeFileResult().WithContentType(expectedValue);
@@ -35,10 +36,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         [Fact]
         public void WithFileDownloadName_GivenExpectedValue_ShouldPass()
         {
-            ActionResult result = new FileContentResult(Array.Empty<byte>(), "text/plain")
-            {
-                FileDownloadName = "file.txt"
-            };
+            var result = TestDataGenerator.CreateFileContentResult();
+            result.FileDownloadName = "file.txt";
 
             result.Should().BeFileResult().WithFileDownloadName("file.txt");
         }
@@ -47,11 +46,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithFileDownloadName_GivenUnexpected_ShouldFail()
         {
             var actualValue = "file2.txt";
-            var expectedValue = "file1.txt";
-            ActionResult result = new FileContentResult(Array.Empty<byte>(), "text/plain")
-            {
-                FileDownloadName = actualValue
-            };
+            var expectedValue = "file1.txt"; 
+            var result = TestDataGenerator.CreateFileContentResult();
+            result.FileDownloadName = actualValue;
             var failureMessage = FailureMessageHelper.Format(FailureMessages.CommonFailMessage, "FileResult.FileDownloadName", expectedValue, actualValue);
 
             Action a = () => result.Should().BeFileResult().WithFileDownloadName(expectedValue);
@@ -63,10 +60,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         [Fact]
         public void WithLastModified_GivenExpectedValue_ShouldPass()
         {
-            ActionResult result = new FileContentResult(Array.Empty<byte>(), "text/plain")
-            {
-                LastModified = DateTimeOffset.Parse("2009-06-15T13:45:30.0000000-07:00")
-            };
+            var result = TestDataGenerator.CreateFileContentResult();
+            result.LastModified = DateTimeOffset.Parse("2009-06-15T13:45:30.0000000-07:00");
 
             result.Should().BeFileResult().WithLastModified(DateTimeOffset.Parse("2009-06-15T13:45:30.0000000-07:00"));
         }
@@ -76,10 +71,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var actualValue = DateTimeOffset.Parse("2009-06-15T13:45:30.0000000-07:00");
             var expectedValue = DateTimeOffset.Parse("2010-07-16T14:46:31.0000000-06:00");
-            ActionResult result = new FileContentResult(Array.Empty<byte>(), "text/plain")
-            {
-                LastModified = actualValue
-            };
+            var result = TestDataGenerator.CreateFileContentResult();
+            result.LastModified = actualValue;
             var failureMessage = "Expected \"FileResult.LastModified\" to be '<2010-07-16 14:46:31 -6h>' but found '<2009-06-15 13:45:30 -7h>'";
 
             Action a = () => result.Should().BeFileResult().WithLastModified(expectedValue);
@@ -94,10 +87,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var actualValue = new EntityTagHeaderValue("\"sha256 value 1\"");
             var expectedValue = new EntityTagHeaderValue("\"sha256 value 1\"");
-            ActionResult result = new FileContentResult(Array.Empty<byte>(), "text/plain")
-            {
-                EntityTag = actualValue
-            };
+            var result = TestDataGenerator.CreateFileContentResult();
+            result.EntityTag = actualValue;
 
             result.Should().BeFileResult().WithEntityTag(expectedValue);
         }
@@ -107,10 +98,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var actualValue = new EntityTagHeaderValue("\"sha256 value 1\"", true);
             var expectedValue = new EntityTagHeaderValue("\"sha256 value 2\"", false);
-            ActionResult result = new FileContentResult(Array.Empty<byte>(), "text/plain")
-            {
-                EntityTag = actualValue
-            };
+            var result = TestDataGenerator.CreateFileContentResult();
+            result.EntityTag = actualValue;
             var failureMessage = "Expected \"FileResult.EntityTag\" to be '\"sha256 value 2\"' but found 'W/\"sha256 value 1\"'";
 
             Action a = () => result.Should().BeFileResult().WithEntityTag(expectedValue);

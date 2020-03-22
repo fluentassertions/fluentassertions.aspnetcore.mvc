@@ -104,6 +104,25 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         }
 
         [Fact]
+        public void BePhysicalFileResult_GivenPhysicalFileResult_ShouldPass()
+        {
+            ActionResult result = TestDataGenerator.CreatePhysicalFileResult();
+
+            result.Should()
+                .BePhysicalFileResult();
+        }
+
+        [Fact]
+        public void BePhysicalFileResult_GivenNotPhysicalFileResult_ShouldFail()
+        {
+            ActionResult result = new ViewResult();
+            Action a = () => result.Should().BePhysicalFileResult();
+
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ActionResult to be \"PhysicalFileResult\", but found \"ViewResult\"");
+        }
+
+        [Fact]
         public void BeJson_GivenJson_ShouldPass()
         {
             ActionResult result = new JsonResult(new object());

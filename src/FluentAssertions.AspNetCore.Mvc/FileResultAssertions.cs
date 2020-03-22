@@ -31,7 +31,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         #region Public Methods
 
         /// <summary>
-        ///     Asserts that the content type is the expected content type.
+        ///     Asserts that the content type is the expected string.
         /// </summary>
         /// <param name="expectedContentType">The expected content type.</param>
         /// <param name="reason">
@@ -77,7 +77,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         }
 
         /// <summary>
-        ///     Asserts that the file download name is the expected value.
+        ///     Asserts that the file download name is the expected string.
         /// </summary>
         /// <param name="expectedFileDownloadName">The expected file download name.</param>
         /// <param name="reason">
@@ -100,7 +100,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         }
 
         /// <summary>
-        ///     Asserts that the last modified is the expected value.
+        ///     Asserts that the last modified is the expected DateTimeOffset.
         /// </summary>
         /// <param name="expectedFileDownloadName">The expected last modified value.</param>
         /// <param name="reason">
