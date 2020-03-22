@@ -123,6 +123,26 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         }
 
         [Fact]
+        public void BeVirtualFileResult_GivenVirtualFileResult_ShouldPass()
+        {
+            ActionResult result = TestDataGenerator.CreateVirtualFileResult();
+
+            result.Should()
+                .BeVirtualFileResult();
+        }
+
+        [Fact]
+        public void BeVirtualFileResult_GivenNotVirtualFileResult_ShouldFail()
+        {
+            ActionResult result = new ViewResult();
+            Action a = () => result.Should().BeVirtualFileResult();
+
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ActionResult to be \"VirtualFileResult\", but found \"ViewResult\"");
+        }
+
+
+        [Fact]
         public void BeJson_GivenJson_ShouldPass()
         {
             ActionResult result = new JsonResult(new object());

@@ -5,7 +5,7 @@ using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
-    public class PhysicalFileResultAssertions_Tests
+    public class VirtualFileResultAssertions_Tests
     {
 
         [Fact]
@@ -13,10 +13,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var actualFileName = "Test1.txt";
             var expectedFileName = string.Copy(actualFileName);
-            ActionResult result = TestDataGenerator.CreatePhysicalFileResult(actualFileName);
+            ActionResult result = TestDataGenerator.CreateVirtualFileResult(actualFileName);
 
             result.Should()
-                .BePhysicalFileResult()
+                .BeVirtualFileResult()
                 .WithFileName(expectedFileName);
         }
 
@@ -25,11 +25,11 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             string actualFileName = "Test1.txt";
             string expectedFileName = "Test2.txt";
-            ActionResult result = TestDataGenerator.CreatePhysicalFileResult(actualFileName);
-            var failureMessage = "Expected \"PhysicalFileResult.FileName\" to be '\"Test2.txt\"' but found '\"Test1.txt\"'";
+            ActionResult result = TestDataGenerator.CreateVirtualFileResult(actualFileName);
+            var failureMessage = "Expected \"VirtualFileResult.FileName\" to be '\"Test2.txt\"' but found '\"Test1.txt\"'";
 
             Action a = () => result.Should()
-                .BePhysicalFileResult()
+                .BeVirtualFileResult()
                 .WithFileName(expectedFileName);
 
             a.Should().Throw<Exception>()
@@ -37,12 +37,12 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         }
 
         [Fact]
-        public void FileName_GivenPhysicalFileResult_ShouldHaveTheFileName()
+        public void FileName_GivenVirtualFileResult_ShouldHaveTheFileName()
         {
-            var result = TestDataGenerator.CreatePhysicalFileResult();
+            var result = TestDataGenerator.CreateVirtualFileResult();
 
             result.Should()
-                .BePhysicalFileResult()
+                .BeVirtualFileResult()
                 .FileName
                 .Should().BeSameAs(result.FileName);
         }

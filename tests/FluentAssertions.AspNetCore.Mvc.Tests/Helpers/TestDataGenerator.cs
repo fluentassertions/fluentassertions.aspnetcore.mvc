@@ -29,6 +29,11 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests.Helpers
             return new PhysicalFileResult(fileName, "text/plain");
         }
 
+        public static VirtualFileResult CreateVirtualFileResult(string fileName = "~/temp.txt")
+        {
+            return new VirtualFileResult(fileName, "text/plain");
+        }
+
         public static FileStreamResult CreateFileStreamResult(Stream stream)
         {
             return new FileStreamResult(stream, "text/plain");
