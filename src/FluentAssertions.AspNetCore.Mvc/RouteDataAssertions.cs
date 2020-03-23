@@ -1,7 +1,7 @@
-﻿using System.Diagnostics;
-using FluentAssertions.Execution;
+﻿using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Routing;
+using System.Diagnostics;
 
 namespace FluentAssertions.AspNetCore.Mvc
 {
