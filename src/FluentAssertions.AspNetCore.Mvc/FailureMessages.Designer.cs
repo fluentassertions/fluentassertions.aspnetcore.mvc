@@ -88,6 +88,24 @@ namespace FluentAssertions.AspNetCore.Mvc {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expected &quot;FileContentResult.FileContents&quot; to have {0} byte(s), but found {1}..
+        /// </summary>
+        internal static string FileContentResult_WithFileContents_LengthFail {
+            get {
+                return ResourceManager.GetString("FileContentResult_WithFileContents_LengthFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected &quot;FileContentResult.FileContents[{0}]&quot; to be {1:x2}, but found {2:x2}..
+        /// </summary>
+        internal static string FileContentResult_WithFileContents_MatchFail {
+            get {
+                return ResourceManager.GetString("FileContentResult_WithFileContents_MatchFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RedirectToActionResult.RouteValues does not contain key {0}..
         /// </summary>
         internal static string RedirectToActionResult_RouteValues_ContainsKey {

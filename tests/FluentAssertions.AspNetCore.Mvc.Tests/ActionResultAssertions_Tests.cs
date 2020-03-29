@@ -1,3 +1,4 @@
+using FluentAssertions.AspNetCore.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System;
@@ -22,6 +23,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             ActionResult result = new ViewResult();
             Action a = () => result.Should().BeContentResult();
+
             a.Should().Throw<Exception>()
                 .WithMessage("Expected ActionResult to be \"ContentResult\", but found \"ViewResult\"");
         }
@@ -30,6 +32,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeEmpty_GivenEmpty_ShouldPass()
         {
             ActionResult result = new EmptyResult();
+
             result.Should().BeEmptyResult();
         }
 
@@ -38,14 +41,112 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             ActionResult result = new ViewResult();
             Action a = () => result.Should().BeEmptyResult();
+
             a.Should().Throw<Exception>()
                 .WithMessage("Expected ActionResult to be \"EmptyResult\", but found \"ViewResult\"");
         }
 
         [Fact]
+        public void BeFileResult_GivenFileResult_ShouldPass()
+        {
+            ActionResult result = TestDataGenerator.CreateFileContentResult();
+
+            result.Should()
+                .BeFileResult();
+        }
+
+        [Fact]
+        public void BeFileResult_GivenNotFileResult_ShouldFail()
+        {
+            ActionResult result = new ViewResult();
+            Action a = () => result.Should().BeFileResult();
+
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ActionResult to be \"FileResult\", but found \"ViewResult\"");
+        }
+
+        [Fact]
+        public void BeFileContentResult_GivenFileContentResult_ShouldPass()
+        {
+            ActionResult result = TestDataGenerator.CreateFileContentResult();
+
+            result.Should()
+                .BeFileContentResult();
+        }
+
+        [Fact]
+        public void BeFileContentResult_GivenNotFileContentResult_ShouldFail()
+        {
+            ActionResult result = new ViewResult();
+            Action a = () => result.Should().BeFileContentResult();
+
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ActionResult to be \"FileContentResult\", but found \"ViewResult\"");
+        }
+
+        [Fact]
+        public void BeFileStreamResult_GivenFileStreamResult_ShouldPass()
+        {
+            ActionResult result = TestDataGenerator.CreateFileStreamResult();
+
+            result.Should()
+                .BeFileStreamResult();
+        }
+
+        [Fact]
+        public void BeFileStreamResult_GivenNotFileStreamResult_ShouldFail()
+        {
+            ActionResult result = new ViewResult();
+            Action a = () => result.Should().BeFileStreamResult();
+
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ActionResult to be \"FileStreamResult\", but found \"ViewResult\"");
+        }
+
+        [Fact]
+        public void BePhysicalFileResult_GivenPhysicalFileResult_ShouldPass()
+        {
+            ActionResult result = TestDataGenerator.CreatePhysicalFileResult();
+
+            result.Should()
+                .BePhysicalFileResult();
+        }
+
+        [Fact]
+        public void BePhysicalFileResult_GivenNotPhysicalFileResult_ShouldFail()
+        {
+            ActionResult result = new ViewResult();
+            Action a = () => result.Should().BePhysicalFileResult();
+
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ActionResult to be \"PhysicalFileResult\", but found \"ViewResult\"");
+        }
+
+        [Fact]
+        public void BeVirtualFileResult_GivenVirtualFileResult_ShouldPass()
+        {
+            ActionResult result = TestDataGenerator.CreateVirtualFileResult();
+
+            result.Should()
+                .BeVirtualFileResult();
+        }
+
+        [Fact]
+        public void BeVirtualFileResult_GivenNotVirtualFileResult_ShouldFail()
+        {
+            ActionResult result = new ViewResult();
+            Action a = () => result.Should().BeVirtualFileResult();
+
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ActionResult to be \"VirtualFileResult\", but found \"ViewResult\"");
+        }
+
+
+        [Fact]
         public void BeJson_GivenJson_ShouldPass()
         {
             ActionResult result = new JsonResult(new object());
+
             result.Should()
                 .BeJsonResult();
         }
@@ -55,6 +156,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             ActionResult result = new ViewResult();
             Action a = () => result.Should().BeJsonResult();
+
             a.Should().Throw<Exception>()
                 .WithMessage("Expected ActionResult to be \"JsonResult\", but found \"ViewResult\"");
         }
@@ -63,6 +165,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeRedirectToRoute_GivenRedirectToRoute_ShouldPass()
         {
             ActionResult result = new RedirectToRouteResult(new RouteValueDictionary());
+
             result.Should().BeRedirectToRouteResult();
         }
 
@@ -71,6 +174,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             ActionResult result = new ViewResult();
             Action a = () => result.Should().BeRedirectToRouteResult();
+
             a.Should().Throw<Exception>()
                 .WithMessage("Expected ActionResult to be \"RedirectToRouteResult\", but found \"ViewResult\"");
         }
@@ -79,6 +183,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeRedirect_GivenRedirect_ShouldPass()
         {
             ActionResult result = new RedirectResult("/");
+
             result.Should().BeRedirectResult();
         }
 
@@ -87,6 +192,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             ActionResult result = new ViewResult();
             Action a = () => result.Should().BeRedirectResult();
+
             a.Should().Throw<Exception>()
                 .WithMessage("Expected ActionResult to be \"RedirectResult\", but found \"ViewResult\"");
         }
@@ -95,6 +201,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BePartialView_GivenPartial_ShouldPass()
         {
             ActionResult result = new PartialViewResult();
+
             result.Should().BePartialViewResult();
         }
 
@@ -103,6 +210,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             ActionResult result = new RedirectResult("/");
             Action a = () => result.Should().BePartialViewResult();
+
             a.Should().Throw<Exception>()
                 .WithMessage("Expected ActionResult to be \"PartialViewResult\", but found \"RedirectResult\"");
         }
@@ -111,6 +219,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeView_GivenView_ShouldPass()
         {
             ActionResult result = new ViewResult();
+
             result.Should().BeViewResult();
         }
 
@@ -119,6 +228,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             ActionResult result = new RedirectResult("/");
             Action a = () => result.Should().BeViewResult();
+
             a.Should().Throw<Exception>()
                 .WithMessage("Expected ActionResult to be \"ViewResult\", but found \"RedirectResult\"");
         }
@@ -127,6 +237,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeStatusCodeResult_GivenStatusCodeResult_ShouldPass()
         {
             ActionResult result = new StatusCodeResult(200);
+
             result.Should().BeStatusCodeResult();
         }
 
@@ -135,6 +246,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             ActionResult result = new RedirectResult("/");
             Action a = () => result.Should().BeStatusCodeResult();
+
             a.Should().Throw<Exception>()
                 .WithMessage("Expected ActionResult to be \"StatusCodeResult\", but found \"RedirectResult\"");
         }

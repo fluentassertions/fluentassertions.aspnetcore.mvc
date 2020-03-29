@@ -29,12 +29,12 @@ namespace FluentAssertions.AspNetCore.Mvc
         #region Public Properties
 
         /// <summary>
-        ///     The serializer settings of the JsonResult.
+        ///     The <see cref="JsonResult.SerializerSettings"/> on the <see cref="JsonResult"/>.
         /// </summary>
         public JsonSerializerSettings SerializerSettings => JsonResultSubject.SerializerSettings;
 
         /// <summary>
-        ///     The value on the JsonResult
+        ///     The <see cref="JsonResult.Value">Value</see> on the <see cref="JsonResult"/>.
         /// </summary>
         public object Value => JsonResultSubject.Value;
 

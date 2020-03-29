@@ -1,7 +1,7 @@
-﻿using System;
-using FluentAssertions.Execution;
+﻿using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace FluentAssertions.AspNetCore.Mvc
 {

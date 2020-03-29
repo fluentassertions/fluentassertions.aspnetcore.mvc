@@ -9,7 +9,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
     public class JsonResultAssertions_Tests
     {
         [Fact]
-        public void WithContentType_GivenValue_ShouldPass()
+        public void WithContentType_GivenExpectedValue_ShouldPass()
         {
             ActionResult result = new JsonResult("value")
             {
@@ -37,7 +37,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         }
 
         [Fact]
-        public void WithStatusCode_GivenValue_ShouldPass()
+        public void WithStatusCode_GivenExpectedValue_ShouldPass()
         {
             ActionResult result = new JsonResult("value")
             {
