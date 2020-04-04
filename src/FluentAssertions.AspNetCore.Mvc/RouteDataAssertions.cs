@@ -5,10 +5,10 @@ using System.Diagnostics;
 
 namespace FluentAssertions.AspNetCore.Mvc
 {
-    [DebuggerNonUserCode]
     /// <summary>
     /// Contains a number of methods to assert that a <see cref="RouteData"/> is in the expected state.
     /// </summary>
+    [DebuggerNonUserCode]
     public class RouteDataAssertions : ObjectAssertions
     {
         /// <summary>
