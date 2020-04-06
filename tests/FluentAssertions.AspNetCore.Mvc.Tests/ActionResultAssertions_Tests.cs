@@ -22,10 +22,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeContent_GivenNotContent_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            Action a = () => result.Should().BeContentResult();
+            Action a = () => result.Should().BeContentResult("the reason {0}", 10);
 
             a.Should().Throw<Exception>()
-                .WithMessage("Expected ActionResult to be \"ContentResult\", but found \"ViewResult\"");
+                .WithMessage("Expected result to be Microsoft.AspNetCore.Mvc.ContentResult because the reason 10, but found Microsoft.AspNetCore.Mvc.ViewResult.");
         }
 
         [Fact]
@@ -40,10 +40,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeEmpty_GivenNotEmpty_ShouldPass()
         {
             ActionResult result = new ViewResult();
-            Action a = () => result.Should().BeEmptyResult();
+            Action a = () => result.Should().BeEmptyResult("the reason {0}", 10);
 
             a.Should().Throw<Exception>()
-                .WithMessage("Expected ActionResult to be \"EmptyResult\", but found \"ViewResult\"");
+                .WithMessage("Expected result to be Microsoft.AspNetCore.Mvc.EmptyResult because the reason 10, but found Microsoft.AspNetCore.Mvc.ViewResult.");
         }
 
         [Fact]
@@ -59,10 +59,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeFileResult_GivenNotFileResult_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            Action a = () => result.Should().BeFileResult();
+            Action a = () => result.Should().BeFileResult("the reason {0}", 10);
 
             a.Should().Throw<Exception>()
-                .WithMessage("Expected ActionResult to be \"FileResult\", but found \"ViewResult\"");
+                .WithMessage("Expected result to be Microsoft.AspNetCore.Mvc.FileResult because the reason 10, but found Microsoft.AspNetCore.Mvc.ViewResult.");
         }
 
         [Fact]
@@ -78,10 +78,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeFileContentResult_GivenNotFileContentResult_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            Action a = () => result.Should().BeFileContentResult();
+            Action a = () => result.Should().BeFileContentResult("the reason {0}", 10);
 
             a.Should().Throw<Exception>()
-                .WithMessage("Expected ActionResult to be \"FileContentResult\", but found \"ViewResult\"");
+                .WithMessage("Expected result to be Microsoft.AspNetCore.Mvc.FileContentResult because the reason 10, but found Microsoft.AspNetCore.Mvc.ViewResult.");
         }
 
         [Fact]
@@ -97,10 +97,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeFileStreamResult_GivenNotFileStreamResult_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            Action a = () => result.Should().BeFileStreamResult();
+            Action a = () => result.Should().BeFileStreamResult("the reason {0}", 10);
 
             a.Should().Throw<Exception>()
-                .WithMessage("Expected ActionResult to be \"FileStreamResult\", but found \"ViewResult\"");
+                .WithMessage("Expected result to be Microsoft.AspNetCore.Mvc.FileStreamResult because the reason 10, but found Microsoft.AspNetCore.Mvc.ViewResult.");
         }
 
         [Fact]
@@ -116,10 +116,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BePhysicalFileResult_GivenNotPhysicalFileResult_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            Action a = () => result.Should().BePhysicalFileResult();
+            Action a = () => result.Should().BePhysicalFileResult("the reason {0}", 10);
 
             a.Should().Throw<Exception>()
-                .WithMessage("Expected ActionResult to be \"PhysicalFileResult\", but found \"ViewResult\"");
+                .WithMessage("Expected result to be Microsoft.AspNetCore.Mvc.PhysicalFileResult because the reason 10, but found Microsoft.AspNetCore.Mvc.ViewResult.");
         }
 
         [Fact]
@@ -135,10 +135,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeVirtualFileResult_GivenNotVirtualFileResult_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            Action a = () => result.Should().BeVirtualFileResult();
+            Action a = () => result.Should().BeVirtualFileResult("the reason {0}", 10);
 
             a.Should().Throw<Exception>()
-                .WithMessage("Expected ActionResult to be \"VirtualFileResult\", but found \"ViewResult\"");
+                .WithMessage("Expected result to be Microsoft.AspNetCore.Mvc.VirtualFileResult because the reason 10, but found Microsoft.AspNetCore.Mvc.ViewResult.");
         }
 
 
@@ -155,10 +155,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeJson_GivenNotJson_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            Action a = () => result.Should().BeJsonResult();
+            Action a = () => result.Should().BeJsonResult("the reason {0}", 10);
 
             a.Should().Throw<Exception>()
-                .WithMessage("Expected ActionResult to be \"JsonResult\", but found \"ViewResult\"");
+                .WithMessage("Expected result to be Microsoft.AspNetCore.Mvc.JsonResult because the reason 10, but found Microsoft.AspNetCore.Mvc.ViewResult.");
         }
 
         [Fact]
@@ -173,10 +173,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeRedirectToRoute_GivenNotRedirectToRoute_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            Action a = () => result.Should().BeRedirectToRouteResult();
+            Action a = () => result.Should().BeRedirectToRouteResult("the reason {0}", 10);
 
             a.Should().Throw<Exception>()
-                .WithMessage("Expected ActionResult to be \"RedirectToRouteResult\", but found \"ViewResult\"");
+                .WithMessage("Expected result to be Microsoft.AspNetCore.Mvc.RedirectToRouteResult because the reason 10, but found Microsoft.AspNetCore.Mvc.ViewResult.");
         }
 
         [Fact]
@@ -191,10 +191,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeRedirect_GivenNotRedirect_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            Action a = () => result.Should().BeRedirectResult();
+            Action a = () => result.Should().BeRedirectResult("the reason {0}", 10);
 
             a.Should().Throw<Exception>()
-                .WithMessage("Expected ActionResult to be \"RedirectResult\", but found \"ViewResult\"");
+                .WithMessage("Expected result to be Microsoft.AspNetCore.Mvc.RedirectResult because the reason 10, but found Microsoft.AspNetCore.Mvc.ViewResult.");
         }
 
         [Fact]
@@ -209,10 +209,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BePartialView_GivenNotPartial_ShouldFail()
         {
             ActionResult result = new RedirectResult("/");
-            Action a = () => result.Should().BePartialViewResult();
+            Action a = () => result.Should().BePartialViewResult("the reason {0}", 10);
 
             a.Should().Throw<Exception>()
-                .WithMessage("Expected ActionResult to be \"PartialViewResult\", but found \"RedirectResult\"");
+                .WithMessage("Expected result to be Microsoft.AspNetCore.Mvc.PartialViewResult because the reason 10, but found Microsoft.AspNetCore.Mvc.RedirectResult.");
         }
 
         [Fact]
@@ -227,10 +227,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeView_GivenNotView_ShouldFail()
         {
             ActionResult result = new RedirectResult("/");
-            Action a = () => result.Should().BeViewResult();
+            Action a = () => result.Should().BeViewResult("the reason {0}", 10);
 
             a.Should().Throw<Exception>()
-                .WithMessage("Expected ActionResult to be \"ViewResult\", but found \"RedirectResult\"");
+                .WithMessage("Expected result to be Microsoft.AspNetCore.Mvc.ViewResult because the reason 10, but found Microsoft.AspNetCore.Mvc.RedirectResult.");
         }
 
         [Fact]
@@ -245,10 +245,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeStatusCodeResult_GivenNotStatusCodeResult_ShouldFail()
         {
             ActionResult result = new RedirectResult("/");
-            Action a = () => result.Should().BeStatusCodeResult();
+            Action a = () => result.Should().BeStatusCodeResult("the reason {0}", 10);
 
             a.Should().Throw<Exception>()
-                .WithMessage("Expected ActionResult to be \"StatusCodeResult\", but found \"RedirectResult\"");
+                .WithMessage("Expected result to be Microsoft.AspNetCore.Mvc.StatusCodeResult because the reason 10, but found Microsoft.AspNetCore.Mvc.RedirectResult.");
         }
 
         #endregion Public Methods
