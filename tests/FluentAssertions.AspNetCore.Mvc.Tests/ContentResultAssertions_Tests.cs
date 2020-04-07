@@ -20,9 +20,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualContent = "content";
             var expectedContent = "xyz";
             ActionResult result = new ContentResult { Content = actualContent };
-            var failureMessage = String.Format(FailureMessages.CommonFailMessage, "ContentResult.Content", expectedContent, actualContent);
+            var failureMessage = ExpectedFailureMessage("ContentResult.Content", expectedContent, actualContent);
 
-            Action a = () => result.Should().BeContentResult().WithContent(expectedContent);
+            Action a = () => result.Should().BeContentResult().WithContent(expectedContent, "it is {0}", 10);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -41,12 +41,18 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualContentType = "text/html";
             var expectedContentType = "xyz";
             ActionResult result = new ContentResult { ContentType = actualContentType };
-            var failureMessage = String.Format(FailureMessages.CommonFailMessage, "ContentResult.ContentType", expectedContentType, actualContentType);
+            var failureMessage = ExpectedFailureMessage("ContentResult.ContentType", expectedContentType, actualContentType);
 
-            Action a = () => result.Should().BeContentResult().WithContentType(expectedContentType);
+            Action a = () => result.Should().BeContentResult().WithContentType(expectedContentType, "it is {0}", 10);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
         }
+
+        private string ExpectedFailureMessage(string context, string expected, string actual)
+        {
+            return $"Expected {context} to be \"{expected}\" because it is 10 but found \"{actual}\".";
+        }
+
     }
 }

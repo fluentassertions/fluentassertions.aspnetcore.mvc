@@ -35,7 +35,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                    .ForCondition(string.Equals(actualContent, expectedContent, StringComparison.OrdinalIgnoreCase))
                    .BecauseOf(reason, reasonArgs)
-                   .FailWith(string.Format(FailureMessages.CommonFailMessage, "ContentResult.Content", expectedContent, actualContent));
+                   .WithDefaultIdentifier("ContentResult.Content")
+                   .FailWith(FailureMessages.CommonFailMessage2, expectedContent, actualContent);
 
             return this;
         }
@@ -58,7 +59,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                    .ForCondition(string.Equals(expectedContentType, actualContentType, StringComparison.OrdinalIgnoreCase))
                    .BecauseOf(reason, reasonArgs)
-                   .FailWith(string.Format(FailureMessages.CommonFailMessage, "ContentResult.ContentType", expectedContentType, actualContentType));
+                   .WithDefaultIdentifier("ContentResult.ContentType")
+                   .FailWith(FailureMessages.CommonFailMessage2, expectedContentType, actualContentType);
 
             return this;
         }
