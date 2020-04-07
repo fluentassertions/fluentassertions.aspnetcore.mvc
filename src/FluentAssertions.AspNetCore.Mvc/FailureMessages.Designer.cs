@@ -97,7 +97,7 @@ namespace FluentAssertions.AspNetCore.Mvc {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Expected &quot;FileContentResult.FileContents&quot; to have {0} byte(s), but found {1}..
+        ///   Looks up a localized string similar to Expected FileContentResult.FileContents to have {0} byte(s){reason} but found {1}..
         /// </summary>
         internal static string FileContentResult_WithFileContents_LengthFail {
             get {
@@ -106,7 +106,7 @@ namespace FluentAssertions.AspNetCore.Mvc {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Expected &quot;FileContentResult.FileContents[{0}]&quot; to be {1:x2}, but found {2:x2}..
+        ///   Looks up a localized string similar to Expected FileContentResult.FileContents[{0}] to be {1:x2}{reason} but found {2:x2}..
         /// </summary>
         internal static string FileContentResult_WithFileContents_MatchFail {
             get {
