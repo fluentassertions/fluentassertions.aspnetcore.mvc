@@ -49,7 +49,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(string.Equals(expectedContentType, actualContentType, StringComparison.OrdinalIgnoreCase))
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(FailureMessages.CommonFailMessage, "FileResult.ContentType", expectedContentType, actualContentType);
+                .WithDefaultIdentifier("FileResult.ContentType")
+                .FailWith(FailureMessages.CommonFailMessage2, expectedContentType, actualContentType);
             return this;
         }
 
@@ -72,7 +73,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(Equals(expectedEntityTag, actualEntityTag))
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(FailureMessages.CommonFailMessage, "FileResult.EntityTag", expectedEntityTag, actualEntityTag);
+                .WithDefaultIdentifier("FileResult.EntityTag")
+                .FailWith(FailureMessages.CommonFailMessage2, expectedEntityTag, actualEntityTag);
             return this;
         }
 
@@ -95,7 +97,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(string.Equals(expectedFileDownloadName, actualFileDownloadName, StringComparison.OrdinalIgnoreCase))
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(FailureMessages.CommonFailMessage, "FileResult.FileDownloadName", expectedFileDownloadName, actualFileDownloadName);
+                .WithDefaultIdentifier("FileResult.FileDownloadName")
+                .FailWith(FailureMessages.CommonFailMessage2, expectedFileDownloadName, actualFileDownloadName);
             return this;
         }
 
@@ -118,7 +121,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(expectedLastModified == actualLastModified)
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(FailureMessages.CommonFailMessage, "FileResult.LastModified", expectedLastModified, actualLastModified);
+                .WithDefaultIdentifier("FileResult.LastModified")
+                .FailWith(FailureMessages.CommonFailMessage2, expectedLastModified, actualLastModified);
             return this;
         }
 

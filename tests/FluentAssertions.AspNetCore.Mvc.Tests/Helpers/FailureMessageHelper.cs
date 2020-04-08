@@ -11,5 +11,10 @@ namespace FluentAssertions.Mvc.Tests.Helpers
 
             return String.Format(message, formattedArg);
         }
+
+        public static string ExpectedContextToBeXButY(string context, string expected, string actual)
+        {
+            return $"Expected {context} to be \"{expected}\" because it is 10 but found \"{actual}\".";
+        }
     }
 }
