@@ -107,7 +107,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var expectedValue = new EntityTagHeaderValue("\"sha256 value 2\"", false);
             var result = TestDataGenerator.CreateFileContentResult();
             result.EntityTag = actualValue;
-            var failureMessage = "Expected FileResult.EntityTag to be \"sha256 value 2\" because it is 10 but found W/\"sha256 value 1\".";
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("FileResult.EntityTag", expectedValue, actualValue);
 
             Action a = () => result.Should().BeFileResult().WithEntityTag(expectedValue, "it is {0}", 10);
 

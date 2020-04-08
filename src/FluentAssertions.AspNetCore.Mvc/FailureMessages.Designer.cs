@@ -88,11 +88,29 @@ namespace FluentAssertions.AspNetCore.Mvc {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expected {context} to be of type {0}, but no value was supplied..
+        /// </summary>
+        internal static string CommonNullWasSuppliedFailMessage2 {
+            get {
+                return ResourceManager.GetString("CommonNullWasSuppliedFailMessage2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expected {0} to be of type &apos;{1}&apos; but was &apos;{2}&apos;.
         /// </summary>
         internal static string CommonTypeFailMessage {
             get {
                 return ResourceManager.GetString("CommonTypeFailMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected {context} to be of type {0} but was {1}..
+        /// </summary>
+        internal static string CommonTypeFailMessage2 {
+            get {
+                return ResourceManager.GetString("CommonTypeFailMessage2", resourceCulture);
             }
         }
         

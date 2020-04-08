@@ -28,9 +28,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             {
                 ContentType = actualValue
             };
-            var failureMessage = FailureMessageHelper.Format(FailureMessages.CommonFailMessage, "JsonResult.ContentType", expectedValue, actualValue);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("JsonResult.ContentType", expectedValue, actualValue);
 
-            Action a = () => result.Should().BeJsonResult().WithContentType(expectedValue);
+            Action a = () => result.Should().BeJsonResult().WithContentType(expectedValue, "it is {0}", 10);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -56,62 +56,48 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             {
                 StatusCode = actualStatusCode
             };
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "\"JsonResult.StatusCode\"", expectedStatusCode, actualStatusCode);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("JsonResult.StatusCode", expectedStatusCode, actualStatusCode);
 
-            Action a = () => result.Should().BeJsonResult().WithStatusCode(expectedStatusCode);
+            Action a = () => result.Should().BeJsonResult().WithStatusCode(expectedStatusCode, "it is {0}", 10);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
         }
 
         [Fact]
-        public void Value_GivenExpectedValue_ShouldPass()
+        public void Value_GivenJsonResult_ShouldReturnSameValue()
         {
-            var result = new TestController().JsonSimpleValue();
+            object expectedValue = "hello";
+            var result = new JsonResult(expectedValue);
 
-            result.Should().BeJsonResult().Value.Should().Be("hello");
+            result.Should().BeJsonResult().Value.Should().BeSameAs(expectedValue);
         }
 
         [Fact]
-        public void Value_GivenUnexpectedValue_ShouldFail()
+        public void ValueAs_GivenJsonResultWithValue_ShouldReturnTheSame()
         {
-            var result = new TestController().JsonSimpleValue();
+            string expectedValue = "hello";
+            var result = new JsonResult(expectedValue);
 
-            Action a = () => result.Should().BeJsonResult().Value.Should().Be("xyx");
-            a.Should().Throw<Exception>();
-        }
-
-        [Fact]
-        public void ValueAs_GivenExpectedValue_ShouldPass()
-        {
-            var result = new TestController().JsonSimpleValue();
-
-            result.Should().BeJsonResult().ValueAs<string>().Should().Be("hello");
-        }
-
-        [Fact]
-        public void ValueAs_GivenUnexpectedValue_ShouldFail()
-        {
-            var result = new TestController().JsonSimpleValue();
-
-            Action a = () => result.Should().BeJsonResult().ValueAs<string>().Should().Be("xyx");
-            a.Should().Throw<Exception>();
+            result.Should().BeJsonResult().ValueAs<string>().Should().BeSameAs(expectedValue);
         }
 
         [Fact]
         public void ValueAs_GivenWrongType_ShouldFail()
         {
             var result = new TestController().JsonSimpleValue();
+            const string failureMessage = "Expected Value to be of type System.Int32 but was System.String.";
 
             Action a = () => result.Should().BeJsonResult().ValueAs<int>().Should().Be(2);
-            a.Should().Throw<Exception>();
+            a.Should().Throw<Exception>()
+                .WithMessage(failureMessage);
         }
 
         [Fact]
         public void ValueAs_Null_ShouldFail()
         {
             ActionResult result = new JsonResult(null);
-            string failureMessage = FailureMessageHelper.Format(FailureMessages.CommonNullWasSuppliedFailMessage, "Value", typeof(Object).Name);
+            string failureMessage = $"Expected Value to be of type System.Object, but no value was supplied.";
 
             Action a = () => result.Should().BeJsonResult().ValueAs<Object>();
 
@@ -120,7 +106,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         }
 
         [Fact]
-        public void SerializerSettings_GivenExpectedValue_ShouldPass()
+        public void SerializerSettings_GivenInJsonResult_ShouldBeSame()
         {
             var expectedValue = new JsonSerializerSettings();
             var result = new JsonResult("value", expectedValue);

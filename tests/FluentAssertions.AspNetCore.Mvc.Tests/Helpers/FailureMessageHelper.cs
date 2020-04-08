@@ -14,7 +14,12 @@ namespace FluentAssertions.Mvc.Tests.Helpers
 
         public static string ExpectedContextToBeXButY(string context, string expected, string actual)
         {
-            return $"Expected {context} to be \"{expected}\" because it is 10 but found \"{actual}\".";
+            return ExpectedContextToBeXButY(context, (object)$"\"{expected}\"", (object)$"\"{actual}\"");
+        }
+
+        public static string ExpectedContextToBeXButY(string context, object expected, object actual)
+        {
+            return $"Expected {context} to be {expected} because it is 10 but found {actual}.";
         }
     }
 }

@@ -126,8 +126,14 @@
   <data name="CommonNullWasSuppliedFailMessage" xml:space="preserve">
     <value>Expected {0} to be of type {1}, but no {0} was supplied.</value>
   </data>
+  <data name="CommonNullWasSuppliedFailMessage2" xml:space="preserve">
+    <value>Expected {context} to be of type {0}, but no value was supplied.</value>
+  </data>
   <data name="CommonTypeFailMessage" xml:space="preserve">
     <value>Expected {0} to be of type '{1}' but was '{2}'</value>
+  </data>
+  <data name="CommonTypeFailMessage2" xml:space="preserve">
+    <value>Expected {context} to be of type {0} but was {1}.</value>
   </data>
   <data name="FileContentResult_WithFileContents_LengthFail" xml:space="preserve">
     <value>Expected FileContentResult.FileContents to have {0} byte(s){reason} but found {1}.</value>
