@@ -171,11 +171,8 @@
   <data name="ViewResultBase_ViewData_HaveValue" xml:space="preserve">
     <value>Expected ViewData[{0}] to have value {1}, but found {2}.</value>
   </data>
-  <data name="ViewResultBase_ViewName" xml:space="preserve">
-    <value>Expected ViewName to be {0} but found {1}.</value>
-  </data>
   <data name="ViewResultBase_WithDefaultViewName" xml:space="preserve">
-    <value>Expected default view, but view {0} was rendered.</value>
+    <value>Expected default view{reason}, but view {0} was rendered.</value>
   </data>
   <data name="ViewResult_MasterName" xml:space="preserve">
     <value>Expected MasterName to be {0} but found {1}.</value>

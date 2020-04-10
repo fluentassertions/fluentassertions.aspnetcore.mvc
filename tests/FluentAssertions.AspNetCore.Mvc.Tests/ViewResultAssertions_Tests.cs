@@ -31,12 +31,12 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var actualViewName = "index";
             var expectedViewName = "xyz";
-            var failureMessage = FailureMessageHelper.Format(FailureMessages.ViewResultBase_ViewName, expectedViewName, actualViewName);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("ViewResult.ViewName", expectedViewName, actualViewName);
             ActionResult result = new ViewResult {
                 ViewName = actualViewName,
             };
 
-            Action action = () => result.Should().BeViewResult().WithViewName(expectedViewName);
+            Action action = () => result.Should().BeViewResult().WithViewName(expectedViewName, "it is {0}", 10);
 
             action.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -51,13 +51,14 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         }
 
         [Fact]
-        public void WithTempData_GivenTwoExpectedValues_ShouldPass()
+        public void WithTempData_GivenNullTempData_ShouldFail()
         {
-            var result = new TestController().ViewWithTwoTempData();
+            var result = new ViewResult();
 
-            result.Should().BeViewResult()
-                .WithTempData("key1", "value1")
-                .WithTempData("key2", "value2");
+            Action a = () => result.Should().BeViewResult().WithTempData("key1", "value1", "it is {0}", 10);
+
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ViewResult.TempData to contain value \"value1\" at key \"key1\" because it is 10, but it is <null>."); ;
         }
 
         [Fact]
@@ -65,8 +66,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var result = new TestController().ViewWithOneTempData();
 
-            Action a = () => result.Should().BeViewResult().WithTempData("key1", "xyz");
-            a.Should().Throw<Exception>();
+            Action a = () => result.Should().BeViewResult().WithTempData("key1", "xyz", "it is {0}", 10);
+
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ViewResult.TempData to contain value \"xyz\" at key \"key1\" because it is 10 but found \"value1\".");
         }
 
         [Fact]
@@ -74,8 +77,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var result = new TestController().ViewWithOneTempData();
 
-            Action a = () => result.Should().BeViewResult().WithTempData("xyz", "value1");
-            a.Should().Throw<Exception>();
+            Action a = () => result.Should().BeViewResult().WithTempData("xyz", "value1", "it is {0}", 10);
+
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ViewResult.TempData to contain value \"value1\" at key \"xyz\" because it is 10, but the key was not found."); ;
         }
 
         [Fact]
@@ -87,79 +92,58 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         }
 
         [Fact]
-        public void WithViewData_GivenTwoExpectedValues_ShouldPass()
+        public void WithTempData_GivenNullViewData_ShouldFail()
         {
-            var result = new TestController().ViewWithTwoViewData();
+            var result = new ViewResult();
 
-            result.Should().BeViewResult()
-                .WithViewData("key1", "value1")
-                .WithViewData("key2", "value2");
+            Action a = () => result.Should().BeViewResult().WithViewData("key1", "value1", "it is {0}", 10);
+
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ViewResult.ViewData to contain value \"value1\" at key \"key1\" because it is 10, but it is <null>.");
         }
 
         [Fact]
         public void WithViewData_GivenUnexpectedValue_ShouldFail()
         {
             var key = "key1";
-            var actualValue = "value1";
             var expectedValue = "abc";
-            var failureMessage = FailureMessageHelper.Format(FailureMessages.ViewResultBase_ViewData_HaveValue, key, expectedValue, actualValue);
 
             var result = new TestController().ViewWithOneViewData();
 
-            Action a = () => result.Should().BeViewResult().WithViewData(key, expectedValue);
+            Action a = () => result.Should().BeViewResult().WithViewData(key, expectedValue, "it is {0}", 10);
 
             a.Should().Throw<Exception>()
-                .WithMessage(failureMessage);
+                .WithMessage("Expected ViewResult.ViewData to contain value \"abc\" at key \"key1\" because it is 10 but found \"value1\".");
         }
 
         [Fact]
         public void WithViewData_GivenUnexpectedKey_ShouldFail()
         {
-            var actualKey = "key1";
             var expectedKey = "xyz";
 
             var result = new TestController().ViewWithTwoViewData();
 
-            var failureMessage = FailureMessageHelper.Format(FailureMessages.ViewResultBase_ViewData_ContainsKey, expectedKey, actualKey);
-
-            Action a = () => result.Should().BeViewResult().WithViewData(expectedKey, "value1");
+            Action a = () => result.Should().BeViewResult().WithViewData(expectedKey, "value1", "it is {0}", 10);
 
             a.Should().Throw<Exception>()
-                .WithMessage(failureMessage);
+                .WithMessage("Expected ViewResult.ViewData to contain value \"value1\" at key \"xyz\" because it is 10, but the key was not found.");
         }
 
         [Fact]
-        public void Model_GivenExpectedValue_ShouldPass()
+        public void Model_ShouldReturnSameModelAsViewResult()
         {
-            var result = new TestController().ViewSimpleModel();
+            var model = new object();
+            var result = new TestController().ViewSimpleModel(model);
 
-            result.Should().BeViewResult().Model.Should().Be("hello");
+            result.Should().BeViewResult().Model.Should().BeSameAs(model);
         }
 
         [Fact]
-        public void Model_GivenUnexpectedValue_ShouldFail()
-        {
-            var result = new TestController().ViewSimpleModel();
-
-            Action a = () => result.Should().BeViewResult().Model.Should().Be("xyx");
-            a.Should().Throw<Exception>();
-        }
-
-        [Fact]
-        public void ModelAs_GivenExpectedValue_ShouldPass()
+        public void ModelAs_CastingRight_ShouldPass()
         {
             var result = new TestController().ViewSimpleModel();
 
             result.Should().BeViewResult().ModelAs<string>().Should().Be("hello");
-        }
-
-        [Fact]
-        public void ModelAs_GivenUnexpectedValue_ShouldFail()
-        {
-            var result = new TestController().ViewSimpleModel();
-
-            Action a = () => result.Should().BeViewResult().ModelAs<string>().Should().Be("xyx");
-            a.Should().Throw<Exception>();
         }
 
         [Fact]
@@ -168,14 +152,15 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var result = new TestController().ViewSimpleModel();
 
             Action a = () => result.Should().BeViewResult().ModelAs<int>().Should().Be(2);
-            a.Should().Throw<Exception>();
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ViewResult.Model to be of type System.Int32 but was System.String.");
         }
 
         [Fact]
         public void ModelAs_Null_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            string failureMessage = FailureMessageHelper.Format(FailureMessages.CommonNullWasSuppliedFailMessage, "Model", typeof(Object).Name);
+            string failureMessage = "Expected ViewResult.Model to be of type System.Object, but no value was supplied."; ;
 
             Action a = () => result.Should().BeViewResult().ModelAs<Object>();
 
@@ -196,14 +181,14 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         [Fact]
         public void WithDefaultViewName_GivenUnexpectedValue_ShouldFail()
         {
-            string viewName = "index";
-            string failureMessage = FailureMessageHelper.Format(FailureMessages.ViewResultBase_WithDefaultViewName, viewName);
+            string viewName = "Something";
+            var failureMessage = "Expected default view because it is 10, but view \"Something\" was rendered.";
 
             ActionResult result = new ViewResult {
                 ViewName = viewName
             };
 
-            Action action = () => result.Should().BeViewResult().WithDefaultViewName();
+            Action action = () => result.Should().BeViewResult().WithDefaultViewName("it is 10");
 
             action.Should().Throw<Exception>()
                 .WithMessage(failureMessage);

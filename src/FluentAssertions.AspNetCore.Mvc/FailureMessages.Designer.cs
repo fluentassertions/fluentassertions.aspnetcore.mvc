@@ -232,16 +232,7 @@ namespace FluentAssertions.AspNetCore.Mvc {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Expected ViewName to be {0} but found {1}..
-        /// </summary>
-        internal static string ViewResultBase_ViewName {
-            get {
-                return ResourceManager.GetString("ViewResultBase_ViewName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Expected default view, but view {0} was rendered..
+        ///   Looks up a localized string similar to Expected default view{reason}, but view {0} was rendered..
         /// </summary>
         internal static string ViewResultBase_WithDefaultViewName {
             get {

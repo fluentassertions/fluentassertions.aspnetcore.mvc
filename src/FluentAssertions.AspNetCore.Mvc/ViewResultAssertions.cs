@@ -1,7 +1,9 @@
-﻿using FluentAssertions.Execution;
+﻿using FluentAssertions.Common;
+using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace FluentAssertions.AspNetCore.Mvc
@@ -58,9 +60,10 @@ namespace FluentAssertions.AspNetCore.Mvc
             var actualViewName = ViewResultSubject.ViewName;
 
             Execute.Assertion
-                .ForCondition(string.Equals(expectedViewName, actualViewName, StringComparison.OrdinalIgnoreCase))
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(FailureMessages.ViewResultBase_ViewName, expectedViewName, actualViewName);
+                .ForCondition(string.Equals(expectedViewName, actualViewName, StringComparison.OrdinalIgnoreCase))
+                .WithDefaultIdentifier("ViewResult.ViewName")
+                .FailWith(FailureMessages.CommonFailMessage2, expectedViewName, actualViewName);
             return this;
         }
 
@@ -81,17 +84,8 @@ namespace FluentAssertions.AspNetCore.Mvc
         {
             var actualViewData = ViewResultSubject.ViewData;
 
-            Execute.Assertion
-                .ForCondition(actualViewData.ContainsKey(key))
-                .BecauseOf(reason, reasonArgs)
-                .FailWith(FailureMessages.ViewResultBase_ViewData_ContainsKey, key);
-
-            var actualValue = actualViewData[key];
-
-            Execute.Assertion
-                .ForCondition(actualValue.Equals(expectedValue))
-                .BecauseOf(reason, reasonArgs)
-                .FailWith(FailureMessages.ViewResultBase_ViewData_HaveValue, key, expectedValue, actualValue);
+            AssertionHelpers.AssertStringObjectDictionary(actualViewData, "ViewResult.ViewData",
+                key, expectedValue, reason, reasonArgs);
 
             return this;
         }
@@ -113,12 +107,8 @@ namespace FluentAssertions.AspNetCore.Mvc
         {
             var actualTempData = ViewResultSubject.TempData;
 
-            Execute.Assertion
-                .ForCondition(actualTempData.ContainsKey(key))
-                .BecauseOf(reason, reasonArgs)
-                .FailWith("TempData does not contain key of '{0}'", key);
-
-            actualTempData[key].Should().Be(expectedValue);
+            AssertionHelpers.AssertStringObjectDictionary(actualTempData, "ViewResult.TempData", 
+                key, expectedValue, reason, reasonArgs);
 
             return this;
         }
@@ -133,11 +123,14 @@ namespace FluentAssertions.AspNetCore.Mvc
             var model = ViewResultSubject.Model;
 
             if (model == null)
-                Execute.Assertion.FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, "Model", typeof(TModel).Name);
+                Execute.Assertion
+                    .WithDefaultIdentifier("ViewResult.Model")
+                    .FailWith(FailureMessages.CommonNullWasSuppliedFailMessage2, typeof(TModel));
 
             Execute.Assertion
                 .ForCondition(model is TModel)
-                .FailWith(FailureMessages.CommonTypeFailMessage, "Model", typeof(TModel).Name, model.GetType().Name);
+                .WithDefaultIdentifier("ViewResult.Model")
+                .FailWith(FailureMessages.CommonTypeFailMessage2, typeof(TModel), model.GetType());
 
             return (TModel)model;
         }
