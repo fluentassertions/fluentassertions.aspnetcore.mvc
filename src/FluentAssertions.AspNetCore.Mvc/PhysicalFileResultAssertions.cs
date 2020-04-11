@@ -56,7 +56,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(string.Equals(expectedFileName, actualFileName, StringComparison.OrdinalIgnoreCase))
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(FailureMessages.CommonFailMessage, "PhysicalFileResult.FileName", expectedFileName, actualFileName);
+                .WithDefaultIdentifier("PhysicalFileResult.FileName")
+                .FailWith(FailureMessages.CommonFailMessage2, expectedFileName, actualFileName);
             return this;
         }
 

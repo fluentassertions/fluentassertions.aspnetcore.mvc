@@ -1,4 +1,5 @@
 ﻿using FluentAssertions.AspNetCore.Mvc.Tests.Helpers;
+using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using Xunit;
@@ -26,11 +27,11 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             string actualFileName = "Test1.txt";
             string expectedFileName = "Test2.txt";
             ActionResult result = TestDataGenerator.CreatePhysicalFileResult(actualFileName);
-            var failureMessage = "Expected \"PhysicalFileResult.FileName\" to be '\"Test2.txt\"' but found '\"Test1.txt\"'";
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("PhysicalFileResult.FileName", expectedFileName, actualFileName);
 
             Action a = () => result.Should()
                 .BePhysicalFileResult()
-                .WithFileName(expectedFileName);
+                .WithFileName(expectedFileName, "it is {0}", 10);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
