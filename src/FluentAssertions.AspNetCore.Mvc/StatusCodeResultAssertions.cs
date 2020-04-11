@@ -37,7 +37,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(StatusCode == expectedStatusCode)
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(FailureMessages.StatusCodeResultBase_WithStatusCode, expectedStatusCode, StatusCode);
+                .WithDefaultIdentifier("StatusCodeResult.StatusCode")
+                .FailWith(FailureMessages.CommonFailMessage2, expectedStatusCode, StatusCode);
             return this;
         }
     }

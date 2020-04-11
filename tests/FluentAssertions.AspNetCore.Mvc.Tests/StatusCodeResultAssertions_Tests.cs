@@ -1,4 +1,5 @@
 ﻿using FluentAssertions.Mvc.Tests.Fakes;
+using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using Xunit;
@@ -31,10 +32,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             int actualStatusCode = 200;
             int expectedStatusCode = 400;
 
-            var failureMessage = string.Format(FailureMessages.StatusCodeResultBase_WithStatusCode, expectedStatusCode, actualStatusCode);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("StatusCodeResult.StatusCode", expectedStatusCode, actualStatusCode);
             ActionResult result = new StatusCodeResult(actualStatusCode);
 
-            Action action = () => result.Should().BeStatusCodeResult().WithStatusCode(expectedStatusCode);
+            Action action = () => result.Should().BeStatusCodeResult().WithStatusCode(expectedStatusCode, "it is {0}", 10);
 
             action.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
