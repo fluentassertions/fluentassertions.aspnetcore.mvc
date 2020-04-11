@@ -87,17 +87,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         {
             var subjectTyped = Subject as RouteData;
 
-            Execute.Assertion
-                    .ForCondition(subjectTyped.DataTokens.ContainsKey(key))
-                    .BecauseOf(reason, reasonArgs)
-                    .FailWith(FailureMessages.RouteData_DataTokens_ContainsKey, key);
-
-            var actualValue = subjectTyped.DataTokens[key];
-
-            Execute.Assertion
-                    .ForCondition(expectedValue.Equals(actualValue))
-                    .BecauseOf(reason, reasonArgs)
-                    .FailWith(FailureMessages.RouteData_DataTokens_HaveValue, key, expectedValue, actualValue);
+            AssertionHelpers.AssertStringObjectDictionary(subjectTyped.DataTokens, "RouteData.DataTokens", key, expectedValue, reason, reasonArgs);
 
             return this;
         }
@@ -118,17 +108,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         {
             var subjectTyped = Subject as RouteData;
 
-            Execute.Assertion
-                    .ForCondition(subjectTyped.Values.ContainsKey(key))
-                    .BecauseOf(reason, reasonArgs)
-                    .FailWith(FailureMessages.RouteData_Values_ContainsKey, key);
-
-            var actualValue = subjectTyped.Values[key];
-
-            Execute.Assertion
-                    .ForCondition(expectedValue.Equals(actualValue))
-                    .BecauseOf(reason, reasonArgs)
-                    .FailWith(FailureMessages.RouteData_Values_HaveValue, key, expectedValue, actualValue);
+            AssertionHelpers.AssertStringObjectDictionary(subjectTyped.Values, "RouteData.Values", key, expectedValue, reason, reasonArgs);
 
             return this;
         }

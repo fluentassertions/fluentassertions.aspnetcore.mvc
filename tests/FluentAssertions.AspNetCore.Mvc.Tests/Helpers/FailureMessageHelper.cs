@@ -21,5 +21,15 @@ namespace FluentAssertions.Mvc.Tests.Helpers
         {
             return $"Expected {context} to be {expected} because it is 10 but found {actual}.";
         }
+
+        public static string ExpectedAtKeyValueXButFoundY(string context, string key, string expected, string actual)
+        {
+            return $"Expected {context} to contain value \"{expected}\" at key \"{key}\" because it is 10 but found \"{actual}\".";
+        }
+
+        public static string ExpectedKeyButNotFound(string context, string key, string expected)
+        {
+            return $"Expected {context} to contain value \"{expected}\" at key \"{key}\" because it is 10, but the key was not found.";
+        }
     }
 }
