@@ -50,7 +50,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                     .BecauseOf(reason, reasonArgs)
                     .ForCondition(expectedPermanent == Subject.Permanent)
-                    .FailWith("Expected RedirectToRoute.Permanent to be {0}{reason}, but found {1}", expectedPermanent, Subject.Permanent);
+                    .WithDefaultIdentifier("RedirectToRoute.Permanent")
+                    .FailWith(FailureMessages.CommonFailMessage2, expectedPermanent, Subject.Permanent);
             return this;
         }
 
@@ -70,7 +71,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                    .BecauseOf(reason, reasonArgs)
                    .ForCondition(string.Equals(expectedRouteName, Subject.RouteName, StringComparison.OrdinalIgnoreCase))
-                   .FailWith("Expected RedirectToRoute.RouteName to be {0}{reason}, but found {1}", expectedRouteName, Subject.RouteName);
+                   .WithDefaultIdentifier("RedirectToRoute.RouteName")
+                   .FailWith(FailureMessages.CommonFailMessage2, expectedRouteName, Subject.RouteName);
 
             return this;
         }
@@ -90,7 +92,10 @@ namespace FluentAssertions.AspNetCore.Mvc
         [CustomAssertion]
         public RedirectToRouteAssertions WithRouteValue(string key, object expectedValue, string reason = "", params object[] reasonArgs)
         {
-            Subject.RouteValues.Should().Contain(new KeyValuePair<string, object>(key, expectedValue), reason, reasonArgs);
+            var routeValues = Subject.RouteValues;
+
+            AssertionHelpers.AssertStringObjectDictionary(routeValues, "RedirectToRouteResult.RouteValues", key, expectedValue, reason, reasonArgs);
+
             return this;
         }
 

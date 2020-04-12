@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentAssertions.Mvc.Tests.Helpers;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using Xunit;
 
@@ -22,9 +23,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             ActionResult result = new RedirectResult("/abc");
 
             Action a = () => result.Should().BeRedirectResult()
-                .WithUrl("/xyz");
+                .WithUrl("/xyz", "it is {0}", 10);
             a.Should().Throw<Exception>()
-                .WithMessage("Expected RedirectResult.Url to be \"/xyz\" but was \"/abc\"");
+                .WithMessage(FailureMessageHelper.ExpectedContextToBeXButY("RedirectResult.Url", "/xyz", "/abc"));
         }
 
         [Fact]
@@ -42,9 +43,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             ActionResult result = new RedirectResult("/abc", true);
 
             Action a = () => result.Should().BeRedirectResult()
-                .WithPermanent(false);
+                .WithPermanent(false, "it is {0}", 10);
+
             a.Should().Throw<Exception>()
-                .WithMessage("Expected RedirectResult.Permanent to be False but was True");
+                .WithMessage(FailureMessageHelper.ExpectedContextToBeXButY("RedirectResult.Permanent", false, true));
         }
     }
 }

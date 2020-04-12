@@ -33,7 +33,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                    .ForCondition(string.Equals(actualUrl, expectedUrl, StringComparison.OrdinalIgnoreCase))
                    .BecauseOf(reason, reasonArgs)
-                   .FailWith("Expected RedirectResult.Url to be {0}{reason} but was {1}", expectedUrl, actualUrl);
+                   .WithDefaultIdentifier("RedirectResult.Url")
+                   .FailWith(FailureMessages.CommonFailMessage2, expectedUrl, actualUrl);
 
             return this;
         }
@@ -56,7 +57,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                     .ForCondition(expectedPermanent == actualPermanent)
                     .BecauseOf(reason, reasonArgs)
-                    .FailWith("Expected RedirectResult.Permanent to be {0}{reason} but was {1}", expectedPermanent, actualPermanent);
+                    .WithDefaultIdentifier("RedirectResult.Permanent")
+                    .FailWith(FailureMessages.CommonFailMessage2, expectedPermanent, actualPermanent);
 
             return this;
         }
