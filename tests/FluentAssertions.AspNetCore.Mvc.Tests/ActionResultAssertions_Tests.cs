@@ -251,6 +251,151 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithMessage("Expected ActionResult to be \"StatusCodeResult\", but found \"RedirectResult\"");
         }
 
+        [Fact]
+        public void BeOkResult_GivenOk_ShouldPass()
+        {
+            ActionResult result = new OkResult();
+            result.Should().BeOkResult();
+        }
+
+        [Fact]
+        public void BeOkResult_GivenNotOk_ShouldFail()
+        {
+            ActionResult result = new ViewResult();
+            Action a = () => result.Should().BeOkResult();
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ActionResult to be \"OkResult\", but found \"ViewResult\"");
+        }
+
+        [Fact]
+        public void BeBadRequestResult_GivenBadRequest_ShouldPass()
+        {
+            ActionResult result = new BadRequestResult();
+            result.Should().BeBadRequestResult();
+        }
+
+        [Fact]
+        public void BeBadRequestResult_GivenNotBadRequest_ShouldFail()
+        {
+            ActionResult result = new ViewResult();
+            Action a = () => result.Should().BeBadRequestResult();
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ActionResult to be \"BadRequestResult\", but found \"ViewResult\"");
+        }
+
+        [Fact]
+        public void BeChallengeResult_GivenChallengeResult_ShouldPass()
+        {
+            ActionResult result = new ChallengeResult();
+            result.Should().BeChallengeResult();
+        }
+
+        [Fact]
+        public void BeChallengeResult_GivenNotChallengeResult_ShouldFail()
+        {
+            ActionResult result = new ViewResult();
+            Action a = () => result.Should().BeChallengeResult();
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ActionResult to be \"ChallengeResult\", but found \"ViewResult\"");
+        }
+
+        [Fact]
+        public void BeAcceptedResult_GivenAccepted_ShouldPass()
+        {
+            ActionResult result = new AcceptedResult();
+            result.Should().BeAcceptedResult();
+        }
+
+        [Fact]
+        public void BeAcceptedResult_GivenNotAccepted_ShouldFail()
+        {
+            ActionResult result = new ViewResult();
+            Action a = () => result.Should().BeAcceptedResult();
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ActionResult to be \"AcceptedResult\", but found \"ViewResult\"");
+        }
+
+        [Fact]
+        public void BeNoContentResult_GivenNoContent_ShouldPass()
+        {
+            ActionResult result = new NoContentResult();
+            result.Should().BeNoContentResult();
+        }
+
+        [Fact]
+        public void BeNoContentResult_GivenNotNoContent_ShouldFail()
+        {
+            ActionResult result = new ViewResult();
+            Action a = () => result.Should().BeNoContentResult();
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ActionResult to be \"NoContentResult\", but found \"ViewResult\"");
+        }
+
+        [Fact]
+        public void BeNotFoundResult_GivenNotFound_ShouldPass()
+        {
+            ActionResult result = new NotFoundResult();
+            result.Should().BeNotFoundResult();
+        }
+
+        [Fact]
+        public void BeNotFoundResult_GivenNotNotFound_ShouldFail()
+        {
+            ActionResult result = new ViewResult();
+            Action a = () => result.Should().BeNotFoundResult();
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ActionResult to be \"NotFoundResult\", but found \"ViewResult\"");
+        }
+
+        [Fact]
+        public void BeUnauthorizedResult_GivenUnauthorized_ShouldPass()
+        {
+            ActionResult result = new UnauthorizedResult();
+            result.Should().BeUnauthorizedResult();
+        }
+
+        [Fact]
+        public void BeUnauthorizedResult_GivenNotUnauthorized_ShouldFail()
+        {
+            ActionResult result = new ViewResult();
+            Action a = () => result.Should().BeUnauthorizedResult();
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ActionResult to be \"UnauthorizedResult\", but found \"ViewResult\"");
+        }
+
+        [Fact]
+        public void BeSignOutResult_GivenSignOutResult_ShouldPass()
+        {
+            ActionResult result = new SignOutResult();
+            result.Should().BeSignOutResult();
+        }
+
+        [Fact]
+        public void BeSignOutResult_GivenNotSignOutResult_ShouldFail()
+        {
+            ActionResult result = new ViewResult();
+            Action a = () => result.Should().BeSignOutResult();
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ActionResult to be \"SignOutResult\", but found \"ViewResult\"");
+        }
+
+        [Fact]
+        public void BeLocalRedirectResult_GivenLocalRedirectResult_ShouldPass()
+        {
+            const string testLocalUrl = "testLocalUrl";
+            ActionResult result = new LocalRedirectResult(testLocalUrl);
+            result.Should().BeLocalRedirectResult();
+        }
+
+        [Fact]
+        public void BeLocalRedirectResult_GivenNotLocalRedirectResult_ShouldFail()
+        {
+            ActionResult result = new ViewResult();
+            Action a = () => result.Should().BeLocalRedirectResult();
+            a.Should().Throw<Exception>()
+                .WithMessage("Expected ActionResult to be \"LocalRedirectResult\", but found \"ViewResult\"");
+        }
+
         #endregion Public Methods
     }
 }

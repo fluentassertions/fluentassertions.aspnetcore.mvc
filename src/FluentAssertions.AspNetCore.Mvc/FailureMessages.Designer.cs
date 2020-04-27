@@ -61,11 +61,74 @@ namespace FluentAssertions.AspNetCore.Mvc {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AcceptedAtActionResult.RouteValues does not contain key {0}..
+        /// </summary>
+        internal static string AcceptedAtActionResult_RouteValues_ContainsKey {
+            get {
+                return ResourceManager.GetString("AcceptedAtActionResult_RouteValues_ContainsKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected RouteData.DataTokens[{0}] to have value {1}, but found {2}..
+        /// </summary>
+        internal static string AcceptedAtActionResult_RouteValues_HaveValue {
+            get {
+                return ResourceManager.GetString("AcceptedAtActionResult_RouteValues_HaveValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AcceptedAtRouteResult.RouteValues does not contain key {0}..
+        /// </summary>
+        internal static string AcceptedAtRouteResult_RouteValues_ContainsKey {
+            get {
+                return ResourceManager.GetString("AcceptedAtRouteResult_RouteValues_ContainsKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected RouteData.DataTokens[{0}] to have value {1}, but found {2}..
+        /// </summary>
+        internal static string AcceptedAtRouteResult_RouteValues_HaveValue {
+            get {
+                return ResourceManager.GetString("AcceptedAtRouteResult_RouteValues_HaveValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected AuthenticationSchemes to contain Scheme {0}..
+        /// </summary>
+        internal static string CommonAuthenticationSchemesContainScheme {
+            get {
+                return ResourceManager.GetString("CommonAuthenticationSchemesContainScheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expected {0} to be &apos;{1}&apos; but found &apos;{2}&apos;.
         /// </summary>
         internal static string CommonFailMessage {
             get {
                 return ResourceManager.GetString("CommonFailMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected Items to contain [{0},{1}]..
+        /// </summary>
+        internal static string CommonItemsContain {
+            get {
+                return ResourceManager.GetString("CommonItemsContain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected {0} List to contain exact items of actual items. .
+        /// </summary>
+        internal static string CommonListsNotIdentical {
+            get {
+                return ResourceManager.GetString("CommonListsNotIdentical", resourceCulture);
             }
         }
         
@@ -84,6 +147,42 @@ namespace FluentAssertions.AspNetCore.Mvc {
         internal static string CommonTypeFailMessage {
             get {
                 return ResourceManager.GetString("CommonTypeFailMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CreatedAtActionResult.RouteValues does not contain key {0}..
+        /// </summary>
+        internal static string CreatedAtActionResult_RouteValues_ContainsKey {
+            get {
+                return ResourceManager.GetString("CreatedAtActionResult_RouteValues_ContainsKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected RouteData.DataTokens[{0}] to have value {1}, but found {2}..
+        /// </summary>
+        internal static string CreatedAtActionResult_RouteValues_HaveValue {
+            get {
+                return ResourceManager.GetString("CreatedAtActionResult_RouteValues_HaveValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CreatedAtRouteResult.RouteValues does not contain key {0}..
+        /// </summary>
+        internal static string CreatedAtRouteResult_RouteValues_ContainsKey {
+            get {
+                return ResourceManager.GetString("CreatedAtRouteResult_RouteValues_ContainsKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected RouteData.DataTokens[{0}] to have value {1}, but found {2}..
+        /// </summary>
+        internal static string CreatedAtRouteResult_RouteValues_HaveValue {
+            get {
+                return ResourceManager.GetString("CreatedAtRouteResult_RouteValues_HaveValue", resourceCulture);
             }
         }
         

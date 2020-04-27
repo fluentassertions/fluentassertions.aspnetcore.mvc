@@ -1,9 +1,14 @@
-﻿using FluentAssertions.Execution;
+﻿using System.Diagnostics;
+using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FluentAssertions.AspNetCore.Mvc
 {
+    /// <summary>
+    /// Contains a number of methods to assert that a <see cref="StatusCodeResult"/> is in the expected state.
+    /// </summary>
+    [DebuggerNonUserCode]
     public class StatusCodeResultAssertions : ObjectAssertions
     {
         /// <summary>
