@@ -79,17 +79,8 @@ namespace FluentAssertions.AspNetCore.Mvc
         {
             var subjectTyped = Subject as CreatedAtActionResult;
 
-            Execute.Assertion
-                .ForCondition(subjectTyped != null && subjectTyped.RouteValues.ContainsKey(key))
-                .BecauseOf(reason, reasonArgs)
-                .FailWith(FailureMessages.CreatedAtActionResult_RouteValues_ContainsKey, key);
-
-            var actualValue = subjectTyped.RouteValues[key];
-
-            Execute.Assertion
-                .ForCondition(expectedValue.Equals(actualValue))
-                .BecauseOf(reason, reasonArgs)
-                .FailWith(FailureMessages.CreatedAtActionResult_RouteValues_HaveValue, key, expectedValue, actualValue);
+            AssertionHelpers.AssertStringObjectDictionary(subjectTyped.RouteValues, "CreatedAtActionResult.RouteValues",
+                key, expectedValue, reason, reasonArgs);
 
             return this;
         }
@@ -105,11 +96,14 @@ namespace FluentAssertions.AspNetCore.Mvc
             var value = subjectTyped.Value;
 
             if (value == null)
-                Execute.Assertion.FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, "CreatedAtActionResult.Value", typeof(TValue).Name);
+                Execute.Assertion
+                    .WithDefaultIdentifier("CreatedAtActionResult.Value")
+                    .FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, typeof(TValue));
 
             Execute.Assertion
                 .ForCondition(value is TValue)
-                .FailWith(FailureMessages.CommonTypeFailMessage, "CreatedAtActionResult.Value", typeof(TValue).Name, value.GetType().Name);
+                .WithDefaultIdentifier("CreatedAtActionResult.Value")
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(TValue), value.GetType());
 
             return (TValue)value;
         }

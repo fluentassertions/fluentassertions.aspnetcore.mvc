@@ -17,6 +17,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </summary>
         public RedirectToActionResultAssertions(RedirectToActionResult subject) : base(subject) { }
 
+        private RedirectToActionResult RedirectToActionResultSubject => Subject as RedirectToActionResult;
         /// <summary>
         /// Asserts that the action name is the expected action.
         /// </summary>
@@ -30,13 +31,13 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </param>
         public RedirectToActionResultAssertions WithActionName(string expectedActionName, string reason = "", params object[] reasonArgs)
         {
-            string actualActionName = (Subject as RedirectToActionResult)?.ActionName;
+            string actualActionName = RedirectToActionResultSubject.ActionName;
 
             Execute.Assertion
                    .ForCondition(string.Equals(actualActionName, expectedActionName, StringComparison.OrdinalIgnoreCase))
                    .BecauseOf(reason, reasonArgs)
                    .WithDefaultIdentifier("RedirectToActionResult.ActionName")
-                   .FailWith(FailureMessages.CommonFailMessage2, expectedActionName, actualActionName);
+                   .FailWith(FailureMessages.CommonFailMessage, expectedActionName, actualActionName);
 
             return this;
         }
@@ -54,13 +55,13 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </param>
         public RedirectToActionResultAssertions WithControllerName(string expectedControllerName, string reason = "", params object[] reasonArgs)
         {
-            string actualControllerName = (Subject as RedirectToActionResult)?.ControllerName;
+            string actualControllerName = RedirectToActionResultSubject.ControllerName;
 
             Execute.Assertion
                 .ForCondition(string.Equals(actualControllerName, expectedControllerName, StringComparison.OrdinalIgnoreCase))
                 .BecauseOf(reason, reasonArgs)
                 .WithDefaultIdentifier("RedirectToActionResult.ControllerName")
-                .FailWith(FailureMessages.CommonFailMessage2, expectedControllerName, actualControllerName);
+                .FailWith(FailureMessages.CommonFailMessage, expectedControllerName, actualControllerName);
 
             return this;
         }
@@ -78,13 +79,13 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </param>
         public RedirectToActionResultAssertions WithFragment(string expectedFragment, string reason = "", params object[] reasonArgs)
         {
-            string actualFragment = (Subject as RedirectToActionResult)?.Fragment;
+            string actualFragment = RedirectToActionResultSubject.Fragment;
 
             Execute.Assertion
                 .ForCondition(string.Equals(actualFragment, expectedFragment, StringComparison.OrdinalIgnoreCase))
                 .BecauseOf(reason, reasonArgs)
                 .WithDefaultIdentifier("RedirectToActionResult.Fragment")
-                .FailWith(FailureMessages.CommonFailMessage2, expectedFragment, actualFragment);
+                .FailWith(FailureMessages.CommonFailMessage, expectedFragment, actualFragment);
 
             return this;
         }
@@ -102,13 +103,13 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </param>
         public RedirectToActionResultAssertions WithPermanent(bool expectedPermanent, string reason = "", params object[] reasonArgs)
         {
-            bool actualPermanent = (Subject as RedirectToActionResult).Permanent;
+            bool actualPermanent = RedirectToActionResultSubject.Permanent;
 
             Execute.Assertion
                     .ForCondition(expectedPermanent == actualPermanent)
                     .BecauseOf(reason, reasonArgs)
                     .WithDefaultIdentifier("RedirectToActionResult.Permanent")
-                    .FailWith(FailureMessages.CommonFailMessage2, expectedPermanent, actualPermanent);
+                    .FailWith(FailureMessages.CommonFailMessage, expectedPermanent, actualPermanent);
 
             return this;
         }
@@ -126,13 +127,13 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </param>
         public RedirectToActionResultAssertions WithPreserveMethod(bool expectedPreserveMethod, string reason = "", params object[] reasonArgs)
         {
-            bool actualPreserveMethod = (Subject as RedirectToActionResult).PreserveMethod;
+            bool actualPreserveMethod = RedirectToActionResultSubject.PreserveMethod;
 
             Execute.Assertion
                 .ForCondition(expectedPreserveMethod == actualPreserveMethod)
                 .BecauseOf(reason, reasonArgs)
                 .WithDefaultIdentifier("RedirectToActionResult.PreserveMethod")
-                .FailWith(FailureMessages.CommonFailMessage2, expectedPreserveMethod, actualPreserveMethod);
+                .FailWith(FailureMessages.CommonFailMessage, expectedPreserveMethod, actualPreserveMethod);
 
             return this;
         }
@@ -151,7 +152,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </param>
         public RedirectToActionResultAssertions WithRouteValue(string key, object expectedValue, string reason = "", params object[] reasonArgs)
         {
-            var subjectTyped = Subject as RedirectToActionResult;
+            var subjectTyped = RedirectToActionResultSubject;
 
             AssertionHelpers.AssertStringObjectDictionary(subjectTyped.RouteValues, "RedirectToActionResult.RouteValues", key, expectedValue, reason, reasonArgs);
 

@@ -46,13 +46,12 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithRouteValue_GivenKeyDoesntExist_ShouldFail()
         {
             var expectedKey = "expectedKey";
-            var failureMessage = FailureMessageHelper.Format(FailureMessages.CreatedAtActionResult_RouteValues_ContainsKey, expectedKey);
 
             var routeValues = new {myKey = "MyValue"};
             var result = new CreatedAtActionResult(string.Empty, string.Empty, routeValues, null);
 
             Action a = () => result.Should().BeCreatedAtActionResult().WithRouteValue(expectedKey, "");
-            a.Should().Throw<Exception>().WithMessage(failureMessage);
+            a.Should().Throw<Exception>().WithMessage("Expected CreatedAtActionResult.ControllerName to be \"expectedController\" but was \"someOtherController\"");
         }
 
         [Fact]
@@ -72,11 +71,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var expectedKey = "expectedKey";
             var expectedValue = "expectedValue";
             var routeValues = new { expectedKey = "someOtherValue" };
-            var failureMessage = FailureMessageHelper.Format(FailureMessages.CreatedAtActionResult_RouteValues_HaveValue, expectedKey, expectedValue, "someOtherValue");
 
             var result = new CreatedAtActionResult(string.Empty, string.Empty, routeValues, null);
             Action a = () => result.Should().BeCreatedAtActionResult().WithRouteValue(expectedKey, expectedValue);
-            a.Should().Throw<Exception>().WithMessage(failureMessage);
+            a.Should().Throw<Exception>().WithMessage("Expected CreatedAtActionResult.ControllerName to be \"expectedController\" but was \"someOtherController\"");
         }
 
         [Fact]

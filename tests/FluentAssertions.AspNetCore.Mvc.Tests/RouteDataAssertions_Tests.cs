@@ -7,7 +7,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
     public class RouteDataAssertionsTests
     {
-        private RouteData _routeData;
+        private readonly RouteData _routeData;
 
         public RouteDataAssertionsTests()
         {

@@ -2,7 +2,6 @@
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace FluentAssertions.AspNetCore.Mvc
@@ -53,7 +52,7 @@ namespace FluentAssertions.AspNetCore.Mvc
                     .BecauseOf(reason, reasonArgs)
                     .ForCondition(expectedPermanent == Subject.Permanent)
                     .WithDefaultIdentifier("RedirectToRoute.Permanent")
-                    .FailWith(FailureMessages.CommonFailMessage2, expectedPermanent, Subject.Permanent);
+                    .FailWith(FailureMessages.CommonFailMessage, expectedPermanent, Subject.Permanent);
             return this;
         }
 
@@ -74,7 +73,7 @@ namespace FluentAssertions.AspNetCore.Mvc
                    .BecauseOf(reason, reasonArgs)
                    .ForCondition(string.Equals(expectedRouteName, Subject.RouteName, StringComparison.OrdinalIgnoreCase))
                    .WithDefaultIdentifier("RedirectToRoute.RouteName")
-                   .FailWith(FailureMessages.CommonFailMessage2, expectedRouteName, Subject.RouteName);
+                   .FailWith(FailureMessages.CommonFailMessage, expectedRouteName, Subject.RouteName);
 
             return this;
         }

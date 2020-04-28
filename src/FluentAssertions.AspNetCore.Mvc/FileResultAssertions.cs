@@ -50,7 +50,7 @@ namespace FluentAssertions.AspNetCore.Mvc
                 .ForCondition(string.Equals(expectedContentType, actualContentType, StringComparison.OrdinalIgnoreCase))
                 .BecauseOf(reason, reasonArgs)
                 .WithDefaultIdentifier("FileResult.ContentType")
-                .FailWith(FailureMessages.CommonFailMessage2, expectedContentType, actualContentType);
+                .FailWith(FailureMessages.CommonFailMessage, expectedContentType, actualContentType);
             return this;
         }
 
@@ -74,7 +74,7 @@ namespace FluentAssertions.AspNetCore.Mvc
                 .ForCondition(Equals(expectedEntityTag, actualEntityTag))
                 .BecauseOf(reason, reasonArgs)
                 .WithDefaultIdentifier("FileResult.EntityTag")
-                .FailWith(FailureMessages.CommonFailMessage2, expectedEntityTag, actualEntityTag);
+                .FailWith(FailureMessages.CommonFailMessage, expectedEntityTag, actualEntityTag);
             return this;
         }
 
@@ -98,7 +98,7 @@ namespace FluentAssertions.AspNetCore.Mvc
                 .ForCondition(string.Equals(expectedFileDownloadName, actualFileDownloadName, StringComparison.OrdinalIgnoreCase))
                 .BecauseOf(reason, reasonArgs)
                 .WithDefaultIdentifier("FileResult.FileDownloadName")
-                .FailWith(FailureMessages.CommonFailMessage2, expectedFileDownloadName, actualFileDownloadName);
+                .FailWith(FailureMessages.CommonFailMessage, expectedFileDownloadName, actualFileDownloadName);
             return this;
         }
 
@@ -122,7 +122,7 @@ namespace FluentAssertions.AspNetCore.Mvc
                 .ForCondition(expectedLastModified == actualLastModified)
                 .BecauseOf(reason, reasonArgs)
                 .WithDefaultIdentifier("FileResult.LastModified")
-                .FailWith(FailureMessages.CommonFailMessage2, expectedLastModified, actualLastModified);
+                .FailWith(FailureMessages.CommonFailMessage, expectedLastModified, actualLastModified);
             return this;
         }
 

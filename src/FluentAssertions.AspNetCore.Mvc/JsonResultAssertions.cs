@@ -68,7 +68,7 @@ namespace FluentAssertions.AspNetCore.Mvc
                 .ForCondition(string.Equals(expectedContentType, actualContentType, StringComparison.OrdinalIgnoreCase))
                 .BecauseOf(reason, reasonArgs)
                 .WithDefaultIdentifier("JsonResult.ContentType")
-                .FailWith(FailureMessages.CommonFailMessage2, expectedContentType, actualContentType);
+                .FailWith(FailureMessages.CommonFailMessage, expectedContentType, actualContentType);
             return this;
         }
 
@@ -92,7 +92,7 @@ namespace FluentAssertions.AspNetCore.Mvc
                 .ForCondition(expectedStatusCode == actualStatusCode)
                 .BecauseOf(reason, reasonArgs)
                 .WithDefaultIdentifier("JsonResult.StatusCode")
-                .FailWith(FailureMessages.CommonFailMessage2, expectedStatusCode, actualStatusCode);
+                .FailWith(FailureMessages.CommonFailMessage, expectedStatusCode, actualStatusCode);
             return this;
         }
 
@@ -107,13 +107,13 @@ namespace FluentAssertions.AspNetCore.Mvc
 
             if (value == null)
                 Execute.Assertion
-                    .WithDefaultIdentifier("Value")
-                    .FailWith(FailureMessages.CommonNullWasSuppliedFailMessage2, typeof(TValue));
+                    .WithDefaultIdentifier("JsonResult.Value")
+                    .FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, typeof(TValue));
 
             Execute.Assertion
                 .ForCondition(value is TValue)
-                .WithDefaultIdentifier("Value")
-                .FailWith(FailureMessages.CommonTypeFailMessage2, typeof(TValue), value.GetType());
+                .WithDefaultIdentifier("JsonResult.Value")
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(TValue), value.GetType());
 
             return (TValue)value;
         }

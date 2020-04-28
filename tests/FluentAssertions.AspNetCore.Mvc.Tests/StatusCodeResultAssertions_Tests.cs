@@ -8,12 +8,6 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
     public class StatusCodeResultAssertions_Tests
     {
-        #region Private Fields
-
-        private FakeController _controller = new FakeController();
-
-        #endregion Private Fields
-
         #region Public Methods
 
         [Fact]

@@ -30,14 +30,13 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         [Fact]
         public void WithRouteValue_GivenKeyDoesntExist_ShouldFail()
         {
-            var expectedKey = "expectedKey";
-            var failureMessage = FailureMessageHelper.Format(FailureMessages.CreatedAtRouteResult_RouteValues_ContainsKey, expectedKey);
+            var expectedKey = "expectedKey";            
 
             var routeValues = new {myKey = "MyValue"};
             var result = new CreatedAtRouteResult(string.Empty, routeValues, null);
 
             Action a = () => result.Should().BeCreatedAtRouteResult().WithRouteValue(expectedKey, "");
-            a.Should().Throw<Exception>().WithMessage(failureMessage);
+            a.Should().Throw<Exception>().WithMessage("sss");
         }
 
         [Fact]
@@ -57,11 +56,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var expectedKey = "expectedKey";
             var expectedValue = "expectedValue";
             var routeValues = new { expectedKey = "someOtherValue" };
-            var failureMessage = FailureMessageHelper.Format(FailureMessages.CreatedAtRouteResult_RouteValues_HaveValue, expectedKey, expectedValue, "someOtherValue");
 
             var result = new CreatedAtRouteResult(string.Empty, routeValues, null);
             Action a = () => result.Should().BeCreatedAtRouteResult().WithRouteValue(expectedKey, expectedValue);
-            a.Should().Throw<Exception>().WithMessage(failureMessage);
+            a.Should().Throw<Exception>().WithMessage("sss");
         }
 
         [Fact]

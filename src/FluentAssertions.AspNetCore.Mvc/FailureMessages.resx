@@ -133,7 +133,7 @@
     <value>Expected AuthenticationSchemes to contain Scheme {0}.</value>
   </data>
   <data name="CommonFailMessage" xml:space="preserve">
-    <value>Expected {0} to be '{1}' but found '{2}'</value>
+    <value>Expected {context} to be {0}{reason} but found {1}.</value>
   </data>
   <data name="CommonItemsContain" xml:space="preserve">
     <value>Expected Items to contain [{0},{1}].</value>
@@ -141,19 +141,10 @@
   <data name="CommonListsNotIdentical" xml:space="preserve">
     <value>Expected {0} List to contain exact items of actual items. </value>
   </data>
-  <data name="CommonFailMessage2" xml:space="preserve">
-    <value>Expected {context} to be {0}{reason} but found {1}.</value>
-  </data>
   <data name="CommonNullWasSuppliedFailMessage" xml:space="preserve">
-    <value>Expected {0} to be of type {1}, but no {0} was supplied.</value>
-  </data>
-  <data name="CommonNullWasSuppliedFailMessage2" xml:space="preserve">
     <value>Expected {context} to be of type {0}, but no value was supplied.</value>
   </data>
   <data name="CommonTypeFailMessage" xml:space="preserve">
-    <value>Expected {0} to be of type '{1}' but was '{2}'</value>
-  </data>
-  <data name="CommonTypeFailMessage2" xml:space="preserve">
     <value>Expected {context} to be of type {0} but was {1}.</value>
   </data>
   <data name="FileContentResult_WithFileContents_LengthFail" xml:space="preserve">

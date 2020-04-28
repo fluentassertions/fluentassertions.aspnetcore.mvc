@@ -12,8 +12,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         private const string TestUriAsString = "http://localhost:5000";
         private const string TestWrongUriAsString = "http://somedomain.com:5000";
         
-        private Uri TestUri = new Uri(TestUriAsString);
-        private Uri TestWrongUri = new Uri(TestWrongUriAsString);
+        private readonly Uri TestUri = new Uri(TestUriAsString);
+        private readonly Uri TestWrongUri = new Uri(TestWrongUriAsString);
 
         [Fact]
         public void Value_GivenExpectedValue_ShouldPass()
@@ -66,7 +66,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithUri_GivenExpectedUri_ShouldPass()
         {
             var result = new TestController().Accepted(TestUri, TestValue);
-            Action a = () => result.Should().BeAcceptedResult().WithUri(TestUri);
+
+            result.Should().BeAcceptedResult().WithUri(TestUri);
         }
 
         [Fact]
@@ -82,7 +83,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithUri_GivenExpectedUriAsString_ShouldPass()
         {
             var result = new TestController().Accepted(TestUriAsString, TestValue);
-            Action a = () => result.Should().BeAcceptedResult().WithUri(TestUriAsString);
+
+            result.Should().BeAcceptedResult().WithUri(TestUriAsString);
         }
 
         [Fact]

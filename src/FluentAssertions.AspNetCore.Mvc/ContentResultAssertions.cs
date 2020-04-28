@@ -38,7 +38,7 @@ namespace FluentAssertions.AspNetCore.Mvc
                    .ForCondition(string.Equals(actualContent, expectedContent, StringComparison.OrdinalIgnoreCase))
                    .BecauseOf(reason, reasonArgs)
                    .WithDefaultIdentifier("ContentResult.Content")
-                   .FailWith(FailureMessages.CommonFailMessage2, expectedContent, actualContent);
+                   .FailWith(FailureMessages.CommonFailMessage, expectedContent, actualContent);
 
             return this;
         }
@@ -62,7 +62,7 @@ namespace FluentAssertions.AspNetCore.Mvc
                    .ForCondition(string.Equals(expectedContentType, actualContentType, StringComparison.OrdinalIgnoreCase))
                    .BecauseOf(reason, reasonArgs)
                    .WithDefaultIdentifier("ContentResult.ContentType")
-                   .FailWith(FailureMessages.CommonFailMessage2, expectedContentType, actualContentType);
+                   .FailWith(FailureMessages.CommonFailMessage, expectedContentType, actualContentType);
 
             return this;
         }

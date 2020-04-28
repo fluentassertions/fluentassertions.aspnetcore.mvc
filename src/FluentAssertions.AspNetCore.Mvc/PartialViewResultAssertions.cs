@@ -48,7 +48,7 @@ namespace FluentAssertions.AspNetCore.Mvc
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(string.Equals(expectedViewName, actualViewName, StringComparison.OrdinalIgnoreCase))
                 .WithDefaultIdentifier("PartialViewResult.ViewName")
-                .FailWith(FailureMessages.CommonFailMessage2, expectedViewName, actualViewName);
+                .FailWith(FailureMessages.CommonFailMessage, expectedViewName, actualViewName);
             return this;
         }
 
@@ -110,12 +110,12 @@ namespace FluentAssertions.AspNetCore.Mvc
             if (model == null)
                 Execute.Assertion
                     .WithDefaultIdentifier("PartialViewResult.Model")
-                    .FailWith(FailureMessages.CommonNullWasSuppliedFailMessage2, typeof(TModel));
+                    .FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, typeof(TModel));
 
             Execute.Assertion
                 .ForCondition(model is TModel)
                 .WithDefaultIdentifier("PartialViewResult.Model")
-                .FailWith(FailureMessages.CommonTypeFailMessage2, typeof(TModel), model.GetType());
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(TModel), model.GetType());
 
             return (TModel)model;
         }
@@ -135,7 +135,7 @@ namespace FluentAssertions.AspNetCore.Mvc
             var viewName = PartialViewResultSubject.ViewName;
 
             Execute.Assertion
-                .ForCondition(viewName == string.Empty)
+                .ForCondition(string.IsNullOrEmpty(viewName))
                 .BecauseOf(reason, reasonArgs)
                 .FailWith(FailureMessages.ViewResultBase_WithDefaultViewName, viewName);
 

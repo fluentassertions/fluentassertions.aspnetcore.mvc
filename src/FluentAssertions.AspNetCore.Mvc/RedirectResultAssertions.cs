@@ -17,6 +17,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </summary>
         public RedirectResultAssertions(RedirectResult subject) : base(subject) { }
 
+        private RedirectResult RedirectResultSubject => Subject as RedirectResult;
         /// <summary>
         /// Asserts that the url is the expected url.
         /// </summary>
@@ -30,13 +31,13 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </param>
         public RedirectResultAssertions WithUrl(string expectedUrl, string reason = "", params object[] reasonArgs)
         {
-            string actualUrl = (Subject as RedirectResult).Url;
+            string actualUrl = RedirectResultSubject.Url;
 
             Execute.Assertion
                    .ForCondition(string.Equals(actualUrl, expectedUrl, StringComparison.OrdinalIgnoreCase))
                    .BecauseOf(reason, reasonArgs)
                    .WithDefaultIdentifier("RedirectResult.Url")
-                   .FailWith(FailureMessages.CommonFailMessage2, expectedUrl, actualUrl);
+                   .FailWith(FailureMessages.CommonFailMessage, expectedUrl, actualUrl);
 
             return this;
         }
@@ -54,13 +55,13 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </param>
         public RedirectResultAssertions WithPermanent(bool expectedPermanent, string reason = "", params object[] reasonArgs)
         {
-            bool actualPermanent = (Subject as RedirectResult).Permanent;
+            bool actualPermanent = RedirectResultSubject.Permanent;
 
             Execute.Assertion
                     .ForCondition(expectedPermanent == actualPermanent)
                     .BecauseOf(reason, reasonArgs)
                     .WithDefaultIdentifier("RedirectResult.Permanent")
-                    .FailWith(FailureMessages.CommonFailMessage2, expectedPermanent, actualPermanent);
+                    .FailWith(FailureMessages.CommonFailMessage, expectedPermanent, actualPermanent);
 
             return this;
         }

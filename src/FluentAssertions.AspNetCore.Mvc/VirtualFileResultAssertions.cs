@@ -179,7 +179,7 @@ namespace FluentAssertions.AspNetCore.Mvc
                 .ForCondition(Equals(actualEntityTag, expectedEntityTag))
                 .BecauseOf(reason, reasonArgs)
                 .WithDefaultIdentifier("VirtualFileResult.EntityTag")
-                .FailWith(FailureMessages.CommonFailMessage2, expectedFileName, actualFileName);
+                .FailWith(FailureMessages.CommonFailMessage, actualEntityTag, expectedEntityTag);
             return this;
         }
 
