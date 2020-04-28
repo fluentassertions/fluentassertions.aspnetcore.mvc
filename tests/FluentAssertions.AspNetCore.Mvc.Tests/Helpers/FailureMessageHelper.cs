@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 
 namespace FluentAssertions.Mvc.Tests.Helpers
 {
@@ -43,9 +44,23 @@ namespace FluentAssertions.Mvc.Tests.Helpers
         private static object ToString(DateTimeOffset? expected)
         {
             if (expected.HasValue)
-                return $"<{expected:yyyy-MM-dd HH:mm:ss.fffffff z}h>";
-            else
-                return "<null>";
+            {
+                var builder = new StringBuilder($"<{expected:yyyy-MM-dd HH:mm:ss}");
+                if(expected.Value.Millisecond > 0)
+                {
+                    builder.AppendFormat(".{0:fffffff}", expected.Value);
+                }
+                if (expected.Value.Offset.Hours > 0)
+                {
+                    builder.AppendFormat(" +{0}h", expected.Value.Offset.Hours);
+                } else if (expected.Value.Offset.Hours < 0)
+                {
+                    builder.AppendFormat(" -{0}h", expected.Value.Offset.Hours);
+                }
+                builder.Append('>');
+                return builder.ToString();
+            }
+            return "<null>";
         }
 
     }

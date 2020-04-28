@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
@@ -10,7 +11,11 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
     public class SignOutResultAssertions_Tests
     {
+        public const string Reason = FailureMessageHelper.Reason;
+        public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
         private readonly List<string> TestAuthenticationSchemes = new List<string> { "one", "two" };
+        private readonly DateTimeOffset? TestIssuedUtc = DateTimeOffset.Parse("2020-04-28 15:48:33.6672395 +2", CultureInfo.InvariantCulture);
+
         [Fact]
         public void WithAuthenticationProperties_GivenExpected_ShouldPass()
         {
@@ -25,9 +30,30 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualAuthenticationProperties = new AuthenticationProperties();
             var expectedAuthenticationProperties = new AuthenticationProperties();
             ActionResult result = new SignOutResult(TestAuthenticationSchemes, actualAuthenticationProperties);
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "SignOutResult.AuthenticationProperties", expectedAuthenticationProperties, actualAuthenticationProperties);
+            var failureMessage = @"Expected SignOutResult.AuthenticationProperties to be 
 
-            Action a = () => result.Should().BeSignOutResult().WithAuthenticationProperties(expectedAuthenticationProperties);
+Microsoft.AspNetCore.Authentication.AuthenticationProperties
+{
+   AllowRefresh = <null>
+   ExpiresUtc = <null>
+   IsPersistent = False
+   IssuedUtc = <null>
+   Items = {empty}
+   RedirectUri = <null>
+} because it is 10 but found 
+
+Microsoft.AspNetCore.Authentication.AuthenticationProperties
+{
+   AllowRefresh = <null>
+   ExpiresUtc = <null>
+   IsPersistent = False
+   IssuedUtc = <null>
+   Items = {empty}
+   RedirectUri = <null>
+}.";
+
+            Action a = () => result.Should().BeSignOutResult().WithAuthenticationProperties(expectedAuthenticationProperties, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -47,9 +73,13 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var expectedIsPersistent = false;
             var actualAuthenticationProperties = new AuthenticationProperties { IsPersistent = actualIsPersistent };
             ActionResult result = new SignOutResult(TestAuthenticationSchemes, actualAuthenticationProperties);
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "SignOutResult.AuthenticationProperties.IsPersistent", expectedIsPersistent, actualIsPersistent);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY(
+                "SignOutResult.AuthenticationProperties.IsPersistent",
+                expectedIsPersistent,
+                actualIsPersistent);
 
-            Action a = () => result.Should().BeSignOutResult().WithIsPersistent(expectedIsPersistent);
+            Action a = () => result.Should().BeSignOutResult().WithIsPersistent(expectedIsPersistent, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -69,16 +99,20 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var expectedRedirectUri = "otherUri";
             var actualAuthenticationProperties = new AuthenticationProperties { RedirectUri = actualRedirectUri };
             ActionResult result = new SignOutResult(TestAuthenticationSchemes, actualAuthenticationProperties);
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "SignOutResult.AuthenticationProperties.RedirectUri", expectedRedirectUri, actualRedirectUri);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY(
+                "SignOutResult.AuthenticationProperties.RedirectUri",
+                expectedRedirectUri,
+                actualRedirectUri);
 
-            Action a = () => result.Should().BeSignOutResult().WithRedirectUri(expectedRedirectUri);
+            Action a = () => result.Should().BeSignOutResult().WithRedirectUri(expectedRedirectUri, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
         [Fact]
         public void WithIssuedUtc_GivenExpected_ShouldPass()
         {
-            var actualIssuedUtc = DateTimeOffset.Now;
+            var actualIssuedUtc = TestIssuedUtc;
             var actualAuthenticationProperties = new AuthenticationProperties { IssuedUtc = actualIssuedUtc };
             ActionResult result = new SignOutResult(TestAuthenticationSchemes, actualAuthenticationProperties);
             result.Should().BeSignOutResult().WithIssuedUtc(actualIssuedUtc);
@@ -97,16 +131,17 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         [Fact]
         public void WithIssuedUtc_GivenUnexpected_ShouldFail()
         {
-            var actualIssuedUtc = DateTimeOffset.Now;
-            var expectedIssuedUtc = DateTimeOffset.Now.AddSeconds(1);
+            var actualIssuedUtc = TestIssuedUtc;
+            var expectedIssuedUtc = TestIssuedUtc.Value.AddSeconds(1);
             var actualAuthenticationProperties = new AuthenticationProperties { IssuedUtc = actualIssuedUtc };
             ActionResult result = new SignOutResult(TestAuthenticationSchemes, actualAuthenticationProperties);
-            var convertedExpectedIssuedUtc = GetConvertedDateTimeOffset(expectedIssuedUtc);
-            var convertedActualIssuedUtc = GetConvertedDateTimeOffset(actualIssuedUtc);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY(
+                "SignOutResult.AuthenticationProperties.IssuedUtc",
+                GetConvertedDateTimeOffset(expectedIssuedUtc),
+                GetConvertedDateTimeOffset(actualIssuedUtc));
 
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "SignOutResult.AuthenticationProperties.IssuedUtc", convertedExpectedIssuedUtc, convertedActualIssuedUtc);
+            Action a = () => result.Should().BeSignOutResult().WithIssuedUtc(expectedIssuedUtc, Reason, ReasonArgs);
 
-            Action a = () => result.Should().BeSignOutResult().WithIssuedUtc(expectedIssuedUtc);
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -114,29 +149,32 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithIssuedUtc_GivenNull_For_Actual_ShouldFail()
         {
             var actualIssuedUtc = null as DateTimeOffset?;
-            var expectedIssuedUtc = DateTimeOffset.Now;
+            var expectedIssuedUtc = TestIssuedUtc;
             var actualAuthenticationProperties = new AuthenticationProperties { IssuedUtc = actualIssuedUtc };
             ActionResult result = new SignOutResult(TestAuthenticationSchemes, actualAuthenticationProperties);
-            var convertedExpectedIssuedUtc = GetConvertedDateTimeOffset(expectedIssuedUtc);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY(
+                "SignOutResult.AuthenticationProperties.IssuedUtc",
+                GetConvertedDateTimeOffset(expectedIssuedUtc),
+                GetConvertedDateTimeOffset(actualIssuedUtc));
 
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "SignOutResult.AuthenticationProperties.IssuedUtc", convertedExpectedIssuedUtc, null);
+            Action a = () => result.Should().BeSignOutResult().WithIssuedUtc(expectedIssuedUtc, Reason, ReasonArgs);
 
-            Action a = () => result.Should().BeSignOutResult().WithIssuedUtc(expectedIssuedUtc);
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
         [Fact]
         public void WithIssuedUtc_GivenNull_For_Expected_ShouldFail()
         {
-            var actualIssuedUtc = DateTimeOffset.Now;
+            var actualIssuedUtc = TestIssuedUtc;
             var expectedIssuedUtc = null as DateTimeOffset?;
             var actualAuthenticationProperties = new AuthenticationProperties { IssuedUtc = actualIssuedUtc };
             ActionResult result = new SignOutResult(TestAuthenticationSchemes, actualAuthenticationProperties);
-            var convertedActualIssuedUtc = GetConvertedDateTimeOffset(actualIssuedUtc);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY(
+                "SignOutResult.AuthenticationProperties.IssuedUtc",
+                GetConvertedDateTimeOffset(expectedIssuedUtc),
+                GetConvertedDateTimeOffset(actualIssuedUtc));
 
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "SignOutResult.AuthenticationProperties.IssuedUtc", null, convertedActualIssuedUtc);
-
-            Action a = () => result.Should().BeSignOutResult().WithIssuedUtc(expectedIssuedUtc);
+            Action a = () => result.Should().BeSignOutResult().WithIssuedUtc(expectedIssuedUtc, Reason, ReasonArgs);
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -162,16 +200,17 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         [Fact]
         public void WithExpiresUtc_GivenUnexpected_ShouldFail()
         {
-            var actualExpiresUtc = DateTimeOffset.Now;
-            var expectedExpiresUtc = DateTimeOffset.Now.AddSeconds(1);
+            var actualExpiresUtc = TestIssuedUtc;
+            var expectedExpiresUtc = TestIssuedUtc.Value.AddSeconds(1);
             var actualAuthenticationProperties = new AuthenticationProperties { ExpiresUtc = actualExpiresUtc };
             ActionResult result = new SignOutResult(TestAuthenticationSchemes, actualAuthenticationProperties);
-            var convertedExpectedExpiresUtc = GetConvertedDateTimeOffset(expectedExpiresUtc);
-            var convertedActualExpiresUtc = GetConvertedDateTimeOffset(actualExpiresUtc);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY(
+                "SignOutResult.AuthenticationProperties.ExpiresUtc",
+                GetConvertedDateTimeOffset(expectedExpiresUtc),
+                GetConvertedDateTimeOffset(actualExpiresUtc));
 
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "SignOutResult.AuthenticationProperties.ExpiresUtc", convertedExpectedExpiresUtc, convertedActualExpiresUtc);
+            Action a = () => result.Should().BeSignOutResult().WithExpiresUtc(expectedExpiresUtc,Reason, ReasonArgs);
 
-            Action a = () => result.Should().BeSignOutResult().WithExpiresUtc(expectedExpiresUtc);
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -179,29 +218,32 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithExpiresUtc_GivenNull_For_Actual_ShouldFail()
         {
             var actualExpiresUtc = null as DateTimeOffset?;
-            var expectedExpiresUtc = DateTimeOffset.Now;
+            var expectedExpiresUtc = TestIssuedUtc;
             var actualAuthenticationProperties = new AuthenticationProperties { ExpiresUtc = actualExpiresUtc };
             ActionResult result = new SignOutResult(TestAuthenticationSchemes, actualAuthenticationProperties);
-            var convertedExpectedExpiresUtc = GetConvertedDateTimeOffset(expectedExpiresUtc);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY(
+                "SignOutResult.AuthenticationProperties.ExpiresUtc",
+                GetConvertedDateTimeOffset(expectedExpiresUtc),
+                GetConvertedDateTimeOffset(actualExpiresUtc));
 
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "SignOutResult.AuthenticationProperties.ExpiresUtc", convertedExpectedExpiresUtc, null);
-
-            Action a = () => result.Should().BeSignOutResult().WithExpiresUtc(expectedExpiresUtc);
+            Action a = () => result.Should().BeSignOutResult().WithExpiresUtc(expectedExpiresUtc, Reason, ReasonArgs);
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
         [Fact]
         public void WithExpiresUtc_GivenNull_For_Expected_ShouldFail()
         {
-            var actualExpiresUtc = DateTimeOffset.Now;
+            var actualExpiresUtc = TestIssuedUtc;
             var expectedExpiresUtc = null as DateTimeOffset?;
             var actualAuthenticationProperties = new AuthenticationProperties { ExpiresUtc = actualExpiresUtc };
             ActionResult result = new SignOutResult(TestAuthenticationSchemes, actualAuthenticationProperties);
-            var convertedActualExpiresUtc = GetConvertedDateTimeOffset(actualExpiresUtc);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY(
+                "SignOutResult.AuthenticationProperties.ExpiresUtc",
+                GetConvertedDateTimeOffset(expectedExpiresUtc),
+                GetConvertedDateTimeOffset(actualExpiresUtc));
 
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "SignOutResult.AuthenticationProperties.ExpiresUtc", null, convertedActualExpiresUtc);
+            Action a = () => result.Should().BeSignOutResult().WithExpiresUtc(expectedExpiresUtc, Reason, ReasonArgs);
 
-            Action a = () => result.Should().BeSignOutResult().WithExpiresUtc(expectedExpiresUtc);
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -221,9 +263,13 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var expectedAllowRefresh = false;
             var actualAuthenticationProperties = new AuthenticationProperties { AllowRefresh = actualAllowRefresh };
             ActionResult result = new SignOutResult(TestAuthenticationSchemes, actualAuthenticationProperties);
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "SignOutResult.AuthenticationProperties.AllowRefresh", expectedAllowRefresh, actualAllowRefresh);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY(
+                "SignOutResult.AuthenticationProperties.AllowRefresh",
+                expectedAllowRefresh,
+                actualAllowRefresh);
 
-            Action a = () => result.Should().BeSignOutResult().WithAllowRefresh(expectedAllowRefresh);
+            Action a = () => result.Should().BeSignOutResult().WithAllowRefresh(expectedAllowRefresh, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -251,7 +297,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             ActionResult result = new SignOutResult(TestAuthenticationSchemes, actualAuthenticationProperties);
             var failureMessage = string.Format(FailureMessages.CommonItemsContain, expectedKey, expectedValue);
 
-            Action a = () => result.Should().BeSignOutResult().ContainsItem(expectedKey, expectedValue);
+            Action a = () => result.Should().BeSignOutResult().ContainsItem(expectedKey, expectedValue, Reason, ReasonArgs);
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -274,7 +320,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             ActionResult result = new SignOutResult(actualAuthenticationSchemes);
             var failureMessage = string.Format(FailureMessages.CommonListsNotIdentical, "SignOutResult.AuthenticationSchemes");
 
-            Action a = () => result.Should().BeSignOutResult().WithAuthenticationSchemes(expectedAuthenticationSchemes);
+            Action a = () => result.Should().BeSignOutResult().WithAuthenticationSchemes(expectedAuthenticationSchemes, Reason, ReasonArgs);
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -296,16 +342,19 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             ActionResult result = new SignOutResult(actualSchemes);
             var failureMessage = string.Format(FailureMessages.CommonAuthenticationSchemesContainScheme, expectedScheme);
 
-            Action a = () => result.Should().BeSignOutResult().ContainsScheme(expectedScheme);
+            Action a = () => result.Should().BeSignOutResult().ContainsScheme(expectedScheme, Reason, ReasonArgs);
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
         // DateTimeOffset is stored as string and converted back in ASP.NET Core Framework
-        private DateTimeOffset? GetConvertedDateTimeOffset(DateTimeOffset value)
+        private DateTimeOffset? GetConvertedDateTimeOffset(DateTimeOffset? value)
         {
-            var expectedIssuedUtcAsString = value.ToString("r", (IFormatProvider)CultureInfo.InvariantCulture);
+            if (!value.HasValue)
+                return null;
 
-            return DateTimeOffset.TryParseExact(expectedIssuedUtcAsString, "r", (IFormatProvider)CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out var result)
+            var expectedIssuedUtcAsString = value.Value.ToString("r", CultureInfo.InvariantCulture);
+
+            return DateTimeOffset.TryParseExact(expectedIssuedUtcAsString, "r", CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out var result)
                 ? new DateTimeOffset?(result)
                 : new DateTimeOffset?();
         }

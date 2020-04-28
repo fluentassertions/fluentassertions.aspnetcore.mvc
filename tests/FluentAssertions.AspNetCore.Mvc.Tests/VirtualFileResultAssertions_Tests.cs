@@ -109,7 +109,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         [Fact]
         public void WithLastModified_GivenExpectedNull_ShouldFail()
         {
-            var actualLastModified = DateTimeOffset.Now;
+            var actualLastModified = TestLastModified;
             var expectedLastModified = null as DateTimeOffset?;
             ActionResult result = new VirtualFileResult(string.Empty, TestContentType) { LastModified = actualLastModified };
             var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("VirtualFileResult.LastModified", expectedLastModified, actualLastModified);
