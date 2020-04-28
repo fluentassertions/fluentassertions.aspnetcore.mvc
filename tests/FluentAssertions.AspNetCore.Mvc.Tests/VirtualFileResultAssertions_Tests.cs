@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 using Xunit;
@@ -7,10 +9,12 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
     public class VirtualFileResultAssertions_Tests
     {
+        public const string Reason = FailureMessageHelper.Reason;
+        public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
         private const string TestFileName = "TestFileName";
         private const string TestContentType = "text/html";
         private const string TestFileDownloadName = "TestFileDownloadName";
-        private readonly DateTimeOffset? TestLastModified = DateTimeOffset.Now;
+        private readonly DateTimeOffset? TestLastModified = DateTimeOffset.Parse("2020-04-28 15:48:33.6672395 +2", CultureInfo.InvariantCulture);
         private readonly EntityTagHeaderValue TestEntityTag = new EntityTagHeaderValue("\"0815\"");
 
         [Fact]
@@ -26,8 +30,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualFileName = TestFileName;
             var expectedFileName = "xyz";
             ActionResult result = new VirtualFileResult(actualFileName, TestContentType);
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "VirtualFileResult.FileName", expectedFileName, actualFileName);
-            Action a = () => result.Should().BeVirtualFileResult().WithFileName(expectedFileName);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("VirtualFileResult.FileName", expectedFileName, actualFileName);
+
+            Action a = () => result.Should().BeVirtualFileResult().WithFileName(expectedFileName, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -44,8 +50,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualContentType = TestContentType;
             var expectedContentType = "xyz";
             ActionResult result = new VirtualFileResult(string.Empty, actualContentType);
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "VirtualFileResult.ContentType", expectedContentType, actualContentType);
-            Action a = () => result.Should().BeVirtualFileResult().WithContentType(expectedContentType);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("VirtualFileResult.ContentType", expectedContentType, actualContentType);
+
+            Action a = () => result.Should().BeVirtualFileResult().WithContentType(expectedContentType, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -62,8 +70,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualFileDownloadName = TestFileDownloadName;
             var expectedFileDownloadName = "xyz";
             ActionResult result = new VirtualFileResult(string.Empty, TestContentType) { FileDownloadName = actualFileDownloadName };
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "VirtualFileResult.FileDownloadName", expectedFileDownloadName, actualFileDownloadName);
-            Action a = () => result.Should().BeVirtualFileResult().WithFileDownloadName(expectedFileDownloadName);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("VirtualFileResult.FileDownloadName", expectedFileDownloadName, actualFileDownloadName);
+
+            Action a = () => result.Should().BeVirtualFileResult().WithFileDownloadName(expectedFileDownloadName, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -87,10 +97,12 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithLastModified_GivenActualNull_ShouldFail()
         {
             var actualLastModified = null as DateTimeOffset?;
-            var expectedLastModified = DateTimeOffset.Now;
+            var expectedLastModified = TestLastModified;
             ActionResult result = new VirtualFileResult(string.Empty, TestContentType) { LastModified = actualLastModified };
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "VirtualFileResult.LastModified", expectedLastModified, actualLastModified);
-            Action a = () => result.Should().BeVirtualFileResult().WithLastModified(expectedLastModified);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("VirtualFileResult.LastModified", expectedLastModified, actualLastModified);
+
+            Action a = () => result.Should().BeVirtualFileResult().WithLastModified(expectedLastModified, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -100,8 +112,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualLastModified = DateTimeOffset.Now;
             var expectedLastModified = null as DateTimeOffset?;
             ActionResult result = new VirtualFileResult(string.Empty, TestContentType) { LastModified = actualLastModified };
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "VirtualFileResult.LastModified", expectedLastModified, actualLastModified);
-            Action a = () => result.Should().BeVirtualFileResult().WithLastModified(expectedLastModified);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("VirtualFileResult.LastModified", expectedLastModified, actualLastModified);
+
+            Action a = () => result.Should().BeVirtualFileResult().WithLastModified(expectedLastModified, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -109,10 +123,12 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithLastModified_GivenUnexpected_ShouldFail()
         {
             var actualLastModified = TestLastModified;
-            var expectedLastModified = DateTimeOffset.Now.AddMilliseconds(1);
+            var expectedLastModified = TestLastModified.Value.AddMilliseconds(1);
             ActionResult result = new VirtualFileResult(string.Empty, TestContentType) { LastModified = actualLastModified };
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "VirtualFileResult.LastModified", expectedLastModified, actualLastModified);
-            Action a = () => result.Should().BeVirtualFileResult().WithLastModified(expectedLastModified);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("VirtualFileResult.LastModified", expectedLastModified, actualLastModified);
+
+            Action a = () => result.Should().BeVirtualFileResult().WithLastModified(expectedLastModified, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -129,8 +145,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualEntityTag = TestEntityTag;
             var expectedEntityTag = new EntityTagHeaderValue("\"1234\"");
             ActionResult result = new VirtualFileResult(string.Empty, TestContentType) { EntityTag = actualEntityTag };
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "VirtualFileResult.EntityTag", expectedEntityTag, actualEntityTag);
-            Action a = () => result.Should().BeVirtualFileResult().WithEntityTag(expectedEntityTag);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("VirtualFileResult.EntityTag", expectedEntityTag, actualEntityTag);
+
+            Action a = () => result.Should().BeVirtualFileResult().WithEntityTag(expectedEntityTag, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
     }

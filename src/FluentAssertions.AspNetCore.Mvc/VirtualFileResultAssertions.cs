@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
@@ -10,7 +12,6 @@ namespace FluentAssertions.AspNetCore.Mvc
     /// <summary>
     /// Contains a number of methods to assert that a <see cref="VirtualFileResult"/> is in the expected state.
     /// </summary>
-    [DebuggerNonUserCode]
     public class VirtualFileResultAssertions : ObjectAssertions
     {
         #region Public Constructors
@@ -61,7 +62,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(string.Equals(actualFileName, expectedFileName, StringComparison.OrdinalIgnoreCase))
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(string.Format(FailureMessages.CommonFailMessage, "VirtualFileResult.FileName", expectedFileName, actualFileName));
+                .WithDefaultIdentifier("VirtualFileResult.FileName")
+                .FailWith(FailureMessages.CommonFailMessage, expectedFileName, actualFileName);
 
             return this;
         }
@@ -84,7 +86,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(string.Equals(actualContentType, expectedContentType, StringComparison.OrdinalIgnoreCase))
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(string.Format(FailureMessages.CommonFailMessage, "VirtualFileResult.ContentType", expectedContentType, actualContentType));
+                .WithDefaultIdentifier("VirtualFileResult.ContentType")
+                .FailWith(FailureMessages.CommonFailMessage, expectedContentType, actualContentType);
 
             return this;
         }
@@ -107,7 +110,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(string.Equals(actualFileDownloadName, expectedFileDownloadName, StringComparison.OrdinalIgnoreCase))
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(string.Format(FailureMessages.CommonFailMessage, "VirtualFileResult.FileDownloadName", expectedFileDownloadName, actualFileDownloadName));
+                .WithDefaultIdentifier("VirtualFileResult.FileDownloadName")
+                .FailWith(FailureMessages.CommonFailMessage, expectedFileDownloadName, actualFileDownloadName);
 
             return this;
         }
@@ -127,35 +131,11 @@ namespace FluentAssertions.AspNetCore.Mvc
         {
             var actualLastModified = LastModified;
 
-            if (actualLastModified == null && expectedLastModified == null)
-            {
-                return this;
-            }
-
-            if (actualLastModified == null)
-            {
-                Execute.Assertion
-                    .ForCondition(false)
-                    .BecauseOf(reason, reasonArgs)
-                    .FailWith(string.Format(FailureMessages.CommonFailMessage, "VirtualFileResult.LastModified", expectedLastModified, null));
-
-                return this;
-            }
-
-            if (expectedLastModified == null)
-            {
-                Execute.Assertion
-                    .ForCondition(false)
-                    .BecauseOf(reason, reasonArgs)
-                    .FailWith(string.Format(FailureMessages.CommonFailMessage, "VirtualFileResult.LastModified", null, actualLastModified));
-
-                return this;
-            }
-
             Execute.Assertion
-                .ForCondition(DateTimeOffset.Compare(actualLastModified.Value, expectedLastModified.Value) == 0)
+                .ForCondition(EqualityComparer<DateTimeOffset?>.Default.Equals(actualLastModified, expectedLastModified))
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(string.Format(FailureMessages.CommonFailMessage, "VirtualFileResult.LastModified", expectedLastModified, actualLastModified));
+                .WithDefaultIdentifier("VirtualFileResult.LastModified")
+                .FailWith(FailureMessages.CommonFailMessage, expectedLastModified, actualLastModified);
 
             return this;
         }
@@ -179,7 +159,7 @@ namespace FluentAssertions.AspNetCore.Mvc
                 .ForCondition(Equals(actualEntityTag, expectedEntityTag))
                 .BecauseOf(reason, reasonArgs)
                 .WithDefaultIdentifier("VirtualFileResult.EntityTag")
-                .FailWith(FailureMessages.CommonFailMessage, actualEntityTag, expectedEntityTag);
+                .FailWith(FailureMessages.CommonFailMessage, expectedEntityTag, actualEntityTag);
             return this;
         }
 
