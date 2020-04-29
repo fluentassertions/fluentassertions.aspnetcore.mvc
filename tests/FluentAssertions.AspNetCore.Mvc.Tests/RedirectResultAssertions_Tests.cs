@@ -8,6 +8,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
     public class RedirectResultAssertions_Tests
     {
+        public const string Reason = FailureMessageHelper.Reason;
+        public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
+
         [Fact]
         public void WithUrl_GivenExpectedUrl_ShouldPass()
         {
@@ -23,7 +26,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             ActionResult result = new RedirectResult("/abc");
 
             Action a = () => result.Should().BeRedirectResult()
-                .WithUrl("/xyz", "it is {0}", 10);
+                .WithUrl("/xyz", Reason, ReasonArgs);
             a.Should().Throw<Exception>()
                 .WithMessage(FailureMessageHelper.ExpectedContextToBeXButY("RedirectResult.Url", "/xyz", "/abc"));
         }
@@ -43,7 +46,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             ActionResult result = new RedirectResult("/abc", true);
 
             Action a = () => result.Should().BeRedirectResult()
-                .WithPermanent(false, "it is {0}", 10);
+                .WithPermanent(false, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(FailureMessageHelper.ExpectedContextToBeXButY("RedirectResult.Permanent", false, true));

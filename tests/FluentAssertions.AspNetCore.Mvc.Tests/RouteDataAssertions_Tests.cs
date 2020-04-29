@@ -7,6 +7,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
     public class RouteDataAssertionsTests
     {
+        public const string Reason = FailureMessageHelper.Reason;
+        public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
         private readonly RouteData _routeData;
 
         public RouteDataAssertionsTests()
@@ -24,7 +26,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var expectedKey = "xyz";
             var failureMessage = FailureMessageHelper.ExpectedKeyButNotFound("RouteData.Values", expectedKey, "Val");
 
-            Action a = () => _routeData.Should().HaveValue(expectedKey, "Val", "it is {0}", 10);
+            Action a = () => _routeData.Should().HaveValue(expectedKey, "Val", Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -42,7 +44,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var controllerName = "xyz";
             var failureMessage = FailureMessageHelper.ExpectedAtKeyValueXButFoundY("RouteData.Values", "controller", controllerName, "home");
 
-            Action a = () => _routeData.Should().HaveValue("controller", controllerName, "it is {0}", 10);
+            Action a = () => _routeData.Should().HaveValue("controller", controllerName, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -60,7 +62,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var controllerName = "xyz";
             var failureMessage = FailureMessageHelper.ExpectedAtKeyValueXButFoundY("RouteData.Values", "controller", controllerName, "home");
 
-            Action a = () => _routeData.Should().HaveController(controllerName, "it is {0}", 10);
+            Action a = () => _routeData.Should().HaveController(controllerName, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -78,7 +80,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actionName = "xyz";
             var failureMessage = FailureMessageHelper.ExpectedAtKeyValueXButFoundY("RouteData.Values", "action", actionName, "index");
 
-            Action a = () => _routeData.Should().HaveAction(actionName, "it is {0}", 10);
+            Action a = () => _routeData.Should().HaveAction(actionName, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -96,7 +98,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var area = "xyz"; 
             var failureMessage = FailureMessageHelper.ExpectedAtKeyValueXButFoundY("RouteData.Values", "area", area, "admin");
 
-            Action a = () => _routeData.Should().HaveArea(area, "it is {0}", 10);
+            Action a = () => _routeData.Should().HaveArea(area, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -108,7 +110,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var expectedKey = "xyz"; 
             var failureMessage = FailureMessageHelper.ExpectedKeyButNotFound("RouteData.DataTokens",expectedKey, "Val");
 
-            Action a = () => _routeData.Should().HaveDataToken(expectedKey, "Val", "it is {0}", 10);
+            Action a = () => _routeData.Should().HaveDataToken(expectedKey, "Val", Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -126,7 +128,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var value = "xyz";
             var failureMessage = FailureMessageHelper.ExpectedAtKeyValueXButFoundY("RouteData.DataTokens", "token", value, "value");
 
-            Action a = () => _routeData.Should().HaveDataToken("token", value, "it is {0}", 10);
+            Action a = () => _routeData.Should().HaveDataToken("token", value, Reason, ReasonArgs);
 
 
             a.Should().Throw<Exception>()

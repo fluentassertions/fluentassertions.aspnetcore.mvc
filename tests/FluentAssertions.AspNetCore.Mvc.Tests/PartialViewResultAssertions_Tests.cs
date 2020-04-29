@@ -8,6 +8,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
     public class PartialViewResultAssertions_Tests
     {
+        public const string Reason = FailureMessageHelper.Reason;
+        public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
+
         [Fact]
         public void WithDefaultViewName_GivenExpectedValue_ShouldPass()
         {
@@ -28,7 +31,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             };
             var failureMessage = "Expected default view because it is 10, but view \"Something\" was rendered.";
 
-            Action action = () => result.Should().BePartialViewResult().WithDefaultViewName("it is {0}", 10);
+            Action action = () => result.Should().BePartialViewResult().WithDefaultViewName(Reason, ReasonArgs);
 
             action.Should()
                 .Throw<Exception>()
@@ -97,7 +100,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 ViewName = actual
             };
 
-            Action action = () => result.Should().BePartialViewResult().WithViewName(expected, "it is {0}", 10);
+            Action action = () => result.Should().BePartialViewResult().WithViewName(expected, Reason, ReasonArgs);
 
             action.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -116,7 +119,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var result = new PartialViewResult();
 
-            Action a = () => result.Should().BePartialViewResult().WithTempData("key1", "value1", "it is {0}", 10);
+            Action a = () => result.Should().BePartialViewResult().WithTempData("key1", "value1", Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage("Expected PartialViewResult.TempData to contain value \"value1\" at key \"key1\" because it is 10, but it is <null>."); ;
@@ -127,7 +130,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var result = new TestController().PartialViewWithOneTempData();
 
-            Action a = () => result.Should().BePartialViewResult().WithTempData("key1", "xyz", "it is {0}", 10);
+            Action a = () => result.Should().BePartialViewResult().WithTempData("key1", "xyz", Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage("Expected PartialViewResult.TempData to contain value \"xyz\" at key \"key1\" because it is 10 but found \"value1\".");
@@ -138,7 +141,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var result = new TestController().PartialViewWithOneTempData();
 
-            Action a = () => result.Should().BePartialViewResult().WithTempData("xyz", "value1", "it is {0}", 10);
+            Action a = () => result.Should().BePartialViewResult().WithTempData("xyz", "value1", Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage("Expected PartialViewResult.TempData to contain value \"value1\" at key \"xyz\" because it is 10, but the key was not found."); ;
@@ -157,7 +160,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var result = new PartialViewResult();
 
-            Action a = () => result.Should().BePartialViewResult().WithViewData("key1", "value1", "it is {0}", 10);
+            Action a = () => result.Should().BePartialViewResult().WithViewData("key1", "value1", Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage("Expected PartialViewResult.ViewData to contain value \"value1\" at key \"key1\" because it is 10, but it is <null>.");
@@ -171,7 +174,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             var result = new TestController().PartialViewWithOneViewData();
 
-            Action a = () => result.Should().BePartialViewResult().WithViewData(key, expectedValue, "it is {0}", 10);
+            Action a = () => result.Should().BePartialViewResult().WithViewData(key, expectedValue, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage("Expected PartialViewResult.ViewData to contain value \"abc\" at key \"key1\" because it is 10 but found \"value1\".");
@@ -184,7 +187,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             var result = new TestController().PartialViewWithOneViewData();
 
-            Action a = () => result.Should().BePartialViewResult().WithViewData(expectedKey, "value1", "it is {0}", 10);
+            Action a = () => result.Should().BePartialViewResult().WithViewData(expectedKey, "value1", Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage("Expected PartialViewResult.ViewData to contain value \"value1\" at key \"xyz\" because it is 10, but the key was not found.");

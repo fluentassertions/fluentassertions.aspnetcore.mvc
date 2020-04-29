@@ -14,8 +14,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         private const string TestUriAsString = "http://localhost:5000";
         private const string TestWrongUriAsString = "http://somedomain.com:5000";
         
-        private Uri TestUri = new Uri(TestUriAsString);
-        private Uri TestWrongUri = new Uri(TestWrongUriAsString);
+        private readonly Uri TestUri = new Uri(TestUriAsString);
+        private readonly Uri TestWrongUri = new Uri(TestWrongUriAsString);
 
         [Fact]
         public void Value_GivenExpectedValue_ShouldPass()

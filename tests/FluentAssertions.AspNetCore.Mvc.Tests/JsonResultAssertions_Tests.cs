@@ -8,6 +8,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
     public class JsonResultAssertions_Tests
     {
+        public const string Reason = FailureMessageHelper.Reason;
+        public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
+
         [Fact]
         public void WithContentType_GivenExpectedValue_ShouldPass()
         {
@@ -30,7 +33,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             };
             var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("JsonResult.ContentType", expectedValue, actualValue);
 
-            Action a = () => result.Should().BeJsonResult().WithContentType(expectedValue, "it is {0}", 10);
+            Action a = () => result.Should().BeJsonResult().WithContentType(expectedValue, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -58,7 +61,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             };
             var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("JsonResult.StatusCode", expectedStatusCode, actualStatusCode);
 
-            Action a = () => result.Should().BeJsonResult().WithStatusCode(expectedStatusCode, "it is {0}", 10);
+            Action a = () => result.Should().BeJsonResult().WithStatusCode(expectedStatusCode, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);

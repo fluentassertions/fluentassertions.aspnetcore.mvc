@@ -8,6 +8,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
     public class StatusCodeResultAssertions_Tests
     {
+        public const string Reason = FailureMessageHelper.Reason;
+        public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
+
         #region Public Methods
 
         [Fact]
@@ -29,7 +32,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("StatusCodeResult.StatusCode", expectedStatusCode, actualStatusCode);
             ActionResult result = new StatusCodeResult(actualStatusCode);
 
-            Action action = () => result.Should().BeStatusCodeResult().WithStatusCode(expectedStatusCode, "it is {0}", 10);
+            Action action = () => result.Should().BeStatusCodeResult().WithStatusCode(expectedStatusCode, Reason, ReasonArgs);
 
             action.Should().Throw<Exception>()
                 .WithMessage(failureMessage);

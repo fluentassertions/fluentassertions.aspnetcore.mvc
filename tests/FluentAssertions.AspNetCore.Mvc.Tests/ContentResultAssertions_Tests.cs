@@ -8,6 +8,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
     public class ContentResultAssertions_Tests
     {
+        public const string Reason = FailureMessageHelper.Reason;
+        public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
+
         [Fact]
         public void WithContent_GivenExpected_ShouldPass()
         {
@@ -23,7 +26,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             ActionResult result = new ContentResult { Content = actualContent };
             var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("ContentResult.Content", expectedContent, actualContent);
 
-            Action a = () => result.Should().BeContentResult().WithContent(expectedContent, "it is {0}", 10);
+            Action a = () => result.Should().BeContentResult().WithContent(expectedContent, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -44,7 +47,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             ActionResult result = new ContentResult { ContentType = actualContentType };
             var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("ContentResult.ContentType", expectedContentType, actualContentType);
 
-            Action a = () => result.Should().BeContentResult().WithContentType(expectedContentType, "it is {0}", 10);
+            Action a = () => result.Should().BeContentResult().WithContentType(expectedContentType, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);

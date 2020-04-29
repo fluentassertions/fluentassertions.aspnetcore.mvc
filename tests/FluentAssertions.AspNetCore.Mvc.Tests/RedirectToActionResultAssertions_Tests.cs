@@ -8,6 +8,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
     public class RedirectToActionResultAssertions_Tests
     {
+        public const string Reason = FailureMessageHelper.Reason;
+        public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
+
         [Fact]
         public void WithActionName_GivenExpectedActionName_ShouldPass()
         {
@@ -24,7 +27,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             RedirectToActionResult result = new RedirectToActionResult("someOtherAction", string.Empty, null);
 
             Action a = () => result.Should().BeRedirectToActionResult()
-                .WithActionName("expectedAction", "it is {0}", 10);
+                .WithActionName("expectedAction", Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(FailureMessageHelper.ExpectedContextToBeXButY("RedirectToActionResult.ActionName", "expectedAction", "someOtherAction"));
@@ -46,7 +49,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             RedirectToActionResult result = new RedirectToActionResult(string.Empty, "someOtherController", null);
 
             Action a = () => result.Should().BeRedirectToActionResult()
-                .WithControllerName("expectedController", "it is {0}", 10);
+                .WithControllerName("expectedController", Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(FailureMessageHelper.ExpectedContextToBeXButY("RedirectToActionResult.ControllerName", "expectedController", "someOtherController"));
@@ -68,7 +71,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             RedirectToActionResult result = new RedirectToActionResult(string.Empty, string.Empty, null, false, "someOtherFragment");
 
             Action a = () => result.Should().BeRedirectToActionResult()
-                .WithFragment("expectedFragment", "it is {0}", 10);
+                .WithFragment("expectedFragment", Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(FailureMessageHelper.ExpectedContextToBeXButY("RedirectToActionResult.Fragment", "expectedFragment", "someOtherFragment"));
@@ -89,7 +92,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             RedirectToActionResult result = new RedirectToActionResult(string.Empty, string.Empty, null, true);
 
             Action a = () => result.Should().BeRedirectToActionResult()
-                .WithPermanent(false, "it is {0}", 10);
+                .WithPermanent(false, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(FailureMessageHelper.ExpectedContextToBeXButY("RedirectToActionResult.Permanent", false, true));
@@ -110,7 +113,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             RedirectToActionResult result = new RedirectToActionResult(string.Empty, string.Empty, null, false, true);
 
             Action a = () => result.Should().BeRedirectToActionResult()
-                .WithPreserveMethod(false, "it is {0}", 10);
+                .WithPreserveMethod(false, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(FailureMessageHelper.ExpectedContextToBeXButY("RedirectToActionResult.PreserveMethod", false, true));
@@ -125,7 +128,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var routeValues = new {myKey = "MyValue"};
             RedirectToActionResult result = new RedirectToActionResult(string.Empty, string.Empty, routeValues);
 
-            Action a = () => result.Should().BeRedirectToActionResult().WithRouteValue(expectedKey, "Val", "it is {0}", 10);
+            Action a = () => result.Should().BeRedirectToActionResult().WithRouteValue(expectedKey, "Val", Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -152,7 +155,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var failureMessage = FailureMessageHelper.ExpectedAtKeyValueXButFoundY("RedirectToActionResult.RouteValues", expectedKey, expectedValue, "someOtherValue");
 
             RedirectToActionResult result = new RedirectToActionResult(string.Empty, string.Empty, routeValues);
-            Action a = () => result.Should().BeRedirectToActionResult().WithRouteValue(expectedKey, expectedValue, "it is {0}", 10);
+            Action a = () => result.Should().BeRedirectToActionResult().WithRouteValue(expectedKey, expectedValue, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);

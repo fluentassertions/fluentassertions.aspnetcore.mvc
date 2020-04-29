@@ -13,7 +13,6 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
     {
         public const string Reason = FailureMessageHelper.Reason;
         public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
-        private const string TestAuthenticationScheme = "TestAuthenticationScheme";
         private readonly List<string> TestAuthenticationSchemes = new List<string> { "one", "two" };
         private readonly DateTimeOffset? TestIssuedUtc = DateTimeOffset.Parse("2020-04-28 15:48:33.6672395 +2", CultureInfo.InvariantCulture);
 

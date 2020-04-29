@@ -8,11 +8,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
     public class ViewResultAssertions_Tests
     {
-        #region Private Fields
-
-        private FakeController _controller = new FakeController();
-
-        #endregion Private Fields
+        public const string Reason = FailureMessageHelper.Reason;
+        public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
 
         #region Public Methods
 
@@ -36,7 +33,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 ViewName = actualViewName,
             };
 
-            Action action = () => result.Should().BeViewResult().WithViewName(expectedViewName, "it is {0}", 10);
+            Action action = () => result.Should().BeViewResult().WithViewName(expectedViewName, Reason, ReasonArgs);
 
             action.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -56,7 +53,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var result = new ViewResult();
             var failureMessage = FailureMessageHelper.ExpectedContextContainValueAtKeyButFoundNull("ViewResult.TempData", "value1", "key1");
 
-            Action a = () => result.Should().BeViewResult().WithTempData("key1", "value1", "it is {0}", 10);
+            Action a = () => result.Should().BeViewResult().WithTempData("key1", "value1", Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -67,7 +64,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var result = new TestController().ViewWithOneTempData();
 
-            Action a = () => result.Should().BeViewResult().WithTempData("key1", "xyz", "it is {0}", 10);
+            Action a = () => result.Should().BeViewResult().WithTempData("key1", "xyz", Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage("Expected ViewResult.TempData to contain value \"xyz\" at key \"key1\" because it is 10 but found \"value1\".");
@@ -80,7 +77,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var failureMessage = FailureMessageHelper.ExpectedContextContainValueAtKeyButKeyNotFound(
                     "ViewResult.TempData", "value1", "xyz");
 
-            Action a = () => result.Should().BeViewResult().WithTempData("xyz", "value1", "it is {0}", 10);
+            Action a = () => result.Should().BeViewResult().WithTempData("xyz", "value1", Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -99,7 +96,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var result = new ViewResult();
 
-            Action a = () => result.Should().BeViewResult().WithViewData("key1", "value1", "it is {0}", 10);
+            Action a = () => result.Should().BeViewResult().WithViewData("key1", "value1", Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage("Expected ViewResult.ViewData to contain value \"value1\" at key \"key1\" because it is 10, but it is <null>.");
@@ -113,7 +110,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             var result = new TestController().ViewWithOneViewData();
 
-            Action a = () => result.Should().BeViewResult().WithViewData(key, expectedValue, "it is {0}", 10);
+            Action a = () => result.Should().BeViewResult().WithViewData(key, expectedValue, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage("Expected ViewResult.ViewData to contain value \"abc\" at key \"key1\" because it is 10 but found \"value1\".");
@@ -126,7 +123,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             var result = new TestController().ViewWithTwoViewData();
 
-            Action a = () => result.Should().BeViewResult().WithViewData(expectedKey, "value1", "it is {0}", 10);
+            Action a = () => result.Should().BeViewResult().WithViewData(expectedKey, "value1", Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage("Expected ViewResult.ViewData to contain value \"value1\" at key \"xyz\" because it is 10, but the key was not found.");

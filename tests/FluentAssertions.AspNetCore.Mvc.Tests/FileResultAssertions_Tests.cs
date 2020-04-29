@@ -9,6 +9,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
     public class FileResultAssertions_Tests
     {
+        public const string Reason = FailureMessageHelper.Reason;
+        public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
+
         [Fact]
         public void WithContentType_GivenExpectedValue_ShouldPass()
         {
@@ -27,7 +30,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             ActionResult result = TestDataGenerator.CreateFileContentResult(contentType: actualValue);
             var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("FileResult.ContentType", expectedValue, actualValue);
 
-            Action a = () => result.Should().BeFileResult().WithContentType(expectedValue, "it is {0}", 10);
+            Action a = () => result.Should().BeFileResult().WithContentType(expectedValue, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -51,7 +54,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             result.FileDownloadName = actualValue;
             var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("FileResult.FileDownloadName", expectedValue, actualValue);
 
-            Action a = () => result.Should().BeFileResult().WithFileDownloadName(expectedValue, "it is {0}", 10);
+            Action a = () => result.Should().BeFileResult().WithFileDownloadName(expectedValue, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -82,7 +85,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             result.LastModified = actualValue;
             var failureMessage = $"Expected FileResult.LastModified to be <{expected ?? "null"}> because it is 10 but found <{actual ?? "null"}>.";
 
-            Action a = () => result.Should().BeFileResult().WithLastModified(expectedValue, "it is {0}", 10);
+            Action a = () => result.Should().BeFileResult().WithLastModified(expectedValue, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -109,7 +112,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             result.EntityTag = actualEntityTag;
             var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("FileResult.EntityTag", expectedEntityTag, actualEntityTag);
 
-            Action a = () => result.Should().BeFileResult().WithEntityTag(expectedEntityTag, "it is {0}", 10);
+            Action a = () => result.Should().BeFileResult().WithEntityTag(expectedEntityTag, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);

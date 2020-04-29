@@ -8,6 +8,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
     public class RedirectToRoute_Tests
     {
+        public const string Reason = FailureMessageHelper.Reason;
+        public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
+
         #region Public Methods
 
         [Fact]
@@ -25,7 +28,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             ActionResult result = new RedirectToRouteResult("", null, true);
             Action a = () => result.Should()
                 .BeRedirectToRouteResult()
-                .WithPermanent(false, "it is {0}", 10);
+                .WithPermanent(false, Reason, ReasonArgs);
             a.Should().Throw<Exception>()
                 .WithMessage(FailureMessageHelper.ExpectedContextToBeXButY("RedirectToRoute.Permanent", false, true));
         }
@@ -45,7 +48,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             ActionResult result = new RedirectToRouteResult("default", null);
             Action a = () => result.Should()
                 .BeRedirectToRouteResult()
-                .WithRouteName("xyz", "it is {0}", 10);
+                .WithRouteName("xyz", Reason, ReasonArgs);
             a.Should().Throw<Exception>()
                 .WithMessage(FailureMessageHelper.ExpectedContextToBeXButY("RedirectToRoute.RouteName","xyz", "default"));
         }
@@ -73,7 +76,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             Action a = () => result.Should()
                 .BeRedirectToRouteResult()
-                .WithRouteValue("Id", "11", "it is {0}", 10);
+                .WithRouteValue("Id", "11", Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(FailureMessageHelper.ExpectedAtKeyValueXButFoundY("RedirectToRouteResult.RouteValues", "Id", "11", "22"));
@@ -90,7 +93,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             Action a = () => result.Should()
                 .BeRedirectToRouteResult()
-                .WithRouteValue("xyz", "22", "it is {0}", 10);
+                .WithRouteValue("xyz", "22", Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(FailureMessageHelper.ExpectedKeyButNotFound("RedirectToRouteResult.RouteValues", "xyz", "22"));
@@ -119,7 +122,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             Action a = () => result.Should()
                 .BeRedirectToRouteResult()
-                .WithController("xyz", "it is {0}", 10);
+                .WithController("xyz", Reason, ReasonArgs);
             a.Should().Throw<Exception>()
                 .WithMessage(FailureMessageHelper.ExpectedAtKeyValueXButFoundY("RedirectToRouteResult.RouteValues", "Controller", "xyz", "home"));
         }
@@ -147,7 +150,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             Action a = () => result.Should()
                 .BeRedirectToRouteResult()
-                .WithAction("xyz", "it is {0}", 10);
+                .WithAction("xyz", Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(FailureMessageHelper.ExpectedAtKeyValueXButFoundY("RedirectToRouteResult.RouteValues", "Action", "xyz", "index"));
@@ -176,7 +179,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             Action a = () => result.Should()
                 .BeRedirectToRouteResult()
-                .WithArea("xyz", "it is {0}", 10);
+                .WithArea("xyz", Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(FailureMessageHelper.ExpectedAtKeyValueXButFoundY("RedirectToRouteResult.RouteValues", "Area", "xyz", "accounts"));

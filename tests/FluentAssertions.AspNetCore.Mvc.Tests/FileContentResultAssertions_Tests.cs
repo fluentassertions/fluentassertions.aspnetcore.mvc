@@ -1,4 +1,5 @@
 ﻿using FluentAssertions.AspNetCore.Mvc.Tests.Helpers;
+using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using Xunit;
@@ -7,6 +8,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
     public class FileContentResultAssertions_Tests
     {
+        public const string Reason = FailureMessageHelper.Reason;
+        public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
+
         [Fact]
         public void WithFileContents_GivenExpectedValue_ShouldPass()
         {
@@ -35,7 +39,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             Action a = () => result.Should()
                 .BeFileContentResult()
-                .WithFileContents(expectedBytes, "it is {0}", 10);
+                .WithFileContents(expectedBytes, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
