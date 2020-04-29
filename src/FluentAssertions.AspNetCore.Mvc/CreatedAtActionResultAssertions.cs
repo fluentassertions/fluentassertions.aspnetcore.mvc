@@ -35,7 +35,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                    .ForCondition(string.Equals(actualActionName, expectedActionName, StringComparison.OrdinalIgnoreCase))
                    .BecauseOf(reason, reasonArgs)
-                   .FailWith("Expected CreatedAtActionResult.ActionName to be {0}{reason} but was {1}", expectedActionName, actualActionName);
+                   .WithDefaultIdentifier("CreatedAtActionResult.ActionName")
+                   .FailWith(FailureMessages.CommonFailMessage, expectedActionName, actualActionName);
 
             return this;
         }
@@ -58,7 +59,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(string.Equals(actualControllerName, expectedControllerName, StringComparison.OrdinalIgnoreCase))
                 .BecauseOf(reason, reasonArgs)
-                .FailWith("Expected CreatedAtActionResult.ControllerName to be {0}{reason} but was {1}", expectedControllerName, actualControllerName);
+                .WithDefaultIdentifier("CreatedAtActionResult.ControllerName")
+                .FailWith(FailureMessages.CommonFailMessage, expectedControllerName, actualControllerName);
 
             return this;
         }
