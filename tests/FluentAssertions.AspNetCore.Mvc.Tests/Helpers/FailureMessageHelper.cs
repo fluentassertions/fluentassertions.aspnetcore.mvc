@@ -16,6 +16,11 @@ namespace FluentAssertions.Mvc.Tests.Helpers
             return String.Format(message, formattedArg);
         }
 
+        public static string ExpectedContextToBeXButY(string context, Uri expected, Uri actual)
+        {
+            return ExpectedContextToBeXButY(context, expected?.ToString(), actual?.ToString());
+        }
+
         public static string ExpectedContextToBeXButY(string context, string expected, string actual)
         {
             return ExpectedContextToBeXButY(context, (object)$"\"{expected}\"", (object)$"\"{actual}\"");
