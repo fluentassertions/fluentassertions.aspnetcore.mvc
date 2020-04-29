@@ -90,6 +90,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 "JsonResult.Value", typeof(int).FullName, typeof(string).FullName);
 
             Action a = () => result.Should().BeJsonResult().ValueAs<int>().Should().Be(2);
+
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
         }
