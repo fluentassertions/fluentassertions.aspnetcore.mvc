@@ -45,11 +45,14 @@ namespace FluentAssertions.AspNetCore.Mvc
             var error = Error;
 
             if (error == null)
-                Execute.Assertion.FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, "BadRequestObjectResult.Error", typeof(TError).Name);
+                Execute.Assertion
+                    .WithDefaultIdentifier("BadRequestObjectResult.Error")
+                    .FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, typeof(TError));
 
             Execute.Assertion
                 .ForCondition(error is TError)
-                .FailWith(FailureMessages.CommonTypeFailMessage, "BadRequestObjectResult.Error", typeof(TError).Name, error.GetType().Name);
+                .WithDefaultIdentifier("BadRequestObjectResult.Error")
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(TError), error.GetType());
 
             return (TError)error;
         }

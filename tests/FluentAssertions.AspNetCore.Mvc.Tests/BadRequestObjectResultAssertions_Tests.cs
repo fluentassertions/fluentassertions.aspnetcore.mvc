@@ -13,16 +13,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void Error_GivenExpectedError_ShouldPass()
         {
             var result = new TestController().BadRequest(TestError);
-            result.Should().BeBadRequestObjectResult().Error.Should().Be(TestError);
-        }
-
-        [Fact]
-        public void Error_GivenUnexpectedError_ShouldFail()
-        {
-            var result = new TestController().BadRequest(TestError);
-
-            Action a = () => result.Should().BeBadRequestObjectResult().Error.Should().Be("xyx");
-            a.Should().Throw<Exception>();
+            result.Should().BeBadRequestObjectResult().Error.Should().BeSameAs(TestError);
         }
 
         [Fact]
@@ -30,10 +21,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             const string testErrorKey = "TestErrorKey";
             const string testErrorMessage = "TestErrorMessage";
-
             var testModelState = new ModelStateDictionary();
             testModelState.AddModelError(testErrorKey, testErrorMessage);
             var result = new TestController().BadRequest(testModelState);
+
             result.Should().BeBadRequestObjectResult().SerializableError.Should().ContainKey(testErrorKey);
         }
 
@@ -57,18 +48,24 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         [Fact]
         public void ErrorAs_GivenWrongType_ShouldFail()
         {
-            var result = new TestController().BadRequest(TestError);
+            var result = new TestController().BadRequest(TestError); 
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY(
+                 "BadRequestObjectResult.Error", typeof(int), typeof(string));
 
             Action a = () => result.Should().BeBadRequestObjectResult().ErrorAs<int>().Should().Be(2);
-            a.Should().Throw<Exception>();
+
+            a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
         [Fact]
         public void ErrorAs_Null_ShouldFail()
         {
             ActionResult result = new BadRequestObjectResult(null as object);
-            var failureMessage = FailureMessageHelper.Format(FailureMessages.CommonNullWasSuppliedFailMessage, "BadRequestObjectResult.Error", typeof(object).Name);
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundNull(
+                "BadRequestObjectResult.Error", typeof(object));
+
             Action a = () => result.Should().BeBadRequestObjectResult().ErrorAs<object>();
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
     }
