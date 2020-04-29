@@ -50,11 +50,14 @@ namespace FluentAssertions.AspNetCore.Mvc
             var value = AcceptedResultSubject.Value;
 
             if (value == null)
-                Execute.Assertion.FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, "AcceptedResultAssertions.Value", typeof(TValue).Name);
+                Execute.Assertion
+                    .WithDefaultIdentifier("AcceptedResultAssertions.Value")
+                    .FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, typeof(TValue));
 
             Execute.Assertion
                 .ForCondition(value is TValue)
-                .FailWith(FailureMessages.CommonTypeFailMessage, "AcceptedResultAssertions.Value", typeof(TValue).Name, value.GetType().Name);
+                .WithDefaultIdentifier("AcceptedResultAssertions.Value")
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(TValue), value.GetType());
 
             return (TValue)value;
         }
@@ -66,15 +69,17 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// The Uri.
         /// </param>
         /// <returns>The typed value.</returns>
-        public AcceptedResultAssertions WithUri(Uri uri)
+        public AcceptedResultAssertions WithUri(Uri uri, string reason = "", params object[] reasonArgs)
         {
             var expectedUri = !uri.IsAbsoluteUri 
                 ? uri.GetComponents(UriComponents.SerializationInfoString, UriFormat.UriEscaped) 
                 : uri.AbsoluteUri;
 
             Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
                 .ForCondition(expectedUri == Location)
-                .FailWith(FailureMessages.CommonFailMessage, "AcceptedResultAssertions.Uri", expectedUri, Location);
+                .WithDefaultIdentifier("AcceptedResultAssertions.Uri")
+                .FailWith(FailureMessages.CommonFailMessage, expectedUri, Location);
 
             return this;
         }
@@ -86,11 +91,13 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// The Uri as string.
         /// </param>
         /// <returns>The typed value.</returns>
-        public AcceptedResultAssertions WithUri(string uri)
+        public AcceptedResultAssertions WithUri(string uri, string reason = "", params object[] reasonArgs)
         {
             Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
                 .ForCondition(uri == Location)
-                .FailWith(FailureMessages.CommonFailMessage, "AcceptedResultAssertions.Uri", uri, Location);
+                .WithDefaultIdentifier("AcceptedResultAssertions.Uri")
+                .FailWith(FailureMessages.CommonFailMessage, uri, Location);
 
             return this;
         }

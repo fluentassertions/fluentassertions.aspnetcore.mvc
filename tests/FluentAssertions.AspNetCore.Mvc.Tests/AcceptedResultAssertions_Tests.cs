@@ -7,6 +7,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
     public class AcceptedResultAssertions_Tests
     {
+        public const string Reason = FailureMessageHelper.Reason;
+        public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
+
         private const string TestValue = "testValue";
         
         private const string TestUriAsString = "http://localhost:5000";
@@ -19,37 +22,26 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void Value_GivenExpectedValue_ShouldPass()
         {
             var result = new TestController().Accepted(TestUri, TestValue);
-            result.Should().BeAcceptedResult().Value.Should().Be(TestValue);
-        }
 
-        [Fact]
-        public void Value_GivenUnexpectedValue_ShouldFail()
-        {
-            var result = new TestController().Accepted(TestUri, TestValue);
-            Action a = () => result.Should().BeAcceptedResult().Value.Should().Be("xyx");
-            a.Should().Throw<Exception>();
+            result.Should().BeAcceptedResult().Value.Should().BeSameAs(TestValue);
         }
 
         [Fact]
         public void ValueAs_GivenExpectedValue_ShouldPass()
         {
             var result = new TestController().Accepted(TestUri, TestValue);
-            result.Should().BeAcceptedResult().ValueAs<string>().Should().Be(TestValue);
-        }
-
-        [Fact]
-        public void ValueAs_GivenUnexpectedValue_ShouldFail()
-        {
-            var result = new TestController().Accepted(TestUri, TestValue);
-            Action a = () => result.Should().BeAcceptedResult().ValueAs<string>().Should().Be("xyx");
-            a.Should().Throw<Exception>();
+            result.Should().BeAcceptedResult().ValueAs<string>().Should().BeSameAs(TestValue);
         }
 
         [Fact]
         public void ValueAs_GivenWrongType_ShouldFail()
         {
             var result = new TestController().Accepted(TestUri, TestValue);
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY(
+                "AcceptedResultAssertions.Value", typeof(int), typeof(string));
+
             Action a = () => result.Should().BeAcceptedResult().ValueAs<int>().Should().Be(2);
+
             a.Should().Throw<Exception>();
         }
 
@@ -57,8 +49,11 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void ValueAs_Null_ShouldFail()
         {
             ActionResult result = new AcceptedResult(TestUri, null);
-            var failureMessage = FailureMessageHelper.Format(FailureMessages.CommonNullWasSuppliedFailMessage, "AcceptedResultAssertions.Value", typeof(object).Name);
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundNull(
+                "AcceptedResultAssertions.Value", typeof(object));
+
             Action a = () => result.Should().BeAcceptedResult().ValueAs<object>();
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -74,8 +69,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithUri_GivenWrongUri_ShouldFail()
         {
             var result = new TestController().Accepted(TestWrongUri, TestValue);
-            Action a = () => result.Should().BeAcceptedResult().WithUri(TestUri);
-            var failureMessage = FailureMessageHelper.Format(FailureMessages.CommonFailMessage, "AcceptedResultAssertions.Uri", TestUri.ToString(), TestWrongUri.ToString());
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("AcceptedResultAssertions.Uri", TestUri.ToString(), TestWrongUri.ToString());
+
+            Action a = () => result.Should().BeAcceptedResult().WithUri(TestUri, Reason, ReasonArgs);
+            
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -91,8 +88,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithUri_GivenWrongUriAsString_ShouldFail()
         {
             var result = new TestController().Accepted(TestWrongUriAsString, TestValue);
-            Action a = () => result.Should().BeAcceptedResult().WithUri(TestUriAsString);
-            var failureMessage = FailureMessageHelper.Format(FailureMessages.CommonFailMessage, "AcceptedResultAssertions.Uri", TestUriAsString, TestWrongUriAsString);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("AcceptedResultAssertions.Uri", TestUriAsString, TestWrongUriAsString);
+
+            Action a = () => result.Should().BeAcceptedResult().WithUri(TestUriAsString, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
     }
