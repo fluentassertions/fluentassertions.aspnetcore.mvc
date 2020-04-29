@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -87,6 +88,19 @@ namespace FluentAssertions.Mvc.Tests.Helpers
         internal static string ExpectedContextContainValueAtKeyButKeyNotFound(string context, string value, string key)
         {
             return $"Expected {context} to contain value \"{value}\" at key \"{key}\" because it is 10, but the key was not found.";
+        }
+
+        // DateTimeOffset is stored as string and converted back in ASP.NET Core Framework
+        public static DateTimeOffset? RoundToSeconds(DateTimeOffset? value)
+        {
+            if (!value.HasValue)
+                return null;
+
+            var expectedIssuedUtcAsString = value.Value.ToString("r", CultureInfo.InvariantCulture);
+
+            return DateTimeOffset.TryParseExact(expectedIssuedUtcAsString, "r", CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out var result)
+                ? new DateTimeOffset?(result)
+                : new DateTimeOffset?();
         }
     }
 }

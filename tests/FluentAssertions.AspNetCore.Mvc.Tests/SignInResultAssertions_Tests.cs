@@ -16,6 +16,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
         private const string TestAuthenticationScheme = "TestAuthenticationScheme";
         private readonly ClaimsPrincipal TestClaimsPrincipal = new ClaimsPrincipal();
+        private readonly DateTimeOffset? TestLastModified = DateTimeOffset.Parse("2020-04-28 15:48:33.6672395 +2", CultureInfo.InvariantCulture);
 
         [Fact]
         public void WithAuthenticationProperties_GivenExpected_ShouldPass()
@@ -110,7 +111,7 @@ Microsoft.AspNetCore.Authentication.AuthenticationProperties
         [Fact]
         public void WithIssuedUtc_GivenExpected_ShouldPass()
         {
-            var actualIssuedUtc = DateTimeOffset.Now;
+            var actualIssuedUtc = TestLastModified;
             var actualAuthenticationProperties = new AuthenticationProperties { IssuedUtc = actualIssuedUtc };
             ActionResult result = new SignInResult(TestAuthenticationScheme, TestClaimsPrincipal, actualAuthenticationProperties);
 
@@ -131,12 +132,12 @@ Microsoft.AspNetCore.Authentication.AuthenticationProperties
         [Fact]
         public void WithIssuedUtc_GivenUnexpected_ShouldFail()
         {
-            var actualIssuedUtc = DateTimeOffset.Now;
-            var expectedIssuedUtc = DateTimeOffset.Now.AddSeconds(1);
+            var actualIssuedUtc = TestLastModified;
+            var expectedIssuedUtc = TestLastModified.Value.AddSeconds(1);
             var actualAuthenticationProperties = new AuthenticationProperties { IssuedUtc = actualIssuedUtc };
             ActionResult result = new SignInResult(TestAuthenticationScheme, TestClaimsPrincipal, actualAuthenticationProperties);
-            var convertedExpectedIssuedUtc = GetConvertedDateTimeOffset(expectedIssuedUtc);
-            var convertedActualIssuedUtc = GetConvertedDateTimeOffset(actualIssuedUtc);
+            var convertedExpectedIssuedUtc = FailureMessageHelper.RoundToSeconds(expectedIssuedUtc);
+            var convertedActualIssuedUtc = FailureMessageHelper.RoundToSeconds(actualIssuedUtc);
             var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("SignInResult.AuthenticationProperties.IssuedUtc", convertedExpectedIssuedUtc, convertedActualIssuedUtc);
 
             Action a = () => result.Should().BeSignInResult().WithIssuedUtc(expectedIssuedUtc, Reason, ReasonArgs);
@@ -148,10 +149,10 @@ Microsoft.AspNetCore.Authentication.AuthenticationProperties
         public void WithIssuedUtc_GivenNull_For_Actual_ShouldFail()
         {
             var actualIssuedUtc = null as DateTimeOffset?;
-            var expectedIssuedUtc = DateTimeOffset.Now;
+            var expectedIssuedUtc = TestLastModified;
             var actualAuthenticationProperties = new AuthenticationProperties { IssuedUtc = actualIssuedUtc };
             ActionResult result = new SignInResult(TestAuthenticationScheme, TestClaimsPrincipal, actualAuthenticationProperties);
-            var convertedExpectedIssuedUtc = GetConvertedDateTimeOffset(expectedIssuedUtc);
+            var convertedExpectedIssuedUtc = FailureMessageHelper.RoundToSeconds(expectedIssuedUtc);
             var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("SignInResult.AuthenticationProperties.IssuedUtc", convertedExpectedIssuedUtc, null);
 
             Action a = () => result.Should().BeSignInResult().WithIssuedUtc(expectedIssuedUtc, Reason, ReasonArgs);
@@ -162,11 +163,11 @@ Microsoft.AspNetCore.Authentication.AuthenticationProperties
         [Fact]
         public void WithIssuedUtc_GivenNull_For_Expected_ShouldFail()
         {
-            var actualIssuedUtc = DateTimeOffset.Now;
+            var actualIssuedUtc = TestLastModified;
             var expectedIssuedUtc = null as DateTimeOffset?;
             var actualAuthenticationProperties = new AuthenticationProperties { IssuedUtc = actualIssuedUtc };
             ActionResult result = new SignInResult(TestAuthenticationScheme, TestClaimsPrincipal, actualAuthenticationProperties);
-            var convertedActualIssuedUtc = GetConvertedDateTimeOffset(actualIssuedUtc);
+            var convertedActualIssuedUtc = FailureMessageHelper.RoundToSeconds(actualIssuedUtc);
             var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("SignInResult.AuthenticationProperties.IssuedUtc", null, convertedActualIssuedUtc);
 
             Action a = () => result.Should().BeSignInResult().WithIssuedUtc(expectedIssuedUtc, Reason, ReasonArgs);
@@ -177,7 +178,7 @@ Microsoft.AspNetCore.Authentication.AuthenticationProperties
         [Fact]
         public void WithExpiresUtc_GivenExpected_ShouldPass()
         {
-            var actualExpiresUtc = DateTimeOffset.Now;
+            var actualExpiresUtc = TestLastModified;
             var actualAuthenticationProperties = new AuthenticationProperties { ExpiresUtc = actualExpiresUtc };
             ActionResult result = new SignInResult(TestAuthenticationScheme, TestClaimsPrincipal, actualAuthenticationProperties);
 
@@ -198,12 +199,12 @@ Microsoft.AspNetCore.Authentication.AuthenticationProperties
         [Fact]
         public void WithExpiresUtc_GivenUnexpected_ShouldFail()
         {
-            var actualExpiresUtc = DateTimeOffset.Now;
-            var expectedExpiresUtc = DateTimeOffset.Now.AddSeconds(1);
+            var actualExpiresUtc = TestLastModified;
+            var expectedExpiresUtc = TestLastModified.Value.AddSeconds(1);
             var actualAuthenticationProperties = new AuthenticationProperties { ExpiresUtc = actualExpiresUtc };
             ActionResult result = new SignInResult(TestAuthenticationScheme, TestClaimsPrincipal, actualAuthenticationProperties);
-            var convertedExpectedExpiresUtc = GetConvertedDateTimeOffset(expectedExpiresUtc);
-            var convertedActualExpiresUtc = GetConvertedDateTimeOffset(actualExpiresUtc);
+            var convertedExpectedExpiresUtc = FailureMessageHelper.RoundToSeconds(expectedExpiresUtc);
+            var convertedActualExpiresUtc = FailureMessageHelper.RoundToSeconds(actualExpiresUtc);
             var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("SignInResult.AuthenticationProperties.ExpiresUtc", convertedExpectedExpiresUtc, convertedActualExpiresUtc);
 
             Action a = () => result.Should().BeSignInResult().WithExpiresUtc(expectedExpiresUtc, Reason, ReasonArgs);
@@ -215,10 +216,10 @@ Microsoft.AspNetCore.Authentication.AuthenticationProperties
         public void WithExpiresUtc_GivenNull_For_Actual_ShouldFail()
         {
             var actualExpiresUtc = null as DateTimeOffset?;
-            var expectedExpiresUtc = DateTimeOffset.Now;
+            var expectedExpiresUtc = TestLastModified;
             var actualAuthenticationProperties = new AuthenticationProperties { ExpiresUtc = actualExpiresUtc };
             ActionResult result = new SignInResult(TestAuthenticationScheme, TestClaimsPrincipal, actualAuthenticationProperties);
-            var convertedExpectedExpiresUtc = GetConvertedDateTimeOffset(expectedExpiresUtc);
+            var convertedExpectedExpiresUtc = FailureMessageHelper.RoundToSeconds(expectedExpiresUtc);
             var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("SignInResult.AuthenticationProperties.ExpiresUtc", convertedExpectedExpiresUtc, null);
 
             Action a = () => result.Should().BeSignInResult().WithExpiresUtc(expectedExpiresUtc, Reason, ReasonArgs);
@@ -229,11 +230,11 @@ Microsoft.AspNetCore.Authentication.AuthenticationProperties
         [Fact]
         public void WithExpiresUtc_GivenNull_For_Expected_ShouldFail()
         {
-            var actualExpiresUtc = DateTimeOffset.Now;
+            var actualExpiresUtc = TestLastModified;
             var expectedExpiresUtc = null as DateTimeOffset?;
             var actualAuthenticationProperties = new AuthenticationProperties { ExpiresUtc = actualExpiresUtc };
             ActionResult result = new SignInResult(TestAuthenticationScheme, TestClaimsPrincipal, actualAuthenticationProperties);
-            var convertedActualExpiresUtc = GetConvertedDateTimeOffset(actualExpiresUtc);
+            var convertedActualExpiresUtc = FailureMessageHelper.RoundToSeconds(actualExpiresUtc);
             var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("SignInResult.AuthenticationProperties.ExpiresUtc", null, convertedActualExpiresUtc);
 
             Action a = () => result.Should().BeSignInResult().WithExpiresUtc(expectedExpiresUtc, Reason, ReasonArgs);
@@ -376,17 +377,6 @@ System.Security.Claims.ClaimsPrincipal
             Action a = () => result.Should().BeSignInResult().WithPrincipal(excpectedClaimsPrincipal, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>().WithMessage(failureMessage);
-        }
-
-
-        // DateTimeOffset is stored as string and converted back in ASP.NET Core Framework
-        private DateTimeOffset? GetConvertedDateTimeOffset(DateTimeOffset value)
-        {
-            var expectedIssuedUtcAsString = value.ToString("r", CultureInfo.InvariantCulture);
-
-            return DateTimeOffset.TryParseExact(expectedIssuedUtcAsString, "r", CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out var result)
-                ? new DateTimeOffset?(result)
-                : new DateTimeOffset?();
         }
     }
 }

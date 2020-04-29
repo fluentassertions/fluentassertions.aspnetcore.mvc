@@ -127,7 +127,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithLastModified_GivenUnexpected_ShouldFail()
         {
             var actualLastModified = TestLastModified;
-            var expectedLastModified = DateTimeOffset.Now.AddMilliseconds(1);
+            var expectedLastModified = TestLastModified.Value.AddMilliseconds(1);
             ActionResult result = new PhysicalFileResult(string.Empty, TestContentType) { LastModified = actualLastModified };
             var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("PhysicalFileResult.LastModified", expectedLastModified, actualLastModified);
 
