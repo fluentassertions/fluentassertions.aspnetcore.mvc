@@ -41,19 +41,25 @@ namespace FluentAssertions.Mvc.Tests.Helpers
             return $"Expected {context} to contain value \"{expected}\" at key \"{key}\" because it is 10, but the key was not found.";
         }
 
+        internal static string ExpectedContextTypeXButFoundY(string context, string expected, string actual)
+        {
+            return $"Expected {context} to be of type {expected} but was {actual}.";
+        }
+
         private static object ToString(DateTimeOffset? expected)
         {
             if (expected.HasValue)
             {
                 var builder = new StringBuilder($"<{expected:yyyy-MM-dd HH:mm:ss}");
-                if(expected.Value.Millisecond > 0)
+                if (expected.Value.Millisecond > 0)
                 {
                     builder.AppendFormat(".{0:fffffff}", expected.Value);
                 }
                 if (expected.Value.Offset.Hours > 0)
                 {
                     builder.AppendFormat(" +{0}h", expected.Value.Offset.Hours);
-                } else if (expected.Value.Offset.Hours < 0)
+                }
+                else if (expected.Value.Offset.Hours < 0)
                 {
                     builder.AppendFormat(" -{0}h", expected.Value.Offset.Hours);
                 }
@@ -61,6 +67,11 @@ namespace FluentAssertions.Mvc.Tests.Helpers
                 return builder.ToString();
             }
             return "<null>";
+        }
+
+        internal static string ExpectedContextTypeXButFoundNull(string context, string expectedType)
+        {
+            return $"Expected {context} to be of type {expectedType}, but no value was supplied.";
         }
 
         internal static string ExpectedContextContainValueAtKeyButFoundNull(string context, string value, string key)

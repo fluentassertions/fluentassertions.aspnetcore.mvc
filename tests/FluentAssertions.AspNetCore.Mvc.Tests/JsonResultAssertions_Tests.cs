@@ -97,7 +97,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void ValueAs_Null_ShouldFail()
         {
             ActionResult result = new JsonResult(null);
-            string failureMessage = $"Expected Value to be of type System.Object, but no value was supplied.";
+            string failureMessage = $"Expected JsonResult.Value to be of type System.Object, but no value was supplied.";
 
             Action a = () => result.Should().BeJsonResult().ValueAs<Object>();
 

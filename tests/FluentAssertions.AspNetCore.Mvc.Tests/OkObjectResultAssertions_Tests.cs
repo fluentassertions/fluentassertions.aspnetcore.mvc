@@ -45,16 +45,20 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void ValueAs_GivenWrongType_ShouldFail()
         {
             var result = new TestController().Ok(TestValue);
+            string failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY(
+                "OkObjectResult.Value", typeof(int).FullName, typeof(string).FullName);
 
             Action a = () => result.Should().BeOkObjectResult().ValueAs<int>().Should().Be(2);
-            a.Should().Throw<Exception>();
+            a.Should().Throw<Exception>()
+                .WithMessage(failureMessage);
         }
 
         [Fact]
         public void ValueAs_Null_ShouldFail()
         {
             ActionResult result = new OkObjectResult(null);
-            string failureMessage = FailureMessageHelper.Format(FailureMessages.CommonNullWasSuppliedFailMessage, "OkObjectResult.Value", typeof(object).Name);
+            string failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundNull(
+                "OkObjectResult.Value", typeof(object).FullName);
 
             Action a = () => result.Should().BeOkObjectResult().ValueAs<object>();
 

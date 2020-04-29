@@ -101,7 +101,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithLastModified_GivenActualNull_ShouldFail()
         {
             var actualLastModified = null as DateTimeOffset?;
-            var expectedLastModified = DateTimeOffset.Now;
+            var expectedLastModified = TestLastModified;
             ActionResult result = new PhysicalFileResult(string.Empty, TestContentType) { LastModified = actualLastModified };
             var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("PhysicalFileResult.LastModified", expectedLastModified, actualLastModified);
 
@@ -113,7 +113,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         [Fact]
         public void WithLastModified_GivenExpectedNull_ShouldFail()
         {
-            var actualLastModified = DateTimeOffset.Now;
+            var actualLastModified = TestLastModified;
             var expectedLastModified = null as DateTimeOffset?;
             ActionResult result = new PhysicalFileResult(string.Empty, TestContentType) { LastModified = actualLastModified };
             var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("PhysicalFileResult.LastModified", expectedLastModified, actualLastModified);

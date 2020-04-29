@@ -45,16 +45,21 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void ValueAs_GivenWrongType_ShouldFail()
         {
             var result = new TestController().NotFound(TestValue);
+            string failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY(
+                "NotFoundObjectResult.Value", typeof(int).FullName, typeof(string).FullName);
 
             Action a = () => result.Should().BeNotFoundObjectResult().ValueAs<int>().Should().Be(2);
-            a.Should().Throw<Exception>();
+
+            a.Should().Throw<Exception>()
+                .WithMessage(failureMessage);
         }
 
         [Fact]
         public void ValueAs_Null_ShouldFail()
         {
             ActionResult result = new NotFoundObjectResult(null);
-            string failureMessage = FailureMessageHelper.Format(FailureMessages.CommonNullWasSuppliedFailMessage, "NotFoundObjectResult.Value", typeof(object).Name);
+            string failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundNull(
+                "NotFoundObjectResult.Value", typeof(object).FullName);
 
             Action a = () => result.Should().BeNotFoundObjectResult().ValueAs<object>();
 

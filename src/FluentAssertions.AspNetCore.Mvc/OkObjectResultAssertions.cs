@@ -47,11 +47,14 @@ namespace FluentAssertions.AspNetCore.Mvc
             var value = OkObjectResultSubject.Value;
 
             if (value == null)
-                Execute.Assertion.FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, "OkObjectResult.Value", typeof(TValue).Name);
+                Execute.Assertion
+                    .WithDefaultIdentifier("OkObjectResult.Value")
+                    .FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, typeof(TValue));
 
             Execute.Assertion
                 .ForCondition(value is TValue)
-                .FailWith(FailureMessages.CommonTypeFailMessage, "OkObjectResult.Value", typeof(TValue).Name, value.GetType().Name);
+                .WithDefaultIdentifier("OkObjectResult.Value")
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(TValue), value.GetType());
 
             return (TValue)value;
         }

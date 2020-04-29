@@ -47,11 +47,14 @@ namespace FluentAssertions.AspNetCore.Mvc
             var value = NotFoundObjectResultSubject.Value;
 
             if (value == null)
-                Execute.Assertion.FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, "NotFoundObjectResult.Value", typeof(TValue).Name);
+                Execute.Assertion
+                    .WithDefaultIdentifier("NotFoundObjectResult.Value")
+                    .FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, typeof(TValue));
 
             Execute.Assertion
                 .ForCondition(value is TValue)
-                .FailWith(FailureMessages.CommonTypeFailMessage, "NotFoundObjectResult.Value", typeof(TValue).Name, value.GetType().Name);
+                .WithDefaultIdentifier("NotFoundObjectResult.Value")
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(TValue), value.GetType());
 
             return (TValue)value;
         }
