@@ -54,7 +54,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(string.Equals(actualLocalUrl, expectedLocalUrl))
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(string.Format(FailureMessages.CommonFailMessage, "LocalRedirectResult.LocalUrl", expectedLocalUrl, actualLocalUrl));
+                .WithDefaultIdentifier("LocalRedirectResult.LocalUrl")
+                .FailWith(FailureMessages.CommonFailMessage, expectedLocalUrl, actualLocalUrl);
 
             return this;
         }
@@ -77,7 +78,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(expectedPermanent == actualPermanent)
                 .BecauseOf(reason, reasonArgs)
-                .FailWith("Expected LocalRedirectResult.Permanent to be {0}{reason} but was {1}", expectedPermanent, actualPermanent);
+                .WithDefaultIdentifier("LocalRedirectResult.Permanent")
+                .FailWith(FailureMessages.CommonFailMessage, expectedPermanent, actualPermanent);
 
             return this;
         }
@@ -100,7 +102,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(expectedPreserveMethod == actualPreserveMethod)
                 .BecauseOf(reason, reasonArgs)
-                .FailWith("Expected LocalRedirectResult.PreserveMethod to be {0}{reason} but was {1}", expectedPreserveMethod, actualPreserveMethod);
+                .WithDefaultIdentifier("LocalRedirectResult.PreserveMethod")
+                .FailWith(FailureMessages.CommonFailMessage, expectedPreserveMethod, actualPreserveMethod);
 
             return this;
         }

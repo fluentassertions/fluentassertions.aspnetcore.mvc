@@ -21,6 +21,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var result = new TestController().Ok(TestValue);
 
             Action a = () => result.Should().BeOkObjectResult().Value.Should().Be("xyx");
+
             a.Should().Throw<Exception>();
         }
 
@@ -38,6 +39,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var result = new TestController().Ok(TestValue);
 
             Action a = () => result.Should().BeOkObjectResult().ValueAs<string>().Should().Be("xyx");
+
             a.Should().Throw<Exception>();
         }
 
@@ -49,6 +51,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 "OkObjectResult.Value", typeof(int).FullName, typeof(string).FullName);
 
             Action a = () => result.Should().BeOkObjectResult().ValueAs<int>().Should().Be(2);
+
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
         }

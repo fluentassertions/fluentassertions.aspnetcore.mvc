@@ -86,7 +86,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void ValueAs_GivenWrongType_ShouldFail()
         {
             var result = new TestController().JsonSimpleValue();
-            const string failureMessage = "Expected Value to be of type System.Int32 but was System.String.";
+            string failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY(
+                "JsonResult.Value", typeof(int).FullName, typeof(string).FullName);
 
             Action a = () => result.Should().BeJsonResult().ValueAs<int>().Should().Be(2);
             a.Should().Throw<Exception>()
@@ -97,9 +98,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void ValueAs_Null_ShouldFail()
         {
             ActionResult result = new JsonResult(null);
-            string failureMessage = $"Expected JsonResult.Value to be of type System.Object, but no value was supplied.";
+            string failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundNull(
+                "JsonResult.Value", typeof(object).FullName);
 
-            Action a = () => result.Should().BeJsonResult().ValueAs<Object>();
+            Action a = () => result.Should().BeJsonResult().ValueAs<object>();
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);

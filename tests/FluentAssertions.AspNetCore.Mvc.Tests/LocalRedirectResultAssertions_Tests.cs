@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
 
@@ -6,12 +7,15 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
     public class LocalRedirectObjectResultAssertions_Tests
     {
+        public const string Reason = FailureMessageHelper.Reason;
+        public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
         private const string TestLocalUrl = "localUrl";
 
         [Fact]
         public void WithLocalUrl_GivenExpectedLocalUrl_ShouldPass()
         {
             var result = new TestController().LocalRedirect(TestLocalUrl);
+
             result.Should().BeLocalRedirectResult().WithLocalUrl(TestLocalUrl);
         }
 
@@ -21,9 +25,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             const string actualLocalUrl = TestLocalUrl;
             const string expectedLocalUrl = "otherUrl";
             ActionResult result = new LocalRedirectResult(TestLocalUrl);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("LocalRedirectResult.LocalUrl", expectedLocalUrl, actualLocalUrl);
 
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "LocalRedirectResult.LocalUrl", expectedLocalUrl, actualLocalUrl);
-            Action a = () => result.Should().BeLocalRedirectResult().WithLocalUrl(expectedLocalUrl);
+            Action a = () => result.Should().BeLocalRedirectResult().WithLocalUrl(expectedLocalUrl, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -31,6 +36,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithPermanent_GivenExpectedPermanent_ShouldPass()
         {
             var result = new TestController().LocalRedirectPermanent(TestLocalUrl);
+
             result.Should().BeLocalRedirectResult().WithPermanent(true);
         }
 
@@ -39,11 +45,11 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var actualPermanent = true;
             var expectedPermanent = false;
-
             ActionResult result = new LocalRedirectResult(TestLocalUrl) { Permanent = actualPermanent };
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("LocalRedirectResult.Permanent", expectedPermanent, actualPermanent);
 
-            var failureMessage = $"Expected LocalRedirectResult.Permanent to be {expectedPermanent} but was {actualPermanent}";
-            Action a = () => result.Should().BeLocalRedirectResult().WithPermanent(expectedPermanent);
+            Action a = () => result.Should().BeLocalRedirectResult().WithPermanent(expectedPermanent, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -51,6 +57,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithPreserveMethod_GivenExpectedPreserveMethod_ShouldPass()
         {
             var result = new TestController().LocalRedirectPreserveMethod(TestLocalUrl);
+
             result.Should().BeLocalRedirectResult().WithPreserveMethod(true);
         }
 
@@ -59,11 +66,11 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var actualPreserveMethod = true;
             var expectedPreserveMethod = false;
-
             ActionResult result = new LocalRedirectResult(TestLocalUrl) { PreserveMethod = actualPreserveMethod };
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("LocalRedirectResult.PreserveMethod", expectedPreserveMethod, actualPreserveMethod);
 
-            var failureMessage = $"Expected LocalRedirectResult.PreserveMethod to be {expectedPreserveMethod} but was {actualPreserveMethod}";
-            Action a = () => result.Should().BeLocalRedirectResult().WithPreserveMethod(expectedPreserveMethod);
+            Action a = () => result.Should().BeLocalRedirectResult().WithPreserveMethod(expectedPreserveMethod, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -71,6 +78,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithPreserveMethod_GivenExpectedPermanentPreserveMethod_ShouldPass()
         {
             var result = new TestController().LocalRedirectPermanentPreserveMethod(TestLocalUrl);
+
             result.Should().BeLocalRedirectResult().WithPermanent(true).WithPreserveMethod(true);
         }
     }
