@@ -35,7 +35,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                    .ForCondition(string.Equals(actualActionName, expectedActionName, StringComparison.OrdinalIgnoreCase))
                    .BecauseOf(reason, reasonArgs)
-                   .FailWith("Expected AcceptedAtActionResult.ActionName to be {0}{reason} but was {1}", expectedActionName, actualActionName);
+                   .WithDefaultIdentifier("AcceptedAtActionResult.ActionName")
+                   .FailWith(FailureMessages.CommonFailMessage, expectedActionName, actualActionName);
 
             return this;
         }
@@ -58,7 +59,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(string.Equals(actualControllerName, expectedControllerName, StringComparison.OrdinalIgnoreCase))
                 .BecauseOf(reason, reasonArgs)
-                .FailWith("Expected AcceptedAtActionResult.ControllerName to be {0}{reason} but was {1}", expectedControllerName, actualControllerName);
+                .WithDefaultIdentifier("AcceptedAtActionResult.ControllerName")
+                .FailWith(FailureMessages.CommonFailMessage, expectedControllerName, actualControllerName);
 
             return this;
         }
@@ -79,17 +81,8 @@ namespace FluentAssertions.AspNetCore.Mvc
         {
             var subjectTyped = Subject as AcceptedAtActionResult;
 
-            Execute.Assertion
-                .ForCondition(subjectTyped != null && subjectTyped.RouteValues.ContainsKey(key))
-                .BecauseOf(reason, reasonArgs)
-                .FailWith(FailureMessages.AcceptedAtActionResult_RouteValues_ContainsKey, key);
-
-            var actualValue = subjectTyped.RouteValues[key];
-
-            Execute.Assertion
-                .ForCondition(expectedValue.Equals(actualValue))
-                .BecauseOf(reason, reasonArgs)
-                .FailWith(FailureMessages.AcceptedAtActionResult_RouteValues_HaveValue, key, expectedValue, actualValue);
+            AssertionHelpers.AssertStringObjectDictionary(subjectTyped.RouteValues,
+                "AcceptedAtActionResult.RouteValues", key, expectedValue, reason, reasonArgs);
 
             return this;
         }
@@ -105,11 +98,14 @@ namespace FluentAssertions.AspNetCore.Mvc
             var value = subjectTyped.Value;
 
             if (value == null)
-                Execute.Assertion.FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, "AcceptedAtActionResult.Value", typeof(TValue).Name);
+                Execute.Assertion
+                    .WithDefaultIdentifier("AcceptedAtActionResult.Value")
+                    .FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, typeof(TValue));
 
             Execute.Assertion
                 .ForCondition(value is TValue)
-                .FailWith(FailureMessages.CommonTypeFailMessage, "AcceptedAtActionResult.Value", typeof(TValue).Name, value.GetType().Name);
+                .WithDefaultIdentifier("AcceptedAtActionResult.Value")
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(TValue), value.GetType());
 
             return (TValue)value;
         }
