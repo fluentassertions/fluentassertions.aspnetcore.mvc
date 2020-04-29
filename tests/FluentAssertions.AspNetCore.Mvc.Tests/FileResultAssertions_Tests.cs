@@ -103,13 +103,13 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         [Fact]
         public void WithEntityTag_GivenUnexpected_ShouldFail()
         {
-            var actualValue = new EntityTagHeaderValue("\"sha256 value 1\"", true);
-            var expectedValue = new EntityTagHeaderValue("\"sha256 value 2\"", false);
+            var actualEntityTag = new EntityTagHeaderValue("\"sha256 value 1\"", true);
+            var expectedEntityTag = new EntityTagHeaderValue("\"sha256 value 2\"", false);
             var result = TestDataGenerator.CreateFileContentResult();
-            result.EntityTag = actualValue;
-            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("FileResult.EntityTag", expectedValue, actualValue);
+            result.EntityTag = actualEntityTag;
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("FileResult.EntityTag", expectedEntityTag, actualEntityTag);
 
-            Action a = () => result.Should().BeFileResult().WithEntityTag(expectedValue, "it is {0}", 10);
+            Action a = () => result.Should().BeFileResult().WithEntityTag(expectedEntityTag, "it is {0}", 10);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);

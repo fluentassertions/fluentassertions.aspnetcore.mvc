@@ -61,7 +61,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(string.Equals(actualFileName, expectedFileName, StringComparison.OrdinalIgnoreCase))
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(string.Format(FailureMessages.CommonFailMessage, "PhysicalFileResult.PhysicalPath", expectedFileName, actualFileName));
+                .WithDefaultIdentifier("PhysicalFileResult.PhysicalPath")
+                .FailWith(FailureMessages.CommonFailMessage, expectedFileName, actualFileName);
 
             return this;
         }
@@ -84,7 +85,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(string.Equals(actualContentType, expectedContentType, StringComparison.OrdinalIgnoreCase))
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(string.Format(FailureMessages.CommonFailMessage, "PhysicalFileResult.ContentType", expectedContentType, actualContentType));
+                .WithDefaultIdentifier("PhysicalFileResult.ContentType")
+                .FailWith(FailureMessages.CommonFailMessage, expectedContentType, actualContentType);
 
             return this;
         }
@@ -107,7 +109,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(string.Equals(actualFileDownloadName, expectedFileDownloadName, StringComparison.OrdinalIgnoreCase))
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(string.Format(FailureMessages.CommonFailMessage, "PhysicalFileResult.FileDownloadName", expectedFileDownloadName, actualFileDownloadName));
+                .WithDefaultIdentifier("PhysicalFileResult.FileDownloadName")
+                .FailWith(FailureMessages.CommonFailMessage, expectedFileDownloadName, actualFileDownloadName);
 
             return this;
         }
@@ -123,40 +126,16 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <param name="reasonArgs">
         /// Zero or more objects to format using the placeholders in <see cref="reason" />.
         /// </param>
-        public PhysicalFileResultAssertions WithLastModified(DateTimeOffset? expectedLastModified, string reason = "", params object[] reasonArgs)
+        public PhysicalFileResultAssertions WithLastModified(DateTimeOffset? expectedLastModified, string reason = "",
+            params object[] reasonArgs)
         {
             var actualLastModified = LastModified;
 
-            if (actualLastModified == null && expectedLastModified == null)
-            {
-                return this;
-            }
-
-            if (actualLastModified == null)
-            {
-                Execute.Assertion
-                    .ForCondition(false)
-                    .BecauseOf(reason, reasonArgs)
-                    .FailWith(string.Format(FailureMessages.CommonFailMessage, "PhysicalFileResult.LastModified", expectedLastModified, null));
-
-                return this;
-            }
-
-            if (expectedLastModified == null)
-            {
-                Execute.Assertion
-                    .ForCondition(false)
-                    .BecauseOf(reason, reasonArgs)
-                    .FailWith(string.Format(FailureMessages.CommonFailMessage, "PhysicalFileResult.LastModified", null, actualLastModified));
-
-                return this;
-            }
-
             Execute.Assertion
-                .ForCondition(DateTimeOffset.Compare(actualLastModified.Value, expectedLastModified.Value) == 0)
+                .ForCondition(expectedLastModified == actualLastModified)
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(string.Format(FailureMessages.CommonFailMessage, "PhysicalFileResult.LastModified", expectedLastModified, actualLastModified));
-
+                .WithDefaultIdentifier("PhysicalFileResult.LastModified")
+                .FailWith(FailureMessages.CommonFailMessage, expectedLastModified, actualLastModified);
             return this;
         }
 

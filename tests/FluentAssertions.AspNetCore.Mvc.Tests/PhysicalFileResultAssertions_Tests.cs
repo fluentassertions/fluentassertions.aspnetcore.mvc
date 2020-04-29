@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 using Xunit;
@@ -7,10 +9,12 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
     public class PhysicalFileResultAssertions_Tests
     {
+        public const string Reason = FailureMessageHelper.Reason;
+        public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
         private const string TestPhysicalPath = "TestPhysicalPath";
         private const string TestContentType = "text/html";
         private const string TestFileDownloadName = "TestFileDownloadName";
-        private readonly DateTimeOffset? TestLastModified = DateTimeOffset.Now;
+        private readonly DateTimeOffset? TestLastModified = DateTimeOffset.Parse("2020-04-28 15:48:33.6672395 +2", CultureInfo.InvariantCulture);
         private readonly EntityTagHeaderValue TestEntityTag = new EntityTagHeaderValue("\"0815\"");
 
         [Fact]
@@ -26,8 +30,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualPhysicalPath = TestPhysicalPath;
             var expectedPhysicalPath = "xyz";
             ActionResult result = new PhysicalFileResult(actualPhysicalPath, TestContentType);
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "PhysicalFileResult.PhysicalPath", expectedPhysicalPath, actualPhysicalPath);
-            Action a = () => result.Should().BePhysicalFileResult().WithPhysicalPath(expectedPhysicalPath);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("PhysicalFileResult.PhysicalPath", expectedPhysicalPath, actualPhysicalPath);
+
+            Action a = () => result.Should().BePhysicalFileResult().WithPhysicalPath(expectedPhysicalPath, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -35,6 +41,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithContentType_GivenExpected_ShouldPass()
         {
             ActionResult result = new PhysicalFileResult(string.Empty, TestContentType);
+
             result.Should().BePhysicalFileResult().WithContentType(TestContentType);
         }
 
@@ -44,8 +51,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualContentType = TestContentType;
             var expectedContentType = "xyz";
             ActionResult result = new PhysicalFileResult(string.Empty, actualContentType);
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "PhysicalFileResult.ContentType", expectedContentType, actualContentType);
-            Action a = () => result.Should().BePhysicalFileResult().WithContentType(expectedContentType);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("PhysicalFileResult.ContentType", expectedContentType, actualContentType);
+
+            Action a = () => result.Should().BePhysicalFileResult().WithContentType(expectedContentType, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -53,6 +62,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithFileDownloadName_GivenExpected_ShouldPass()
         {
             ActionResult result = new PhysicalFileResult(string.Empty, TestContentType) { FileDownloadName = TestFileDownloadName };
+
             result.Should().BePhysicalFileResult().WithFileDownloadName(TestFileDownloadName);
         }
 
@@ -62,8 +72,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualFileDownloadName = TestFileDownloadName;
             var expectedFileDownloadName = "xyz";
             ActionResult result = new PhysicalFileResult(string.Empty, TestContentType) { FileDownloadName = actualFileDownloadName };
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "PhysicalFileResult.FileDownloadName", expectedFileDownloadName, actualFileDownloadName);
-            Action a = () => result.Should().BePhysicalFileResult().WithFileDownloadName(expectedFileDownloadName);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("PhysicalFileResult.FileDownloadName", expectedFileDownloadName, actualFileDownloadName);
+
+            Action a = () => result.Should().BePhysicalFileResult().WithFileDownloadName(expectedFileDownloadName, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -71,6 +83,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithLastModified_GivenExpected_ShouldPass()
         {
             ActionResult result = new PhysicalFileResult(string.Empty, TestContentType) { LastModified = TestLastModified };
+
             result.Should().BePhysicalFileResult().WithLastModified(TestLastModified);
         }
 
@@ -80,6 +93,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualLastModified = null as DateTimeOffset?;
             var expectedLastModified = null as DateTimeOffset?;
             ActionResult result = new PhysicalFileResult(string.Empty, TestContentType) { LastModified = actualLastModified };
+
             result.Should().BePhysicalFileResult().WithLastModified(expectedLastModified);
         }
 
@@ -89,8 +103,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualLastModified = null as DateTimeOffset?;
             var expectedLastModified = DateTimeOffset.Now;
             ActionResult result = new PhysicalFileResult(string.Empty, TestContentType) { LastModified = actualLastModified };
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "PhysicalFileResult.LastModified", expectedLastModified, actualLastModified);
-            Action a = () => result.Should().BePhysicalFileResult().WithLastModified(expectedLastModified);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("PhysicalFileResult.LastModified", expectedLastModified, actualLastModified);
+
+            Action a = () => result.Should().BePhysicalFileResult().WithLastModified(expectedLastModified, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -100,8 +116,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualLastModified = DateTimeOffset.Now;
             var expectedLastModified = null as DateTimeOffset?;
             ActionResult result = new PhysicalFileResult(string.Empty, TestContentType) { LastModified = actualLastModified };
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "PhysicalFileResult.LastModified", expectedLastModified, actualLastModified);
-            Action a = () => result.Should().BePhysicalFileResult().WithLastModified(expectedLastModified);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("PhysicalFileResult.LastModified", expectedLastModified, actualLastModified);
+
+            Action a = () => result.Should().BePhysicalFileResult().WithLastModified(expectedLastModified, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -111,8 +129,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualLastModified = TestLastModified;
             var expectedLastModified = DateTimeOffset.Now.AddMilliseconds(1);
             ActionResult result = new PhysicalFileResult(string.Empty, TestContentType) { LastModified = actualLastModified };
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "PhysicalFileResult.LastModified", expectedLastModified, actualLastModified);
-            Action a = () => result.Should().BePhysicalFileResult().WithLastModified(expectedLastModified);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("PhysicalFileResult.LastModified", expectedLastModified, actualLastModified);
+
+            Action a = () => result.Should().BePhysicalFileResult().WithLastModified(expectedLastModified, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -120,6 +140,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithEntityTag_GivenExpected_ShouldPass()
         {
             ActionResult result = new PhysicalFileResult(string.Empty, TestContentType) { EntityTag = TestEntityTag };
+
             result.Should().BePhysicalFileResult().WithEntityTag(TestEntityTag);
         }
 
@@ -129,9 +150,12 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualEntityTag = TestEntityTag;
             var expectedEntityTag = new EntityTagHeaderValue("\"1234\"");
             ActionResult result = new PhysicalFileResult(string.Empty, TestContentType) { EntityTag = actualEntityTag };
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "PhysicalFileResult.EntityTag", expectedEntityTag, actualEntityTag);
-            Action a = () => result.Should().BePhysicalFileResult().WithEntityTag(expectedEntityTag);
-            a.Should().Throw<Exception>().WithMessage(failureMessage);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("PhysicalFileResult.EntityTag", expectedEntityTag, actualEntityTag);
+
+            Action a = () => result.Should().BePhysicalFileResult().WithEntityTag(expectedEntityTag, Reason, ReasonArgs);
+
+            a.Should().Throw<Exception>()
+                .WithMessage(failureMessage);
         }
     }
 }
