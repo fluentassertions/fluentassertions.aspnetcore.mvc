@@ -65,7 +65,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(actualAuthenticationProperties == expectedAuthenticationProperties)
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(string.Format(FailureMessages.CommonFailMessage, "ChallengeResult.AuthenticationProperties", expectedAuthenticationProperties, actualAuthenticationProperties));
+                .WithDefaultIdentifier("ChallengeResult.AuthenticationProperties")
+                .FailWith(FailureMessages.CommonFailMessage, expectedAuthenticationProperties, actualAuthenticationProperties);
 
             return this;
         }
@@ -88,7 +89,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(actualIsPersistent == expectedIsPersistent)
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(string.Format(FailureMessages.CommonFailMessage, "ChallengeResult.AuthenticationProperties.IsPersistent", expectedIsPersistent, actualIsPersistent));
+                .WithDefaultIdentifier("ChallengeResult.AuthenticationProperties.IsPersistent")
+                .FailWith(FailureMessages.CommonFailMessage, expectedIsPersistent, actualIsPersistent);
 
             return this;
         }
@@ -111,7 +113,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(string.Equals(actualRedirectUri, expectedRedirectUri))
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(string.Format(FailureMessages.CommonFailMessage, "ChallengeResult.AuthenticationProperties.RedirectUri", expectedRedirectUri, actualRedirectUri));
+                .WithDefaultIdentifier("ChallengeResult.AuthenticationProperties.RedirectUri")
+                .FailWith(FailureMessages.CommonFailMessage, expectedRedirectUri, actualRedirectUri);
 
             return this;
         }
@@ -131,41 +134,13 @@ namespace FluentAssertions.AspNetCore.Mvc
         {
             var actualResult = IssuedUtc;
 
-            var expectedIssuedUtcAsString = expectedIssuedUtc?.ToString("r", (IFormatProvider) CultureInfo.InvariantCulture);
-            
-            var expectedResult = DateTimeOffset.TryParseExact(expectedIssuedUtcAsString, "r", (IFormatProvider)CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out var result) 
-                ? new DateTimeOffset?(result)
-                : new DateTimeOffset?();
-
-            if (actualResult == null && expectedResult == null)
-            {
-                return this;
-            }
-
-            if (actualResult == null)
-            {
-                Execute.Assertion
-                    .ForCondition(false)
-                    .BecauseOf(reason, reasonArgs)
-                    .FailWith(string.Format(FailureMessages.CommonFailMessage, "ChallengeResult.AuthenticationProperties.IssuedUtc", expectedResult, null));
-
-                return this;
-            }
-
-            if (expectedResult == null)
-            {
-                Execute.Assertion
-                    .ForCondition(false)
-                    .BecauseOf(reason, reasonArgs)
-                    .FailWith(string.Format(FailureMessages.CommonFailMessage, "ChallengeResult.AuthenticationProperties.IssuedUtc", null, actualResult));
-
-                return this;
-            }
+            var expectedResult = AssertionHelpers.RoundToSeconds(expectedIssuedUtc);
 
             Execute.Assertion
-                .ForCondition(DateTimeOffset.Compare(expectedResult.Value, actualResult.Value) == 0)
+                .ForCondition(expectedResult == actualResult)
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(string.Format(FailureMessages.CommonFailMessage, "ChallengeResult.AuthenticationProperties.IssuedUtc", expectedResult.Value, actualResult.Value));
+                .WithDefaultIdentifier("ChallengeResult.AuthenticationProperties.IssuedUtc")
+                .FailWith(FailureMessages.CommonFailMessage, expectedResult, actualResult);
 
             return this;
         }
@@ -185,41 +160,13 @@ namespace FluentAssertions.AspNetCore.Mvc
         {
             var actualResult = ExpiresUtc;
 
-            var expectedExpiresUtcAsString = expectedExpiresUtc?.ToString("r", (IFormatProvider)CultureInfo.InvariantCulture);
-
-            var expectedResult = DateTimeOffset.TryParseExact(expectedExpiresUtcAsString, "r", (IFormatProvider)CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out var result)
-                ? new DateTimeOffset?(result)
-                : new DateTimeOffset?();
-
-            if (actualResult == null && expectedResult == null)
-            {
-                return this;
-            }
-
-            if (actualResult == null)
-            {
-                Execute.Assertion
-                    .ForCondition(false)
-                    .BecauseOf(reason, reasonArgs)
-                    .FailWith(string.Format(FailureMessages.CommonFailMessage, "ChallengeResult.AuthenticationProperties.ExpiresUtc", expectedResult, null));
-
-                return this;
-            }
-
-            if (expectedResult == null)
-            {
-                Execute.Assertion
-                    .ForCondition(false)
-                    .BecauseOf(reason, reasonArgs)
-                    .FailWith(string.Format(FailureMessages.CommonFailMessage, "ChallengeResult.AuthenticationProperties.ExpiresUtc", null, actualResult));
-
-                return this;
-            }
+            var expectedResult = AssertionHelpers.RoundToSeconds(expectedExpiresUtc);
 
             Execute.Assertion
-                .ForCondition(DateTimeOffset.Compare(expectedResult.Value, actualResult.Value) == 0)
+                .ForCondition(expectedResult == actualResult)
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(string.Format(FailureMessages.CommonFailMessage, "ChallengeResult.AuthenticationProperties.ExpiresUtc", expectedResult.Value, actualResult.Value));
+                .WithDefaultIdentifier("ChallengeResult.AuthenticationProperties.ExpiresUtc")
+                .FailWith(FailureMessages.CommonFailMessage, expectedResult, actualResult);
 
             return this;
         }
@@ -243,7 +190,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(actualAllowRefresh == expectedAllowRefresh)
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(string.Format(FailureMessages.CommonFailMessage, "ChallengeResult.AuthenticationProperties.AllowRefresh", expectedAllowRefresh, actualAllowRefresh));
+                .WithDefaultIdentifier("ChallengeResult.AuthenticationProperties.AllowRefresh")
+                .FailWith(FailureMessages.CommonFailMessage, expectedAllowRefresh, actualAllowRefresh);
 
             return this;
         }
