@@ -1,16 +1,18 @@
 ﻿using FluentAssertions.Common;
 using FluentAssertions.Execution;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace FluentAssertions.AspNetCore.Mvc
 {
     internal class AssertionHelpers
     {
-        internal static void AssertStringObjectDictionary(
-            IDictionary<string, object> dictionary, 
+        internal static void AssertStringObjectDictionary<TKey, TValue>(
+            IDictionary<TKey, TValue> dictionary, 
             string context,
-            string key,
-            object expectedValue,
+            TKey key,
+            TValue expectedValue,
             string reason,
             object[] reasonArgs)
         {
@@ -24,7 +26,7 @@ namespace FluentAssertions.AspNetCore.Mvc
                             dictionary);
                 }
 
-                if (dictionary.TryGetValue(key, out object actual))
+                if (dictionary.TryGetValue(key, out TValue actual))
                 {
                     Execute.Assertion
                         .BecauseOf(reason, reasonArgs)
@@ -40,5 +42,16 @@ namespace FluentAssertions.AspNetCore.Mvc
                 }
             }
         }
+
+        internal static DateTimeOffset? RoundToSeconds(DateTimeOffset? expectedIssuedUtc)
+        {
+            var expectedIssuedUtcAsString = expectedIssuedUtc?.ToString("r", CultureInfo.InvariantCulture);
+
+            var expectedResult = DateTimeOffset.TryParseExact(expectedIssuedUtcAsString, "r", CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out var result)
+                ? new DateTimeOffset?(result)
+                : new DateTimeOffset?();
+            return expectedResult;
+        }
+
     }
 }

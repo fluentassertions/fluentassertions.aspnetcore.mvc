@@ -133,7 +133,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         public SignOutResultAssertions WithIssuedUtc(DateTimeOffset? expectedIssuedUtc, string reason = "", params object[] reasonArgs)
         {
             var actualResult = IssuedUtc;
-            DateTimeOffset? expectedResult = RoundToSeconds(expectedIssuedUtc);
+            DateTimeOffset? expectedResult = AssertionHelpers.RoundToSeconds(expectedIssuedUtc);
 
             Execute.Assertion
                 .ForCondition(EqualityComparer<DateTimeOffset?>.Default.Equals(expectedResult, actualResult))
@@ -159,7 +159,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         {
             var actualResult = ExpiresUtc;
 
-            DateTimeOffset? expectedResult = RoundToSeconds(expectedExpiresUtc);
+            DateTimeOffset? expectedResult = AssertionHelpers.RoundToSeconds(expectedExpiresUtc);
 
             Execute.Assertion
                 .ForCondition(EqualityComparer<DateTimeOffset?>.Default.Equals(expectedResult, actualResult))
@@ -267,20 +267,6 @@ namespace FluentAssertions.AspNetCore.Mvc
                 .FailWith(string.Format(FailureMessages.CommonAuthenticationSchemesContainScheme, expectedScheme));
 
             return this;
-        }
-
-        #endregion
-
-        #region Private Methods
-
-        private static DateTimeOffset? RoundToSeconds(DateTimeOffset? expectedIssuedUtc)
-        {
-            var expectedIssuedUtcAsString = expectedIssuedUtc?.ToString("r", CultureInfo.InvariantCulture);
-
-            var expectedResult = DateTimeOffset.TryParseExact(expectedIssuedUtcAsString, "r", CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out var result)
-                ? new DateTimeOffset?(result)
-                : new DateTimeOffset?();
-            return expectedResult;
         }
 
         #endregion

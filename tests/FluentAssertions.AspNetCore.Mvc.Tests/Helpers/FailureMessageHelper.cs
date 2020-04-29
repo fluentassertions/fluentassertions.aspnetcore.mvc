@@ -63,5 +63,14 @@ namespace FluentAssertions.Mvc.Tests.Helpers
             return "<null>";
         }
 
+        internal static string ExpectedContextContainValueAtKeyButFoundNull(string context, string value, string key)
+        {
+            return $"Expected {context} to contain value \"{value}\" at key \"{key}\" because it is 10, but it is <null>.";
+        }
+
+        internal static string ExpectedContextContainValueAtKeyButKeyNotFound(string context, string value, string key)
+        {
+            return $"Expected {context} to contain value \"{value}\" at key \"{key}\" because it is 10, but the key was not found.";
+        }
     }
 }
