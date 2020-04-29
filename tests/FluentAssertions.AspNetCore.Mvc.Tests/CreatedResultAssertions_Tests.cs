@@ -47,7 +47,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void ValueAs_GivenWrongType_ShouldFail()
         {
             var result = new TestController().Created(TestUri, TestValue);
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("CreatedResult.Value", typeof(int).FullName, typeof(string).FullName);
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("CreatedResult.Value", typeof(int), typeof(string));
 
             Action a = () => result.Should().BeCreatedResult().ValueAs<int>().Should().Be(2, Reason, ReasonArgs);
 
@@ -58,7 +58,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void ValueAs_Null_ShouldFail()
         {
             ActionResult result = new CreatedResult(TestUri, null);
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundNull("CreatedResult.Value", typeof(object).FullName);
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundNull("CreatedResult.Value", typeof(object));
 
             Action a = () => result.Should().BeCreatedResult().ValueAs<object>();
 

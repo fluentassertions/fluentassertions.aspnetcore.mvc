@@ -83,7 +83,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void ValueAs_Null_ShouldFail()
         {
             ActionResult result = new CreatedAtRouteResult(string.Empty, null, null);
-            string failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundNull("CreatedAtRouteResult.Value", typeof(object).FullName);
+            string failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundNull("CreatedAtRouteResult.Value", typeof(object));
 
             Action a = () => result.Should().BeCreatedAtRouteResult().ValueAs<object>();
 
@@ -95,7 +95,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             ActionResult result = new CreatedAtRouteResult(string.Empty, null, "");
             string failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY(
-                "CreatedAtRouteResult.Value", typeof(int).FullName, typeof(string).FullName);
+                "CreatedAtRouteResult.Value", typeof(int), typeof(string));
 
             Action a = () => result.Should().BeCreatedAtRouteResult().ValueAs<int>().Should().Be(2);
 

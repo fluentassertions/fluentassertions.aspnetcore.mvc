@@ -48,7 +48,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var result = new TestController().Ok(TestValue);
             string failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY(
-                "OkObjectResult.Value", typeof(int).FullName, typeof(string).FullName);
+                "OkObjectResult.Value", typeof(int), typeof(string));
 
             Action a = () => result.Should().BeOkObjectResult().ValueAs<int>().Should().Be(2);
 
@@ -61,7 +61,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             ActionResult result = new OkObjectResult(null);
             string failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundNull(
-                "OkObjectResult.Value", typeof(object).FullName);
+                "OkObjectResult.Value", typeof(object));
 
             Action a = () => result.Should().BeOkObjectResult().ValueAs<object>();
 

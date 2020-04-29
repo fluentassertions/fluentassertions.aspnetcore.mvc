@@ -46,7 +46,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var result = new TestController().NotFound(TestValue);
             string failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY(
-                "NotFoundObjectResult.Value", typeof(int).FullName, typeof(string).FullName);
+                "NotFoundObjectResult.Value", typeof(int), typeof(string));
 
             Action a = () => result.Should().BeNotFoundObjectResult().ValueAs<int>().Should().Be(2);
 
@@ -59,7 +59,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             ActionResult result = new NotFoundObjectResult(null);
             string failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundNull(
-                "NotFoundObjectResult.Value", typeof(object).FullName);
+                "NotFoundObjectResult.Value", typeof(object));
 
             Action a = () => result.Should().BeNotFoundObjectResult().ValueAs<object>();
 

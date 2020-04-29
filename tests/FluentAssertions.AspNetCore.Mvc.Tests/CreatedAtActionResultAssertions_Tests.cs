@@ -123,7 +123,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void ValueAs_Null_ShouldFail()
         {
             ActionResult result = new CreatedAtActionResult(string.Empty, string.Empty, null, null);
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundNull("CreatedAtActionResult.Value", typeof(object).FullName);
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundNull("CreatedAtActionResult.Value", typeof(object));
 
             Action a = () => result.Should().BeCreatedAtActionResult().ValueAs<object>();
 

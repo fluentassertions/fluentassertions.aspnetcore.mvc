@@ -87,7 +87,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var result = new TestController().JsonSimpleValue();
             string failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY(
-                "JsonResult.Value", typeof(int).FullName, typeof(string).FullName);
+                "JsonResult.Value", typeof(int), typeof(string));
 
             Action a = () => result.Should().BeJsonResult().ValueAs<int>().Should().Be(2);
 
@@ -100,7 +100,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             ActionResult result = new JsonResult(null);
             string failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundNull(
-                "JsonResult.Value", typeof(object).FullName);
+                "JsonResult.Value", typeof(object));
 
             Action a = () => result.Should().BeJsonResult().ValueAs<object>();
 
