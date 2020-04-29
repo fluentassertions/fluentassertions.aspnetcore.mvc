@@ -35,7 +35,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(string.Equals(expectedRouteName, subjectTyped.RouteName, StringComparison.OrdinalIgnoreCase))
-                .FailWith(FailureMessages.CommonFailMessage, "AcceptedAtRouteResult.RouteName", expectedRouteName, subjectTyped.RouteName);
+                .WithDefaultIdentifier("AcceptedAtRouteResult.RouteName")
+                .FailWith(FailureMessages.CommonFailMessage, expectedRouteName, subjectTyped.RouteName);
 
             return this;
         }
@@ -56,17 +57,8 @@ namespace FluentAssertions.AspNetCore.Mvc
         {
             var subjectTyped = Subject as AcceptedAtRouteResult;
 
-            Execute.Assertion
-                .ForCondition(subjectTyped != null && subjectTyped.RouteValues.ContainsKey(key))
-                .BecauseOf(reason, reasonArgs)
-                .FailWith(FailureMessages.AcceptedAtRouteResult_RouteValues_ContainsKey, key);
-
-            var actualValue = subjectTyped.RouteValues[key];
-
-            Execute.Assertion
-                .ForCondition(expectedValue.Equals(actualValue))
-                .BecauseOf(reason, reasonArgs)
-                .FailWith(FailureMessages.AcceptedAtRouteResult_RouteValues_HaveValue, key, expectedValue, actualValue);
+            AssertionHelpers.AssertStringObjectDictionary(subjectTyped.RouteValues,
+                "AcceptedAtRouteResult.RouteValues", key, expectedValue, reason, reasonArgs);
 
             return this;
         }
@@ -82,11 +74,14 @@ namespace FluentAssertions.AspNetCore.Mvc
             var value = subjectTyped.Value;
 
             if (value == null)
-                Execute.Assertion.FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, "AcceptedAtRouteResult.Value", typeof(TValue).Name);
+                Execute.Assertion
+                    .WithDefaultIdentifier("AcceptedAtRouteResult.Value")
+                    .FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, typeof(TValue));
 
             Execute.Assertion
                 .ForCondition(value is TValue)
-                .FailWith(FailureMessages.CommonTypeFailMessage, "AcceptedAtRouteResult.Value", typeof(TValue).Name, value.GetType().Name);
+                .WithDefaultIdentifier("AcceptedAtRouteResult.Value")
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(TValue), value.GetType());
 
             return (TValue)value;
         }
