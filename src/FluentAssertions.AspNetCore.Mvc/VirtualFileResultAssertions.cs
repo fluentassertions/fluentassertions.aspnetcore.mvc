@@ -132,7 +132,7 @@ namespace FluentAssertions.AspNetCore.Mvc
             var actualLastModified = LastModified;
 
             Execute.Assertion
-                .ForCondition(EqualityComparer<DateTimeOffset?>.Default.Equals(actualLastModified, expectedLastModified))
+                .ForCondition(actualLastModified == expectedLastModified)
                 .BecauseOf(reason, reasonArgs)
                 .WithDefaultIdentifier("VirtualFileResult.LastModified")
                 .FailWith(FailureMessages.CommonFailMessage, expectedLastModified, actualLastModified);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
@@ -10,11 +11,15 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
     public class ForbidResultAssertions_Tests
     {
+        public const string Reason = FailureMessageHelper.Reason;
+        public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
+
         [Fact]
         public void WithAuthenticationProperties_GivenExpected_ShouldPass()
         {
             var actualAuthenticationProperties = new AuthenticationProperties();
             ActionResult result = new ForbidResult(actualAuthenticationProperties);
+
             result.Should().BeForbidResult().WithAuthenticationProperties(actualAuthenticationProperties);
         }
 
@@ -24,9 +29,30 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualAuthenticationProperties = new AuthenticationProperties();
             var expectedAuthenticationProperties = new AuthenticationProperties();
             ActionResult result = new ForbidResult(actualAuthenticationProperties);
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "ForbidResult.AuthenticationProperties", expectedAuthenticationProperties, actualAuthenticationProperties);
+            var failureMessage = @"Expected ForbidResult.AuthenticationProperties to be 
 
-            Action a = () => result.Should().BeForbidResult().WithAuthenticationProperties(expectedAuthenticationProperties);
+Microsoft.AspNetCore.Authentication.AuthenticationProperties
+{
+   AllowRefresh = <null>
+   ExpiresUtc = <null>
+   IsPersistent = False
+   IssuedUtc = <null>
+   Items = {empty}
+   RedirectUri = <null>
+} because it is 10 but found 
+
+Microsoft.AspNetCore.Authentication.AuthenticationProperties
+{
+   AllowRefresh = <null>
+   ExpiresUtc = <null>
+   IsPersistent = False
+   IssuedUtc = <null>
+   Items = {empty}
+   RedirectUri = <null>
+}.";
+
+            Action a = () => result.Should().BeForbidResult().WithAuthenticationProperties(expectedAuthenticationProperties, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -36,6 +62,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualIsPersistent = true;
             var actualAuthenticationProperties = new AuthenticationProperties { IsPersistent = actualIsPersistent };
             ActionResult result = new ForbidResult(actualAuthenticationProperties);
+
             result.Should().BeForbidResult().WithIsPersistent(actualIsPersistent);
         }
 
@@ -46,9 +73,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var expectedIsPersistent = false;
             var actualAuthenticationProperties = new AuthenticationProperties { IsPersistent = actualIsPersistent };
             ActionResult result = new ForbidResult(actualAuthenticationProperties);
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "ForbidResult.AuthenticationProperties.IsPersistent", expectedIsPersistent, actualIsPersistent);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("ForbidResult.AuthenticationProperties.IsPersistent", expectedIsPersistent, actualIsPersistent);
 
-            Action a = () => result.Should().BeForbidResult().WithIsPersistent(expectedIsPersistent);
+            Action a = () => result.Should().BeForbidResult().WithIsPersistent(expectedIsPersistent, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -58,6 +86,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualRedirectUri = "redirectUri";
             var actualAuthenticationProperties = new AuthenticationProperties { RedirectUri = actualRedirectUri };
             ActionResult result = new ForbidResult(actualAuthenticationProperties);
+
             result.Should().BeForbidResult().WithRedirectUri(actualRedirectUri);
         }
 
@@ -68,9 +97,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var expectedRedirectUri = "otherUri";
             var actualAuthenticationProperties = new AuthenticationProperties { RedirectUri = actualRedirectUri };
             ActionResult result = new ForbidResult(actualAuthenticationProperties);
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "ForbidResult.AuthenticationProperties.RedirectUri", expectedRedirectUri, actualRedirectUri);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("ForbidResult.AuthenticationProperties.RedirectUri", expectedRedirectUri, actualRedirectUri);
 
-            Action a = () => result.Should().BeForbidResult().WithRedirectUri(expectedRedirectUri);
+            Action a = () => result.Should().BeForbidResult().WithRedirectUri(expectedRedirectUri, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -80,6 +110,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualIssuedUtc = DateTimeOffset.Now;
             var actualAuthenticationProperties = new AuthenticationProperties { IssuedUtc = actualIssuedUtc };
             ActionResult result = new ForbidResult(actualAuthenticationProperties);
+
             result.Should().BeForbidResult().WithIssuedUtc(actualIssuedUtc);
         }
 
@@ -90,6 +121,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var expectedIssuedUtc = null as DateTimeOffset?;
             var actualAuthenticationProperties = new AuthenticationProperties { IssuedUtc = actualIssuedUtc };
             ActionResult result = new ForbidResult(actualAuthenticationProperties);
+
             result.Should().BeForbidResult().WithIssuedUtc(expectedIssuedUtc);
         }
 
@@ -102,10 +134,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             ActionResult result = new ForbidResult(actualAuthenticationProperties);
             var convertedExpectedIssuedUtc = GetConvertedDateTimeOffset(expectedIssuedUtc);
             var convertedActualIssuedUtc = GetConvertedDateTimeOffset(actualIssuedUtc);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("ForbidResult.AuthenticationProperties.IssuedUtc", convertedExpectedIssuedUtc, convertedActualIssuedUtc);
 
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "ForbidResult.AuthenticationProperties.IssuedUtc", convertedExpectedIssuedUtc, convertedActualIssuedUtc);
+            Action a = () => result.Should().BeForbidResult().WithIssuedUtc(expectedIssuedUtc, Reason, ReasonArgs);
 
-            Action a = () => result.Should().BeForbidResult().WithIssuedUtc(expectedIssuedUtc);
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -117,10 +149,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualAuthenticationProperties = new AuthenticationProperties { IssuedUtc = actualIssuedUtc };
             ActionResult result = new ForbidResult(actualAuthenticationProperties);
             var convertedExpectedIssuedUtc = GetConvertedDateTimeOffset(expectedIssuedUtc);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("ForbidResult.AuthenticationProperties.IssuedUtc", convertedExpectedIssuedUtc, null);
 
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "ForbidResult.AuthenticationProperties.IssuedUtc", convertedExpectedIssuedUtc, null);
+            Action a = () => result.Should().BeForbidResult().WithIssuedUtc(expectedIssuedUtc, Reason, ReasonArgs);
 
-            Action a = () => result.Should().BeForbidResult().WithIssuedUtc(expectedIssuedUtc);
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -132,10 +164,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualAuthenticationProperties = new AuthenticationProperties { IssuedUtc = actualIssuedUtc };
             ActionResult result = new ForbidResult(actualAuthenticationProperties);
             var convertedActualIssuedUtc = GetConvertedDateTimeOffset(actualIssuedUtc);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("ForbidResult.AuthenticationProperties.IssuedUtc", null, convertedActualIssuedUtc);
 
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "ForbidResult.AuthenticationProperties.IssuedUtc", null, convertedActualIssuedUtc);
+            Action a = () => result.Should().BeForbidResult().WithIssuedUtc(expectedIssuedUtc, Reason, ReasonArgs);
 
-            Action a = () => result.Should().BeForbidResult().WithIssuedUtc(expectedIssuedUtc);
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -145,6 +177,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualExpiresUtc = DateTimeOffset.Now;
             var actualAuthenticationProperties = new AuthenticationProperties { ExpiresUtc = actualExpiresUtc };
             ActionResult result = new ForbidResult(actualAuthenticationProperties);
+
             result.Should().BeForbidResult().WithExpiresUtc(actualExpiresUtc);
         }
 
@@ -155,6 +188,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var expectedExpiresUtc = null as DateTimeOffset?;
             var actualAuthenticationProperties = new AuthenticationProperties { ExpiresUtc = actualExpiresUtc };
             ActionResult result = new ForbidResult(actualAuthenticationProperties);
+
             result.Should().BeForbidResult().WithExpiresUtc(expectedExpiresUtc);
         }
 
@@ -167,10 +201,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             ActionResult result = new ForbidResult(actualAuthenticationProperties);
             var convertedExpectedExpiresUtc = GetConvertedDateTimeOffset(expectedExpiresUtc);
             var convertedActualExpiresUtc = GetConvertedDateTimeOffset(actualExpiresUtc);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("ForbidResult.AuthenticationProperties.ExpiresUtc", convertedExpectedExpiresUtc, convertedActualExpiresUtc);
 
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "ForbidResult.AuthenticationProperties.ExpiresUtc", convertedExpectedExpiresUtc, convertedActualExpiresUtc);
+            Action a = () => result.Should().BeForbidResult().WithExpiresUtc(expectedExpiresUtc, Reason, ReasonArgs);
 
-            Action a = () => result.Should().BeForbidResult().WithExpiresUtc(expectedExpiresUtc);
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -182,10 +216,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualAuthenticationProperties = new AuthenticationProperties { ExpiresUtc = actualExpiresUtc };
             ActionResult result = new ForbidResult(actualAuthenticationProperties);
             var convertedExpectedExpiresUtc = GetConvertedDateTimeOffset(expectedExpiresUtc);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("ForbidResult.AuthenticationProperties.ExpiresUtc", convertedExpectedExpiresUtc, null);
 
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "ForbidResult.AuthenticationProperties.ExpiresUtc", convertedExpectedExpiresUtc, null);
+            Action a = () => result.Should().BeForbidResult().WithExpiresUtc(expectedExpiresUtc, Reason, ReasonArgs);
 
-            Action a = () => result.Should().BeForbidResult().WithExpiresUtc(expectedExpiresUtc);
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -197,10 +231,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualAuthenticationProperties = new AuthenticationProperties { ExpiresUtc = actualExpiresUtc };
             ActionResult result = new ForbidResult(actualAuthenticationProperties);
             var convertedActualExpiresUtc = GetConvertedDateTimeOffset(actualExpiresUtc);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("ForbidResult.AuthenticationProperties.ExpiresUtc", null, convertedActualExpiresUtc);
 
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "ForbidResult.AuthenticationProperties.ExpiresUtc", null, convertedActualExpiresUtc);
+            Action a = () => result.Should().BeForbidResult().WithExpiresUtc(expectedExpiresUtc, Reason, ReasonArgs);
 
-            Action a = () => result.Should().BeForbidResult().WithExpiresUtc(expectedExpiresUtc);
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -210,6 +244,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualAllowRefresh = true;
             var actualAuthenticationProperties = new AuthenticationProperties { AllowRefresh = actualAllowRefresh };
             ActionResult result = new ForbidResult(actualAuthenticationProperties);
+
             result.Should().BeForbidResult().WithAllowRefresh(actualAllowRefresh);
         }
 
@@ -220,9 +255,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var expectedAllowRefresh = false;
             var actualAuthenticationProperties = new AuthenticationProperties { AllowRefresh = actualAllowRefresh };
             ActionResult result = new ForbidResult(actualAuthenticationProperties);
-            var failureMessage = string.Format(FailureMessages.CommonFailMessage, "ForbidResult.AuthenticationProperties.AllowRefresh", expectedAllowRefresh, actualAllowRefresh);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("ForbidResult.AuthenticationProperties.AllowRefresh", expectedAllowRefresh, actualAllowRefresh);
 
-            Action a = () => result.Should().BeForbidResult().WithAllowRefresh(expectedAllowRefresh);
+            Action a = () => result.Should().BeForbidResult().WithAllowRefresh(expectedAllowRefresh, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -234,6 +270,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var properties = new Dictionary<string, string> { { testKey, testValue } };
             var actualAuthenticationProperties = new AuthenticationProperties(properties);
             ActionResult result = new ForbidResult(actualAuthenticationProperties);
+
             result.Should().BeForbidResult().ContainsItem(testKey, testValue);
         }
 
@@ -244,13 +281,13 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             const string testValue = "testValue";
             const string expectedKey = "wrong key";
             const string expectedValue = "wrong value";
-
             var properties = new Dictionary<string, string> { { testKey, testValue } };
             var actualAuthenticationProperties = new AuthenticationProperties(properties);
             ActionResult result = new ForbidResult(actualAuthenticationProperties);
             var failureMessage = string.Format(FailureMessages.CommonItemsContain, expectedKey, expectedValue);
 
-            Action a = () => result.Should().BeForbidResult().ContainsItem(expectedKey, expectedValue);
+            Action a = () => result.Should().BeForbidResult().ContainsItem(expectedKey, expectedValue, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -259,8 +296,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var actualAuthenticationSchemes = new List<string> { "one", "two" };
             var expectedAuthenticationSchemes = new List<string> { "two", "one" };
-
             ActionResult result = new ForbidResult(actualAuthenticationSchemes);
+
             result.Should().BeForbidResult().WithAuthenticationSchemes(expectedAuthenticationSchemes);
         }
 
@@ -269,11 +306,11 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var actualAuthenticationSchemes = new List<string>() { "one", "two", "three"};
             var expectedAuthenticationSchemes = new List<string> { "three", "four", "five"};
-
             ActionResult result = new ForbidResult(actualAuthenticationSchemes);
             var failureMessage = string.Format(FailureMessages.CommonListsNotIdentical, "ForbidResult.AuthenticationSchemes");
 
-            Action a = () => result.Should().BeForbidResult().WithAuthenticationSchemes(expectedAuthenticationSchemes);
+            Action a = () => result.Should().BeForbidResult().WithAuthenticationSchemes(expectedAuthenticationSchemes, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -283,6 +320,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             const string testScheme = "testScheme";
             var actualSchemes = new List<string> {testScheme};
             ActionResult result = new ForbidResult(actualSchemes);
+
             result.Should().BeForbidResult().ContainsScheme(testScheme);
         }
 
@@ -295,16 +333,17 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             ActionResult result = new ForbidResult(actualSchemes);
             var failureMessage = string.Format(FailureMessages.CommonAuthenticationSchemesContainScheme, expectedScheme);
 
-            Action a = () => result.Should().BeForbidResult().ContainsScheme(expectedScheme);
+            Action a = () => result.Should().BeForbidResult().ContainsScheme(expectedScheme, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
         // DateTimeOffset is stored as string and converted back in ASP.NET Core Framework
         private DateTimeOffset? GetConvertedDateTimeOffset(DateTimeOffset value)
         {
-            var expectedIssuedUtcAsString = value.ToString("r", (IFormatProvider)CultureInfo.InvariantCulture);
+            var expectedIssuedUtcAsString = value.ToString("r", CultureInfo.InvariantCulture);
 
-            return DateTimeOffset.TryParseExact(expectedIssuedUtcAsString, "r", (IFormatProvider)CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out var result)
+            return DateTimeOffset.TryParseExact(expectedIssuedUtcAsString, "r", CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out var result)
                 ? new DateTimeOffset?(result)
                 : new DateTimeOffset?();
         }

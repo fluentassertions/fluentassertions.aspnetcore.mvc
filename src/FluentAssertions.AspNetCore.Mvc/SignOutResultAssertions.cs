@@ -136,7 +136,7 @@ namespace FluentAssertions.AspNetCore.Mvc
             DateTimeOffset? expectedResult = AssertionHelpers.RoundToSeconds(expectedIssuedUtc);
 
             Execute.Assertion
-                .ForCondition(EqualityComparer<DateTimeOffset?>.Default.Equals(expectedResult, actualResult))
+                .ForCondition(expectedResult == actualResult)
                 .BecauseOf(reason, reasonArgs)
                 .WithDefaultIdentifier("SignOutResult.AuthenticationProperties.IssuedUtc")
                 .FailWith(FailureMessages.CommonFailMessage, expectedResult, actualResult);
@@ -162,7 +162,7 @@ namespace FluentAssertions.AspNetCore.Mvc
             DateTimeOffset? expectedResult = AssertionHelpers.RoundToSeconds(expectedExpiresUtc);
 
             Execute.Assertion
-                .ForCondition(EqualityComparer<DateTimeOffset?>.Default.Equals(expectedResult, actualResult))
+                .ForCondition(expectedResult == actualResult)
                 .BecauseOf(reason, reasonArgs)
                 .WithDefaultIdentifier("SignOutResult.AuthenticationProperties.ExpiresUtc")
                 .FailWith(FailureMessages.CommonFailMessage, expectedResult, actualResult);
