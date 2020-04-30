@@ -37,7 +37,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
+        ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public PartialViewResultAssertions WithViewName(string expectedViewName, string reason = "",
             params object[] reasonArgs)
@@ -62,7 +62,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
+        ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public PartialViewResultAssertions WithViewData(string key, object expectedValue, string reason = "",
             params object[] reasonArgs)
@@ -85,7 +85,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
+        ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public PartialViewResultAssertions WithTempData(string key, object expectedValue, string reason = "",
             params object[] reasonArgs)
@@ -128,7 +128,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
+        ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public PartialViewResultAssertions WithDefaultViewName(string reason = "", params object[] reasonArgs)
         {

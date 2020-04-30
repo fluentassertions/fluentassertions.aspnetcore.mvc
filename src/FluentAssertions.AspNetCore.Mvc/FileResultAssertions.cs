@@ -39,7 +39,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
+        ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public FileResultAssertions WithContentType(string expectedContentType, string reason = "",
             params object[] reasonArgs)
@@ -63,7 +63,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
+        ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public FileResultAssertions WithEntityTag(EntityTagHeaderValue expectedEntityTag, string reason = "",
             params object[] reasonArgs)
@@ -87,7 +87,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
+        ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public FileResultAssertions WithFileDownloadName(string expectedFileDownloadName, string reason = "",
             params object[] reasonArgs)
@@ -105,13 +105,13 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <summary>
         ///     Asserts that the last modified is the expected DateTimeOffset.
         /// </summary>
-        /// <param name="expectedFileDownloadName">The expected last modified value.</param>
+        /// <param name="expectedLastModified">The expected last modified value.</param>
         /// <param name="reason">
         ///     A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
+        ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public FileResultAssertions WithLastModified(DateTimeOffset? expectedLastModified, string reason = "",
             params object[] reasonArgs)

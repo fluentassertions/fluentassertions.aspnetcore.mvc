@@ -57,7 +57,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
+        ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public JsonResultAssertions WithContentType(string expectedContentType, string reason = "",
             params object[] reasonArgs)
@@ -75,13 +75,13 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <summary>
         ///     Asserts that the status code is the expected status code.
         /// </summary>
-        /// <param name="statusCode">The expected status code.</param>
+        /// <param name="expectedStatusCode">The expected status code.</param>
         /// <param name="reason">
         ///     A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
+        ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public JsonResultAssertions WithStatusCode(int? expectedStatusCode, string reason = "",
             params object[] reasonArgs)
