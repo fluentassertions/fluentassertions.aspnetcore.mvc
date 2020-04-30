@@ -53,5 +53,11 @@ namespace FluentAssertions.AspNetCore.Mvc
             return expectedResult;
         }
 
+        internal static string GetAbsoluteUri(Uri uri)
+        {
+            return !uri.IsAbsoluteUri
+                ? uri.GetComponents(UriComponents.SerializationInfoString, UriFormat.UriEscaped)
+                : uri.AbsoluteUri;
+        }
     }
 }

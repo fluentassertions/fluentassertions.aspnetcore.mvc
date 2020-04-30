@@ -78,9 +78,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <returns>The typed value.</returns>
         public AcceptedResultAssertions WithUri(Uri uri, string reason = "", params object[] reasonArgs)
         {
-            var expectedUri = !uri.IsAbsoluteUri 
-                ? uri.GetComponents(UriComponents.SerializationInfoString, UriFormat.UriEscaped) 
-                : uri.AbsoluteUri;
+            var expectedUri = AssertionHelpers.GetAbsoluteUri(uri);
 
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
