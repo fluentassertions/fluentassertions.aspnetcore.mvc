@@ -211,12 +211,8 @@ namespace FluentAssertions.AspNetCore.Mvc
         public ChallengeResultAssertions ContainsItem(string expectedKey, string expectedValue, string reason = "", params object[] reasonArgs)
         {
             var actualItems = Items;
-            var keyValuePair = new KeyValuePair<string, string>(expectedKey, expectedValue);
 
-            Execute.Assertion
-                .ForCondition(actualItems.Contains(keyValuePair))
-                .BecauseOf(reason, reasonArgs)
-                .FailWith(string.Format(FailureMessages.CommonItemsContain, expectedKey, expectedValue));
+            AssertionHelpers.AssertStringObjectDictionary(actualItems, "ChallengeResult.AuthenticationProperties.Items", expectedKey, expectedValue, reason, reasonArgs);
 
             return this;
         }

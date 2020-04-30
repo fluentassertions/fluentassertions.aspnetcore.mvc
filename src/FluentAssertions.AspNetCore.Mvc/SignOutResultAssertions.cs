@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.Linq;
-using FluentAssertions.Execution;
+﻿using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using AuthenticationProperties = Microsoft.AspNetCore.Authentication.AuthenticationProperties;
 
 namespace FluentAssertions.AspNetCore.Mvc
@@ -210,12 +209,9 @@ namespace FluentAssertions.AspNetCore.Mvc
         public SignOutResultAssertions ContainsItem(string expectedKey, string expectedValue, string reason = "", params object[] reasonArgs)
         {
             var actualItems = Items;
-            var keyValuePair = new KeyValuePair<string, string>(expectedKey, expectedValue);
 
-            Execute.Assertion
-                .ForCondition(actualItems.Contains(keyValuePair))
-                .BecauseOf(reason, reasonArgs)
-                .FailWith(string.Format(FailureMessages.CommonItemsContain, expectedKey, expectedValue));
+            AssertionHelpers.AssertStringObjectDictionary(actualItems, "SignOutResult.AuthenticationProperties.Items", 
+                expectedKey, expectedValue, reason, reasonArgs);
 
             return this;
         }

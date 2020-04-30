@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.Security.Claims;
-using FluentAssertions.Execution;
+﻿using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Security.Claims;
 using AuthenticationProperties = Microsoft.AspNetCore.Authentication.AuthenticationProperties;
 
 namespace FluentAssertions.AspNetCore.Mvc
@@ -213,7 +212,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         {
             var actualItems = Items;
             
-            AssertionHelpers.AssertStringObjectDictionary(actualItems, "SignInResult.Items", expectedKey, expectedValue, reason, reasonArgs);
+            AssertionHelpers.AssertStringObjectDictionary(actualItems, "SignInResult.AuthenticationProperties.Items", expectedKey, expectedValue, reason, reasonArgs);
 
             return this;
         }

@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.Linq;
-using FluentAssertions.Execution;
+﻿using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using AuthenticationProperties = Microsoft.AspNetCore.Authentication.AuthenticationProperties;
 
 namespace FluentAssertions.AspNetCore.Mvc
@@ -22,7 +21,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         ///     Initializes a new instance of the <see cref="T:ForbidResultAssertions" /> class.
         /// </summary>
         /// <param name="subject">The object to test assertion on</param>
-        public ForbidResultAssertions(object subject) : base(subject)
+        public ForbidResultAssertions(ForbidResult subject) : base(subject)
         {
         }
 
@@ -211,12 +210,8 @@ namespace FluentAssertions.AspNetCore.Mvc
         public ForbidResultAssertions ContainsItem(string expectedKey, string expectedValue, string reason = "", params object[] reasonArgs)
         {
             var actualItems = Items;
-            var keyValuePair = new KeyValuePair<string, string>(expectedKey, expectedValue);
 
-            Execute.Assertion
-                .ForCondition(actualItems.Contains(keyValuePair))
-                .BecauseOf(reason, reasonArgs)
-                .FailWith(string.Format(FailureMessages.CommonItemsContain, expectedKey, expectedValue));
+            AssertionHelpers.AssertStringObjectDictionary(actualItems, "ForbidResult.AuthenticationProperties.Items", expectedKey, expectedValue, reason, reasonArgs);
 
             return this;
         }

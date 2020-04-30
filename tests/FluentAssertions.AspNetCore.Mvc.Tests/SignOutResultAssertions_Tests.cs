@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using FluentAssertions.Mvc.Tests.Helpers;
+﻿using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
 using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Tests
@@ -285,19 +285,50 @@ Microsoft.AspNetCore.Authentication.AuthenticationProperties
         }
 
         [Fact]
-        public void ContainsItem_GivenUnexpected_ShouldFail()
+        public void ContainsItem_GivenNull_ShouldFail()
+        {
+            const string testKey = "testKey";
+            const string testValue = "testValue";
+            ActionResult result = new SignOutResult(TestAuthenticationSchemes);
+            var failureMessage = FailureMessageHelper.ExpectedContextContainValueAtKeyButFoundNull(
+                "SignOutResult.AuthenticationProperties.Items", testValue, testKey);
+
+            Action a = () => result.Should().BeSignOutResult().ContainsItem(testKey, testValue, Reason, ReasonArgs);
+
+            a.Should().Throw<Exception>().WithMessage(failureMessage);
+        }
+
+        [Fact]
+        public void ContainsItem_GivenUnexpectedKey_ShouldFail()
         {
             const string testKey = "testKey";
             const string testValue = "testValue";
             const string expectedKey = "wrong key";
-            const string expectedValue = "wrong value";
-
             var properties = new Dictionary<string, string> { { testKey, testValue } };
             var actualAuthenticationProperties = new AuthenticationProperties(properties);
             ActionResult result = new SignOutResult(TestAuthenticationSchemes, actualAuthenticationProperties);
-            var failureMessage = string.Format(FailureMessages.CommonItemsContain, expectedKey, expectedValue);
+            var failureMessage = FailureMessageHelper.ExpectedContextContainValueAtKeyButKeyNotFound(
+                    "SignOutResult.AuthenticationProperties.Items", testValue, expectedKey);
 
-            Action a = () => result.Should().BeSignOutResult().ContainsItem(expectedKey, expectedValue, Reason, ReasonArgs);
+            Action a = () => result.Should().BeSignOutResult().ContainsItem(expectedKey, testValue, Reason, ReasonArgs);
+
+            a.Should().Throw<Exception>().WithMessage(failureMessage);
+        }
+
+        [Fact]
+        public void ContainsItem_GivenUnexpectedValue_ShouldFail()
+        {
+            const string testKey = "testKey";
+            const string testValue = "testValue";
+            const string expectedValue = "wrong value";
+            var properties = new Dictionary<string, string> { { testKey, testValue } };
+            var actualAuthenticationProperties = new AuthenticationProperties(properties);
+            ActionResult result = new SignOutResult(TestAuthenticationSchemes, actualAuthenticationProperties);
+            var failureMessage = FailureMessageHelper.ExpectedAtKeyValueXButFoundY(
+                "SignOutResult.AuthenticationProperties.Items", testKey, expectedValue, testValue);
+
+            Action a = () => result.Should().BeSignOutResult().ContainsItem(testKey, expectedValue, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 

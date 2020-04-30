@@ -1,9 +1,7 @@
-﻿using FluentAssertions.Common;
-using FluentAssertions.Execution;
+﻿using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace FluentAssertions.AspNetCore.Mvc

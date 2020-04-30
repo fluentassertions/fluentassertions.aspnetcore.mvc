@@ -1,10 +1,10 @@
-﻿using System;
+﻿using FluentAssertions.Mvc.Tests.Helpers;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Security.Claims;
-using FluentAssertions.Mvc.Tests.Helpers;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Mvc;
 using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Tests
@@ -285,7 +285,7 @@ Microsoft.AspNetCore.Authentication.AuthenticationProperties
             const string testValue = "testValue";
             ActionResult result = new SignInResult(TestAuthenticationScheme, TestClaimsPrincipal);
             var failureMessage = FailureMessageHelper.ExpectedContextContainValueAtKeyButFoundNull(
-                "SignInResult.Items", testValue, testKey);
+                "SignInResult.AuthenticationProperties.Items", testValue, testKey);
 
             Action a = () => result.Should().BeSignInResult().ContainsItem(testKey, testValue, Reason, ReasonArgs);
 
@@ -302,7 +302,7 @@ Microsoft.AspNetCore.Authentication.AuthenticationProperties
             var actualAuthenticationProperties = new AuthenticationProperties(properties);
             ActionResult result = new SignInResult(TestAuthenticationScheme, TestClaimsPrincipal, actualAuthenticationProperties);
             var failureMessage = FailureMessageHelper.ExpectedContextContainValueAtKeyButKeyNotFound(
-                    "SignInResult.Items", testValue, expectedKey);
+                    "SignInResult.AuthenticationProperties.Items", testValue, expectedKey);
 
             Action a = () => result.Should().BeSignInResult().ContainsItem(expectedKey, testValue, Reason, ReasonArgs);
 
@@ -318,7 +318,8 @@ Microsoft.AspNetCore.Authentication.AuthenticationProperties
             var properties = new Dictionary<string, string> { { testKey, testValue } };
             var actualAuthenticationProperties = new AuthenticationProperties(properties);
             ActionResult result = new SignInResult(TestAuthenticationScheme, TestClaimsPrincipal, actualAuthenticationProperties);
-            var failureMessage = FailureMessageHelper.ExpectedAtKeyValueXButFoundY("SignInResult.Items", testKey, expectedValue, testValue);
+            var failureMessage = FailureMessageHelper.ExpectedAtKeyValueXButFoundY(
+                "SignInResult.AuthenticationProperties.Items", testKey, expectedValue, testValue);
 
             Action a = () => result.Should().BeSignInResult().ContainsItem(testKey, expectedValue, Reason, ReasonArgs);
 
