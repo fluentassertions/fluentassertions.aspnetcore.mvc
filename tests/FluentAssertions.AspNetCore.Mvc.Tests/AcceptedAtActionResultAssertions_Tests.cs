@@ -55,6 +55,17 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         }
 
         [Fact]
+        public void WithRouteValue_GivenExpectedKeyValuePair_ShouldPass()
+        {
+            var expectedKey = "expectedKey";
+            var expectedValue = "expectedValue";
+            var routeValues = new { expectedKey = expectedValue };
+            var result = new AcceptedAtActionResult(string.Empty, string.Empty, routeValues, null);
+
+            result.Should().BeAcceptedAtActionResult().WithRouteValue(expectedKey, expectedValue);
+        }
+
+        [Fact]
         public void WithRouteValue_GivenKeyDoesntExist_ShouldFail()
         {
             var expectedKey = "expectedKey";
@@ -69,18 +80,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         }
 
         [Fact]
-        public void WithRouteValue_GivenExpectedKeyValuePair_ShouldPass()
-        {
-            var expectedKey = "expectedKey";
-            var expectedValue = "expectedValue";
-            var routeValues = new { expectedKey = expectedValue };
-            var result = new AcceptedAtActionResult(string.Empty, string.Empty, routeValues, null);
-
-            result.Should().BeAcceptedAtActionResult().WithRouteValue(expectedKey, expectedValue);
-        }
-
-        [Fact]
-        public void HaveValue_GivenUnexpectedKeyValuePair_ShouldFail()
+        public void WithRouteValue_GivenUnexpectedKeyValuePair_ShouldFail()
         {
             var expectedKey = "expectedKey";
             var expectedValue = "expectedValue";
@@ -95,7 +95,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         }
 
         [Fact]
-        public void ValueAs_GivenExpectedValue_ShouldPass()
+        public void ValueAs_GivenAcceptedAtActionResult_ShouldHaveTheSameValue()
         {
             var result = new TestController().AcceptedAtAction(string.Empty, string.Empty, null, TestValue);
             result.Should().BeAcceptedAtActionResult().ValueAs<string>().Should().BeSameAs(TestValue);

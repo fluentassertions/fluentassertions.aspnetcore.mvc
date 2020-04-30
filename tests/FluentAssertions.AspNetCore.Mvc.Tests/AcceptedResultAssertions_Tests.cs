@@ -19,7 +19,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         private readonly Uri TestWrongUri = new Uri(TestWrongUriAsString);
 
         [Fact]
-        public void Value_GivenExpectedValue_ShouldPass()
+        public void Value_GivenAcceptedResult_ShouldHaveTheSameValue()
         {
             var result = new TestController().Accepted(TestUri, TestValue);
 
@@ -27,7 +27,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         }
 
         [Fact]
-        public void ValueAs_GivenExpectedValue_ShouldPass()
+        public void ValueAs_GivenAcceptedResult_ShouldHaveTheSameValue()
         {
             var result = new TestController().Accepted(TestUri, TestValue);
             result.Should().BeAcceptedResult().ValueAs<string>().Should().BeSameAs(TestValue);

@@ -97,18 +97,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         }
 
         [Fact]
-        public void ValueAs_GivenExpectedValue_ShouldPass()
+        public void ValueAs_GivenCreatedAtActionResult_ShouldHaveTheSameValue()
         {
             var result = new TestController().CreatedAtAction(string.Empty, string.Empty, null, TestValue);
-            result.Should().BeCreatedAtActionResult().ValueAs<string>().Should().Be(TestValue);
-        }
-
-        [Fact]
-        public void ValueAs_GivenUnexpectedValue_ShouldFail()
-        {
-            var result = new TestController().CreatedAtAction(string.Empty, string.Empty, null, TestValue);
-            Action a = () => result.Should().BeCreatedAtActionResult().ValueAs<string>().Should().Be("xyx");
-            a.Should().Throw<Exception>();
+            result.Should().BeCreatedAtActionResult().ValueAs<string>().Should().BeSameAs(TestValue);
         }
 
         [Fact]

@@ -10,7 +10,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
     {
         private const string TestError = "testError";
         [Fact]
-        public void Error_GivenExpectedError_ShouldPass()
+        public void Error_GivenBadRequestObjectResult_ShouldHaveTheSameError()
         {
             var result = new TestController().BadRequest(TestError);
             result.Should().BeBadRequestObjectResult().Error.Should().BeSameAs(TestError);

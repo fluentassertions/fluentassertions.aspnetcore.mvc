@@ -74,7 +74,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         }
 
         [Fact]
-        public void ValueAs_GivenExpectedValue_ShouldPass()
+        public void ValueAs_GivenAcceptedAtRouteResult_ShouldHaveTheSameValue()
         {
             var result = new TestController().AcceptedAtRoute(string.Empty, null, TestValue);
 

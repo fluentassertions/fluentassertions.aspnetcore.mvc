@@ -9,27 +9,18 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
     {
         private const string TestValue = "testValue";
         [Fact]
-        public void Value_GivenExpectedValue_ShouldPass()
+        public void Value_GivenNotFoundObjectResult_ShouldHaveTheSameValue()
         {
             var result = new TestController().NotFound(TestValue);
-            result.Should().BeNotFoundObjectResult().Value.Should().Be(TestValue);
+            result.Should().BeNotFoundObjectResult().Value.Should().BeSameAs(TestValue);
         }
 
         [Fact]
-        public void Value_GivenUnexpectedValue_ShouldFail()
+        public void ValueAs_GivenNotFoundObjectResult_ShouldHaveTheSameValue()
         {
             var result = new TestController().NotFound(TestValue);
 
-            Action a = () => result.Should().BeNotFoundObjectResult().Value.Should().Be("xyx");
-            a.Should().Throw<Exception>();
-        }
-
-        [Fact]
-        public void ValueAs_GivenExpectedValue_ShouldPass()
-        {
-            var result = new TestController().NotFound(TestValue);
-
-            result.Should().BeNotFoundObjectResult().ValueAs<string>().Should().Be(TestValue);
+            result.Should().BeNotFoundObjectResult().ValueAs<string>().Should().BeSameAs(TestValue);
         }
 
         [Fact]
