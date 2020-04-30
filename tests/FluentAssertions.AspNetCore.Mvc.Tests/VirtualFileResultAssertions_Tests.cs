@@ -38,6 +38,26 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         }
 
         [Fact]
+        public void WithVirtualPath_GivenExpected_ShouldPass()
+        {
+            ActionResult result = new VirtualFileResult(TestFileName, TestContentType);
+            result.Should().BeVirtualFileResult().WithVirtualPath(TestFileName);
+        }
+
+        [Fact]
+        public void WithVirtualPath_GivenUnexpected_ShouldFail()
+        {
+            var actualFileName = TestFileName;
+            var expectedFileName = "xyz";
+            ActionResult result = new VirtualFileResult(actualFileName, TestContentType);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("VirtualFileResult.VirtualPath", expectedFileName, actualFileName);
+
+            Action a = () => result.Should().BeVirtualFileResult().WithVirtualPath(expectedFileName, Reason, ReasonArgs);
+
+            a.Should().Throw<Exception>().WithMessage(failureMessage);
+        }
+
+        [Fact]
         public void WithContentType_GivenExpected_ShouldPass()
         {
             ActionResult result = new VirtualFileResult(string.Empty, TestContentType);

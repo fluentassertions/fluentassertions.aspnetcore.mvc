@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using FluentAssertions.Execution;
-using FluentAssertions.Primitives;
+﻿using FluentAssertions.Execution;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Net.Http.Headers;
+using System;
 
 namespace FluentAssertions.AspNetCore.Mvc
 {
     /// <summary>
     /// Contains a number of methods to assert that a <see cref="VirtualFileResult"/> is in the expected state.
     /// </summary>
-    public class VirtualFileResultAssertions : ObjectAssertions
+    public class VirtualFileResultAssertions :  FileResultAssertionsBase<VirtualFileResult, VirtualFileResultAssertions>
     {
         #region Public Constructors
 
@@ -27,23 +22,40 @@ namespace FluentAssertions.AspNetCore.Mvc
         #endregion
 
         #region Public Properties
+
         /// <summary>
-        ///     The value on the VirtualFileResult
+        /// The <see cref="VirtualFileResult.FileName"/> on the tested subject.
         /// </summary>
-        public string FileName => VirtualFileResultSubject.FileName;
-        public string ContentType => VirtualFileResultSubject.ContentType;
-        public string FileDownloadName => VirtualFileResultSubject.FileDownloadName;
-        public DateTimeOffset? LastModified => VirtualFileResultSubject.LastModified;
-        public EntityTagHeaderValue EntityTag => VirtualFileResultSubject.EntityTag;
-
-        #endregion
-
-        #region Private Properties
-        private VirtualFileResult VirtualFileResultSubject => (VirtualFileResult)Subject;
+        public string FileName => FileResultSubject.FileName;
 
         #endregion
 
         #region Public Methods
+
+        /// <summary>
+        /// Asserts that the FileName is exactly the same as the expected FileName, ignoring the casing.
+        /// </summary>
+        /// <param name="expectedFileName">The expected FileName string.</param>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion 
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        public VirtualFileResultAssertions WithVirtualPath(string expectedFileName, string reason = "", params object[] reasonArgs)
+        {
+            var actualFileName = FileName;
+
+            Execute.Assertion
+                .ForCondition(string.Equals(actualFileName, expectedFileName, StringComparison.OrdinalIgnoreCase))
+                .BecauseOf(reason, reasonArgs)
+                .WithDefaultIdentifier("VirtualFileResult.VirtualPath")
+                .FailWith(FailureMessages.CommonFailMessage, expectedFileName, actualFileName);
+
+            return this;
+        }
+
         /// <summary>
         /// Asserts that the FileName is exactly the same as the expected FileName, ignoring the casing.
         /// </summary>
@@ -65,101 +77,6 @@ namespace FluentAssertions.AspNetCore.Mvc
                 .WithDefaultIdentifier("VirtualFileResult.FileName")
                 .FailWith(FailureMessages.CommonFailMessage, expectedFileName, actualFileName);
 
-            return this;
-        }
-
-        /// <summary>
-        /// Asserts that the ContentType is exactly the same as the expected ContentType, ignoring the casing.
-        /// </summary>
-        /// <param name="expectedContentType">The expected ContentType string.</param>
-        /// <param name="reason">
-        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion 
-        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
-        /// </param>
-        /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
-        /// </param>
-        public VirtualFileResultAssertions WithContentType(string expectedContentType, string reason = "", params object[] reasonArgs)
-        {
-            var actualContentType = ContentType;
-
-            Execute.Assertion
-                .ForCondition(string.Equals(actualContentType, expectedContentType, StringComparison.OrdinalIgnoreCase))
-                .BecauseOf(reason, reasonArgs)
-                .WithDefaultIdentifier("VirtualFileResult.ContentType")
-                .FailWith(FailureMessages.CommonFailMessage, expectedContentType, actualContentType);
-
-            return this;
-        }
-
-        /// <summary>
-        /// Asserts that the FileDownloadName is exactly the same as the expected FileDownloadName, ignoring the casing.
-        /// </summary>
-        /// <param name="expectedFileDownloadName">The expected FileDownloadName string.</param>
-        /// <param name="reason">
-        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion 
-        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
-        /// </param>
-        /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
-        /// </param>
-        public VirtualFileResultAssertions WithFileDownloadName(string expectedFileDownloadName, string reason = "", params object[] reasonArgs)
-        {
-            var actualFileDownloadName = FileDownloadName;
-
-            Execute.Assertion
-                .ForCondition(string.Equals(actualFileDownloadName, expectedFileDownloadName, StringComparison.OrdinalIgnoreCase))
-                .BecauseOf(reason, reasonArgs)
-                .WithDefaultIdentifier("VirtualFileResult.FileDownloadName")
-                .FailWith(FailureMessages.CommonFailMessage, expectedFileDownloadName, actualFileDownloadName);
-
-            return this;
-        }
-
-        /// <summary>
-        /// Asserts that the LastModified is exactly the same as the expected LastModified, ignoring the casing.
-        /// </summary>
-        /// <param name="expectedLastModified">The expected LastModified string.</param>
-        /// <param name="reason">
-        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion 
-        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
-        /// </param>
-        /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
-        /// </param>
-        public VirtualFileResultAssertions WithLastModified(DateTimeOffset? expectedLastModified, string reason = "", params object[] reasonArgs)
-        {
-            var actualLastModified = LastModified;
-
-            Execute.Assertion
-                .ForCondition(actualLastModified == expectedLastModified)
-                .BecauseOf(reason, reasonArgs)
-                .WithDefaultIdentifier("VirtualFileResult.LastModified")
-                .FailWith(FailureMessages.CommonFailMessage, expectedLastModified, actualLastModified);
-
-            return this;
-        }
-
-        /// <summary>
-        /// Asserts that the EntityTag is exactly the same as the expected EntityTag, ignoring the casing.
-        /// </summary>
-        /// <param name="expectedEntityTag">The expected EntityTag string.</param>
-        /// <param name="reason">
-        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion 
-        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
-        /// </param>
-        /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
-        /// </param>
-        public VirtualFileResultAssertions WithEntityTag(EntityTagHeaderValue expectedEntityTag, string reason = "", params object[] reasonArgs)
-        {
-            var actualEntityTag = EntityTag;
-
-            Execute.Assertion
-                .ForCondition(Equals(actualEntityTag, expectedEntityTag))
-                .BecauseOf(reason, reasonArgs)
-                .WithDefaultIdentifier("VirtualFileResult.EntityTag")
-                .FailWith(FailureMessages.CommonFailMessage, expectedEntityTag, actualEntityTag);
             return this;
         }
 
