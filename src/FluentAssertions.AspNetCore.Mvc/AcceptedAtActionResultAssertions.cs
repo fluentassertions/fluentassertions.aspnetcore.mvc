@@ -26,7 +26,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public AcceptedAtActionResultAssertions WithActionName(string expectedActionName, string reason = "", params object[] reasonArgs)
         {
@@ -35,7 +35,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                    .ForCondition(string.Equals(actualActionName, expectedActionName, StringComparison.OrdinalIgnoreCase))
                    .BecauseOf(reason, reasonArgs)
-                   .FailWith("Expected AcceptedAtActionResult.ActionName to be {0}{reason} but was {1}", expectedActionName, actualActionName);
+                   .WithDefaultIdentifier("AcceptedAtActionResult.ActionName")
+                   .FailWith(FailureMessages.CommonFailMessage, expectedActionName, actualActionName);
 
             return this;
         }
@@ -45,11 +46,11 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </summary>
         /// <param name="expectedControllerName">The expected controller.</param>
         /// <param name="reason">
-        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion 
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public AcceptedAtActionResultAssertions WithControllerName(string expectedControllerName, string reason = "", params object[] reasonArgs)
         {
@@ -58,7 +59,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(string.Equals(actualControllerName, expectedControllerName, StringComparison.OrdinalIgnoreCase))
                 .BecauseOf(reason, reasonArgs)
-                .FailWith("Expected AcceptedAtActionResult.ControllerName to be {0}{reason} but was {1}", expectedControllerName, actualControllerName);
+                .WithDefaultIdentifier("AcceptedAtActionResult.ControllerName")
+                .FailWith(FailureMessages.CommonFailMessage, expectedControllerName, actualControllerName);
 
             return this;
         }
@@ -69,27 +71,18 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <param name="key">The expected key.</param>
         /// <param name="expectedValue">The expected value.</param>
         /// <param name="reason">
-        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion 
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public AcceptedAtActionResultAssertions WithRouteValue(string key, object expectedValue, string reason = "", params object[] reasonArgs)
         {
             var subjectTyped = Subject as AcceptedAtActionResult;
 
-            Execute.Assertion
-                .ForCondition(subjectTyped != null && subjectTyped.RouteValues.ContainsKey(key))
-                .BecauseOf(reason, reasonArgs)
-                .FailWith(FailureMessages.AcceptedAtActionResult_RouteValues_ContainsKey, key);
-
-            var actualValue = subjectTyped.RouteValues[key];
-
-            Execute.Assertion
-                .ForCondition(expectedValue.Equals(actualValue))
-                .BecauseOf(reason, reasonArgs)
-                .FailWith(FailureMessages.AcceptedAtActionResult_RouteValues_HaveValue, key, expectedValue, actualValue);
+            AssertionHelpers.AssertStringObjectDictionary(subjectTyped.RouteValues,
+                "AcceptedAtActionResult.RouteValues", key, expectedValue, reason, reasonArgs);
 
             return this;
         }
@@ -105,11 +98,14 @@ namespace FluentAssertions.AspNetCore.Mvc
             var value = subjectTyped.Value;
 
             if (value == null)
-                Execute.Assertion.FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, "AcceptedAtActionResult.Value", typeof(TValue).Name);
+                Execute.Assertion
+                    .WithDefaultIdentifier("AcceptedAtActionResult.Value")
+                    .FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, typeof(TValue));
 
             Execute.Assertion
                 .ForCondition(value is TValue)
-                .FailWith(FailureMessages.CommonTypeFailMessage, "AcceptedAtActionResult.Value", typeof(TValue).Name, value.GetType().Name);
+                .WithDefaultIdentifier("AcceptedAtActionResult.Value")
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(TValue), value.GetType());
 
             return (TValue)value;
         }

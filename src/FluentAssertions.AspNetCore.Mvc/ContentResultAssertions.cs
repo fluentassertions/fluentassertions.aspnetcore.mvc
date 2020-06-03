@@ -28,7 +28,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public ContentResultAssertions WithContent(string expectedContent, string reason = "", params object[] reasonArgs)
         {
@@ -37,7 +37,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                    .ForCondition(string.Equals(actualContent, expectedContent, StringComparison.OrdinalIgnoreCase))
                    .BecauseOf(reason, reasonArgs)
-                   .FailWith(string.Format(FailureMessages.CommonFailMessage, "ContentResult.Content", expectedContent, actualContent));
+                   .WithDefaultIdentifier("ContentResult.Content")
+                   .FailWith(FailureMessages.CommonFailMessage, expectedContent, actualContent);
 
             return this;
         }
@@ -51,7 +52,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public ContentResultAssertions WithContentType(string expectedContentType, string reason = "", params object[] reasonArgs)
         {
@@ -60,7 +61,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                    .ForCondition(string.Equals(expectedContentType, actualContentType, StringComparison.OrdinalIgnoreCase))
                    .BecauseOf(reason, reasonArgs)
-                   .FailWith(string.Format(FailureMessages.CommonFailMessage, "ContentResult.ContentType", expectedContentType, actualContentType));
+                   .WithDefaultIdentifier("ContentResult.ContentType")
+                   .FailWith(FailureMessages.CommonFailMessage, expectedContentType, actualContentType);
 
             return this;
         }

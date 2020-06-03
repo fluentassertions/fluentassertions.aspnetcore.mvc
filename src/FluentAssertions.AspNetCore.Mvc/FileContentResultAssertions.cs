@@ -9,10 +9,14 @@ namespace FluentAssertions.AspNetCore.Mvc
     ///     Contains a number of methods to assert that a <see cref="FileContentResult" /> is in the expected state.
     /// </summary>>
     [DebuggerNonUserCode]
-    public class FileContentResultAssertions : FileResultAssertions
+    public class FileContentResultAssertions : FileResultAssertionsBase<FileContentResult, FileContentResultAssertions>
     {
         #region Public Constructors
 
+        /// <summary>
+        /// Creates an instance of this class.
+        /// </summary>
+        /// <param name="fileResult">The testet instance.</param>
         public FileContentResultAssertions(FileContentResult fileResult) 
             : base(fileResult)
         {
@@ -23,17 +27,11 @@ namespace FluentAssertions.AspNetCore.Mvc
         #region Public Properties
 
         /// <summary>
-        ///     The <see cref="FileContentResult.FileContents">FileContents</see> on the <see cref="FileContentResult"/>.
+        /// The <see cref="FileContentResult.FileContents"/> on the tested subject.
         /// </summary>
         [SuppressMessage("Performance", "CA1819:Properties should not return arrays",
             Justification = "It needs to return the same instance as FileContentResult")]
-        public byte[] FileContents => FileContentResultSubject.FileContents;
-
-        #endregion Private Properties
-
-        #region Private Properties
-
-        private FileContentResult FileContentResultSubject => (FileContentResult)Subject;
+        public byte[] FileContents => FileResultSubject.FileContents;
 
         #endregion Private Properties
 
@@ -48,12 +46,12 @@ namespace FluentAssertions.AspNetCore.Mvc
         ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
+        ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         internal FileContentResultAssertions WithFileContents(byte[] expectedFileContents, string reason = "",
            params object[] reasonArgs)
         {
-            var actualFileContents = FileContentResultSubject.FileContents;
+            var actualFileContents = FileResultSubject.FileContents;
 
             Execute.Assertion
                 .ForCondition(expectedFileContents.Length == actualFileContents.Length)

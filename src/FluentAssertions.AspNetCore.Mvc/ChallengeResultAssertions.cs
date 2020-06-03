@@ -56,7 +56,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public ChallengeResultAssertions WithAuthenticationProperties(AuthenticationProperties expectedAuthenticationProperties, string reason = "", params object[] reasonArgs)
         {
@@ -65,7 +65,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(actualAuthenticationProperties == expectedAuthenticationProperties)
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(string.Format(FailureMessages.CommonFailMessage, "ChallengeResult.AuthenticationProperties", expectedAuthenticationProperties, actualAuthenticationProperties));
+                .WithDefaultIdentifier("ChallengeResult.AuthenticationProperties")
+                .FailWith(FailureMessages.CommonFailMessage, expectedAuthenticationProperties, actualAuthenticationProperties);
 
             return this;
         }
@@ -79,7 +80,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public ChallengeResultAssertions WithIsPersistent(bool expectedIsPersistent, string reason = "", params object[] reasonArgs)
         {
@@ -88,7 +89,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(actualIsPersistent == expectedIsPersistent)
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(string.Format(FailureMessages.CommonFailMessage, "ChallengeResult.AuthenticationProperties.IsPersistent", expectedIsPersistent, actualIsPersistent));
+                .WithDefaultIdentifier("ChallengeResult.AuthenticationProperties.IsPersistent")
+                .FailWith(FailureMessages.CommonFailMessage, expectedIsPersistent, actualIsPersistent);
 
             return this;
         }
@@ -102,7 +104,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public ChallengeResultAssertions WithRedirectUri(string expectedRedirectUri, string reason = "", params object[] reasonArgs)
         {
@@ -111,7 +113,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(string.Equals(actualRedirectUri, expectedRedirectUri))
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(string.Format(FailureMessages.CommonFailMessage, "ChallengeResult.AuthenticationProperties.RedirectUri", expectedRedirectUri, actualRedirectUri));
+                .WithDefaultIdentifier("ChallengeResult.AuthenticationProperties.RedirectUri")
+                .FailWith(FailureMessages.CommonFailMessage, expectedRedirectUri, actualRedirectUri);
 
             return this;
         }
@@ -125,47 +128,19 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public ChallengeResultAssertions WithIssuedUtc(DateTimeOffset? expectedIssuedUtc, string reason = "", params object[] reasonArgs)
         {
             var actualResult = IssuedUtc;
 
-            var expectedIssuedUtcAsString = expectedIssuedUtc?.ToString("r", (IFormatProvider) CultureInfo.InvariantCulture);
-            
-            var expectedResult = DateTimeOffset.TryParseExact(expectedIssuedUtcAsString, "r", (IFormatProvider)CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out var result) 
-                ? new DateTimeOffset?(result)
-                : new DateTimeOffset?();
-
-            if (actualResult == null && expectedResult == null)
-            {
-                return this;
-            }
-
-            if (actualResult == null)
-            {
-                Execute.Assertion
-                    .ForCondition(false)
-                    .BecauseOf(reason, reasonArgs)
-                    .FailWith(string.Format(FailureMessages.CommonFailMessage, "ChallengeResult.AuthenticationProperties.IssuedUtc", expectedResult, null));
-
-                return this;
-            }
-
-            if (expectedResult == null)
-            {
-                Execute.Assertion
-                    .ForCondition(false)
-                    .BecauseOf(reason, reasonArgs)
-                    .FailWith(string.Format(FailureMessages.CommonFailMessage, "ChallengeResult.AuthenticationProperties.IssuedUtc", null, actualResult));
-
-                return this;
-            }
+            var expectedResult = AssertionHelpers.RoundToSeconds(expectedIssuedUtc);
 
             Execute.Assertion
-                .ForCondition(DateTimeOffset.Compare(expectedResult.Value, actualResult.Value) == 0)
+                .ForCondition(expectedResult == actualResult)
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(string.Format(FailureMessages.CommonFailMessage, "ChallengeResult.AuthenticationProperties.IssuedUtc", expectedResult.Value, actualResult.Value));
+                .WithDefaultIdentifier("ChallengeResult.AuthenticationProperties.IssuedUtc")
+                .FailWith(FailureMessages.CommonFailMessage, expectedResult, actualResult);
 
             return this;
         }
@@ -179,47 +154,19 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public ChallengeResultAssertions WithExpiresUtc(DateTimeOffset? expectedExpiresUtc, string reason = "", params object[] reasonArgs)
         {
             var actualResult = ExpiresUtc;
 
-            var expectedExpiresUtcAsString = expectedExpiresUtc?.ToString("r", (IFormatProvider)CultureInfo.InvariantCulture);
-
-            var expectedResult = DateTimeOffset.TryParseExact(expectedExpiresUtcAsString, "r", (IFormatProvider)CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out var result)
-                ? new DateTimeOffset?(result)
-                : new DateTimeOffset?();
-
-            if (actualResult == null && expectedResult == null)
-            {
-                return this;
-            }
-
-            if (actualResult == null)
-            {
-                Execute.Assertion
-                    .ForCondition(false)
-                    .BecauseOf(reason, reasonArgs)
-                    .FailWith(string.Format(FailureMessages.CommonFailMessage, "ChallengeResult.AuthenticationProperties.ExpiresUtc", expectedResult, null));
-
-                return this;
-            }
-
-            if (expectedResult == null)
-            {
-                Execute.Assertion
-                    .ForCondition(false)
-                    .BecauseOf(reason, reasonArgs)
-                    .FailWith(string.Format(FailureMessages.CommonFailMessage, "ChallengeResult.AuthenticationProperties.ExpiresUtc", null, actualResult));
-
-                return this;
-            }
+            var expectedResult = AssertionHelpers.RoundToSeconds(expectedExpiresUtc);
 
             Execute.Assertion
-                .ForCondition(DateTimeOffset.Compare(expectedResult.Value, actualResult.Value) == 0)
+                .ForCondition(expectedResult == actualResult)
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(string.Format(FailureMessages.CommonFailMessage, "ChallengeResult.AuthenticationProperties.ExpiresUtc", expectedResult.Value, actualResult.Value));
+                .WithDefaultIdentifier("ChallengeResult.AuthenticationProperties.ExpiresUtc")
+                .FailWith(FailureMessages.CommonFailMessage, expectedResult, actualResult);
 
             return this;
         }
@@ -234,7 +181,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public ChallengeResultAssertions WithAllowRefresh(bool? expectedAllowRefresh, string reason = "", params object[] reasonArgs)
         {
@@ -243,7 +190,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(actualAllowRefresh == expectedAllowRefresh)
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(string.Format(FailureMessages.CommonFailMessage, "ChallengeResult.AuthenticationProperties.AllowRefresh", expectedAllowRefresh, actualAllowRefresh));
+                .WithDefaultIdentifier("ChallengeResult.AuthenticationProperties.AllowRefresh")
+                .FailWith(FailureMessages.CommonFailMessage, expectedAllowRefresh, actualAllowRefresh);
 
             return this;
         }
@@ -258,17 +206,13 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public ChallengeResultAssertions ContainsItem(string expectedKey, string expectedValue, string reason = "", params object[] reasonArgs)
         {
             var actualItems = Items;
-            var keyValuePair = new KeyValuePair<string, string>(expectedKey, expectedValue);
 
-            Execute.Assertion
-                .ForCondition(actualItems.Contains(keyValuePair))
-                .BecauseOf(reason, reasonArgs)
-                .FailWith(string.Format(FailureMessages.CommonItemsContain, expectedKey, expectedValue));
+            AssertionHelpers.AssertStringObjectDictionary(actualItems, "ChallengeResult.AuthenticationProperties.Items", expectedKey, expectedValue, reason, reasonArgs);
 
             return this;
         }
@@ -282,7 +226,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public ChallengeResultAssertions WithAuthenticationSchemes(IList<string> expectedAuthenticationSchemes, string reason = "", params object[] reasonArgs)
         {
@@ -308,7 +252,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public ChallengeResultAssertions ContainsScheme(string expectedScheme, string reason = "", params object[] reasonArgs)
         {

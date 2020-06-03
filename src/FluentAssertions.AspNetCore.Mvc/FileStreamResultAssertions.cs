@@ -8,10 +8,14 @@ namespace FluentAssertions.AspNetCore.Mvc
     ///     Contains a number of methods to assert that a <see cref="FileStreamResult" /> is in the expected state.
     /// </summary>>
     [DebuggerNonUserCode]
-    public class FileStreamResultAssertions : FileResultAssertions
+    public class FileStreamResultAssertions : FileResultAssertionsBase<FileStreamResult, FileStreamResultAssertions>
     {
         #region Public Constructors
 
+        /// <summary>
+        /// Creates an instance of this class.
+        /// </summary>
+        /// <param name="fileResult">The testet instance.</param>
         public FileStreamResultAssertions(FileStreamResult fileResult) 
             : base(fileResult)
         {
@@ -24,15 +28,8 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <summary>
         ///     The <see cref="FileStreamResult.FileStream">FileStream</see> on the <see cref="FileStreamResult"/>
         /// </summary>
-        public Stream FileStream => FileStreamResultSubject.FileStream;
+        public Stream FileStream => FileResultSubject.FileStream;
 
         #endregion
-
-        #region Private Properties
-
-        private FileStreamResult FileStreamResultSubject => (FileStreamResult)Subject;
-
-        #endregion Private Properties
-
     }
 }

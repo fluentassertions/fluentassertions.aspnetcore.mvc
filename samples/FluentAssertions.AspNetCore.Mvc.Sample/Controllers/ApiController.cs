@@ -378,7 +378,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Sample.Controllers
         [HttpGet]
         public IActionResult GetVirtualFileResult(string fileName, string contentType)
         {
-            return new VirtualFileResult(fileName, contentType);
+            return File(fileName, contentType);
         }
 
         [HttpGet]

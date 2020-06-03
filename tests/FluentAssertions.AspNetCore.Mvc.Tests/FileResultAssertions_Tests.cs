@@ -9,6 +9,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
     public class FileResultAssertions_Tests
     {
+        public const string Reason = FailureMessageHelper.Reason;
+        public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
+
         [Fact]
         public void WithContentType_GivenExpectedValue_ShouldPass()
         {
@@ -25,9 +28,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualValue = "text/css";
             var expectedValue = "text/plain";
             ActionResult result = TestDataGenerator.CreateFileContentResult(contentType: actualValue);
-            var failureMessage = FailureMessageHelper.Format(FailureMessages.CommonFailMessage, "FileResult.ContentType", expectedValue, actualValue);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("FileResult.ContentType", expectedValue, actualValue);
 
-            Action a = () => result.Should().BeFileResult().WithContentType(expectedValue);
+            Action a = () => result.Should().BeFileResult().WithContentType(expectedValue, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -49,9 +52,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var expectedValue = "file1.txt"; 
             var result = TestDataGenerator.CreateFileContentResult();
             result.FileDownloadName = actualValue;
-            var failureMessage = FailureMessageHelper.Format(FailureMessages.CommonFailMessage, "FileResult.FileDownloadName", expectedValue, actualValue);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("FileResult.FileDownloadName", expectedValue, actualValue);
 
-            Action a = () => result.Should().BeFileResult().WithFileDownloadName(expectedValue);
+            Action a = () => result.Should().BeFileResult().WithFileDownloadName(expectedValue, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -80,9 +83,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var expectedValue = TestDataGenerator.CreateDateTimeOffset(expected);
             var result = TestDataGenerator.CreateFileContentResult();
             result.LastModified = actualValue;
-            var failureMessage = $"Expected \"FileResult.LastModified\" to be '<{expected ?? "null"}>' but found '<{actual ?? "null"}>'";
+            var failureMessage = $"Expected FileResult.LastModified to be <{expected ?? "null"}> because it is 10 but found <{actual ?? "null"}>.";
 
-            Action a = () => result.Should().BeFileResult().WithLastModified(expectedValue);
+            Action a = () => result.Should().BeFileResult().WithLastModified(expectedValue, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -103,13 +106,13 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         [Fact]
         public void WithEntityTag_GivenUnexpected_ShouldFail()
         {
-            var actualValue = new EntityTagHeaderValue("\"sha256 value 1\"", true);
-            var expectedValue = new EntityTagHeaderValue("\"sha256 value 2\"", false);
+            var actualEntityTag = new EntityTagHeaderValue("\"sha256 value 1\"", true);
+            var expectedEntityTag = new EntityTagHeaderValue("\"sha256 value 2\"", false);
             var result = TestDataGenerator.CreateFileContentResult();
-            result.EntityTag = actualValue;
-            var failureMessage = "Expected \"FileResult.EntityTag\" to be '\"sha256 value 2\"' but found 'W/\"sha256 value 1\"'";
+            result.EntityTag = actualEntityTag;
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("FileResult.EntityTag", expectedEntityTag, actualEntityTag);
 
-            Action a = () => result.Should().BeFileResult().WithEntityTag(expectedValue);
+            Action a = () => result.Should().BeFileResult().WithEntityTag(expectedEntityTag, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);

@@ -24,8 +24,14 @@ namespace FluentAssertions.AspNetCore.Mvc
 
         #region Public Properties
 
+        /// <summary>
+        /// The <see cref="ObjectResult.Value"/> property on the the tested <see cref="BadRequestObjectResult"/>.
+        /// </summary>
         public object Error => BadRequestObjectResultSubject.Value;
 
+        /// <summary>
+        /// The <see cref="ObjectResult.Value"/> property as <see cref="Microsoft.AspNetCore.Mvc.SerializableError"/> on the the tested <see cref="BadRequestObjectResult"/>.
+        /// </summary>
         public SerializableError SerializableError => (SerializableError)BadRequestObjectResultSubject.Value;
         #endregion
 
@@ -45,11 +51,14 @@ namespace FluentAssertions.AspNetCore.Mvc
             var error = Error;
 
             if (error == null)
-                Execute.Assertion.FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, "BadRequestObjectResult.Error", typeof(TError).Name);
+                Execute.Assertion
+                    .WithDefaultIdentifier("BadRequestObjectResult.Error")
+                    .FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, typeof(TError));
 
             Execute.Assertion
                 .ForCondition(error is TError)
-                .FailWith(FailureMessages.CommonTypeFailMessage, "BadRequestObjectResult.Error", typeof(TError).Name, error.GetType().Name);
+                .WithDefaultIdentifier("BadRequestObjectResult.Error")
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(TError), error.GetType());
 
             return (TError)error;
         }

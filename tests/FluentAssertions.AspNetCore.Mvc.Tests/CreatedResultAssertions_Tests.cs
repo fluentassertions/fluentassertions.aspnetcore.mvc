@@ -7,41 +7,39 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
     public class CreatedResultAssertions_Tests
     {
+        public const string Reason = FailureMessageHelper.Reason;
+        public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
         private const string TestValue = "testValue";
         
         private const string TestUriAsString = "http://localhost:5000";
         private const string TestWrongUriAsString = "http://somedomain.com:5000";
         
-        private Uri TestUri = new Uri(TestUriAsString);
-        private Uri TestWrongUri = new Uri(TestWrongUriAsString);
+        private readonly Uri TestUri = new Uri(TestUriAsString);
+        private readonly Uri TestWrongUri = new Uri(TestWrongUriAsString);
 
         [Fact]
-        public void Value_GivenExpectedValue_ShouldPass()
+        public void Value_GivenCreatedResult_ShouldHaveTheSameValue()
         {
             var result = new TestController().Created(TestUri, TestValue);
-            result.Should().BeCreatedResult().Value.Should().Be(TestValue);
+
+            result.Should().BeCreatedResult().Value.Should().BeSameAs(TestValue);
         }
 
         [Fact]
-        public void Value_GivenUnexpectedValue_ShouldFail()
+        public void ValueAs_GivenCreatedResult_ShouldHaveTheSameValue()
         {
             var result = new TestController().Created(TestUri, TestValue);
-            Action a = () => result.Should().BeCreatedResult().Value.Should().Be("xyx");
-            a.Should().Throw<Exception>();
-        }
 
-        [Fact]
-        public void ValueAs_GivenExpectedValue_ShouldPass()
-        {
-            var result = new TestController().Created(TestUri, TestValue);
-            result.Should().BeCreatedResult().ValueAs<string>().Should().Be(TestValue);
+            result.Should().BeCreatedResult().ValueAs<string>().Should().BeSameAs(TestValue);
         }
 
         [Fact]
         public void ValueAs_GivenUnexpectedValue_ShouldFail()
         {
             var result = new TestController().Created(TestUri, TestValue);
-            Action a = () => result.Should().BeCreatedResult().ValueAs<string>().Should().Be("xyx");
+
+            Action a = () => result.Should().BeCreatedResult().ValueAs<string>().Should().Be("xyx", Reason, ReasonArgs);
+
             a.Should().Throw<Exception>();
         }
 
@@ -49,16 +47,21 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void ValueAs_GivenWrongType_ShouldFail()
         {
             var result = new TestController().Created(TestUri, TestValue);
-            Action a = () => result.Should().BeCreatedResult().ValueAs<int>().Should().Be(2);
-            a.Should().Throw<Exception>();
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("CreatedResult.Value", typeof(int), typeof(string));
+
+            Action a = () => result.Should().BeCreatedResult().ValueAs<int>().Should().Be(2, Reason, ReasonArgs);
+
+            a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
         [Fact]
         public void ValueAs_Null_ShouldFail()
         {
             ActionResult result = new CreatedResult(TestUri, null);
-            var failureMessage = FailureMessageHelper.Format(FailureMessages.CommonNullWasSuppliedFailMessage, "CreatedResult.Value", typeof(object).Name);
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundNull("CreatedResult.Value", typeof(object));
+
             Action a = () => result.Should().BeCreatedResult().ValueAs<object>();
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -66,15 +69,18 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithUri_GivenExpectedUri_ShouldPass()
         {
             var result = new TestController().Created(TestUri, TestValue);
-            Action a = () => result.Should().BeCreatedResult().WithUri(TestUri);
+            
+            result.Should().BeCreatedResult().WithUri(TestUri);
         }
 
         [Fact]
         public void WithUri_GivenWrongUri_ShouldFail()
         {
             var result = new TestController().Created(TestWrongUri, TestValue);
-            Action a = () => result.Should().BeCreatedResult().WithUri(TestUri);
-            var failureMessage = FailureMessageHelper.Format(FailureMessages.CommonFailMessage, "CreatedResult.Uri", TestUri.ToString(), TestWrongUri.ToString());
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("CreatedResult.Uri", TestUri, TestWrongUri);
+
+            Action a = () => result.Should().BeCreatedResult().WithUri(TestUri, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 
@@ -82,15 +88,18 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithUri_GivenExpectedUriAsString_ShouldPass()
         {
             var result = new TestController().Created(TestUriAsString, TestValue);
-            Action a = () => result.Should().BeCreatedResult().WithUri(TestUriAsString);
+            
+            result.Should().BeCreatedResult().WithUri(TestUriAsString);
         }
 
         [Fact]
         public void WithUri_GivenWrongUriAsString_ShouldFail()
         {
             var result = new TestController().Created(TestWrongUriAsString, TestValue);
-            Action a = () => result.Should().BeCreatedResult().WithUri(TestUriAsString);
-            var failureMessage = FailureMessageHelper.Format(FailureMessages.CommonFailMessage, "CreatedResult.Uri", TestUriAsString, TestWrongUriAsString);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("CreatedResult.Uri", TestUriAsString, TestWrongUriAsString);
+
+            Action a = () => result.Should().BeCreatedResult().WithUri(TestUriAsString, Reason, ReasonArgs);
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
     }

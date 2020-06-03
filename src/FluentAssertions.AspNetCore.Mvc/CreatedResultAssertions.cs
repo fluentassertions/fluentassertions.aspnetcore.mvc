@@ -50,11 +50,14 @@ namespace FluentAssertions.AspNetCore.Mvc
             var value = CreatedResultSubject.Value;
 
             if (value == null)
-                Execute.Assertion.FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, "CreatedResult.Value", typeof(TValue).Name);
+                Execute.Assertion
+                    .WithDefaultIdentifier("CreatedResult.Value")
+                    .FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, typeof(TValue));
 
             Execute.Assertion
                 .ForCondition(value is TValue)
-                .FailWith(FailureMessages.CommonTypeFailMessage, "CreatedResult.Value", typeof(TValue).Name, value.GetType().Name);
+                .WithDefaultIdentifier("CreatedResult.Value")
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(TValue), value.GetType());
 
             return (TValue)value;
         }
@@ -65,16 +68,23 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <param name="uri">
         /// The Uri.
         /// </param>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
         /// <returns>The typed value.</returns>
-        public CreatedResultAssertions WithUri(Uri uri)
+        public CreatedResultAssertions WithUri(Uri uri, string reason = "", params object[] reasonArgs)
         {
-            var expectedUri = !uri.IsAbsoluteUri 
-                ? uri.GetComponents(UriComponents.SerializationInfoString, UriFormat.UriEscaped) 
-                : uri.AbsoluteUri;
+            var expectedUri = AssertionHelpers.GetAbsoluteUri(uri);
 
             Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
                 .ForCondition(expectedUri == Location)
-                .FailWith(FailureMessages.CommonFailMessage, "CreatedResult.Uri", expectedUri, Location);
+                .WithDefaultIdentifier("CreatedResult.Uri")
+                .FailWith(FailureMessages.CommonFailMessage, expectedUri, Location);
 
             return this;
         }
@@ -85,12 +95,21 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <param name="uri">
         /// The Uri as string.
         /// </param>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
         /// <returns>The typed value.</returns>
-        public CreatedResultAssertions WithUri(string uri)
+        public CreatedResultAssertions WithUri(string uri, string reason = "", params object[] reasonArgs)
         {
             Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
                 .ForCondition(uri == Location)
-                .FailWith(FailureMessages.CommonFailMessage, "CreatedResult.Uri", uri, Location);
+                .WithDefaultIdentifier("CreatedResult.Uri")
+                .FailWith(FailureMessages.CommonFailMessage, uri, Location);
 
             return this;
         }

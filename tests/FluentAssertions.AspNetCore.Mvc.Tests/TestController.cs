@@ -14,23 +14,36 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             TempData = _mockTempDataDictionary.Object;
         }
 
-        public PartialViewResult PartialViewSimpleModel()
+        public PartialViewResult PartialViewSimpleModel(object model = null)
         {
-            return PartialView(model: "hello");
+            return PartialView(model: model ?? "hello");
         }
 
-        public ViewResult ViewSimpleModel()
+        public ViewResult ViewSimpleModel(object model = null)
         {
-            return View(model: "hello");
+            return View(model: model ?? "hello");
         }
 
-        public ViewResult ViewWithOneTempData()
+        public ActionResult ViewWithOneTempData()
         {
             var mock = new Mock<ITempDataDictionary>();
             mock.Setup(t => t.ContainsKey("key1")).Returns(true);
-            mock.Setup(t => t["key1"]).Returns("value1");
+            object value1 = "value1";
+            mock.Setup(t => t["key1"]).Returns(value1);
+            mock.Setup(t => t.TryGetValue("key1", out value1)).Returns(true);
             TempData = mock.Object;
             return View();
+        }
+
+        public ActionResult PartialViewWithOneTempData()
+        {
+            var mock = new Mock<ITempDataDictionary>();
+            mock.Setup(t => t.ContainsKey("key1")).Returns(true);
+            object value1 = "value1";
+            mock.Setup(t => t["key1"]).Returns(value1);
+            mock.Setup(t => t.TryGetValue("key1", out value1)).Returns(true);
+            TempData = mock.Object;
+            return PartialView();
         }
 
         public ViewResult ViewWithTwoTempData()
@@ -45,10 +58,16 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             return View();
         }
 
-        public ViewResult ViewWithOneViewData()
+        public ActionResult ViewWithOneViewData()
         {
             ViewData.Add("key1", "value1");
             return View();
+        }
+
+        public ActionResult PartialViewWithOneViewData()
+        {
+            ViewData.Add("key1", "value1");
+            return PartialView();
         }
 
         public ViewResult ViewWithTwoViewData()

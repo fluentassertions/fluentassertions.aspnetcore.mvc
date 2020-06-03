@@ -29,12 +29,13 @@ namespace FluentAssertions.AspNetCore.Mvc
         #region Public Properties
 
         /// <summary>
-        ///     The <see cref="JsonResult.SerializerSettings"/> on the <see cref="JsonResult"/>.
+        /// The <see cref="JsonResult.SerializerSettings"/> on the tested subject.
         /// </summary>
         public JsonSerializerSettings SerializerSettings => JsonResultSubject.SerializerSettings;
 
+
         /// <summary>
-        ///     The <see cref="JsonResult.Value">Value</see> on the <see cref="JsonResult"/>.
+        /// The <see cref="JsonResult.Value"/> on the tested subject.
         /// </summary>
         public object Value => JsonResultSubject.Value;
 
@@ -57,7 +58,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
+        ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public JsonResultAssertions WithContentType(string expectedContentType, string reason = "",
             params object[] reasonArgs)
@@ -67,20 +68,21 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(string.Equals(expectedContentType, actualContentType, StringComparison.OrdinalIgnoreCase))
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(FailureMessages.CommonFailMessage, "JsonResult.ContentType", expectedContentType, actualContentType);
+                .WithDefaultIdentifier("JsonResult.ContentType")
+                .FailWith(FailureMessages.CommonFailMessage, expectedContentType, actualContentType);
             return this;
         }
 
         /// <summary>
         ///     Asserts that the status code is the expected status code.
         /// </summary>
-        /// <param name="statusCode">The expected status code.</param>
+        /// <param name="expectedStatusCode">The expected status code.</param>
         /// <param name="reason">
         ///     A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
+        ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public JsonResultAssertions WithStatusCode(int? expectedStatusCode, string reason = "",
             params object[] reasonArgs)
@@ -90,7 +92,8 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .ForCondition(expectedStatusCode == actualStatusCode)
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(FailureMessages.CommonFailMessage, "JsonResult.StatusCode", expectedStatusCode, actualStatusCode);
+                .WithDefaultIdentifier("JsonResult.StatusCode")
+                .FailWith(FailureMessages.CommonFailMessage, expectedStatusCode, actualStatusCode);
             return this;
         }
 
@@ -104,11 +107,14 @@ namespace FluentAssertions.AspNetCore.Mvc
             var value = JsonResultSubject.Value;
 
             if (value == null)
-                Execute.Assertion.FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, "Value", typeof(TValue).Name);
+                Execute.Assertion
+                    .WithDefaultIdentifier("JsonResult.Value")
+                    .FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, typeof(TValue));
 
             Execute.Assertion
                 .ForCondition(value is TValue)
-                .FailWith(FailureMessages.CommonTypeFailMessage, "Value", typeof(TValue).Name, value.GetType().Name);
+                .WithDefaultIdentifier("JsonResult.Value")
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(TValue), value.GetType());
 
             return (TValue)value;
         }
