@@ -72,7 +72,12 @@ namespace FluentAssertions.Mvc.Tests.Helpers
 
         internal static string ExpectedContextTypeXButFoundY(string context, Type expected, Type actual)
         {
-            return $"Expected {context} to be of type {expected.FullName} but was {actual.FullName}.";
+            return ExpectedContextTypeXButFoundY(context, expected.FullName, actual.FullName);
+        }
+
+        internal static string ExpectedContextTypeXButFoundY(string context, string expected, string actual)
+        {
+            return $"Expected {context} to be of type {expected} but was {actual}.";
         }
 
         internal static string ExpectedContextTypeXButFoundNull(string context, Type expectedType)
