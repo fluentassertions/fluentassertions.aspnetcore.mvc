@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentAssertions.Mvc.Tests.Helpers;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System;
 using Xunit;
@@ -7,6 +8,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
     public class RedirectToRoute_Tests
     {
+        public const string Reason = FailureMessageHelper.Reason;
+        public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
+
         #region Public Methods
 
         [Fact]
@@ -24,9 +28,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             ActionResult result = new RedirectToRouteResult("", null, true);
             Action a = () => result.Should()
                 .BeRedirectToRouteResult()
-                .WithPermanent(false);
+                .WithPermanent(false, Reason, ReasonArgs);
             a.Should().Throw<Exception>()
-                .WithMessage("Expected RedirectToRoute.Permanent to be False, but found True");
+                .WithMessage(FailureMessageHelper.ExpectedContextToBeXButY("RedirectToRoute.Permanent", false, true));
         }
 
         [Fact]
@@ -44,9 +48,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             ActionResult result = new RedirectToRouteResult("default", null);
             Action a = () => result.Should()
                 .BeRedirectToRouteResult()
-                .WithRouteName("xyz");
+                .WithRouteName("xyz", Reason, ReasonArgs);
             a.Should().Throw<Exception>()
-                .WithMessage("Expected RedirectToRoute.RouteName to be \"xyz\", but found \"default\"");
+                .WithMessage(FailureMessageHelper.ExpectedContextToBeXButY("RedirectToRoute.RouteName","xyz", "default"));
         }
 
         [Fact]
@@ -72,10 +76,27 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             Action a = () => result.Should()
                 .BeRedirectToRouteResult()
-                .WithRouteValue("Id", "11");
+                .WithRouteValue("Id", "11", Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
-                .WithMessage("Expected result to contain value \"11\" at key \"Id\", but found \"22\".");
+                .WithMessage(FailureMessageHelper.ExpectedAtKeyValueXButFoundY("RedirectToRouteResult.RouteValues", "Id", "11", "22"));
+        }
+
+        [Fact]
+        public void WithRouteValue_GivenUnexpectedKey_ShouldFail()
+        {
+            ActionResult result = new RedirectToRouteResult("", new RouteValueDictionary(
+                new
+                {
+                    Id = "22"
+                }));
+
+            Action a = () => result.Should()
+                .BeRedirectToRouteResult()
+                .WithRouteValue("xyz", "22", Reason, ReasonArgs);
+
+            a.Should().Throw<Exception>()
+                .WithMessage(FailureMessageHelper.ExpectedKeyButNotFound("RedirectToRouteResult.RouteValues", "xyz", "22"));
         }
 
         [Fact]
@@ -101,9 +122,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             Action a = () => result.Should()
                 .BeRedirectToRouteResult()
-                .WithController("xyz");
+                .WithController("xyz", Reason, ReasonArgs);
             a.Should().Throw<Exception>()
-                .WithMessage("Expected dictionary to contain value \"xyz\" at key \"Controller\", but found \"home\".");
+                .WithMessage(FailureMessageHelper.ExpectedAtKeyValueXButFoundY("RedirectToRouteResult.RouteValues", "Controller", "xyz", "home"));
         }
 
         [Fact]
@@ -129,10 +150,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             Action a = () => result.Should()
                 .BeRedirectToRouteResult()
-                .WithAction("xyz");
+                .WithAction("xyz", Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
-                .WithMessage("Expected dictionary to contain value \"xyz\" at key \"Action\", but found \"index\".");
+                .WithMessage(FailureMessageHelper.ExpectedAtKeyValueXButFoundY("RedirectToRouteResult.RouteValues", "Action", "xyz", "index"));
         }
 
         [Fact]
@@ -158,10 +179,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             Action a = () => result.Should()
                 .BeRedirectToRouteResult()
-                .WithArea("xyz");
+                .WithArea("xyz", Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
-                .WithMessage("Expected dictionary to contain value \"xyz\" at key \"Area\", but found \"accounts\".");
+                .WithMessage(FailureMessageHelper.ExpectedAtKeyValueXButFoundY("RedirectToRouteResult.RouteValues", "Area", "xyz", "accounts"));
         }
 
         #endregion Public Methods

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentAssertions.Mvc.Tests.Helpers;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using Xunit;
 
@@ -7,6 +8,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
     public class ContentResultAssertions_Tests
     {
+        public const string Reason = FailureMessageHelper.Reason;
+        public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
+
         [Fact]
         public void WithContent_GivenExpected_ShouldPass()
         {
@@ -20,9 +24,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualContent = "content";
             var expectedContent = "xyz";
             ActionResult result = new ContentResult { Content = actualContent };
-            var failureMessage = String.Format(FailureMessages.CommonFailMessage, "ContentResult.Content", expectedContent, actualContent);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("ContentResult.Content", expectedContent, actualContent);
 
-            Action a = () => result.Should().BeContentResult().WithContent(expectedContent);
+            Action a = () => result.Should().BeContentResult().WithContent(expectedContent, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -41,9 +45,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualContentType = "text/html";
             var expectedContentType = "xyz";
             ActionResult result = new ContentResult { ContentType = actualContentType };
-            var failureMessage = String.Format(FailureMessages.CommonFailMessage, "ContentResult.ContentType", expectedContentType, actualContentType);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("ContentResult.ContentType", expectedContentType, actualContentType);
 
-            Action a = () => result.Should().BeContentResult().WithContentType(expectedContentType);
+            Action a = () => result.Should().BeContentResult().WithContentType(expectedContentType, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);

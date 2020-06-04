@@ -50,7 +50,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
+        ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public ViewResultAssertions WithViewName(string expectedViewName, string reason = "",
             params object[] reasonArgs)
@@ -58,9 +58,10 @@ namespace FluentAssertions.AspNetCore.Mvc
             var actualViewName = ViewResultSubject.ViewName;
 
             Execute.Assertion
-                .ForCondition(string.Equals(expectedViewName, actualViewName, StringComparison.OrdinalIgnoreCase))
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(FailureMessages.ViewResultBase_ViewName, expectedViewName, actualViewName);
+                .ForCondition(string.Equals(expectedViewName, actualViewName, StringComparison.OrdinalIgnoreCase))
+                .WithDefaultIdentifier("ViewResult.ViewName")
+                .FailWith(FailureMessages.CommonFailMessage, expectedViewName, actualViewName);
             return this;
         }
 
@@ -74,24 +75,15 @@ namespace FluentAssertions.AspNetCore.Mvc
         ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
+        ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public ViewResultAssertions WithViewData(string key, object expectedValue, string reason = "",
             params object[] reasonArgs)
         {
             var actualViewData = ViewResultSubject.ViewData;
 
-            Execute.Assertion
-                .ForCondition(actualViewData.ContainsKey(key))
-                .BecauseOf(reason, reasonArgs)
-                .FailWith(FailureMessages.ViewResultBase_ViewData_ContainsKey, key);
-
-            var actualValue = actualViewData[key];
-
-            Execute.Assertion
-                .ForCondition(actualValue.Equals(expectedValue))
-                .BecauseOf(reason, reasonArgs)
-                .FailWith(FailureMessages.ViewResultBase_ViewData_HaveValue, key, expectedValue, actualValue);
+            AssertionHelpers.AssertStringObjectDictionary(actualViewData, "ViewResult.ViewData",
+                key, expectedValue, reason, reasonArgs);
 
             return this;
         }
@@ -106,19 +98,15 @@ namespace FluentAssertions.AspNetCore.Mvc
         ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
+        ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public ViewResultAssertions WithTempData(string key, object expectedValue, string reason = "",
             params object[] reasonArgs)
         {
             var actualTempData = ViewResultSubject.TempData;
 
-            Execute.Assertion
-                .ForCondition(actualTempData.ContainsKey(key))
-                .BecauseOf(reason, reasonArgs)
-                .FailWith("TempData does not contain key of '{0}'", key);
-
-            actualTempData[key].Should().Be(expectedValue);
+            AssertionHelpers.AssertStringObjectDictionary(actualTempData, "ViewResult.TempData", 
+                key, expectedValue, reason, reasonArgs);
 
             return this;
         }
@@ -133,11 +121,14 @@ namespace FluentAssertions.AspNetCore.Mvc
             var model = ViewResultSubject.Model;
 
             if (model == null)
-                Execute.Assertion.FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, "Model", typeof(TModel).Name);
+                Execute.Assertion
+                    .WithDefaultIdentifier("ViewResult.Model")
+                    .FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, typeof(TModel));
 
             Execute.Assertion
                 .ForCondition(model is TModel)
-                .FailWith(FailureMessages.CommonTypeFailMessage, "Model", typeof(TModel).Name, model.GetType().Name);
+                .WithDefaultIdentifier("ViewResult.Model")
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(TModel), model.GetType());
 
             return (TModel)model;
         }
@@ -150,7 +141,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
+        ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public ViewResultAssertions WithDefaultViewName(string reason = "", params object[] reasonArgs)
         {

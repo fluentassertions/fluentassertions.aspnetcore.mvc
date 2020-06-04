@@ -2,12 +2,14 @@
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Diagnostics;
 
 namespace FluentAssertions.AspNetCore.Mvc
 {
     /// <summary>
     /// Contains a number of methods to assert that a <see cref="RedirectResult"/> is in the expected state.
     /// </summary>
+    [DebuggerNonUserCode]
     public class RedirectResultAssertions : ObjectAssertions
     {
         /// <summary>
@@ -15,6 +17,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </summary>
         public RedirectResultAssertions(RedirectResult subject) : base(subject) { }
 
+        private RedirectResult RedirectResultSubject => Subject as RedirectResult;
         /// <summary>
         /// Asserts that the url is the expected url.
         /// </summary>
@@ -24,16 +27,17 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public RedirectResultAssertions WithUrl(string expectedUrl, string reason = "", params object[] reasonArgs)
         {
-            string actualUrl = (Subject as RedirectResult).Url;
+            string actualUrl = RedirectResultSubject.Url;
 
             Execute.Assertion
                    .ForCondition(string.Equals(actualUrl, expectedUrl, StringComparison.OrdinalIgnoreCase))
                    .BecauseOf(reason, reasonArgs)
-                   .FailWith("Expected RedirectResult.Url to be {0}{reason} but was {1}", expectedUrl, actualUrl);
+                   .WithDefaultIdentifier("RedirectResult.Url")
+                   .FailWith(FailureMessages.CommonFailMessage, expectedUrl, actualUrl);
 
             return this;
         }
@@ -47,16 +51,17 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public RedirectResultAssertions WithPermanent(bool expectedPermanent, string reason = "", params object[] reasonArgs)
         {
-            bool actualPermanent = (Subject as RedirectResult).Permanent;
+            bool actualPermanent = RedirectResultSubject.Permanent;
 
             Execute.Assertion
                     .ForCondition(expectedPermanent == actualPermanent)
                     .BecauseOf(reason, reasonArgs)
-                    .FailWith("Expected RedirectResult.Permanent to be {0}{reason} but was {1}", expectedPermanent, actualPermanent);
+                    .WithDefaultIdentifier("RedirectResult.Permanent")
+                    .FailWith(FailureMessages.CommonFailMessage, expectedPermanent, actualPermanent);
 
             return this;
         }

@@ -117,58 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CommonAuthenticationSchemesContainScheme" xml:space="preserve">
+    <value>Expected AuthenticationSchemes to contain Scheme {0}.</value>
+  </data>
   <data name="CommonFailMessage" xml:space="preserve">
-    <value>Expected {0} to be '{1}' but found '{2}'</value>
+    <value>Expected {context} to be {0}{reason} but found {1}.</value>
+  </data>
+  <data name="CommonItemsContain" xml:space="preserve">
+    <value>Expected Items to contain [{0},{1}].</value>
+  </data>
+  <data name="CommonListsNotIdentical" xml:space="preserve">
+    <value>Expected {0} List to contain exact items of actual items. </value>
   </data>
   <data name="CommonNullWasSuppliedFailMessage" xml:space="preserve">
-    <value>Expected {0} to be of type {1}, but no {0} was supplied.</value>
+    <value>Expected {context} to be of type {0}, but no value was supplied.</value>
   </data>
   <data name="CommonTypeFailMessage" xml:space="preserve">
-    <value>Expected {0} to be of type '{1}' but was '{2}'</value>
+    <value>Expected {context} to be of type {0} but was {1}.</value>
   </data>
   <data name="FileContentResult_WithFileContents_LengthFail" xml:space="preserve">
-    <value>Expected "FileContentResult.FileContents" to have {0} byte(s), but found {1}.</value>
+    <value>Expected FileContentResult.FileContents to have {0} byte(s){reason} but found {1}.</value>
   </data>
   <data name="FileContentResult_WithFileContents_MatchFail" xml:space="preserve">
-    <value>Expected "FileContentResult.FileContents[{0}]" to be {1:x2}, but found {2:x2}.</value>
-  </data>
-  <data name="RedirectToActionResult_RouteValues_ContainsKey" xml:space="preserve">
-    <value>RedirectToActionResult.RouteValues does not contain key {0}.</value>
-  </data>
-  <data name="RedirectToActionResult_RouteValues_HaveValue" xml:space="preserve">
-    <value>Expected RedirectToActionResult.RouteValues[{0}] to have value {1}, but found {2}.</value>
-  </data>
-  <data name="RouteData_DataTokens_ContainsKey" xml:space="preserve">
-    <value>RouteData.DataTokens does not contain key {0}.</value>
-  </data>
-  <data name="RouteData_DataTokens_HaveValue" xml:space="preserve">
-    <value>Expected RouteData.DataTokens[{0}] to have value {1}, but found {2}.</value>
-  </data>
-  <data name="RouteData_Values_ContainsKey" xml:space="preserve">
-    <value>RouteData.Values does not contain key {0}.</value>
-  </data>
-  <data name="RouteData_Values_HaveValue" xml:space="preserve">
-    <value>Expected RouteData.Values[{0}] to have value {1}, but found {2}.</value>
-  </data>
-  <data name="StatusCodeResultBase_WithStatusCode" xml:space="preserve">
-    <value>Expected status code to be {0} but found {1}.</value>
-  </data>
-  <data name="ViewResultBase_NullModel" xml:space="preserve">
-    <value>Expected Model to be of type {0}, but no Model was supplied.</value>
-  </data>
-  <data name="ViewResultBase_ViewData_ContainsKey" xml:space="preserve">
-    <value>ViewData does not contain key of {0}.</value>
-  </data>
-  <data name="ViewResultBase_ViewData_HaveValue" xml:space="preserve">
-    <value>Expected ViewData[{0}] to have value {1}, but found {2}.</value>
-  </data>
-  <data name="ViewResultBase_ViewName" xml:space="preserve">
-    <value>Expected ViewName to be {0} but found {1}.</value>
+    <value>Expected FileContentResult.FileContents[{0}] to be {1:x2}{reason} but found {2:x2}.</value>
   </data>
   <data name="ViewResultBase_WithDefaultViewName" xml:space="preserve">
-    <value>Expected default view, but view {0} was rendered.</value>
-  </data>
-  <data name="ViewResult_MasterName" xml:space="preserve">
-    <value>Expected MasterName to be {0} but found {1}.</value>
+    <value>Expected default view{reason}, but view {0} was rendered.</value>
   </data>
 </root>

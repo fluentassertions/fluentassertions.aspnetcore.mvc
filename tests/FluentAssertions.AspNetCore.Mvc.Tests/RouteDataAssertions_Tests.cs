@@ -7,7 +7,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
     public class RouteDataAssertionsTests
     {
-        private RouteData _routeData;
+        public const string Reason = FailureMessageHelper.Reason;
+        public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
+        private readonly RouteData _routeData;
 
         public RouteDataAssertionsTests()
         {
@@ -22,9 +24,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void HaveValue_GivenKeyDoesntExist_ShouldFail()
         {
             var expectedKey = "xyz";
-            var failureMessage = FailureMessageHelper.Format(FailureMessages.RouteData_Values_ContainsKey, expectedKey);
+            var failureMessage = FailureMessageHelper.ExpectedKeyButNotFound("RouteData.Values", expectedKey, "Val");
 
-            Action a = () => _routeData.Should().HaveValue(expectedKey, "");
+            Action a = () => _routeData.Should().HaveValue(expectedKey, "Val", Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -40,9 +42,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void HaveValue_GivenUnexpectedKeyValuePair_ShouldFail()
         {
             var controllerName = "xyz";
-            var failureMessage = FailureMessageHelper.Format(FailureMessages.RouteData_Values_HaveValue, "controller", controllerName, "home");
+            var failureMessage = FailureMessageHelper.ExpectedAtKeyValueXButFoundY("RouteData.Values", "controller", controllerName, "home");
 
-            Action a = () => _routeData.Should().HaveValue("controller", controllerName);
+            Action a = () => _routeData.Should().HaveValue("controller", controllerName, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -58,9 +60,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void HaveController_GivenUnexpectedValue_ShouldFail()
         {
             var controllerName = "xyz";
-            var failureMessage = FailureMessageHelper.Format(FailureMessages.RouteData_Values_HaveValue, "controller", controllerName, "home");
+            var failureMessage = FailureMessageHelper.ExpectedAtKeyValueXButFoundY("RouteData.Values", "controller", controllerName, "home");
 
-            Action a = () => _routeData.Should().HaveController(controllerName);
+            Action a = () => _routeData.Should().HaveController(controllerName, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -76,9 +78,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void HaveAction_GivenUnexpectedValue_ShouldFail()
         {
             var actionName = "xyz";
-            var failureMessage = FailureMessageHelper.Format(FailureMessages.RouteData_Values_HaveValue, "action", actionName, "index");
+            var failureMessage = FailureMessageHelper.ExpectedAtKeyValueXButFoundY("RouteData.Values", "action", actionName, "index");
 
-            Action a = () => _routeData.Should().HaveAction(actionName);
+            Action a = () => _routeData.Should().HaveAction(actionName, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -93,10 +95,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         [Fact]
         public void HaveArea_DoesntExist_ShouldFail()
         {
-            var area = "xyz";
-            var failureMessage = FailureMessageHelper.Format(FailureMessages.RouteData_Values_HaveValue, "area", area, "admin");
+            var area = "xyz"; 
+            var failureMessage = FailureMessageHelper.ExpectedAtKeyValueXButFoundY("RouteData.Values", "area", area, "admin");
 
-            Action a = () => _routeData.Should().HaveArea(area);
+            Action a = () => _routeData.Should().HaveArea(area, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -105,10 +107,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         [Fact]
         public void HaveDataToken_KeyDoesExist_ShouldFail()
         {
-            var expectedKey = "xyz";
-            var failureMessage = FailureMessageHelper.Format(FailureMessages.RouteData_DataTokens_ContainsKey, expectedKey);
+            var expectedKey = "xyz"; 
+            var failureMessage = FailureMessageHelper.ExpectedKeyButNotFound("RouteData.DataTokens",expectedKey, "Val");
 
-            Action a = () => _routeData.Should().HaveDataToken(expectedKey, "");
+            Action a = () => _routeData.Should().HaveDataToken(expectedKey, "Val", Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -124,9 +126,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void HaveDataToken_ValueDoesntExist_ShouldFail()
         {
             var value = "xyz";
-            var failureMessage = FailureMessageHelper.Format(FailureMessages.RouteData_DataTokens_HaveValue, "token", value, "value");
+            var failureMessage = FailureMessageHelper.ExpectedAtKeyValueXButFoundY("RouteData.DataTokens", "token", value, "value");
 
-            Action a = () => _routeData.Should().HaveDataToken("token", value);
+            Action a = () => _routeData.Should().HaveDataToken("token", value, Reason, ReasonArgs);
 
 
             a.Should().Throw<Exception>()

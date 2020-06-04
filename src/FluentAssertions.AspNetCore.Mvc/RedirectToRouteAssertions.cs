@@ -2,13 +2,14 @@
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace FluentAssertions.AspNetCore.Mvc
 {
     /// <summary>
     /// Contains a number of methods to assert that a <see cref="RedirectToRouteResult"/> is in the expected state.
     /// </summary>
+    [DebuggerNonUserCode]
     public class RedirectToRouteAssertions : ReferenceTypeAssertions<RedirectToRouteResult, RedirectToRouteAssertions>
     {
         #region Public Constructors
@@ -43,14 +44,15 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public RedirectToRouteAssertions WithPermanent(bool expectedPermanent, string reason = "", params object[] reasonArgs)
         {
             Execute.Assertion
                     .BecauseOf(reason, reasonArgs)
                     .ForCondition(expectedPermanent == Subject.Permanent)
-                    .FailWith("Expected RedirectToRoute.Permanent to be {0}{reason}, but found {1}", expectedPermanent, Subject.Permanent);
+                    .WithDefaultIdentifier("RedirectToRoute.Permanent")
+                    .FailWith(FailureMessages.CommonFailMessage, expectedPermanent, Subject.Permanent);
             return this;
         }
 
@@ -63,14 +65,15 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public RedirectToRouteAssertions WithRouteName(string expectedRouteName, string reason = "", params object[] reasonArgs)
         {
             Execute.Assertion
                    .BecauseOf(reason, reasonArgs)
                    .ForCondition(string.Equals(expectedRouteName, Subject.RouteName, StringComparison.OrdinalIgnoreCase))
-                   .FailWith("Expected RedirectToRoute.RouteName to be {0}{reason}, but found {1}", expectedRouteName, Subject.RouteName);
+                   .WithDefaultIdentifier("RedirectToRoute.RouteName")
+                   .FailWith(FailureMessages.CommonFailMessage, expectedRouteName, Subject.RouteName);
 
             return this;
         }
@@ -85,12 +88,15 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         [CustomAssertion]
         public RedirectToRouteAssertions WithRouteValue(string key, object expectedValue, string reason = "", params object[] reasonArgs)
         {
-            Subject.RouteValues.Should().Contain(new KeyValuePair<string, object>(key, expectedValue), reason, reasonArgs);
+            var routeValues = Subject.RouteValues;
+
+            AssertionHelpers.AssertStringObjectDictionary(routeValues, "RedirectToRouteResult.RouteValues", key, expectedValue, reason, reasonArgs);
+
             return this;
         }
 
@@ -103,7 +109,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public RedirectToRouteAssertions WithController(string expectedControllerName, string reason = "", params object[] reasonArgs)
         {
@@ -120,7 +126,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public RedirectToRouteAssertions WithAction(string expectedAction, string reason = "", params object[] reasonArgs)
         {
@@ -137,7 +143,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public RedirectToRouteAssertions WithArea(string expectedArea, string reason = "", params object[] reasonArgs)
         {

@@ -1,20 +1,21 @@
 ﻿using FluentAssertions.Execution;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Diagnostics;
 
 namespace FluentAssertions.AspNetCore.Mvc
 {
     /// <summary>
-    ///     Contains a number of methods to assert that a <see cref="VirtualFileResult" /> is in the expected state.
+    /// Contains a number of methods to assert that a <see cref="VirtualFileResult"/> is in the expected state.
     /// </summary>
-    [DebuggerNonUserCode]
-    public class VirtualFileResultAssertions : FileResultAssertions
+    public class VirtualFileResultAssertions :  FileResultAssertionsBase<VirtualFileResult, VirtualFileResultAssertions>
     {
         #region Public Constructors
 
-        public VirtualFileResultAssertions(VirtualFileResult fileResult)
-            : base(fileResult)
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="T:VirtualFileResultAssertions" /> class.
+        /// </summary>
+        /// <param name="subject">The object to test assertion on</param>
+        public VirtualFileResultAssertions(VirtualFileResult subject) : base(subject)
         {
         }
 
@@ -23,40 +24,59 @@ namespace FluentAssertions.AspNetCore.Mvc
         #region Public Properties
 
         /// <summary>
-        ///     The <see cref="VirtualFileResult.FileName">FileName</see> on the <see cref="VirtualFileResult"/>
+        /// The <see cref="VirtualFileResult.FileName"/> on the tested subject.
         /// </summary>
-        public string FileName => VirtualFileResultSubject.FileName;
+        public string FileName => FileResultSubject.FileName;
 
-        #endregion Private Properties
-
-        #region Private Properties
-
-        private VirtualFileResult VirtualFileResultSubject => (VirtualFileResult)Subject;
-
-        #endregion Private Properties
+        #endregion
 
         #region Public Methods
 
         /// <summary>
-        ///     Asserts that the file name is the expected string.
+        /// Asserts that the FileName is exactly the same as the expected FileName, ignoring the casing.
         /// </summary>
-        /// <param name="expectedFileName">The expected file name.</param>
+        /// <param name="expectedFileName">The expected FileName string.</param>
         /// <param name="reason">
-        ///     A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
-        ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion 
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        ///     Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
-        public FileResultAssertions WithFileName(string expectedFileName, string reason = "",
-            params object[] reasonArgs)
+        public VirtualFileResultAssertions WithVirtualPath(string expectedFileName, string reason = "", params object[] reasonArgs)
         {
-            var actualFileName = VirtualFileResultSubject.FileName;
+            var actualFileName = FileName;
 
             Execute.Assertion
-                .ForCondition(string.Equals(expectedFileName, actualFileName, StringComparison.OrdinalIgnoreCase))
+                .ForCondition(string.Equals(actualFileName, expectedFileName, StringComparison.OrdinalIgnoreCase))
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(FailureMessages.CommonFailMessage, "VirtualFileResult.FileName", expectedFileName, actualFileName);
+                .WithDefaultIdentifier("VirtualFileResult.VirtualPath")
+                .FailWith(FailureMessages.CommonFailMessage, expectedFileName, actualFileName);
+
+            return this;
+        }
+
+        /// <summary>
+        /// Asserts that the FileName is exactly the same as the expected FileName, ignoring the casing.
+        /// </summary>
+        /// <param name="expectedFileName">The expected FileName string.</param>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion 
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        public VirtualFileResultAssertions WithFileName(string expectedFileName, string reason = "", params object[] reasonArgs)
+        {
+            var actualFileName = FileName;
+
+            Execute.Assertion
+                .ForCondition(string.Equals(actualFileName, expectedFileName, StringComparison.OrdinalIgnoreCase))
+                .BecauseOf(reason, reasonArgs)
+                .WithDefaultIdentifier("VirtualFileResult.FileName")
+                .FailWith(FailureMessages.CommonFailMessage, expectedFileName, actualFileName);
+
             return this;
         }
 

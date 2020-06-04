@@ -61,7 +61,16 @@ namespace FluentAssertions.AspNetCore.Mvc {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Expected {0} to be &apos;{1}&apos; but found &apos;{2}&apos;.
+        ///   Looks up a localized string similar to Expected AuthenticationSchemes to contain Scheme {0}..
+        /// </summary>
+        internal static string CommonAuthenticationSchemesContainScheme {
+            get {
+                return ResourceManager.GetString("CommonAuthenticationSchemesContainScheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected {context} to be {0}{reason} but found {1}..
         /// </summary>
         internal static string CommonFailMessage {
             get {
@@ -70,7 +79,25 @@ namespace FluentAssertions.AspNetCore.Mvc {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Expected {0} to be of type {1}, but no {0} was supplied..
+        ///   Looks up a localized string similar to Expected Items to contain [{0},{1}]..
+        /// </summary>
+        internal static string CommonItemsContain {
+            get {
+                return ResourceManager.GetString("CommonItemsContain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected {0} List to contain exact items of actual items. .
+        /// </summary>
+        internal static string CommonListsNotIdentical {
+            get {
+                return ResourceManager.GetString("CommonListsNotIdentical", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected {context} to be of type {0}, but no value was supplied..
         /// </summary>
         internal static string CommonNullWasSuppliedFailMessage {
             get {
@@ -79,7 +106,7 @@ namespace FluentAssertions.AspNetCore.Mvc {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Expected {0} to be of type &apos;{1}&apos; but was &apos;{2}&apos;.
+        ///   Looks up a localized string similar to Expected {context} to be of type {0} but was {1}..
         /// </summary>
         internal static string CommonTypeFailMessage {
             get {
@@ -88,7 +115,7 @@ namespace FluentAssertions.AspNetCore.Mvc {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Expected &quot;FileContentResult.FileContents&quot; to have {0} byte(s), but found {1}..
+        ///   Looks up a localized string similar to Expected FileContentResult.FileContents to have {0} byte(s){reason} but found {1}..
         /// </summary>
         internal static string FileContentResult_WithFileContents_LengthFail {
             get {
@@ -97,7 +124,7 @@ namespace FluentAssertions.AspNetCore.Mvc {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Expected &quot;FileContentResult.FileContents[{0}]&quot; to be {1:x2}, but found {2:x2}..
+        ///   Looks up a localized string similar to Expected FileContentResult.FileContents[{0}] to be {1:x2}{reason} but found {2:x2}..
         /// </summary>
         internal static string FileContentResult_WithFileContents_MatchFail {
             get {
@@ -106,115 +133,7 @@ namespace FluentAssertions.AspNetCore.Mvc {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RedirectToActionResult.RouteValues does not contain key {0}..
-        /// </summary>
-        internal static string RedirectToActionResult_RouteValues_ContainsKey {
-            get {
-                return ResourceManager.GetString("RedirectToActionResult_RouteValues_ContainsKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Expected RedirectToActionResult.RouteValues[{0}] to have value {1}, but found {2}..
-        /// </summary>
-        internal static string RedirectToActionResult_RouteValues_HaveValue {
-            get {
-                return ResourceManager.GetString("RedirectToActionResult_RouteValues_HaveValue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to RouteData.DataTokens does not contain key {0}..
-        /// </summary>
-        internal static string RouteData_DataTokens_ContainsKey {
-            get {
-                return ResourceManager.GetString("RouteData_DataTokens_ContainsKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Expected RouteData.DataTokens[{0}] to have value {1}, but found {2}..
-        /// </summary>
-        internal static string RouteData_DataTokens_HaveValue {
-            get {
-                return ResourceManager.GetString("RouteData_DataTokens_HaveValue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to RouteData.Values does not contain key {0}..
-        /// </summary>
-        internal static string RouteData_Values_ContainsKey {
-            get {
-                return ResourceManager.GetString("RouteData_Values_ContainsKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Expected RouteData.Values[{0}] to have value {1}, but found {2}..
-        /// </summary>
-        internal static string RouteData_Values_HaveValue {
-            get {
-                return ResourceManager.GetString("RouteData_Values_HaveValue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Expected status code to be {0} but found {1}..
-        /// </summary>
-        internal static string StatusCodeResultBase_WithStatusCode {
-            get {
-                return ResourceManager.GetString("StatusCodeResultBase_WithStatusCode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Expected MasterName to be {0} but found {1}..
-        /// </summary>
-        internal static string ViewResult_MasterName {
-            get {
-                return ResourceManager.GetString("ViewResult_MasterName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Expected Model to be of type {0}, but no Model was supplied..
-        /// </summary>
-        internal static string ViewResultBase_NullModel {
-            get {
-                return ResourceManager.GetString("ViewResultBase_NullModel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ViewData does not contain key of {0}..
-        /// </summary>
-        internal static string ViewResultBase_ViewData_ContainsKey {
-            get {
-                return ResourceManager.GetString("ViewResultBase_ViewData_ContainsKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Expected ViewData[{0}] to have value {1}, but found {2}..
-        /// </summary>
-        internal static string ViewResultBase_ViewData_HaveValue {
-            get {
-                return ResourceManager.GetString("ViewResultBase_ViewData_HaveValue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Expected ViewName to be {0} but found {1}..
-        /// </summary>
-        internal static string ViewResultBase_ViewName {
-            get {
-                return ResourceManager.GetString("ViewResultBase_ViewName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Expected default view, but view {0} was rendered..
+        ///   Looks up a localized string similar to Expected default view{reason}, but view {0} was rendered..
         /// </summary>
         internal static string ViewResultBase_WithDefaultViewName {
             get {

@@ -16,11 +16,6 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ActionResultAssertions" /> class.
         /// </summary>
-        public ActionResultAssertions(ActionResult subject) : base(subject)
-        {
-            Subject = subject;
-        }
-
         public ActionResultAssertions(IActionResult subject) : base(subject)
         {
             Subject = subject;
@@ -28,15 +23,13 @@ namespace FluentAssertions.AspNetCore.Mvc
 
         #endregion Public Constructors
 
-        #region Public Methods
+        #region Protected Properties
 
-        /// <summary>
-        /// Asserts that the subject is a <see cref="ContentResult"/>.
-        /// </summary>
-        public ContentResultAssertions BeContentResult()
-        {
-            return BeContentResult(string.Empty, null);
-        }
+        protected override string Identifier => "ActionResult";
+
+        #endregion Protected Properties
+
+        #region Public Methods
 
         /// <summary>
         /// Asserts that the subject is a <see cref="ContentResult"/>.
@@ -46,14 +39,15 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
-        public ContentResultAssertions BeContentResult(string reason, params object[] reasonArgs)
+        [CustomAssertion]
+        public ContentResultAssertions BeContentResult(string reason = "", params object[] reasonArgs)
         {
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(Subject is ContentResult)
-                .FailWith(Constants.CommonFailMessage, typeof(ContentResult).Name, Subject.GetType().Name);
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(ContentResult), Subject.GetType());
 
             return new ContentResultAssertions(Subject as ContentResult);
         }
@@ -61,27 +55,20 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <summary>
         /// Asserts that the subject is an <see cref="EmptyResult"/>.
         /// </summary>
-        public EmptyResult BeEmptyResult()
-        {
-            return BeEmptyResult(string.Empty, null);
-        }
-
-        /// <summary>
-        /// Asserts that the subject is an <see cref="EmptyResult"/>.
-        /// </summary>
         /// <param name="reason">
         /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
-        public EmptyResult BeEmptyResult(string reason, params object[] reasonArgs)
+        [CustomAssertion]
+        public EmptyResult BeEmptyResult(string reason = "", params object[] reasonArgs)
         {
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(Subject is EmptyResult)
-                .FailWith(Constants.CommonFailMessage, typeof(EmptyResult).Name, Subject.GetType().Name);
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(EmptyResult), Subject.GetType());
 
             return Subject as EmptyResult;
         }
@@ -89,27 +76,20 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <summary>
         /// Asserts that the subject is an <see cref="FileResult"/>.
         /// </summary>
-        public FileResultAssertions BeFileResult()
-        {
-            return BeFileResult(string.Empty, null);
-        }
-
-        /// <summary>
-        /// Asserts that the subject is an <see cref="FileResult"/>.
-        /// </summary>
         /// <param name="reason">
         /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
-        public FileResultAssertions BeFileResult(string reason, params object[] reasonArgs)
+        [CustomAssertion]
+        public FileResultAssertions BeFileResult(string reason = "", params object[] reasonArgs)
         {
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(Subject is FileResult)
-                .FailWith(Constants.CommonFailMessage, typeof(FileResult).Name, Subject.GetType().Name);
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(FileResult), Subject.GetType());
 
             return new FileResultAssertions(Subject as FileResult);
         }
@@ -117,27 +97,20 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <summary>
         /// Asserts that the subject is an <see cref="FileContentResult"/>.
         /// </summary>
-        public FileContentResultAssertions BeFileContentResult()
-        {
-            return BeFileContentResult(string.Empty, null);
-        }
-
-        /// <summary>
-        /// Asserts that the subject is an <see cref="FileContentResult"/>.
-        /// </summary>
         /// <param name="reason">
         /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
-        public FileContentResultAssertions BeFileContentResult(string reason, params object[] reasonArgs)
+        [CustomAssertion]
+        public FileContentResultAssertions BeFileContentResult(string reason = "", params object[] reasonArgs)
         {
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(Subject is FileContentResult)
-                .FailWith(Constants.CommonFailMessage, typeof(FileContentResult).Name, Subject.GetType().Name);
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(FileContentResult), Subject.GetType());
 
             return new FileContentResultAssertions(Subject as FileContentResult);
         }
@@ -145,41 +118,25 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <summary>
         /// Asserts that the subject is an <see cref="FileStreamResult"/>.
         /// </summary>
-        internal FileStreamResultAssertions BeFileStreamResult()
-        {
-            return BeFileStreamResult(string.Empty, null);
-
-        }
-
-        /// <summary>
-        /// Asserts that the subject is an <see cref="FileStreamResult"/>.
-        /// </summary>
         /// <param name="reason">
         /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
-        internal FileStreamResultAssertions BeFileStreamResult(string reason, params object[] reasonArgs)
+        [CustomAssertion]
+        public FileStreamResultAssertions BeFileStreamResult(string reason = "", params object[] reasonArgs)
         {
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(Subject is FileStreamResult)
-                .FailWith(Constants.CommonFailMessage, typeof(FileStreamResult).Name, Subject.GetType().Name);
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(FileStreamResult), Subject.GetType());
 
             return new FileStreamResultAssertions(Subject as FileStreamResult);
         }
 
         /// <summary>
-        /// Asserts that the subject is an <see cref="PhysicalFileResult"/>.
-        /// </summary>
-        internal PhysicalFileResultAssertions BePhysicalFileResult()
-        {
-            return BePhysicalFileResult(string.Empty, null);
-        }
-
-        /// <summary>
         /// Asserts that the subject is an <see cref="FileStreamResult"/>.
         /// </summary>
         /// <param name="reason">
@@ -187,14 +144,15 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
-        internal PhysicalFileResultAssertions BePhysicalFileResult(string reason, params object[] reasonArgs)
+        [CustomAssertion]
+        public PhysicalFileResultAssertions BePhysicalFileResult(string reason = "", params object[] reasonArgs)
         {
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(Subject is PhysicalFileResult)
-                .FailWith(Constants.CommonFailMessage, typeof(PhysicalFileResult).Name, Subject.GetType().Name);
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(PhysicalFileResult), Subject.GetType());
 
             return new PhysicalFileResultAssertions(Subject as PhysicalFileResult);
         }
@@ -202,27 +160,20 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <summary>
         /// Asserts that the subject is an <see cref="VirtualFileResult"/>.
         /// </summary>
-        internal VirtualFileResultAssertions BeVirtualFileResult()
-        {
-            return BeVirtualFileResult(string.Empty, null);
-        }
-
-        /// <summary>
-        /// Asserts that the subject is an <see cref="VirtualFileResult"/>.
-        /// </summary>
         /// <param name="reason">
         /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
-        internal VirtualFileResultAssertions BeVirtualFileResult(string reason, params object[] reasonArgs)
+        [CustomAssertion]
+        public VirtualFileResultAssertions BeVirtualFileResult(string reason = "", params object[] reasonArgs)
         {
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(Subject is VirtualFileResult)
-                .FailWith(Constants.CommonFailMessage, typeof(VirtualFileResult).Name, Subject.GetType().Name);
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(VirtualFileResult), Subject.GetType());
 
             return new VirtualFileResultAssertions(Subject as VirtualFileResult);
         }
@@ -230,27 +181,20 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <summary>
         /// Asserts that the subject is an <see cref="JsonResult"/>.
         /// </summary>
-        public JsonResultAssertions BeJsonResult()
-        {
-            return BeJsonResult(string.Empty, null);
-        }
-
-        /// <summary>
-        /// Asserts that the subject is an <see cref="JsonResult"/>.
-        /// </summary>
         /// <param name="reason">
         /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
-        public JsonResultAssertions BeJsonResult(string reason, params object[] reasonArgs)
+        [CustomAssertion]
+        public JsonResultAssertions BeJsonResult(string reason = "", params object[] reasonArgs)
         {
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(Subject is JsonResult)
-                .FailWith(Constants.CommonFailMessage, typeof(JsonResult).Name, Subject.GetType().Name);
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(JsonResult), Subject.GetType());
 
             return new JsonResultAssertions(Subject as JsonResult);
         }
@@ -258,29 +202,20 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <summary>
         /// Asserts that the subject is a <see cref="RedirectToRouteResult"/>.
         /// </summary>
-        [CustomAssertion]
-        public RedirectToRouteAssertions BeRedirectToRouteResult()
-        {
-            return BeRedirectToRouteResult(string.Empty, null);
-        }
-
-        /// <summary>
-        /// Asserts that the subject is a <see cref="RedirectToRouteResult"/>.
-        /// </summary>
         /// <param name="reason">
         /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         [CustomAssertion]
-        public RedirectToRouteAssertions BeRedirectToRouteResult(string reason, params object[] reasonArgs)
+        public RedirectToRouteAssertions BeRedirectToRouteResult(string reason = "", params object[] reasonArgs)
         {
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(Subject is RedirectToRouteResult)
-                .FailWith(Constants.CommonFailMessage, typeof(RedirectToRouteResult).Name, Subject.GetType().Name);
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(RedirectToRouteResult), Subject.GetType());
 
             return new RedirectToRouteAssertions(Subject as RedirectToRouteResult);
         }
@@ -288,27 +223,20 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <summary>
         /// Asserts that the subject is a <see cref="PartialViewResult"/>.
         /// </summary>
-        public PartialViewResultAssertions BePartialViewResult()
-        {
-            return BePartialViewResult(string.Empty, null);
-        }
-
-        /// <summary>
-        /// Asserts that the subject is a <see cref="PartialViewResult"/>.
-        /// </summary>
         /// <param name="reason">
         /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
-        public PartialViewResultAssertions BePartialViewResult(string reason, params object[] reasonArgs)
+        [CustomAssertion]
+        public PartialViewResultAssertions BePartialViewResult(string reason = "", params object[] reasonArgs)
         {
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(Subject is PartialViewResult)
-                .FailWith(Constants.CommonFailMessage, typeof(PartialViewResult).Name, Subject.GetType().Name);
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(PartialViewResult), Subject.GetType());
 
             return new PartialViewResultAssertions(Subject as PartialViewResult);
         }
@@ -316,27 +244,20 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <summary>
         /// Asserts that the subject is a <see cref="RedirectResult"/>.
         /// </summary>
-        public RedirectResultAssertions BeRedirectResult()
-        {
-            return BeRedirectResult(string.Empty, null);
-        }
-
-        /// <summary>
-        /// Asserts that the subject is a <see cref="RedirectResult"/>.
-        /// </summary>
         /// <param name="reason">
         /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
-        public RedirectResultAssertions BeRedirectResult(string reason, params object[] reasonArgs)
+        [CustomAssertion]
+        public RedirectResultAssertions BeRedirectResult(string reason = "", params object[] reasonArgs)
         {
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(Subject is RedirectResult)
-                .FailWith(Constants.CommonFailMessage, "RedirectResult", Subject.GetType().Name);
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(RedirectResult), Subject.GetType());
 
             return new RedirectResultAssertions(Subject as RedirectResult);
         }
@@ -344,27 +265,20 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <summary>
         /// Asserts that the subject is a <see cref="ViewResult"/>.
         /// </summary>
-        public ViewResultAssertions BeViewResult()
-        {
-            return BeViewResult(string.Empty, null);
-        }
-
-        /// <summary>
-        /// Asserts that the subject is a <see cref="ViewResult"/>.
-        /// </summary>
         /// <param name="reason">
         /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
-        public ViewResultAssertions BeViewResult(string reason, params object[] reasonArgs)
+        [CustomAssertion]
+        public ViewResultAssertions BeViewResult(string reason = "", params object[] reasonArgs)
         {
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(Subject is ViewResult)
-                .FailWith(Constants.CommonFailMessage, "ViewResult", Subject.GetType().Name);
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(ViewResult), Subject.GetType());
 
             return new ViewResultAssertions(Subject as ViewResult);
         }
@@ -372,27 +286,20 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <summary>
         /// Asserts that the subject is a <see cref="RedirectToActionResult"/>.
         /// </summary>
-        public RedirectToActionResultAssertions BeRedirectToActionResult()
-        {
-            return BeRedirectToActionResult(string.Empty, null);
-        }
-
-        /// <summary>
-        /// Asserts that the subject is a <see cref="RedirectToActionResult"/>.
-        /// </summary>
         /// <param name="reason">
         /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
-        public RedirectToActionResultAssertions BeRedirectToActionResult(string reason, params object[] reasonArgs)
+        [CustomAssertion]
+        public RedirectToActionResultAssertions BeRedirectToActionResult(string reason = "", params object[] reasonArgs)
         {
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(Subject is RedirectToActionResult)
-                .FailWith(Constants.CommonFailMessage, "RedirectToActionResult", Subject.GetType().Name);
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(RedirectToActionResult), Subject.GetType());
 
             return new RedirectToActionResultAssertions(Subject as RedirectToActionResult);
         }
@@ -400,44 +307,423 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <summary>
         /// Asserts that the subject is a <see cref="StatusCodeResult"/>.
         /// </summary>
-        public StatusCodeResultAssertions BeStatusCodeResult()
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        [CustomAssertion]
+        public StatusCodeResultAssertions BeStatusCodeResult(string reason = "", params object[] reasonArgs)
         {
-            return BeStatusCodeResult(string.Empty, null);
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is StatusCodeResult)
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(StatusCodeResult), Subject.GetType());
+
+            return new StatusCodeResultAssertions(Subject as StatusCodeResult);
         }
 
         /// <summary>
-        /// Asserts that the subject is a <see cref="StatusCodeResult"/>.
+        /// Asserts that the subject is an <see cref="OkResult"/>.
         /// </summary>
         /// <param name="reason">
         /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
-        public StatusCodeResultAssertions BeStatusCodeResult(string reason, params object[] reasonArgs)
+        [CustomAssertion]
+        public OkResult BeOkResult(string reason = "", params object[] reasonArgs)
         {
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
-                .ForCondition(Subject is StatusCodeResult)
-                .FailWith(Constants.CommonFailMessage, "StatusCodeResult", Subject.GetType().Name);
+                .ForCondition(Subject is OkResult)
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(OkResult), Subject.GetType());
 
-            return new StatusCodeResultAssertions(Subject as StatusCodeResult);
+            return Subject as OkResult;
+        }
+
+        /// <summary>
+        /// Asserts that the subject is a <see cref="OkObjectResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        [CustomAssertion]
+        public OkObjectResultAssertions BeOkObjectResult(string reason = "", params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is OkObjectResult)
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(OkObjectResult).Name, Subject.GetType().Name);
+
+            return new OkObjectResultAssertions(Subject as OkObjectResult);
+        }
+
+        /// <summary>
+        /// Asserts that the subject is an <see cref="BadRequestResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        [CustomAssertion]
+        public BadRequestResult BeBadRequestResult(string reason = "", params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is BadRequestResult)
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(BadRequestResult), Subject.GetType());
+
+            return Subject as BadRequestResult;
+        }
+
+        /// <summary>
+        /// Asserts that the subject is a <see cref="BadRequestObjectResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        [CustomAssertion]
+        public BadRequestObjectResultAssertions BeBadRequestObjectResult(string reason = "", params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is BadRequestObjectResult)
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(BadRequestObjectResult).Name, Subject.GetType().Name);
+
+            return new BadRequestObjectResultAssertions(Subject as BadRequestObjectResult);
+        }
+
+        /// <summary>
+        /// Asserts that the subject is a <see cref="CreatedResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        [CustomAssertion]
+        public CreatedResultAssertions BeCreatedResult(string reason = "", params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is CreatedResult)
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(CreatedResult).Name, Subject.GetType().Name);
+
+            return new CreatedResultAssertions(Subject as CreatedResult);
+        }
+
+        /// <summary>
+        /// Asserts that the subject is a <see cref="ChallengeResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        [CustomAssertion]
+        public ChallengeResultAssertions BeChallengeResult(string reason = "", params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is ChallengeResult)
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(ChallengeResult), Subject.GetType());
+
+            return new ChallengeResultAssertions(Subject as ChallengeResult);
+        }
+
+        /// <summary>
+        /// Asserts that the subject is a <see cref="AcceptedResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        [CustomAssertion]
+        public AcceptedResultAssertions BeAcceptedResult(string reason = "", params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is AcceptedResult)
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(AcceptedResult), Subject.GetType());
+
+            return new AcceptedResultAssertions(Subject as AcceptedResult);
+        }
+
+        /// <summary>
+        /// Asserts that the subject is a <see cref="ForbidResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        [CustomAssertion]
+        public ForbidResultAssertions BeForbidResult(string reason = "", params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is ForbidResult)
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(ForbidResult).Name, Subject.GetType().Name);
+
+            return new ForbidResultAssertions(Subject as ForbidResult);
+        }
+
+        /// <summary>
+        /// Asserts that the subject is an <see cref="NoContentResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        [CustomAssertion]
+        public NoContentResult BeNoContentResult(string reason = "", params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is NoContentResult)
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(NoContentResult), Subject.GetType());
+
+            return Subject as NoContentResult;
+        }
+
+        /// <summary>
+        /// Asserts that the subject is an <see cref="NotFoundResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        [CustomAssertion]
+        public NotFoundResult BeNotFoundResult(string reason = "", params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is NotFoundResult)
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(NotFoundResult), Subject.GetType());
+
+            return Subject as NotFoundResult;
+        }
+
+        /// <summary>
+        /// Asserts that the subject is a <see cref="NotFoundObjectResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        [CustomAssertion]
+        public NotFoundObjectResultAssertions BeNotFoundObjectResult(string reason = "", params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is NotFoundObjectResult)
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(NotFoundObjectResult).Name, Subject.GetType().Name);
+
+            return new NotFoundObjectResultAssertions(Subject as NotFoundObjectResult);
+        }
+
+        /// <summary>
+        /// Asserts that the subject is an <see cref="UnauthorizedResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        [CustomAssertion]
+        public UnauthorizedResult BeUnauthorizedResult(string reason = "", params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is UnauthorizedResult)
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(UnauthorizedResult), Subject.GetType());
+
+            return Subject as UnauthorizedResult;
+        }
+
+        /// <summary>
+        /// Asserts that the subject is a <see cref="SignInResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        [CustomAssertion]
+        public SignInResultAssertions BeSignInResult(string reason = "", params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is SignInResult)
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(SignInResult).Name, Subject.GetType().Name);
+
+            return new SignInResultAssertions(Subject as SignInResult);
+        }
+
+        /// <summary>
+        /// Asserts that the subject is a <see cref="SignOutResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        [CustomAssertion]
+        public SignOutResultAssertions BeSignOutResult(string reason = "", params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is SignOutResult)
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(SignOutResult), Subject.GetType());
+
+            return new SignOutResultAssertions(Subject as SignOutResult);
+        }
+
+        /// <summary>
+        /// Asserts that the subject is a <see cref="LocalRedirectResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        [CustomAssertion]
+        public LocalRedirectResultAssertions BeLocalRedirectResult(string reason = "", params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is LocalRedirectResult)
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(LocalRedirectResult), Subject.GetType());
+
+            return new LocalRedirectResultAssertions(Subject as LocalRedirectResult);
+        }
+
+        /// <summary>
+        /// Asserts that the subject is a <see cref="AcceptedAtActionResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        [CustomAssertion]
+        public AcceptedAtActionResultAssertions BeAcceptedAtActionResult(string reason = "", params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is AcceptedAtActionResult)
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(AcceptedAtActionResult).Name, Subject.GetType().Name);
+
+            return new AcceptedAtActionResultAssertions(Subject as AcceptedAtActionResult);
+        }
+
+        /// <summary>
+        /// Asserts that the subject is a <see cref="AcceptedAtRouteResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        [CustomAssertion]
+        public AcceptedAtRouteResultAssertions BeAcceptedAtRouteResult(string reason = "", params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is AcceptedAtRouteResult)
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(AcceptedAtRouteResult).Name, Subject.GetType().Name);
+
+            return new AcceptedAtRouteResultAssertions(Subject as AcceptedAtRouteResult);
+        }
+
+        /// <summary>
+        /// Asserts that the subject is a <see cref="CreatedAtActionResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        [CustomAssertion]
+        public CreatedAtActionResultAssertions BeCreatedAtActionResult(string reason = "", params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is CreatedAtActionResult)
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(CreatedAtActionResult).Name, Subject.GetType().Name);
+
+            return new CreatedAtActionResultAssertions(Subject as CreatedAtActionResult);
+        }
+
+        /// <summary>
+        /// Asserts that the subject is a <see cref="CreatedAtRouteResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        [CustomAssertion]
+        public CreatedAtRouteResultAssertions BeCreatedAtRouteResult(string reason = "", params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is CreatedAtRouteResult)
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(CreatedAtRouteResult).Name, Subject.GetType().Name);
+
+            return new CreatedAtRouteResultAssertions(Subject as CreatedAtRouteResult);
         }
 
         #endregion Public Methods
-
-        #region Public Structs
-
-        public struct Constants
-        {
-            #region Public Fields
-
-            public const string CommonFailMessage = "Expected ActionResult to be {0}{reason}, but found {1}";
-
-            #endregion Public Fields
-        }
-
-        #endregion Public Structs
     }
 }
