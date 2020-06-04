@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Mime;
-using System.Security.Claims;
-using FluentAssertions.AspNetCore.Mvc.Sample.Controllers;
+﻿using FluentAssertions.AspNetCore.Mvc.Sample.Controllers;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
 using Microsoft.Extensions.Primitives;
 using Microsoft.Net.Http.Headers;
+using System;
+using System.Collections.Generic;
+using System.Security.Claims;
 using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Sample.Tests

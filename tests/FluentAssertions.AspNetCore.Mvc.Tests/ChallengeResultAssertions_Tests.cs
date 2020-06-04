@@ -30,6 +30,31 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualAuthenticationProperties = new AuthenticationProperties();
             var expectedAuthenticationProperties = new AuthenticationProperties();
             ActionResult result = new ChallengeResult(actualAuthenticationProperties);
+#if NETCOREAPP3_0
+            var failureMessage = @"Expected ChallengeResult.AuthenticationProperties to be 
+
+Microsoft.AspNetCore.Authentication.AuthenticationProperties
+{
+   AllowRefresh = <null>
+   ExpiresUtc = <null>
+   IsPersistent = False
+   IssuedUtc = <null>
+   Items = {empty}
+   Parameters = {empty}
+   RedirectUri = <null>
+} because it is 10 but found 
+
+Microsoft.AspNetCore.Authentication.AuthenticationProperties
+{
+   AllowRefresh = <null>
+   ExpiresUtc = <null>
+   IsPersistent = False
+   IssuedUtc = <null>
+   Items = {empty}
+   Parameters = {empty}
+   RedirectUri = <null>
+}.";
+#else
             var failureMessage = @"Expected ChallengeResult.AuthenticationProperties to be 
 
 Microsoft.AspNetCore.Authentication.AuthenticationProperties
@@ -51,6 +76,7 @@ Microsoft.AspNetCore.Authentication.AuthenticationProperties
    Items = {empty}
    RedirectUri = <null>
 }.";
+#endif
 
             Action a = () => result.Should().BeChallengeResult().WithAuthenticationProperties(expectedAuthenticationProperties, Reason, ReasonArgs);
 
@@ -336,8 +362,8 @@ Microsoft.AspNetCore.Authentication.AuthenticationProperties
         [Fact]
         public void WithAuthenticationSchemes_GivenUnexpected_ShouldFail()
         {
-            var actualAuthenticationSchemes = new List<string>() { "one", "two", "three"};
-            var expectedAuthenticationSchemes = new List<string> { "three", "four", "five"};
+            var actualAuthenticationSchemes = new List<string>() { "one", "two", "three" };
+            var expectedAuthenticationSchemes = new List<string> { "three", "four", "five" };
             ActionResult result = new ChallengeResult(actualAuthenticationSchemes);
             var failureMessage = string.Format(FailureMessages.CommonListsNotIdentical, "ChallengeResult.AuthenticationSchemes");
 
@@ -350,7 +376,7 @@ Microsoft.AspNetCore.Authentication.AuthenticationProperties
         public void ContainsScheme_GivenExpected_ShouldPass()
         {
             const string testScheme = "testScheme";
-            var actualSchemes = new List<string> {testScheme};
+            var actualSchemes = new List<string> { testScheme };
             ActionResult result = new ChallengeResult(actualSchemes);
 
             result.Should().BeChallengeResult().ContainsScheme(testScheme);
