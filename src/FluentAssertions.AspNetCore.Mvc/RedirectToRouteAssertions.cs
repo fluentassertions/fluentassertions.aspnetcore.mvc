@@ -15,7 +15,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         #region Public Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:ContentResultAssertions" /> class.
+        /// Initializes a new instance of the <see cref="ContentResultAssertions" /> class.
         /// </summary>
         public RedirectToRouteAssertions(RedirectToRouteResult subject)
         {

@@ -12,7 +12,7 @@ namespace FluentAssertions.AspNetCore.Mvc
     public class StatusCodeResultAssertions : ObjectAssertions
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="T:StatusCodeResultAssertions" /> class.
+        ///     Initializes a new instance of the <see cref="StatusCodeResultAssertions" /> class.
         /// </summary>
         /// <param name="subject">The object to test assertion on</param>
         public StatusCodeResultAssertions(StatusCodeResult subject) : base(subject)

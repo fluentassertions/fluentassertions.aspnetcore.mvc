@@ -18,7 +18,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         #region Public Constructors
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="T:SignOutResultAssertions" /> class.
+        ///     Initializes a new instance of the <see cref="SignOutResultAssertions" /> class.
         /// </summary>
         /// <param name="subject">The object to test assertion on</param>
         public SignOutResultAssertions(object subject) : base(subject)

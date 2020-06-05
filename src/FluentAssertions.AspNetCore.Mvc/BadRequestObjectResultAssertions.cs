@@ -13,7 +13,7 @@ namespace FluentAssertions.AspNetCore.Mvc
     {
         #region Public Constructors
         /// <summary>
-        ///     Initializes a new instance of the <see cref="T:BadRequestObjectResult" /> class.
+        ///     Initializes a new instance of the <see cref="BadRequestObjectResult" /> class.
         /// </summary>
         /// <param name="subject">The object to test assertion on</param>
         public BadRequestObjectResultAssertions(BadRequestObjectResult subject) : base(subject)

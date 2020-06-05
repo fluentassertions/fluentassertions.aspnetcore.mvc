@@ -34,12 +34,12 @@ namespace FluentAssertions.AspNetCore.Mvc
         #region Public Properties
 
         /// <summary>
-        /// Gets the <see cref="ActionResult{TValue}.Result"/> of the actual Subjhect.
+        /// Gets the <see cref="ActionResult{TValue}.Result"/> of the Subject.
         /// </summary>
         public ActionResult Result => Subject.Result;
 
         /// <summary>
-        /// Gets the <see cref="ActionResult{TValue}.Value"/> of the actual Subjhect.
+        /// Gets the <see cref="ActionResult{TValue}.Value"/> of the Subject.
         /// </summary>
         public TValue Value => Subject.Value;
 

@@ -14,6 +14,9 @@ namespace FluentAssertions.AspNetCore.Mvc
     /// </summary>
     public class ConvertToActionResultAssertions : ReferenceTypeAssertions<IConvertToActionResult, ConvertToActionResultAssertions>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConvertToActionResultAssertions" /> class.
+        /// </summary>
         public ConvertToActionResultAssertions(IConvertToActionResult subject)
         {
             Subject = subject;

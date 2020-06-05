@@ -15,7 +15,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         #region Public Constructors
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="T:JsonResultAssertions" /> class.
+        ///     Initializes a new instance of the <see cref="JsonResultAssertions" /> class.
         /// </summary>
         /// <param name="subject">The object to test assertion on</param>
         public JsonResultAssertions(JsonResult subject) : base(subject)

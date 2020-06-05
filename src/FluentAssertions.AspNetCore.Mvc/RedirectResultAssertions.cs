@@ -13,7 +13,7 @@ namespace FluentAssertions.AspNetCore.Mvc
     public class RedirectResultAssertions : ObjectAssertions
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:RedirectResultAssertions" /> class.
+        /// Initializes a new instance of the <see cref="RedirectResultAssertions" /> class.
         /// </summary>
         public RedirectResultAssertions(RedirectResult subject) : base(subject) { }
 

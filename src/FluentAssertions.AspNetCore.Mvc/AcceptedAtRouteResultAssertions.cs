@@ -13,7 +13,7 @@ namespace FluentAssertions.AspNetCore.Mvc
     public class AcceptedAtRouteResultAssertions : ObjectAssertions
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:AcceptedAtRouteResultAssertions" /> class.
+        /// Initializes a new instance of the <see cref="AcceptedAtRouteResultAssertions" /> class.
         /// </summary>
         public AcceptedAtRouteResultAssertions(AcceptedAtRouteResult subject) : base(subject) { }
 
