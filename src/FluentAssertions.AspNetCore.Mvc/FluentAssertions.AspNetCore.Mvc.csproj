@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <Description>Fluent Assertions extensions for ASP.NET Core MVC.</Description>
@@ -7,7 +7,7 @@
      <Title>Fluent Assertions for ASP.NET Core MVC</Title>
      <VersionPrefix>2.4.0</VersionPrefix>
      <Authors>Casey Burns;Kevin Kuszyk</Authors>
-     <TargetFrameworks>netstandard2.0;netcoreapp3.0</TargetFrameworks>
+     <TargetFrameworks>netstandard2.0;netcoreapp2.1;netcoreapp3.0</TargetFrameworks>
      <AssemblyName>FluentAssertions.AspNetCore.Mvc</AssemblyName>
      <PackageId>FluentAssertions.AspNetCore.Mvc</PackageId>
      <PackageTags>TDD;TDD;Fluent;Mvc;AspNetMvc;aspnetcore;aspnetcoremvc</PackageTags>
@@ -30,8 +30,8 @@
      <PackageReference Include="FluentAssertions" Version="5.0.0" />
    </ItemGroup>
 
-   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
+   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' Or '$(TargetFramework)' == 'netcoreapp2.1'">
+     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.0" />
    </ItemGroup>
  
    <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.0'">

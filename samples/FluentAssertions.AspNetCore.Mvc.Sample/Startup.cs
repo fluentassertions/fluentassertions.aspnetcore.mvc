@@ -44,7 +44,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Sample
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-#if NETCOREAPP2_0
+#if NETCOREAPP2_1
                 app.UseBrowserLink();
 #endif
             }
@@ -52,7 +52,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Sample
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-#if NETCOREAPP2_0
+#if NETCOREAPP2_1
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 #endif

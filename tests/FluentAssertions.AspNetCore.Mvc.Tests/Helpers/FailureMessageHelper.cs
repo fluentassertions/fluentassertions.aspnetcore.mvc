@@ -107,5 +107,33 @@ namespace FluentAssertions.Mvc.Tests.Helpers
                 ? new DateTimeOffset?(result)
                 : new DateTimeOffset?();
         }
+
+        public static string AuthenticationPropertiesExpectations(object containingObject)
+        {
+            var failureMessage = @"Expected " + containingObject.GetType().Name + @".AuthenticationProperties to be 
+
+Microsoft.AspNetCore.Authentication.AuthenticationProperties
+{
+   AllowRefresh = <null>
+   ExpiresUtc = <null>
+   IsPersistent = False
+   IssuedUtc = <null>
+   Items = {empty}
+   Parameters = {empty}
+   RedirectUri = <null>
+} because it is 10 but found 
+
+Microsoft.AspNetCore.Authentication.AuthenticationProperties
+{
+   AllowRefresh = <null>
+   ExpiresUtc = <null>
+   IsPersistent = False
+   IssuedUtc = <null>
+   Items = {empty}
+   Parameters = {empty}
+   RedirectUri = <null>
+}.";
+            return failureMessage;
+        }
     }
 }
