@@ -1,52 +1,51 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="MSBuild.Sdk.Extras">
 
   <PropertyGroup>
     <Description>Fluent Assertions extensions for ASP.NET Core MVC.</Description>
     <Copyright>Copyright 2018</Copyright>
     <AssemblyTitle>Fluent Assertions extensions for ASP.NET Core MVC</AssemblyTitle>
-     <Title>Fluent Assertions for ASP.NET Core MVC</Title>
-     <VersionPrefix>2.4.0</VersionPrefix>
-     <Authors>Casey Burns;Kevin Kuszyk</Authors>
-     <TargetFrameworks>netstandard2.0;netcoreapp2.1;netcoreapp3.0</TargetFrameworks>
-     <AssemblyName>FluentAssertions.AspNetCore.Mvc</AssemblyName>
-     <PackageId>FluentAssertions.AspNetCore.Mvc</PackageId>
-     <PackageTags>TDD;TDD;Fluent;Mvc;AspNetMvc;aspnetcore;aspnetcoremvc</PackageTags>
-     <PackageReleaseNotes>See https://github.com/fluentassertions/fluentassertions.aspnetcore.mvc/releases </PackageReleaseNotes>
-     <PackageProjectUrl>https://github.com/fluentassertions/fluentassertions.aspnetcore.mvc</PackageProjectUrl>
-     <PackageLicenseUrl>https://github.com/fluentassertions/fluentassertions.aspnetcore.mvc/blob/master/license.txt</PackageLicenseUrl>
-     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-     <OutputType>Library</OutputType>
-     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FluentAssertions.AspNetCore.Mvc.xml</DocumentationFile>
-   </PropertyGroup>
+    <Title>Fluent Assertions for ASP.NET Core MVC</Title>
+    <VersionPrefix>2.5.0</VersionPrefix>
+    <Authors>Casey Burns;Kevin Kuszyk</Authors>
+    <TargetFrameworks>netstandard2.0;netcoreapp3.0</TargetFrameworks>
+    <AssemblyName>FluentAssertions.AspNetCore.Mvc</AssemblyName>
+    <PackageId>FluentAssertions.AspNetCore.Mvc</PackageId>
+    <PackageTags>TDD;TDD;Fluent;Mvc;AspNetMvc;aspnetcore;aspnetcoremvc</PackageTags>
+    <PackageReleaseNotes>See https://github.com/fluentassertions/fluentassertions.aspnetcore.mvc/releases </PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/fluentassertions/fluentassertions.aspnetcore.mvc</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/fluentassertions/fluentassertions.aspnetcore.mvc/blob/master/license.txt</PackageLicenseUrl>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <OutputType>Library</OutputType>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FluentAssertions.AspNetCore.Mvc.xml</DocumentationFile>
+    <OutputPath>bin\$(Configuration)\$(TargetFramework)\</OutputPath>
+  </PropertyGroup>
 
-   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-     <OutputPath>bin\Debug\netstandard2.0\</OutputPath>
-   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="5.0.0" />
+  </ItemGroup>
 
-   <ItemGroup>
-     <PackageReference Include="FluentAssertions" Version="5.0.0" />
-   </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.0" />
+  </ItemGroup>
 
-   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' Or '$(TargetFramework)' == 'netcoreapp2.1'">
-     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.0" />
-   </ItemGroup>
- 
-   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.0'">
-     <FrameworkReference Include="Microsoft.AspNetCore.App" />
-   </ItemGroup>
- 
-   <ItemGroup>
-     <Compile Update="FailureMessages.Designer.cs">
-       <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>FailureMessages.resx</DependentUpon>
-    </Compile>
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.0'">
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
   <ItemGroup>
+
+    <ReferenceAssemblyProjectReference Include="..\FluentAssertions.AspNetCore.Mvc.Ref\FluentAssertions.AspNetCore.Mvc.Ref.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="FailureMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FailureMessages.resx</DependentUpon>
+    </Compile>
     <EmbeddedResource Update="FailureMessages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>FailureMessages.Designer.cs</LastGenOutput>
