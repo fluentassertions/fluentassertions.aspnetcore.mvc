@@ -1,4 +1,3 @@
-#if NETCOREAPP3_0
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
@@ -47,9 +46,32 @@ namespace FluentAssertions.AspNetCore.Mvc
 
         #region Public Methods
 
-        /// TODO What should be here?
-        
-        #endregion Public Methods
+        /// <summary>
+        /// Asserts that the <see cref="ActionResult{TValue}.Result"/> is type of <typeparamref name="TActionResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        /// <returns>
+        /// An <see cref="AndWhichConstraint{TParentConstraint, TMatchedElement}"/> where the Which contains 
+        /// the result of Result converted to <typeparamref name="TActionResult"/>.
+        /// </returns>
+        [CustomAssertion]
+        public AndWhichConstraint<ActionResultAssertions<TValue>, TActionResult> ConvertibleTo<TActionResult>(
+            string reason = "", params object[] reasonArgs)
+            where TActionResult : ActionResult
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Result.GetType() == typeof(TActionResult))
+                .FailWith(FailureMessages.ConvertibleActionFailMessage, typeof(TActionResult), Result.GetType());
+
+            return new AndWhichConstraint<ActionResultAssertions<TValue>, TActionResult>(this, (TActionResult)Result);
+        }
     }
+    #endregion Public Methods
 }
-#endif

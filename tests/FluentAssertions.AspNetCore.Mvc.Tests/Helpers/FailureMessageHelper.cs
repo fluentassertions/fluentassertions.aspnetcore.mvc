@@ -85,6 +85,11 @@ namespace FluentAssertions.Mvc.Tests.Helpers
             return $"Expected {context} to be of type {expectedType}, but no value was supplied.";
         }
 
+        internal static string ExpectedContextToBeConvertible(string context, string expectedType, string actualType)
+        {
+            return $"Expected {context} to be convertible to {expectedType} but it was {actualType}.";
+        }
+
         internal static string ExpectedContextContainValueAtKeyButFoundNull(string context, string value, string key)
         {
             return $"Expected {context} to contain value \"{value}\" at key \"{key}\" because it is 10, but it is <null>.";

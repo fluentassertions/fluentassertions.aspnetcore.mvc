@@ -135,6 +135,12 @@
   <data name="CommonTypeFailMessage" xml:space="preserve">
     <value>Expected {context} to be of type {0} but was {1}.</value>
   </data>
+  <data name="ConvertibelModelFailMessage" xml:space="preserve">
+    <value>Expected {context} to be ActionResult&lt;TValue&gt; with type {0}{reason} but was {1}.</value>
+  </data>
+  <data name="ConvertibleActionFailMessage" xml:space="preserve">
+    <value>Expected {context} to be convertible to {0} but it was {1}.</value>
+  </data>
   <data name="FileContentResult_WithFileContents_LengthFail" xml:space="preserve">
     <value>Expected FileContentResult.FileContents to have {0} byte(s){reason} but found {1}.</value>
   </data>

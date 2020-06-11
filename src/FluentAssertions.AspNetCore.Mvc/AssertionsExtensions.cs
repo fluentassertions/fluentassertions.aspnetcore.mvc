@@ -38,8 +38,6 @@ namespace FluentAssertions.AspNetCore.Mvc
             return new RouteDataAssertions(routeData);
         }
 
-#if NETCOREAPP3_0
-
         /// <summary>
         /// Returns an <see cref="ConvertToActionResultAssertions"/> object that can be used to assert the
         /// current <see cref="IConvertToActionResult"/>.
@@ -48,7 +46,5 @@ namespace FluentAssertions.AspNetCore.Mvc
         {
             return new ConvertToActionResultAssertions(actual);
         }
-
-#endif
     }
 }

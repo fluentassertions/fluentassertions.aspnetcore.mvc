@@ -1,11 +1,7 @@
-﻿#if NETCOREAPP3_0
-using FluentAssertions.Execution;
+﻿using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FluentAssertions.AspNetCore.Mvc
 {
@@ -55,11 +51,43 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(genericParameter == typeof(TValue))
-                .FailWith("Expected {context} to be ActionResult<TValue> with type {0}{reason} but was {1}.", typeof(TValue), genericParameter);
+                .FailWith(FailureMessages.ConvertibelModelFailMessage, typeof(TValue), genericParameter);
 
             return new ActionResultAssertions<TValue>((ActionResult<TValue>)Subject);
         }
+
+        /// <summary>
+        /// Asserts that calling the subject's <see cref="IConvertToActionResult.Convert"/> method, 
+        /// the resulting <see cref="IActionResult"/> 's type is <typeparamref name="TActionResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        /// <returns>
+        /// An <see cref="AndWhichConstraint{TParentConstraint, TMatchedElement}"/> where the Which contains 
+        /// the result of Convert() converted to <typeparamref name="TActionResult"/>.
+        /// </returns>
+        [CustomAssertion]
+        public AndWhichConstraint<ConvertToActionResultAssertions, TActionResult> ConvertibleTo<TActionResult>(
+            string reason = "", params object[] reasonArgs)
+            where TActionResult : class, IActionResult
+        {
+            var convertResult = Subject.Convert();
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(convertResult != null)
+                .FailWith(FailureMessages.ConvertibleActionFailMessage, typeof(TActionResult), null);
+
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(convertResult.GetType() == typeof(TActionResult))
+                .FailWith(FailureMessages.ConvertibleActionFailMessage, typeof(TActionResult), convertResult.GetType());
+
+            return new AndWhichConstraint<ConvertToActionResultAssertions, TActionResult>(this, (TActionResult)convertResult);
+        }
     }
 }
-
-#endif

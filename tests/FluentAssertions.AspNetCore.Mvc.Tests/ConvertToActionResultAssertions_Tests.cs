@@ -1,11 +1,8 @@
-﻿#if NETCOREAPP3_0
-using FluentAssertions.Mvc.Tests.Helpers;
+﻿using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Moq;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Tests
@@ -63,7 +60,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         [Fact]
         public void BeActionResult_GivenUnexpectedType_ShouldFail()
         {
-            IConvertToActionResult result = new Mock<IConvertToActionResult>().Object;
+            var mock = new Mock<IConvertToActionResult>();
+            var result = mock.Object;
             var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY(
                 "result", "Microsoft.AspNetCore.Mvc.ActionResult`1[System.Object]", result.GetType().FullName);
 
@@ -73,8 +71,60 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithMessage(failureMessage);
         }
 
+        [Fact]
+        public void ConvertibleTo_CallingConvertResultsNull_ShouldFail()
+        {
+            var mock = new Mock<IConvertToActionResult>();
+            mock.Setup(e => e.Convert()).Returns((IActionResult)null);
+            var result = mock.Object;
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeConvertible(
+                "result", typeof(ActionResult).FullName, "<null>");
 
+            Action action = () => result.Should().ConvertibleTo<ActionResult>(Reason, ReasonArgs);
+
+            action.Should().Throw<Exception>()
+                .WithMessage(failureMessage);
+
+        }
+
+        [Fact]
+        public void ConvertibleTo_CallingConvertResultsDifferentType_ShouldFail()
+        {
+            var mock = new Mock<IConvertToActionResult>();
+            mock.Setup(e => e.Convert()).Returns(new BadRequestObjectResult(new object()));
+            var result = mock.Object;
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeConvertible(
+                "result", typeof(ActionResult).FullName, typeof(BadRequestObjectResult).FullName);
+
+            Action action = () => result.Should().ConvertibleTo<ActionResult>(Reason, ReasonArgs);
+
+            action.Should().Throw<Exception>()
+                .WithMessage(failureMessage);
+
+        }
+
+        [Fact]
+        public void ConvertibleTo_CallingConvertResultsGoodType_ShouldPass()
+        {
+            var mock = new Mock<IConvertToActionResult>();
+            mock.Setup(e => e.Convert()).Returns(new OkObjectResult(new object()));
+            var result = mock.Object;
+
+            result.Should().ConvertibleTo<OkObjectResult>(Reason, ReasonArgs);
+        }
+
+        [Fact]
+        public void ConvertibleToWich_ShouldBeTheConvertedObject()
+        {
+            var mock = new Mock<IConvertToActionResult>();
+            var expectation = new OkObjectResult(new object());
+            mock.Setup(e => e.Convert()).Returns(expectation);
+            var result = mock.Object;
+
+            var actual = 
+                result.Should().ConvertibleTo<OkObjectResult>(Reason, ReasonArgs).Which;
+
+            actual.Should().BeSameAs(expectation);
+        }
     }
 }
-
-#endif
