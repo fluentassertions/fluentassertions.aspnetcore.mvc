@@ -46,5 +46,15 @@ namespace FluentAssertions.AspNetCore.Mvc
         {
             return new ConvertToActionResultAssertions(actual);
         }
+
+
+        /// <summary>
+        /// Returns an <see cref="ActionResultAssertions{TValue}"/> object that can be used to assert the
+        /// current <see cref="ActionResult{TValue}"/>.
+        /// </summary>
+        public static ActionResultAssertions<TValue> Should<TValue>(this ActionResult<TValue> actual)
+        {
+            return new ActionResultAssertions<TValue>(actual);
+        }
     }
 }

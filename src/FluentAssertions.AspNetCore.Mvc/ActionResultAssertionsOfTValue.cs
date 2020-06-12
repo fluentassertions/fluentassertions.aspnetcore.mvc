@@ -1,6 +1,7 @@
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using System.Diagnostics;
 
 namespace FluentAssertions.AspNetCore.Mvc
@@ -61,16 +62,22 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// the result of Result converted to <typeparamref name="TActionResult"/>.
         /// </returns>
         [CustomAssertion]
-        public AndWhichConstraint<ActionResultAssertions<TValue>, TActionResult> ConvertibleTo<TActionResult>(
+        public AndWhichConstraint<ActionResultAssertions<TValue>, TActionResult> BeConvertibleTo<TActionResult>(
             string reason = "", params object[] reasonArgs)
             where TActionResult : ActionResult
         {
+            var convertResult = ((IConvertToActionResult)Subject).Convert();
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
-                .ForCondition(Result.GetType() == typeof(TActionResult))
-                .FailWith(FailureMessages.ConvertibleActionFailMessage, typeof(TActionResult), Result.GetType());
+                .ForCondition(convertResult != null)
+                .FailWith(FailureMessages.ConvertibleActionFailMessage, typeof(TActionResult), null);
 
-            return new AndWhichConstraint<ActionResultAssertions<TValue>, TActionResult>(this, (TActionResult)Result);
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(convertResult.GetType() == typeof(TActionResult))
+                .FailWith(FailureMessages.ConvertibleActionFailMessage, typeof(TActionResult), convertResult.GetType());
+
+            return new AndWhichConstraint<ActionResultAssertions<TValue>, TActionResult>(this, (TActionResult)convertResult);
         }
     }
     #endregion Public Methods

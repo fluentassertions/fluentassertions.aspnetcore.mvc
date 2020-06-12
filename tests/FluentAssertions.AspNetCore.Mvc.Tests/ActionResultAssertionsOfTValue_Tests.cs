@@ -1,5 +1,6 @@
 using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using System;
 using Xunit;
 
@@ -18,7 +19,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actionResult = new BadRequestResult();
             var result = new ActionResult<object>(actionResult);
 
-            result.Should().BeActionResult<object>().Result.Should().BeSameAs(actionResult);
+            result.Should().Result.Should().BeSameAs(actionResult);
         }
 
         [Fact]
@@ -27,17 +28,17 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var theValue = new object();
             var result = new ActionResult<object>(theValue);
 
-            result.Should().BeActionResult<object>().Value.Should().BeSameAs(theValue);
+            result.Should().Value.Should().BeSameAs(theValue);
         }
 
         [Fact]
-        public void ConvertibleTo_CallingConvertResultsDifferentType_ShouldFail()
+        public void BeConvertibleTo_CallingConvertResultsDifferentType_ShouldFail()
         {
             var result = new ActionResult<object>(new BadRequestObjectResult(new object()));
             var failureMessage = FailureMessageHelper.ExpectedContextToBeConvertible(
                 "result", typeof(ActionResult).FullName, typeof(BadRequestObjectResult).FullName);
 
-            Action action = () => result.Should().BeActionResult<object>().ConvertibleTo<ActionResult>(Reason, ReasonArgs);
+            Action action = () => result.Should().BeConvertibleTo<ActionResult>(Reason, ReasonArgs);
 
             action.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -45,21 +46,29 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         }
 
         [Fact]
-        public void ConvertibleTo_CallingConvertResultsGoodType_ShouldPass()
+        public void BeConvertibleTo_CallingConvertResultsGoodType_ShouldPass()
         {
             var result = new ActionResult<object>(new OkObjectResult(new object()));
 
-            result.Should().BeActionResult<object>().ConvertibleTo<OkObjectResult>(Reason, ReasonArgs);
+            result.Should().BeConvertibleTo<OkObjectResult>(Reason, ReasonArgs);
         }
 
         [Fact]
-        public void ConvertibleToWich_ShouldBeTheConvertedObject()
+        public void BeConvertibleTo_WithNullResult_ShouldPass()
+        {
+            var result = new ActionResult<object>(new object());
+
+            result.Should().BeConvertibleTo<ObjectResult>(Reason, ReasonArgs);
+        }
+
+        [Fact]
+        public void BeConvertibleTo_ShouldBeTheConvertedObject()
         {
             OkObjectResult expectation = new OkObjectResult(new object());
             var result = new ActionResult<object>(expectation);
 
             var actual =
-                result.Should().BeActionResult<object>().ConvertibleTo<OkObjectResult>(Reason, ReasonArgs).Which;
+                result.Should().BeConvertibleTo<OkObjectResult>(Reason, ReasonArgs).Which;
 
             actual.Should().BeSameAs(expectation);
         }

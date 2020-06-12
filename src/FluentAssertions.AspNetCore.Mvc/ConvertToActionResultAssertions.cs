@@ -72,7 +72,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// the result of Convert() converted to <typeparamref name="TActionResult"/>.
         /// </returns>
         [CustomAssertion]
-        public AndWhichConstraint<ConvertToActionResultAssertions, TActionResult> ConvertibleTo<TActionResult>(
+        public AndWhichConstraint<ConvertToActionResultAssertions, TActionResult> BeConvertibleTo<TActionResult>(
             string reason = "", params object[] reasonArgs)
             where TActionResult : class, IActionResult
         {

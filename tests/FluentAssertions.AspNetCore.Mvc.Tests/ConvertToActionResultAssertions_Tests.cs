@@ -72,7 +72,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         }
 
         [Fact]
-        public void ConvertibleTo_CallingConvertResultsNull_ShouldFail()
+        public void BeConvertibleTo_CallingConvertResultsNull_ShouldFail()
         {
             var mock = new Mock<IConvertToActionResult>();
             mock.Setup(e => e.Convert()).Returns((IActionResult)null);
@@ -80,7 +80,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var failureMessage = FailureMessageHelper.ExpectedContextToBeConvertible(
                 "result", typeof(ActionResult).FullName, "<null>");
 
-            Action action = () => result.Should().ConvertibleTo<ActionResult>(Reason, ReasonArgs);
+            Action action = () => result.Should().BeConvertibleTo<ActionResult>(Reason, ReasonArgs);
 
             action.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -88,7 +88,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         }
 
         [Fact]
-        public void ConvertibleTo_CallingConvertResultsDifferentType_ShouldFail()
+        public void BeConvertibleTo_CallingConvertResultsDifferentType_ShouldFail()
         {
             var mock = new Mock<IConvertToActionResult>();
             mock.Setup(e => e.Convert()).Returns(new BadRequestObjectResult(new object()));
@@ -96,7 +96,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var failureMessage = FailureMessageHelper.ExpectedContextToBeConvertible(
                 "result", typeof(ActionResult).FullName, typeof(BadRequestObjectResult).FullName);
 
-            Action action = () => result.Should().ConvertibleTo<ActionResult>(Reason, ReasonArgs);
+            Action action = () => result.Should().BeConvertibleTo<ActionResult>(Reason, ReasonArgs);
 
             action.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -104,17 +104,17 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         }
 
         [Fact]
-        public void ConvertibleTo_CallingConvertResultsGoodType_ShouldPass()
+        public void BeConvertibleTo_CallingConvertResultsGoodType_ShouldPass()
         {
             var mock = new Mock<IConvertToActionResult>();
             mock.Setup(e => e.Convert()).Returns(new OkObjectResult(new object()));
             var result = mock.Object;
 
-            result.Should().ConvertibleTo<OkObjectResult>(Reason, ReasonArgs);
+            result.Should().BeConvertibleTo<OkObjectResult>(Reason, ReasonArgs);
         }
 
         [Fact]
-        public void ConvertibleToWich_ShouldBeTheConvertedObject()
+        public void BeConvertibleTo_ShouldBeTheConvertedObject()
         {
             var mock = new Mock<IConvertToActionResult>();
             var expectation = new OkObjectResult(new object());
@@ -122,7 +122,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var result = mock.Object;
 
             var actual = 
-                result.Should().ConvertibleTo<OkObjectResult>(Reason, ReasonArgs).Which;
+                result.Should().BeConvertibleTo<OkObjectResult>(Reason, ReasonArgs).Which;
 
             actual.Should().BeSameAs(expectation);
         }
