@@ -13,7 +13,7 @@ namespace FluentAssertions.AspNetCore.Mvc
     public class CreatedAtActionResultAssertions : ObjectAssertions
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:CreatedAtActionResultAssertions" /> class.
+        /// Initializes a new instance of the <see cref="CreatedAtActionResultAssertions" /> class.
         /// </summary>
         public CreatedAtActionResultAssertions(CreatedAtActionResult subject) : base(subject) { }
 

@@ -13,7 +13,7 @@ namespace FluentAssertions.AspNetCore.Mvc
     public class ContentResultAssertions : ObjectAssertions
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:ContentResultAssertions" /> class.
+        /// Initializes a new instance of the <see cref="ContentResultAssertions" /> class.
         /// </summary>
         public ContentResultAssertions(ContentResult subject) : base(subject)
         {

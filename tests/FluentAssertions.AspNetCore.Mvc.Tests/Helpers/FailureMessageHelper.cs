@@ -72,12 +72,22 @@ namespace FluentAssertions.Mvc.Tests.Helpers
 
         internal static string ExpectedContextTypeXButFoundY(string context, Type expected, Type actual)
         {
-            return $"Expected {context} to be of type {expected.FullName} but was {actual.FullName}.";
+            return ExpectedContextTypeXButFoundY(context, expected.FullName, actual.FullName);
+        }
+
+        internal static string ExpectedContextTypeXButFoundY(string context, string expected, string actual)
+        {
+            return $"Expected {context} to be of type {expected} but was {actual}.";
         }
 
         internal static string ExpectedContextTypeXButFoundNull(string context, Type expectedType)
         {
             return $"Expected {context} to be of type {expectedType}, but no value was supplied.";
+        }
+
+        internal static string ExpectedContextToBeConvertible(string context, string expectedType, string actualType)
+        {
+            return $"Expected {context} to be convertible to {expectedType} but it was {actualType}.";
         }
 
         internal static string ExpectedContextContainValueAtKeyButFoundNull(string context, string value, string key)
@@ -101,6 +111,34 @@ namespace FluentAssertions.Mvc.Tests.Helpers
             return DateTimeOffset.TryParseExact(expectedIssuedUtcAsString, "r", CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out var result)
                 ? new DateTimeOffset?(result)
                 : new DateTimeOffset?();
+        }
+
+        public static string AuthenticationPropertiesExpectations(object containingObject)
+        {
+            var failureMessage = @"Expected " + containingObject.GetType().Name + @".AuthenticationProperties to be 
+
+Microsoft.AspNetCore.Authentication.AuthenticationProperties
+{
+   AllowRefresh = <null>
+   ExpiresUtc = <null>
+   IsPersistent = False
+   IssuedUtc = <null>
+   Items = {empty}
+   Parameters = {empty}
+   RedirectUri = <null>
+} because it is 10 but found 
+
+Microsoft.AspNetCore.Authentication.AuthenticationProperties
+{
+   AllowRefresh = <null>
+   ExpiresUtc = <null>
+   IsPersistent = False
+   IssuedUtc = <null>
+   Items = {empty}
+   Parameters = {empty}
+   RedirectUri = <null>
+}.";
+            return failureMessage;
         }
     }
 }

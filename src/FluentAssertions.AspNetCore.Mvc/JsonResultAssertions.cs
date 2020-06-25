@@ -1,7 +1,6 @@
-﻿using FluentAssertions.Execution;
+using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
 
@@ -16,7 +15,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         #region Public Constructors
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="T:JsonResultAssertions" /> class.
+        ///     Initializes a new instance of the <see cref="JsonResultAssertions" /> class.
         /// </summary>
         /// <param name="subject">The object to test assertion on</param>
         public JsonResultAssertions(JsonResult subject) : base(subject)
@@ -31,26 +30,30 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <summary>
         /// The <see cref="JsonResult.SerializerSettings"/> on the tested subject.
         /// </summary>
-        public JsonSerializerSettings SerializerSettings => JsonResultSubject.SerializerSettings;
-
+#if NETCOREAPP3_0
+         public object SerializerSettings => JsonResultSubject.SerializerSettings;
+#else
+         public Newtonsoft.Json.JsonSerializerSettings SerializerSettings => JsonResultSubject.SerializerSettings;
+#endif
+ 
 
         /// <summary>
         /// The <see cref="JsonResult.Value"/> on the tested subject.
-        /// </summary>
-        public object Value => JsonResultSubject.Value;
+         /// </summary>
+         public object Value => JsonResultSubject.Value;
+ 
+         #endregion
+ 
+         #region Private Properties
+ 
+         private JsonResult JsonResultSubject => (JsonResult)Subject;
+ 
+         #endregion Private Properties
 
-        #endregion
-
-        #region Private Properties
-
-        private JsonResult JsonResultSubject => (JsonResult)Subject;
-
-        #endregion Private Properties
-
-        #region Public Methods
-
-        /// <summary>
-        ///     Asserts that the content type is the expected content type.
+         #region Public Methods
+ 
+         /// <summary>
+         ///     Asserts that the content type is the expected content type.
         /// </summary>
         /// <param name="expectedContentType">The expected content type.</param>
         /// <param name="reason">
@@ -118,6 +121,6 @@ namespace FluentAssertions.AspNetCore.Mvc
 
             return (TValue)value;
         }
-        #endregion
+#endregion
     }
 }

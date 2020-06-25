@@ -115,6 +115,24 @@ namespace FluentAssertions.AspNetCore.Mvc {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expected {context} to be ActionResult&lt;TValue&gt; with type {0}{reason} but was {1}..
+        /// </summary>
+        internal static string ConvertibelModelFailMessage {
+            get {
+                return ResourceManager.GetString("ConvertibelModelFailMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected {context} to be convertible to {0} but it was {1}..
+        /// </summary>
+        internal static string ConvertibleActionFailMessage {
+            get {
+                return ResourceManager.GetString("ConvertibleActionFailMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expected FileContentResult.FileContents to have {0} byte(s){reason} but found {1}..
         /// </summary>
         internal static string FileContentResult_WithFileContents_LengthFail {

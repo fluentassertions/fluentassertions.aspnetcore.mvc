@@ -1,4 +1,6 @@
 using FluentAssertions.AspNetCore.Mvc.Sample.Controllers;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Sample.Tests
@@ -12,6 +14,35 @@ namespace FluentAssertions.AspNetCore.Mvc.Sample.Tests
             controller.List().Should()
                 .BeViewResult()
                 .WithViewName("Index");
+        }
+
+        [Fact]
+        public void GetActionResultOfT_OnFalse_Returns_Data()
+        {
+            var controller = new ProductController();
+            var model = new Models.ProductViewModel { Id = 1, Name = "Text" };
+            var returnError = false;
+
+            var result = controller.GetActionResultOfT(model, returnError);
+
+            result.Should().BeConvertibleTo<ObjectResult>()
+                .And.Value.Should().BeSameAs(model);
+        }
+
+        [Fact]
+        public void GetActionResultOfT_OnTrue_Returns_BadRequest()
+        {
+            var controller = new ProductController();
+            var model = new Models.ProductViewModel { Id = 1, Name = "Text" };
+            var returnError = true;
+
+            var result = controller.GetActionResultOfT(model, returnError);
+
+            result.Should().BeConvertibleTo<BadRequestObjectResult>()
+                .Which.Value.Should().BeSameAs(model);
+
+            result.Should().BeConvertibleTo<BadRequestObjectResult>()
+                .Which.Should().BeBadRequestObjectResult();
         }
     }
 }

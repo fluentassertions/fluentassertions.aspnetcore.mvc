@@ -15,7 +15,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         #region Public Constructors
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="T:CreatedResultAssertions" /> class.
+        ///     Initializes a new instance of the <see cref="CreatedResultAssertions" /> class.
         /// </summary>
         /// <param name="subject">The object to test assertion on</param>
         public CreatedResultAssertions(CreatedResult subject) : base(subject)

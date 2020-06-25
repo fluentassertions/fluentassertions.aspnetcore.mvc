@@ -33,27 +33,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualAuthenticationProperties = new AuthenticationProperties();
             var expectedAuthenticationProperties = new AuthenticationProperties();
             ActionResult result = new SignInResult(TestAuthenticationScheme, TestClaimsPrincipal, actualAuthenticationProperties);
-            var failureMessage = @"Expected SignInResult.AuthenticationProperties to be 
-
-Microsoft.AspNetCore.Authentication.AuthenticationProperties
-{
-   AllowRefresh = <null>
-   ExpiresUtc = <null>
-   IsPersistent = False
-   IssuedUtc = <null>
-   Items = {empty}
-   RedirectUri = <null>
-} because it is 10 but found 
-
-Microsoft.AspNetCore.Authentication.AuthenticationProperties
-{
-   AllowRefresh = <null>
-   ExpiresUtc = <null>
-   IsPersistent = False
-   IssuedUtc = <null>
-   Items = {empty}
-   RedirectUri = <null>
-}.";
+            var failureMessage = FailureMessageHelper.AuthenticationPropertiesExpectations(result);
 
             Action a = () => result.Should().BeSignInResult().WithAuthenticationProperties(expectedAuthenticationProperties, Reason, ReasonArgs);
 

@@ -18,7 +18,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         #region Public Constructors
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="T:ForbidResultAssertions" /> class.
+        ///     Initializes a new instance of the <see cref="ForbidResultAssertions" /> class.
         /// </summary>
         /// <param name="subject">The object to test assertion on</param>
         public ForbidResultAssertions(ForbidResult subject) : base(subject)

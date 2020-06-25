@@ -14,7 +14,7 @@ namespace FluentAssertions.AspNetCore.Mvc
     public class PartialViewResultAssertions : ObjectAssertions
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="T:PartialViewResultAssertions" /> class.
+        ///     Initializes a new instance of the <see cref="PartialViewResultAssertions" /> class.
         /// </summary>
         /// <param name="subject">The object to test assertion on</param>
         public PartialViewResultAssertions(PartialViewResult subject) : base(subject)

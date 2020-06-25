@@ -12,7 +12,7 @@ namespace FluentAssertions.AspNetCore.Mvc
     public class RouteDataAssertions : ObjectAssertions
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:RouteDataAssertions" /> class.
+        /// Initializes a new instance of the <see cref="RouteDataAssertions" /> class.
         /// </summary>
         public RouteDataAssertions(RouteData subject)
             : base(subject)
