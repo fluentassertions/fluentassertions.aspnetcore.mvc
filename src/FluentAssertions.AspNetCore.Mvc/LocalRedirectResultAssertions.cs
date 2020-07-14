@@ -14,7 +14,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         #region Public Constructors
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="LocalRedirectObjectResultAssertions" /> class.
+        ///     Initializes a new instance of the <see cref="LocalRedirectResultAssertions" /> class.
         /// </summary>
         /// <param name="subject">The object to test assertion on</param>
         public LocalRedirectResultAssertions(LocalRedirectResult subject) : base(subject)
