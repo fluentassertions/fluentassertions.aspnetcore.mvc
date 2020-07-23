@@ -30,6 +30,9 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </summary>
         public object Value => AcceptedResultSubject.Value;
 
+        /// <summary>
+        ///     The location on the AcceptedResult
+        /// </summary>
         public string Location => AcceptedResultSubject.Location;
 
         #endregion
