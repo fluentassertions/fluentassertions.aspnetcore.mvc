@@ -283,6 +283,26 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         }
 
         [Fact]
+        public void BeObjectResult_GivenObjectResult_ShouldPass()
+        {
+            ActionResult result = new ObjectResult("TestValue");
+
+            result.Should().BeObjectResult();
+        }
+
+        [Fact]
+        public void BeObjectResult_GivenNotObjectResult_ShouldFail()
+        {
+            ActionResult result = new ViewResult();
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("result", typeof(ObjectResult), typeof(ViewResult));
+
+            Action a = () => result.Should().BeObjectResult(Reason, ReasonArgs);
+
+            a.Should().Throw<Exception>()
+                .WithMessage(failureMessage);
+        }
+
+        [Fact]
         public void BeOkResult_GivenOk_ShouldPass()
         {
             ActionResult result = new OkResult();

@@ -326,6 +326,27 @@ namespace FluentAssertions.AspNetCore.Mvc
         }
 
         /// <summary>
+        /// Asserts that the subject is a <see cref="ObjectResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        [CustomAssertion]
+        public ObjectResultAssertions BeObjectResult(string reason = "", params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is ObjectResult)
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(ObjectResult), Subject.GetType());
+
+            return new ObjectResultAssertions(Subject as ObjectResult);
+        }
+
+        /// <summary>
         /// Asserts that the subject is an <see cref="OkResult"/>.
         /// </summary>
         /// <param name="reason">
