@@ -362,7 +362,7 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(Subject is OkObjectResult)
-                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(OkObjectResult).Name, Subject.GetType().Name);
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(OkObjectResult), Subject.GetType());
 
             return new OkObjectResultAssertions(Subject as OkObjectResult);
         }
@@ -404,7 +404,7 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(Subject is BadRequestObjectResult)
-                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(BadRequestObjectResult).Name, Subject.GetType().Name);
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(BadRequestObjectResult), Subject.GetType());
 
             return new BadRequestObjectResultAssertions(Subject as BadRequestObjectResult);
         }
@@ -425,7 +425,7 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(Subject is CreatedResult)
-                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(CreatedResult).Name, Subject.GetType().Name);
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(CreatedResult), Subject.GetType());
 
             return new CreatedResultAssertions(Subject as CreatedResult);
         }
@@ -488,7 +488,7 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(Subject is ForbidResult)
-                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(ForbidResult).Name, Subject.GetType().Name);
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(ForbidResult), Subject.GetType());
 
             return new ForbidResultAssertions(Subject as ForbidResult);
         }
@@ -551,7 +551,7 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(Subject is NotFoundObjectResult)
-                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(NotFoundObjectResult).Name, Subject.GetType().Name);
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(NotFoundObjectResult), Subject.GetType());
 
             return new NotFoundObjectResultAssertions(Subject as NotFoundObjectResult);
         }
@@ -593,7 +593,7 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(Subject is SignInResult)
-                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(SignInResult).Name, Subject.GetType().Name);
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(SignInResult), Subject.GetType());
 
             return new SignInResultAssertions(Subject as SignInResult);
         }
@@ -656,7 +656,7 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(Subject is AcceptedAtActionResult)
-                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(AcceptedAtActionResult).Name, Subject.GetType().Name);
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(AcceptedAtActionResult), Subject.GetType());
 
             return new AcceptedAtActionResultAssertions(Subject as AcceptedAtActionResult);
         }
@@ -677,7 +677,7 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(Subject is AcceptedAtRouteResult)
-                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(AcceptedAtRouteResult).Name, Subject.GetType().Name);
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(AcceptedAtRouteResult), Subject.GetType());
 
             return new AcceptedAtRouteResultAssertions(Subject as AcceptedAtRouteResult);
         }
@@ -698,7 +698,7 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(Subject is CreatedAtActionResult)
-                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(CreatedAtActionResult).Name, Subject.GetType().Name);
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(CreatedAtActionResult), Subject.GetType());
 
             return new CreatedAtActionResultAssertions(Subject as CreatedAtActionResult);
         }
@@ -719,7 +719,7 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(Subject is CreatedAtRouteResult)
-                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(CreatedAtRouteResult).Name, Subject.GetType().Name);
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(CreatedAtRouteResult), Subject.GetType());
 
             return new CreatedAtRouteResultAssertions(Subject as CreatedAtRouteResult);
         }
