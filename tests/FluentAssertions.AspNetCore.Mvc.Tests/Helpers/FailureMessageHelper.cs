@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentAssertions.Formatting;
+using System;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -68,6 +69,16 @@ namespace FluentAssertions.Mvc.Tests.Helpers
                 return builder.ToString();
             }
             return "<null>";
+        }
+
+        internal static string ExpectedToContainItemButFoundNull(string context, string predicate)
+        {
+            return $"Expected {context} to contain {predicate} because it is 10 but found <null>.";
+        }
+
+        internal static string ExpectedToHaveItemMatching(string context, object list, string predicate)
+        {
+            return $"Expected {context} {Formatter.ToString(list)} to have an item matching {predicate} because it is 10.";
         }
 
         internal static string ExpectedContextTypeXButFoundY(string context, Type expected, Type actual)
