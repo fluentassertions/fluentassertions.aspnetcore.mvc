@@ -12,7 +12,7 @@ namespace FluentAssertions.AspNetCore.Mvc
     /// <summary>
     /// Base class for <see cref="ObjectResultAssertions"/>.
     /// </summary>
-    //[DebuggerNonUserCode]
+    [DebuggerNonUserCode]
     public class ObjectResultAssertionsBase<TObjectResult, TObjectResultAssertion> : ObjectAssertions
         where TObjectResult : ObjectResult
         where TObjectResultAssertion : ObjectResultAssertionsBase<TObjectResult, TObjectResultAssertion>
@@ -105,6 +105,38 @@ namespace FluentAssertions.AspNetCore.Mvc
                 .WithDefaultIdentifier(Identifier+ ".Formatters")
                 .BecauseOf(reason, reasonArgs)
                 .FailWith("Expected {context} {0} to have an item matching {1}{reason}.", formatters, expectation.Body);
+
+            return (TObjectResultAssertion)this;
+        }
+
+        /// <summary>
+        /// Asserts that the <see cref="ObjectResult.ContentTypes"/> contains the specified content type.
+        /// </summary>
+        /// <param name="expected">The expectation content type.</param>
+        /// <param name="reason">
+        ///     A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        public TObjectResultAssertion ContainsContentType(string expected, string reason = "", params object[] reasonArgs)
+        {
+            var formatters = ObjectResultSubject.ContentTypes;
+
+            if (formatters is null)
+            {
+                Execute.Assertion
+                    .BecauseOf(reason, reasonArgs)
+                    .WithDefaultIdentifier(Identifier + ".ContentTypes")
+                    .FailWith("Expected {context} to contain {0}{reason} but found {1}.", expected, formatters);
+            }
+
+            Execute.Assertion
+                .ForCondition(formatters.Contains(expected))
+                .WithDefaultIdentifier(Identifier + ".ContentTypes")
+                .BecauseOf(reason, reasonArgs)
+                .FailWith("Expected {context} {0} to contain {1}{reason}.", formatters, expected);
 
             return (TObjectResultAssertion)this;
         }

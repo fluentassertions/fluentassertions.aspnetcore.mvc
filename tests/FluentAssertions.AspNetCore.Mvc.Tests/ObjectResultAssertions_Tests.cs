@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq.Expressions;
+using System.Net.Http.Headers;
 using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
@@ -73,11 +75,12 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             {
                 Formatters = null
             };
+            Expression<Func<IOutputFormatter, bool>> expectation = formatter => formatter == null;
             string failureMessage = FailureMessageHelper.ExpectedToContainItemButFoundNull(
                 "ObjectResult.Formatters",
-                "(formatter == null)");
+                expectation.Body);
 
-            Action a = () => result.Should().BeObjectResult().ContainsFormatter(formatter => formatter == null, Reason, ReasonArgs);
+            Action a = () => result.Should().BeObjectResult().ContainsFormatter(expectation, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -102,5 +105,60 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithMessage(failureMessage);
         }
 
+
+
+
+
+
+        [Fact]
+        public void ContainsContentType_GivenExpected_ShouldPass()
+        {
+            var mediaType = "text/html";
+            var result = new ObjectResult(TestValue)
+            {
+                ContentTypes = { mediaType }
+            };
+
+            result.Should().BeObjectResult().ContainsContentType(mediaType);
+        }
+#if NETCOREAPP2_1
+        // In NetCore3.1 ContentTypes cant be null.
+        [Fact]
+        public void ContainsContentType_OnNullMediaType_ShouldFail()
+        {
+            var expected = "text/json";
+            var result = new ObjectResult(TestValue)
+            {
+                ContentTypes = null
+            };
+            string failureMessage = FailureMessageHelper.ExpectedToContainItemButFoundNull(
+                "ObjectResult.ContentTypes",
+                expected);
+
+            Action a = () => result.Should().BeObjectResult().ContainsContentType(expected, Reason, ReasonArgs);
+
+            a.Should().Throw<Exception>()
+                .WithMessage(failureMessage);
+        }
+#endif
+        [Fact]
+        public void ContainsContentType_GivenUnexpected_ShouldFail()
+        {
+            var mediaType = "text/html";
+            var expected = "text/json";
+            var result = new ObjectResult(TestValue)
+            {
+                ContentTypes = { mediaType }
+            };
+            string failureMessage = FailureMessageHelper.ExpectedToContainItem(
+                "ObjectResult.ContentTypes",
+                result.ContentTypes,
+                expected);
+
+            Action a = () => result.Should().BeObjectResult().ContainsContentType(expected, Reason, ReasonArgs);
+
+            a.Should().Throw<Exception>()
+                .WithMessage(failureMessage);
+        }
     }
 }

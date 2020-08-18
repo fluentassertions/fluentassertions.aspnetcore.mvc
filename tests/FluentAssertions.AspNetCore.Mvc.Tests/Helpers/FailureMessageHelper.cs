@@ -71,14 +71,19 @@ namespace FluentAssertions.Mvc.Tests.Helpers
             return "<null>";
         }
 
-        internal static string ExpectedToContainItemButFoundNull(string context, string predicate)
+        internal static string ExpectedToContainItemButFoundNull(string context, object item)
         {
-            return $"Expected {context} to contain {predicate} because it is 10 but found <null>.";
+            return $"Expected {context} to contain {Formatter.ToString(item)} because it is 10 but found <null>.";
         }
 
         internal static string ExpectedToHaveItemMatching(string context, object list, string predicate)
         {
             return $"Expected {context} {Formatter.ToString(list)} to have an item matching {predicate} because it is 10.";
+        }
+
+        internal static string ExpectedToContainItem(string context, object list, string expected)
+        {
+            return $"Expected {context} {Formatter.ToString(list)} to contain {Formatter.ToString(expected)} because it is 10.";
         }
 
         internal static string ExpectedContextTypeXButFoundY(string context, Type expected, Type actual)
