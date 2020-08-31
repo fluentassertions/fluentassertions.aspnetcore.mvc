@@ -122,21 +122,45 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </param>
         public TObjectResultAssertion WithContentType(string expected, string reason = "", params object[] reasonArgs)
         {
-            var formatters = ObjectResultSubject.ContentTypes;
+            var contentTypes = ObjectResultSubject.ContentTypes;
 
-            if (formatters is null)
+            if (contentTypes is null)
             {
                 Execute.Assertion
                     .BecauseOf(reason, reasonArgs)
                     .WithDefaultIdentifier(Identifier + ".ContentTypes")
-                    .FailWith("Expected {context} to contain {0}{reason} but found {1}.", expected, formatters);
+                    .FailWith("Expected {context} to contain {0}{reason} but found {1}.", expected, contentTypes);
             }
 
             Execute.Assertion
-                .ForCondition(formatters.Contains(expected))
+                .ForCondition(contentTypes.Contains(expected))
                 .WithDefaultIdentifier(Identifier + ".ContentTypes")
                 .BecauseOf(reason, reasonArgs)
-                .FailWith("Expected {context} {0} to contain {1}{reason}.", formatters, expected);
+                .FailWith("Expected {context} {0} to contain {1}{reason}.", contentTypes, expected);
+
+            return (TObjectResultAssertion)this;
+        }
+
+        /// <summary>
+        /// Asserts that the <see cref="ObjectResult.DeclaredType"/> contains the specified content type.
+        /// </summary>
+        /// <param name="expected">The expectation content type.</param>
+        /// <param name="reason">
+        ///     A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        public TObjectResultAssertion WithDeclaredType(Type expected, string reason = "", params object[] reasonArgs)
+        {
+            var actual = ObjectResultSubject.DeclaredType;
+
+            Execute.Assertion
+                .ForCondition(expected == actual)
+                .WithDefaultIdentifier(Identifier + ".DeclaredType")
+                .BecauseOf(reason, reasonArgs)
+                .FailWith(FailureMessages.CommonTypeFailMessage, expected, actual);
 
             return (TObjectResultAssertion)this;
         }
