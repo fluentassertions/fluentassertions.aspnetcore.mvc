@@ -105,13 +105,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithMessage(failureMessage);
         }
 
-
-
-
-
-
         [Fact]
-        public void ContainsContentType_GivenExpected_ShouldPass()
+        public void WithContentType_GivenExpected_ShouldPass()
         {
             var mediaType = "text/html";
             var result = new ObjectResult(TestValue)
@@ -119,12 +114,12 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 ContentTypes = { mediaType }
             };
 
-            result.Should().BeObjectResult().ContainsContentType(mediaType);
+            result.Should().BeObjectResult().WithContentType(mediaType);
         }
 #if NETCOREAPP2_1
         // In NetCore3.1 ContentTypes cant be null.
         [Fact]
-        public void ContainsContentType_OnNullMediaType_ShouldFail()
+        public void WithContentType_OnNullMediaType_ShouldFail()
         {
             var expected = "text/json";
             var result = new ObjectResult(TestValue)
@@ -135,14 +130,14 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 "ObjectResult.ContentTypes",
                 expected);
 
-            Action a = () => result.Should().BeObjectResult().ContainsContentType(expected, Reason, ReasonArgs);
+            Action a = () => result.Should().BeObjectResult().WithContentType(expected, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
         }
 #endif
         [Fact]
-        public void ContainsContentType_GivenUnexpected_ShouldFail()
+        public void WithContentType_GivenUnexpected_ShouldFail()
         {
             var mediaType = "text/html";
             var expected = "text/json";
@@ -155,7 +150,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 result.ContentTypes,
                 expected);
 
-            Action a = () => result.Should().BeObjectResult().ContainsContentType(expected, Reason, ReasonArgs);
+            Action a = () => result.Should().BeObjectResult().WithContentType(expected, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);

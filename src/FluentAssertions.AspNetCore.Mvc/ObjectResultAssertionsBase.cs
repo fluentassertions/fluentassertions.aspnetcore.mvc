@@ -120,7 +120,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <param name="reasonArgs">
         ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
-        public TObjectResultAssertion ContainsContentType(string expected, string reason = "", params object[] reasonArgs)
+        public TObjectResultAssertion WithContentType(string expected, string reason = "", params object[] reasonArgs)
         {
             var formatters = ObjectResultSubject.ContentTypes;
 
