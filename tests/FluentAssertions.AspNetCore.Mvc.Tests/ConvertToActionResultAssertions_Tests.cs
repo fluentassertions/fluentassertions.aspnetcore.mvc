@@ -62,8 +62,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var mock = new Mock<IConvertToActionResult>();
             var result = mock.Object;
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY(
-                "result", "Microsoft.AspNetCore.Mvc.ActionResult`1[System.Object]", result.GetType().FullName);
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason(
+                "result", typeof(ActionResult<object>), result.GetType());
 
             Action action = () => result.Should().BeActionResult<object>(Reason, ReasonArgs);
 

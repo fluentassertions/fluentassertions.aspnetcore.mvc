@@ -155,5 +155,38 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
         }
+
+
+        [Fact]
+        public void WithDeclaredType_GivenExpected_ShouldPass()
+        {
+            var expectedType = typeof(string);
+            var result = new ObjectResult(TestValue)
+            {
+                DeclaredType = expectedType
+            };
+
+            result.Should().BeObjectResult().WithDeclaredType(expectedType);
+        }
+
+        [Fact]
+        public void WithDeclaredType_GivenUnexpected_ShouldFail()
+        {
+            var expectedType = typeof(int);
+            var declaredType = typeof(string);
+            var result = new ObjectResult(TestValue)
+            {
+                DeclaredType = declaredType
+            };
+            string failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason(
+                "ObjectResult.DeclaredType",
+                expectedType,
+                declaredType);
+
+            Action a = () => result.Should().BeObjectResult().WithDeclaredType(expectedType, Reason, ReasonArgs);
+
+            a.Should().Throw<Exception>()
+                .WithMessage(failureMessage);
+        }
     }
 }
