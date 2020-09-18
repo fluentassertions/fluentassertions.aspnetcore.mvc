@@ -77,7 +77,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithUri_GivenWrongUri_ShouldFail()
         {
             var result = new TestController().Created(TestWrongUri, TestValue);
-            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("CreatedResult.Uri", TestUri, TestWrongUri);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("CreatedResult.Uri", TestUri.ToString(), TestWrongUri.ToString());
 
             Action a = () => result.Should().BeCreatedResult().WithUri(TestUri, Reason, ReasonArgs);
 

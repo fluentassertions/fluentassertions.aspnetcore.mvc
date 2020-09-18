@@ -142,9 +142,9 @@ namespace FluentAssertions.AspNetCore.Mvc
         }
 
         /// <summary>
-        /// Asserts that the <see cref="ObjectResult.DeclaredType"/> contains the specified content type.
+        /// Asserts that the <see cref="ObjectResult.DeclaredType"/> is the expected declared type.
         /// </summary>
-        /// <param name="expected">The expectation content type.</param>
+        /// <param name="expectedDeclaredType">The expected declared type.</param>
         /// <param name="reason">
         ///     A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
@@ -152,15 +152,40 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <param name="reasonArgs">
         ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
-        public TObjectResultAssertion WithDeclaredType(Type expected, string reason = "", params object[] reasonArgs)
+        public TObjectResultAssertion WithDeclaredType(Type expectedDeclaredType, string reason = "", params object[] reasonArgs)
         {
             var actual = ObjectResultSubject.DeclaredType;
 
             Execute.Assertion
-                .ForCondition(expected == actual)
+                .ForCondition(expectedDeclaredType == actual)
                 .WithDefaultIdentifier(Identifier + ".DeclaredType")
                 .BecauseOf(reason, reasonArgs)
-                .FailWith(FailureMessages.CommonTypeFailMessage, expected, actual);
+                .FailWith(FailureMessages.CommonTypeFailMessage, expectedDeclaredType, actual);
+
+            return (TObjectResultAssertion)this;
+        }
+
+
+        /// <summary>
+        /// Asserts that the <see cref="ObjectResult.StatusCode"/> is the expected status code.
+        /// </summary>
+        /// <param name="expectedStatusCode">The expected status code.</param>
+        /// <param name="reason">
+        ///     A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        public TObjectResultAssertion WithStatusCode(int? expectedStatusCode, string reason = "", params object[] reasonArgs)
+        {
+            var actual = ObjectResultSubject.StatusCode;
+
+            Execute.Assertion
+                .ForCondition(expectedStatusCode == actual)
+                .WithDefaultIdentifier(Identifier + ".StatusCode")
+                .BecauseOf(reason, reasonArgs)
+                .FailWith(FailureMessages.CommonFailMessage, expectedStatusCode, actual);
 
             return (TObjectResultAssertion)this;
         }

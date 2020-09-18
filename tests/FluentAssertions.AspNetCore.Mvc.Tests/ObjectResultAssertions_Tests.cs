@@ -156,7 +156,6 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .WithMessage(failureMessage);
         }
 
-
         [Fact]
         public void WithDeclaredType_GivenExpected_ShouldPass()
         {
@@ -184,6 +183,38 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 declaredType);
 
             Action a = () => result.Should().BeObjectResult().WithDeclaredType(expectedType, Reason, ReasonArgs);
+
+            a.Should().Throw<Exception>()
+                .WithMessage(failureMessage);
+        }
+
+        [Fact]
+        public void WithStatusCode_GivenExpected_ShouldPass()
+        {
+            var expectedStatusCode = 200;
+            var result = new ObjectResult(TestValue)
+            {
+                StatusCode = expectedStatusCode
+            };
+
+            result.Should().BeObjectResult().WithStatusCode(expectedStatusCode);
+        }
+
+        [Fact]
+        public void WithStatusCode_GivenUnexpected_ShouldFail()
+        {
+            var expectedStatusCode = 200;
+            var actualStatusCode = 500;
+            var result = new ObjectResult(TestValue)
+            {
+                StatusCode = actualStatusCode
+            };
+            string failureMessage = FailureMessageHelper.ExpectedContextToBeXButY(
+                "ObjectResult.StatusCode",
+                expectedStatusCode,
+                actualStatusCode);
+
+            Action a = () => result.Should().BeObjectResult().WithStatusCode(expectedStatusCode, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
