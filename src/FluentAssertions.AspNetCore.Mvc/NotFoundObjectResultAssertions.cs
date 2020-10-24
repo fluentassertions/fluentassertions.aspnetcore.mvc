@@ -1,7 +1,5 @@
-﻿using System.Diagnostics;
-using FluentAssertions.Execution;
-using FluentAssertions.Primitives;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace FluentAssertions.AspNetCore.Mvc
 {
@@ -9,7 +7,7 @@ namespace FluentAssertions.AspNetCore.Mvc
     /// Contains a number of methods to assert that a <see cref="NotFoundObjectResult"/> is in the expected state.
     /// </summary>
     [DebuggerNonUserCode]
-    public class NotFoundObjectResultAssertions : ObjectAssertions
+    public class NotFoundObjectResultAssertions : ObjectResultAssertionsBase<NotFoundObjectResult, NotFoundObjectResultAssertions>
     {
         #region Public Constructors
 
@@ -21,43 +19,6 @@ namespace FluentAssertions.AspNetCore.Mvc
         {
         }
 
-        #endregion
-
-        #region Public Properties
-        /// <summary>
-        ///     The value on the NotFoundObjectResult
-        /// </summary>
-        public object Value => NotFoundObjectResultSubject.Value;
-
-        #endregion
-
-        #region Private Properties
-        private NotFoundObjectResult NotFoundObjectResultSubject => (NotFoundObjectResult)Subject;
-
-        #endregion
-
-        #region Public Methods
-        /// <summary>
-        ///     Asserts the value is of the expected type.
-        /// </summary>
-        /// <typeparam name="TValue">The expected type.</typeparam>
-        /// <returns>The typed value.</returns>
-        public TValue ValueAs<TValue>()
-        {
-            var value = NotFoundObjectResultSubject.Value;
-
-            if (value == null)
-                Execute.Assertion
-                    .WithDefaultIdentifier("NotFoundObjectResult.Value")
-                    .FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, typeof(TValue));
-
-            Execute.Assertion
-                .ForCondition(value is TValue)
-                .WithDefaultIdentifier("NotFoundObjectResult.Value")
-                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(TValue), value.GetType());
-
-            return (TValue)value;
-        }
         #endregion
     }
 }

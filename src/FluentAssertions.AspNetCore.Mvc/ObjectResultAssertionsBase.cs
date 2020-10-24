@@ -12,7 +12,7 @@ namespace FluentAssertions.AspNetCore.Mvc
     /// <summary>
     /// Base class for <see cref="ObjectResultAssertions"/>.
     /// </summary>
-    //[DebuggerNonUserCode]
+    [DebuggerNonUserCode]
     public class ObjectResultAssertionsBase<TObjectResult, TObjectResultAssertion> : ObjectAssertions
         where TObjectResult : ObjectResult
         where TObjectResultAssertion : ObjectResultAssertionsBase<TObjectResult, TObjectResultAssertion>
