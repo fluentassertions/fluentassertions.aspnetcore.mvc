@@ -25,7 +25,7 @@ namespace FluentAssertions.AspNetCore.Mvc
 
         #region Public Properties
         /// <summary>
-        ///     The location on the AcceptedResult
+        ///     The location on the AcceptedResult.
         /// </summary>
         public string Location => ObjectResultSubject.Location;
 
