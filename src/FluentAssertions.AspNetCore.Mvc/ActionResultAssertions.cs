@@ -24,7 +24,9 @@ namespace FluentAssertions.AspNetCore.Mvc
         #endregion Public Constructors
 
         #region Protected Properties
-
+        /// <summary>
+        /// <inheritdoc />
+        /// </summary>
         protected override string Identifier => "ActionResult";
 
         #endregion Protected Properties
