@@ -1,8 +1,7 @@
-﻿using System;
-using System.Diagnostics;
-using FluentAssertions.Execution;
-using FluentAssertions.Primitives;
+﻿using FluentAssertions.Execution;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Diagnostics;
 
 namespace FluentAssertions.AspNetCore.Mvc
 {
@@ -10,7 +9,7 @@ namespace FluentAssertions.AspNetCore.Mvc
     /// Contains a number of methods to assert that a <see cref="CreatedAtActionResult"/> is in the expected state.
     /// </summary>
     [DebuggerNonUserCode]
-    public class CreatedAtActionResultAssertions : ObjectAssertions
+    public class CreatedAtActionResultAssertions : ObjectResultAssertionsBase<CreatedAtActionResult, CreatedAtActionResultAssertions>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CreatedAtActionResultAssertions" /> class.
@@ -30,7 +29,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </param>
         public CreatedAtActionResultAssertions WithActionName(string expectedActionName, string reason = "", params object[] reasonArgs)
         {
-            string actualActionName = (Subject as CreatedAtActionResult)?.ActionName;
+            string actualActionName = ObjectResultSubject.ActionName;
 
             Execute.Assertion
                    .ForCondition(string.Equals(actualActionName, expectedActionName, StringComparison.OrdinalIgnoreCase))
@@ -54,7 +53,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </param>
         public CreatedAtActionResultAssertions WithControllerName(string expectedControllerName, string reason = "", params object[] reasonArgs)
         {
-            string actualControllerName = (Subject as CreatedAtActionResult)?.ControllerName;
+            string actualControllerName = ObjectResultSubject.ControllerName;
 
             Execute.Assertion
                 .ForCondition(string.Equals(actualControllerName, expectedControllerName, StringComparison.OrdinalIgnoreCase))
@@ -79,35 +78,12 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </param>
         public CreatedAtActionResultAssertions WithRouteValue(string key, object expectedValue, string reason = "", params object[] reasonArgs)
         {
-            var subjectTyped = Subject as CreatedAtActionResult;
+            var actualRouteValues = ObjectResultSubject.RouteValues;
 
-            AssertionHelpers.AssertStringObjectDictionary(subjectTyped.RouteValues, "CreatedAtActionResult.RouteValues",
+            AssertionHelpers.AssertStringObjectDictionary(actualRouteValues, "CreatedAtActionResult.RouteValues",
                 key, expectedValue, reason, reasonArgs);
 
             return this;
-        }
-
-        /// <summary>
-        ///     Asserts the value is of the expected type.
-        /// </summary>
-        /// <typeparam name="TValue">The expected type.</typeparam>
-        /// <returns>The typed value.</returns>
-        public TValue ValueAs<TValue>()
-        {
-            var subjectTyped = Subject as CreatedAtActionResult;
-            var value = subjectTyped.Value;
-
-            if (value == null)
-                Execute.Assertion
-                    .WithDefaultIdentifier("CreatedAtActionResult.Value")
-                    .FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, typeof(TValue));
-
-            Execute.Assertion
-                .ForCondition(value is TValue)
-                .WithDefaultIdentifier("CreatedAtActionResult.Value")
-                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(TValue), value.GetType());
-
-            return (TValue)value;
         }
     }
 }

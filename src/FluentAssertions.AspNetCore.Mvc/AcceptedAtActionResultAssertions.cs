@@ -29,7 +29,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </param>
         public AcceptedAtActionResultAssertions WithActionName(string expectedActionName, string reason = "", params object[] reasonArgs)
         {
-            string actualActionName = ObjectResultSubject?.ActionName;
+            string actualActionName = ObjectResultSubject.ActionName;
 
             Execute.Assertion
                    .ForCondition(string.Equals(actualActionName, expectedActionName, StringComparison.OrdinalIgnoreCase))
@@ -53,7 +53,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </param>
         public AcceptedAtActionResultAssertions WithControllerName(string expectedControllerName, string reason = "", params object[] reasonArgs)
         {
-            string actualControllerName = ObjectResultSubject?.ControllerName;
+            string actualControllerName = ObjectResultSubject.ControllerName;
 
             Execute.Assertion
                 .ForCondition(string.Equals(actualControllerName, expectedControllerName, StringComparison.OrdinalIgnoreCase))
