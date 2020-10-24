@@ -1,8 +1,7 @@
-﻿using System;
-using System.Diagnostics;
-using FluentAssertions.Execution;
-using FluentAssertions.Primitives;
+﻿using FluentAssertions.Execution;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Diagnostics;
 
 namespace FluentAssertions.AspNetCore.Mvc
 {
@@ -10,7 +9,7 @@ namespace FluentAssertions.AspNetCore.Mvc
     /// Contains a number of methods to assert that a <see cref="AcceptedResult"/> is in the expected state.
     /// </summary>
     [DebuggerNonUserCode]
-    public class AcceptedResultAssertions : ObjectAssertions
+    public class AcceptedResultAssertions : ObjectResultAssertionsBase<AcceptedResult, AcceptedResultAssertions>
     {
         #region Public Constructors
 
@@ -26,45 +25,13 @@ namespace FluentAssertions.AspNetCore.Mvc
 
         #region Public Properties
         /// <summary>
-        ///     The value on the AcceptedResult
-        /// </summary>
-        public object Value => AcceptedResultSubject.Value;
-
-        /// <summary>
         ///     The location on the AcceptedResult
         /// </summary>
-        public string Location => AcceptedResultSubject.Location;
-
-        #endregion
-
-        #region Private Properties
-        private AcceptedResult AcceptedResultSubject => (AcceptedResult)Subject;
+        public string Location => ObjectResultSubject.Location;
 
         #endregion
 
         #region Public Methods
-        /// <summary>
-        ///     Asserts the value is of the expected type.
-        /// </summary>
-        /// <typeparam name="TValue">The expected type.</typeparam>
-        /// <returns>The typed value.</returns>
-        public TValue ValueAs<TValue>()
-        {
-            var value = AcceptedResultSubject.Value;
-
-            if (value == null)
-                Execute.Assertion
-                    .WithDefaultIdentifier("AcceptedResultAssertions.Value")
-                    .FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, typeof(TValue));
-
-            Execute.Assertion
-                .ForCondition(value is TValue)
-                .WithDefaultIdentifier("AcceptedResultAssertions.Value")
-                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(TValue), value.GetType());
-
-            return (TValue)value;
-        }
-
         /// <summary>
         ///     Asserts the uri has the expected value.
         /// </summary>
@@ -86,7 +53,7 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(expectedUri == Location)
-                .WithDefaultIdentifier("AcceptedResultAssertions.Uri")
+                .WithDefaultIdentifier("AcceptedResult.Uri")
                 .FailWith(FailureMessages.CommonFailMessage, expectedUri, Location);
 
             return this;
@@ -111,7 +78,7 @@ namespace FluentAssertions.AspNetCore.Mvc
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
                 .ForCondition(uri == Location)
-                .WithDefaultIdentifier("AcceptedResultAssertions.Uri")
+                .WithDefaultIdentifier("AcceptedResult.Uri")
                 .FailWith(FailureMessages.CommonFailMessage, uri, Location);
 
             return this;
