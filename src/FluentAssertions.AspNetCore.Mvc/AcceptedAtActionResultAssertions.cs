@@ -10,7 +10,7 @@ namespace FluentAssertions.AspNetCore.Mvc
     /// Contains a number of methods to assert that a <see cref="AcceptedAtActionResult"/> is in the expected state.
     /// </summary>
     [DebuggerNonUserCode]
-    public class AcceptedAtActionResultAssertions : ObjectAssertions
+    public class AcceptedAtActionResultAssertions : ObjectResultAssertionsBase<AcceptedAtActionResult, AcceptedAtActionResultAssertions>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AcceptedAtActionResultAssertions" /> class.
@@ -30,7 +30,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </param>
         public AcceptedAtActionResultAssertions WithActionName(string expectedActionName, string reason = "", params object[] reasonArgs)
         {
-            string actualActionName = (Subject as AcceptedAtActionResult)?.ActionName;
+            string actualActionName = ObjectResultSubject?.ActionName;
 
             Execute.Assertion
                    .ForCondition(string.Equals(actualActionName, expectedActionName, StringComparison.OrdinalIgnoreCase))
@@ -54,7 +54,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </param>
         public AcceptedAtActionResultAssertions WithControllerName(string expectedControllerName, string reason = "", params object[] reasonArgs)
         {
-            string actualControllerName = (Subject as AcceptedAtActionResult)?.ControllerName;
+            string actualControllerName = ObjectResultSubject?.ControllerName;
 
             Execute.Assertion
                 .ForCondition(string.Equals(actualControllerName, expectedControllerName, StringComparison.OrdinalIgnoreCase))
@@ -79,35 +79,12 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </param>
         public AcceptedAtActionResultAssertions WithRouteValue(string key, object expectedValue, string reason = "", params object[] reasonArgs)
         {
-            var subjectTyped = Subject as AcceptedAtActionResult;
+            var actualRouteValues = ObjectResultSubject.RouteValues;
 
-            AssertionHelpers.AssertStringObjectDictionary(subjectTyped.RouteValues,
+            AssertionHelpers.AssertStringObjectDictionary(actualRouteValues,
                 "AcceptedAtActionResult.RouteValues", key, expectedValue, reason, reasonArgs);
 
             return this;
-        }
-
-        /// <summary>
-        ///     Asserts the value is of the expected type.
-        /// </summary>
-        /// <typeparam name="TValue">The expected type.</typeparam>
-        /// <returns>The typed value.</returns>
-        public TValue ValueAs<TValue>()
-        {
-            var subjectTyped = Subject as AcceptedAtActionResult;
-            var value = subjectTyped.Value;
-
-            if (value == null)
-                Execute.Assertion
-                    .WithDefaultIdentifier("AcceptedAtActionResult.Value")
-                    .FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, typeof(TValue));
-
-            Execute.Assertion
-                .ForCondition(value is TValue)
-                .WithDefaultIdentifier("AcceptedAtActionResult.Value")
-                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(TValue), value.GetType());
-
-            return (TValue)value;
         }
     }
 }
