@@ -28,14 +28,49 @@ namespace FluentAssertions.AspNetCore.Mvc
         #endregion
 
         #region Public Properties
+        /// <summary>
+        ///     The authentication properties on the SignInResult.
+        /// </summary>
         public AuthenticationProperties AuthenticationProperties => SignInResultSubject.Properties;
+
+        /// <summary>
+        ///     The items value in the authentication properties on the SignInResult.
+        /// </summary>
         public IDictionary<string, string> Items => SignInResultSubject.Properties?.Items;
+
+        /// <summary>
+        ///     The is persistent value in the authentication properties on the SignInResult.
+        /// </summary>
         public bool IsPersistent => SignInResultSubject.Properties?.IsPersistent ?? false;
+
+        /// <summary>
+        ///     The redirect uri value in the authentication properties on the SignInResult.
+        /// </summary>
         public string RedirectUri => SignInResultSubject.Properties?.RedirectUri;
+
+        /// <summary>
+        ///     The issued utc value in the authentication properties on the SignInResult.
+        /// </summary>
         public DateTimeOffset? IssuedUtc => SignInResultSubject.Properties?.IssuedUtc;
+
+        /// <summary>
+        ///     The expires utc value in the authentication properties on the SignInResult.
+        /// </summary>
         public DateTimeOffset? ExpiresUtc => SignInResultSubject.Properties?.ExpiresUtc;
+
+        /// <summary>
+        ///     The allow refresh value in the authentication properties on the SignInResult.
+        /// </summary>
         public bool? AllowRefresh => SignInResultSubject.Properties?.AllowRefresh;
+
+        /// <summary>
+        ///     The authentication scheme value on the SignInResult.
+        /// </summary>
         public string AuthenticationScheme => SignInResultSubject.AuthenticationScheme;
+
+        /// <summary>
+        ///     The claims principal value on the SignInResult.
+        /// </summary>
         public ClaimsPrincipal Principal => SignInResultSubject.Principal;
 
         #endregion

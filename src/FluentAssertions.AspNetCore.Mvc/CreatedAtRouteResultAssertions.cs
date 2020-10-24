@@ -1,8 +1,7 @@
-﻿using System;
-using System.Diagnostics;
-using FluentAssertions.Execution;
-using FluentAssertions.Primitives;
+﻿using FluentAssertions.Execution;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Diagnostics;
 
 namespace FluentAssertions.AspNetCore.Mvc
 {
@@ -10,7 +9,7 @@ namespace FluentAssertions.AspNetCore.Mvc
     /// Contains a number of methods to assert that a <see cref="CreatedAtRouteResult"/> is in the expected state.
     /// </summary>
     [DebuggerNonUserCode]
-    public class CreatedAtRouteResultAssertions : ObjectAssertions
+    public class CreatedAtRouteResultAssertions : ObjectResultAssertionsBase<CreatedAtRouteResult, CreatedAtRouteResultAssertions>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CreatedAtRouteResultAssertions" /> class.
@@ -61,29 +60,6 @@ namespace FluentAssertions.AspNetCore.Mvc
                 key, expectedValue, reason, reasonArgs);
 
             return this;
-        }
-
-        /// <summary>
-        ///     Asserts the value is of the expected type.
-        /// </summary>
-        /// <typeparam name="TValue">The expected type.</typeparam>
-        /// <returns>The typed value.</returns>
-        public TValue ValueAs<TValue>()
-        {
-            var subjectTyped = Subject as CreatedAtRouteResult;
-            var value = subjectTyped.Value;
-
-            if (value == null)
-                Execute.Assertion
-                    .WithDefaultIdentifier("CreatedAtRouteResult.Value")
-                    .FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, typeof(TValue));
-
-            Execute.Assertion
-                .ForCondition(value is TValue)
-                    .WithDefaultIdentifier("CreatedAtRouteResult.Value")
-                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(TValue), value.GetType());
-
-            return (TValue)value;
         }
     }
 }

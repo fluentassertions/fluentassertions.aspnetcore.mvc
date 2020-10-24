@@ -1,11 +1,11 @@
-﻿using System;
-using FluentAssertions.Mvc.Tests.Helpers;
+﻿using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Tests
 {
-    
+
     public class CreatedAtActionResultAssertions_Tests
     {
         public const string Reason = FailureMessageHelper.Reason;

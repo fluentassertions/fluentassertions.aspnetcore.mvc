@@ -106,7 +106,7 @@ namespace FluentAssertions.AspNetCore.Mvc {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Expected {context} to be of type {0} but was {1}..
+        ///   Looks up a localized string similar to Expected {context} to be of type {0} but was {1}{reason}..
         /// </summary>
         internal static string CommonTypeFailMessage {
             get {

@@ -133,7 +133,7 @@
     <value>Expected {context} to be of type {0}, but no value was supplied.</value>
   </data>
   <data name="CommonTypeFailMessage" xml:space="preserve">
-    <value>Expected {context} to be of type {0} but was {1}.</value>
+    <value>Expected {context} to be of type {0} but was {1}{reason}.</value>
   </data>
   <data name="ConvertibelModelFailMessage" xml:space="preserve">
     <value>Expected {context} to be ActionResult&lt;TValue&gt; with type {0}{reason} but was {1}.</value>

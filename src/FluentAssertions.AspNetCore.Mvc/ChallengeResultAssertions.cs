@@ -29,13 +29,44 @@ namespace FluentAssertions.AspNetCore.Mvc
         #endregion
 
         #region Public Properties
+        /// <summary>
+        /// The <see cref="ChallengeResult.Properties"/> that belongs to the ChallengeResult.
+        /// </summary>
         public AuthenticationProperties AuthenticationProperties => ChallengeResultSubject.Properties;
+
+        /// <summary>
+        /// The <see cref="AuthenticationProperties.Items"/> that belongs to the ChallengeResult.
+        /// </summary>
         public IDictionary<string, string> Items => ChallengeResultSubject.Properties?.Items;
+
+        /// <summary>
+        /// The <see cref="AuthenticationProperties.IsPersistent"/> that belongs to the ChallengeResult.
+        /// </summary>
         public bool IsPersistent => ChallengeResultSubject.Properties?.IsPersistent ?? false;
+
+        /// <summary>
+        /// The <see cref="AuthenticationProperties.RedirectUri"/> that belongs to the ChallengeResult.
+        /// </summary>
         public string RedirectUri => ChallengeResultSubject.Properties?.RedirectUri;
+
+        /// <summary>
+        /// The <see cref="AuthenticationProperties.IssuedUtc"/> that belongs to the ChallengeResult.
+        /// </summary>
         public DateTimeOffset? IssuedUtc => ChallengeResultSubject.Properties?.IssuedUtc;
+
+        /// <summary>
+        /// The <see cref="AuthenticationProperties.ExpiresUtc"/> that belongs to the ChallengeResult.
+        /// </summary>
         public DateTimeOffset? ExpiresUtc => ChallengeResultSubject.Properties?.ExpiresUtc;
+
+        /// <summary>
+        /// The <see cref="AuthenticationProperties.AllowRefresh"/> that belongs to the ChallengeResult.
+        /// </summary>
         public bool? AllowRefresh => ChallengeResultSubject.Properties?.AllowRefresh;
+
+        /// <summary>
+        /// The <see cref="ChallengeResult.AuthenticationSchemes"/> that belongs to the ChallengeResult.
+        /// </summary>
         public IList<string> AuthenticationSchemes => ChallengeResultSubject.AuthenticationSchemes;
         #endregion
 

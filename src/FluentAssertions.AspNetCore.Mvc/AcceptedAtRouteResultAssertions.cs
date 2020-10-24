@@ -1,8 +1,7 @@
-﻿using System;
-using System.Diagnostics;
-using FluentAssertions.Execution;
-using FluentAssertions.Primitives;
+﻿using FluentAssertions.Execution;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Diagnostics;
 
 namespace FluentAssertions.AspNetCore.Mvc
 {
@@ -10,7 +9,7 @@ namespace FluentAssertions.AspNetCore.Mvc
     /// Contains a number of methods to assert that a <see cref="AcceptedAtRouteResult"/> is in the expected state.
     /// </summary>
     [DebuggerNonUserCode]
-    public class AcceptedAtRouteResultAssertions : ObjectAssertions
+    public class AcceptedAtRouteResultAssertions : ObjectResultAssertionsBase<AcceptedAtRouteResult, AcceptedAtRouteResultAssertions>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AcceptedAtRouteResultAssertions" /> class.
@@ -30,13 +29,13 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </param>
         public AcceptedAtRouteResultAssertions WithRouteName(string expectedRouteName, string reason = "", params object[] reasonArgs)
         {
-            var subjectTyped = Subject as AcceptedAtRouteResult;
+            var actualRouteName = ObjectResultSubject.RouteName;
 
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
-                .ForCondition(string.Equals(expectedRouteName, subjectTyped.RouteName, StringComparison.OrdinalIgnoreCase))
+                .ForCondition(string.Equals(expectedRouteName, actualRouteName, StringComparison.OrdinalIgnoreCase))
                 .WithDefaultIdentifier("AcceptedAtRouteResult.RouteName")
-                .FailWith(FailureMessages.CommonFailMessage, expectedRouteName, subjectTyped.RouteName);
+                .FailWith(FailureMessages.CommonFailMessage, expectedRouteName, actualRouteName);
 
             return this;
         }
@@ -55,35 +54,12 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </param>
         public AcceptedAtRouteResultAssertions WithRouteValue(string key, object expectedValue, string reason = "", params object[] reasonArgs)
         {
-            var subjectTyped = Subject as AcceptedAtRouteResult;
+            var actualRouteValues = ObjectResultSubject.RouteValues;
 
-            AssertionHelpers.AssertStringObjectDictionary(subjectTyped.RouteValues,
+            AssertionHelpers.AssertStringObjectDictionary(actualRouteValues,
                 "AcceptedAtRouteResult.RouteValues", key, expectedValue, reason, reasonArgs);
 
             return this;
-        }
-
-        /// <summary>
-        ///     Asserts the value is of the expected type.
-        /// </summary>
-        /// <typeparam name="TValue">The expected type.</typeparam>
-        /// <returns>The typed value.</returns>
-        public TValue ValueAs<TValue>()
-        {
-            var subjectTyped = Subject as AcceptedAtRouteResult;
-            var value = subjectTyped.Value;
-
-            if (value == null)
-                Execute.Assertion
-                    .WithDefaultIdentifier("AcceptedAtRouteResult.Value")
-                    .FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, typeof(TValue));
-
-            Execute.Assertion
-                .ForCondition(value is TValue)
-                .WithDefaultIdentifier("AcceptedAtRouteResult.Value")
-                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(TValue), value.GetType());
-
-            return (TValue)value;
         }
     }
 }

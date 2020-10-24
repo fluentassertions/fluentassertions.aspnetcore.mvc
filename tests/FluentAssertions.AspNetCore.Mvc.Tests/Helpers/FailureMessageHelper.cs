@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentAssertions.Formatting;
+using System;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -17,24 +18,9 @@ namespace FluentAssertions.Mvc.Tests.Helpers
             return String.Format(message, formattedArg);
         }
 
-        public static string ExpectedContextToBeXButY(string context, Uri expected, Uri actual)
-        {
-            return ExpectedContextToBeXButY(context, expected?.ToString(), actual?.ToString());
-        }
-
-        public static string ExpectedContextToBeXButY(string context, string expected, string actual)
-        {
-            return ExpectedContextToBeXButY(context, (object)$"\"{expected}\"", (object)$"\"{actual}\"");
-        }
-
-        public static string ExpectedContextToBeXButY(string context, DateTimeOffset? expected, DateTimeOffset? actual)
-        {
-            return ExpectedContextToBeXButY(context, ToString(expected), ToString(actual));
-        }
-
         public static string ExpectedContextToBeXButY(string context, object expected, object actual)
         {
-            return $"Expected {context} to be {expected} because it is 10 but found {actual}.";
+            return $"Expected {context} to be {Formatter.ToString(expected)} because it is 10 but found {Formatter.ToString(actual)}.";
         }
 
         public static string ExpectedAtKeyValueXButFoundY(string context, string key, string expected, string actual)
@@ -47,37 +33,29 @@ namespace FluentAssertions.Mvc.Tests.Helpers
             return $"Expected {context} to contain value \"{expected}\" at key \"{key}\" because it is 10, but the key was not found.";
         }
 
-        private static object ToString(DateTimeOffset? expected)
+        internal static string ExpectedToContainItemButFoundNull(string context, object item)
         {
-            if (expected.HasValue)
-            {
-                var builder = new StringBuilder($"<{expected:yyyy-MM-dd HH:mm:ss}");
-                if (expected.Value.Millisecond > 0)
-                {
-                    builder.AppendFormat(".{0:fffffff}", expected.Value);
-                }
-                if (expected.Value.Offset.Hours > 0)
-                {
-                    builder.AppendFormat(" +{0}h", expected.Value.Offset.Hours);
-                }
-                else if (expected.Value.Offset.Hours < 0)
-                {
-                    builder.AppendFormat(" -{0}h", expected.Value.Offset.Hours);
-                }
-                builder.Append('>');
-                return builder.ToString();
-            }
-            return "<null>";
+            return $"Expected {context} to contain {Formatter.ToString(item)} because it is 10 but found <null>.";
+        }
+
+        internal static string ExpectedToHaveItemMatching(string context, object list, string predicate)
+        {
+            return $"Expected {context} {Formatter.ToString(list)} to have an item matching {predicate} because it is 10.";
+        }
+
+        internal static string ExpectedToContainItem(string context, object list, string expected)
+        {
+            return $"Expected {context} {Formatter.ToString(list)} to contain {Formatter.ToString(expected)} because it is 10.";
         }
 
         internal static string ExpectedContextTypeXButFoundY(string context, Type expected, Type actual)
         {
-            return ExpectedContextTypeXButFoundY(context, expected.FullName, actual.FullName);
+            return $"Expected {context} to be of type {Formatter.ToString(expected)} but was {Formatter.ToString(actual)}.";
         }
 
-        internal static string ExpectedContextTypeXButFoundY(string context, string expected, string actual)
+        internal static string ExpectedContextTypeXButFoundYWithReason(string context, Type expected, Type actual)
         {
-            return $"Expected {context} to be of type {expected} but was {actual}.";
+            return $"Expected {context} to be of type {Formatter.ToString(expected)} but was {Formatter.ToString(actual)} because it is 10.";
         }
 
         internal static string ExpectedContextTypeXButFoundNull(string context, Type expectedType)

@@ -1,8 +1,7 @@
-﻿using System;
-using System.Diagnostics;
-using FluentAssertions.Execution;
-using FluentAssertions.Primitives;
+﻿using FluentAssertions.Execution;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Diagnostics;
 
 namespace FluentAssertions.AspNetCore.Mvc
 {
@@ -10,7 +9,7 @@ namespace FluentAssertions.AspNetCore.Mvc
     /// Contains a number of methods to assert that a <see cref="CreatedResult"/> is in the expected state.
     /// </summary>
     [DebuggerNonUserCode]
-    public class CreatedResultAssertions : ObjectAssertions
+    public class CreatedResultAssertions : ObjectResultAssertionsBase<CreatedResult, CreatedResultAssertions>
     {
         #region Public Constructors
 
@@ -26,42 +25,13 @@ namespace FluentAssertions.AspNetCore.Mvc
 
         #region Public Properties
         /// <summary>
-        ///     The value on the CreatedResult
+        ///     The location on the CreatedResult.
         /// </summary>
-        public object Value => CreatedResultSubject.Value;
-
-        public string Location => CreatedResultSubject.Location;
-
-        #endregion
-
-        #region Private Properties
-        private CreatedResult CreatedResultSubject => (CreatedResult)Subject;
+        public string Location => ObjectResultSubject.Location;
 
         #endregion
 
         #region Public Methods
-        /// <summary>
-        ///     Asserts the value is of the expected type.
-        /// </summary>
-        /// <typeparam name="TValue">The expected type.</typeparam>
-        /// <returns>The typed value.</returns>
-        public TValue ValueAs<TValue>()
-        {
-            var value = CreatedResultSubject.Value;
-
-            if (value == null)
-                Execute.Assertion
-                    .WithDefaultIdentifier("CreatedResult.Value")
-                    .FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, typeof(TValue));
-
-            Execute.Assertion
-                .ForCondition(value is TValue)
-                .WithDefaultIdentifier("CreatedResult.Value")
-                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(TValue), value.GetType());
-
-            return (TValue)value;
-        }
-
         /// <summary>
         ///     Asserts the uri has the expected value.
         /// </summary>

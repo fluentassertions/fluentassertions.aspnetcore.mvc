@@ -28,13 +28,44 @@ namespace FluentAssertions.AspNetCore.Mvc
         #endregion
 
         #region Public Properties
+        /// <summary>
+        ///     The authentication properties on the SignOutResult.
+        /// </summary>
         public AuthenticationProperties AuthenticationProperties => SignOutResultSubject.Properties;
+
+        /// <summary>
+        ///     The items value in the authentication properties on the SignOutResult.
+        /// </summary>
         public IDictionary<string, string> Items => SignOutResultSubject.Properties?.Items;
+
+        /// <summary>
+        ///     The is persistent value in the authentication properties on the SignOutResult.
+        /// </summary>
         public bool IsPersistent => SignOutResultSubject.Properties?.IsPersistent ?? false;
+
+        /// <summary>
+        ///     The redirect uri value in the authentication properties on the SignOutResult.
+        /// </summary>
         public string RedirectUri => SignOutResultSubject.Properties?.RedirectUri;
+
+        /// <summary>
+        ///     The issued utc value in the authentication properties on the SignOutResult.
+        /// </summary>
         public DateTimeOffset? IssuedUtc => SignOutResultSubject.Properties?.IssuedUtc;
+
+        /// <summary>
+        ///     The expires utc value in the authentication properties on the SignOutResult.
+        /// </summary>
         public DateTimeOffset? ExpiresUtc => SignOutResultSubject.Properties?.ExpiresUtc;
+
+        /// <summary>
+        ///     The allow refresh value in the authentication properties on the SignOutResult.
+        /// </summary>
         public bool? AllowRefresh => SignOutResultSubject.Properties?.AllowRefresh;
+
+        /// <summary>
+        ///     The authentication schemes value on the SignOutResult.
+        /// </summary>
         public IList<string> AuthenticationSchemes => SignOutResultSubject.AuthenticationSchemes;
         #endregion
 

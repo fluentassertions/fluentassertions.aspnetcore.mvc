@@ -28,13 +28,45 @@ namespace FluentAssertions.AspNetCore.Mvc
         #endregion
 
         #region Public Properties
+
+        /// <summary>
+        ///     The authentication properties on the ForbidResult.
+        /// </summary>
         public AuthenticationProperties AuthenticationProperties => ForbidResultSubject.Properties;
+
+        /// <summary>
+        ///     The items value in the authentication properties on the ForbidResult.
+        /// </summary>
         public IDictionary<string, string> Items => ForbidResultSubject.Properties?.Items;
+
+        /// <summary>
+        ///     The is persistent value in the authentication properties on the ForbidResult.
+        /// </summary>
         public bool IsPersistent => ForbidResultSubject.Properties?.IsPersistent ?? false;
+
+        /// <summary>
+        ///     The redirect uri value in the authentication properties on the ForbidResult.
+        /// </summary>
         public string RedirectUri => ForbidResultSubject.Properties?.RedirectUri;
+
+        /// <summary>
+        ///     The issued utc value in the authentication properties on the ForbidResult.
+        /// </summary>
         public DateTimeOffset? IssuedUtc => ForbidResultSubject.Properties?.IssuedUtc;
+
+        /// <summary>
+        ///     The expires utc value in the authentication properties on the ForbidResult.
+        /// </summary>
         public DateTimeOffset? ExpiresUtc => ForbidResultSubject.Properties?.ExpiresUtc;
+
+        /// <summary>
+        ///     The allow refresh value in the authentication properties on the ForbidResult.
+        /// </summary>
         public bool? AllowRefresh => ForbidResultSubject.Properties?.AllowRefresh;
+
+        /// <summary>
+        ///     The authentication schemes value on the ForbidResult.
+        /// </summary>
         public IList<string> AuthenticationSchemes => ForbidResultSubject.AuthenticationSchemes;
         #endregion
 

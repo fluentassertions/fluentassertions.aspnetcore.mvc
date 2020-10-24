@@ -16,7 +16,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithContentType_GivenExpectedValue_ShouldPass()
         {
             var actualValue = "text/plain";
-            var expectedValue = string.Copy(actualValue);
+            var expectedValue = actualValue;
             ActionResult result = TestDataGenerator.CreateFileContentResult(contentType: actualValue);
 
             result.Should().BeFileResult().WithContentType(expectedValue);

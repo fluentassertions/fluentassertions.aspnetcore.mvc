@@ -27,7 +27,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeContent_GivenNotContent_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("result", typeof(ContentResult), typeof(ViewResult));
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(ContentResult), typeof(ViewResult));
 
             Action a = () => result.Should().BeContentResult(Reason, ReasonArgs);
 
@@ -47,7 +47,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeEmpty_GivenNotEmpty_ShouldPass()
         {
             ActionResult result = new ViewResult();
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("result", typeof(EmptyResult), typeof(ViewResult));
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(EmptyResult), typeof(ViewResult));
 
             Action a = () => result.Should().BeEmptyResult(Reason, ReasonArgs);
 
@@ -68,7 +68,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeFileResult_GivenNotFileResult_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("result", typeof(FileResult), typeof(ViewResult));
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(FileResult), typeof(ViewResult));
 
             Action a = () => result.Should().BeFileResult(Reason, ReasonArgs);
 
@@ -89,7 +89,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeFileContentResult_GivenNotFileContentResult_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("result", typeof(FileContentResult), typeof(ViewResult));
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(FileContentResult), typeof(ViewResult));
 
             Action a = () => result.Should().BeFileContentResult(Reason, ReasonArgs);
 
@@ -110,7 +110,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeFileStreamResult_GivenNotFileStreamResult_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("result", typeof(FileStreamResult), typeof(ViewResult));
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(FileStreamResult), typeof(ViewResult));
 
             Action a = () => result.Should().BeFileStreamResult(Reason, ReasonArgs);
 
@@ -131,7 +131,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BePhysicalFileResult_GivenNotPhysicalFileResult_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("result", typeof(PhysicalFileResult), typeof(ViewResult));
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(PhysicalFileResult), typeof(ViewResult));
 
             Action a = () => result.Should().BePhysicalFileResult(Reason, ReasonArgs);
 
@@ -152,7 +152,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeVirtualFileResult_GivenNotVirtualFileResult_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("result", typeof(VirtualFileResult), typeof(ViewResult));
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(VirtualFileResult), typeof(ViewResult));
 
             Action a = () => result.Should().BeVirtualFileResult(Reason, ReasonArgs);
 
@@ -174,7 +174,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeJson_GivenNotJson_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("result", typeof(JsonResult), typeof(ViewResult));
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(JsonResult), typeof(ViewResult));
 
             Action a = () => result.Should().BeJsonResult(Reason, ReasonArgs);
 
@@ -194,7 +194,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeRedirectToRoute_GivenNotRedirectToRoute_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("result", typeof(RedirectToRouteResult), typeof(ViewResult));
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(RedirectToRouteResult), typeof(ViewResult));
 
             Action a = () => result.Should().BeRedirectToRouteResult(Reason, ReasonArgs);
 
@@ -214,7 +214,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeRedirect_GivenNotRedirect_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("result", typeof(RedirectResult), typeof(ViewResult));
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(RedirectResult), typeof(ViewResult));
 
             Action a = () => result.Should().BeRedirectResult(Reason, ReasonArgs);
 
@@ -234,7 +234,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BePartialView_GivenNotPartial_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("result", typeof(PartialViewResult), typeof(ViewResult));
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(PartialViewResult), typeof(ViewResult));
 
             Action a = () => result.Should().BePartialViewResult(Reason, ReasonArgs);
 
@@ -254,7 +254,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeView_GivenNotView_ShouldFail()
         {
             ActionResult result = new RedirectResult("/");
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("result", typeof(ViewResult), typeof(RedirectResult));
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(ViewResult), typeof(RedirectResult));
 
             Action a = () => result.Should().BeViewResult(Reason, ReasonArgs);
 
@@ -274,9 +274,29 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeStatusCodeResult_GivenNotStatusCodeResult_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("result", typeof(StatusCodeResult), typeof(ViewResult));
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(StatusCodeResult), typeof(ViewResult));
 
             Action a = () => result.Should().BeStatusCodeResult(Reason, ReasonArgs);
+
+            a.Should().Throw<Exception>()
+                .WithMessage(failureMessage);
+        }
+
+        [Fact]
+        public void BeObjectResult_GivenObjectResult_ShouldPass()
+        {
+            ActionResult result = new ObjectResult("TestValue");
+
+            result.Should().BeObjectResult();
+        }
+
+        [Fact]
+        public void BeObjectResult_GivenNotObjectResult_ShouldFail()
+        {
+            ActionResult result = new ViewResult();
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(ObjectResult), typeof(ViewResult));
+
+            Action a = () => result.Should().BeObjectResult(Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
@@ -294,7 +314,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeOkResult_GivenNotOk_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("result", typeof(OkResult), typeof(ViewResult));
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(OkResult), typeof(ViewResult));
 
             Action a = () => result.Should().BeOkResult(Reason, ReasonArgs);
 
@@ -314,7 +334,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeBadRequestResult_GivenNotBadRequest_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("result", typeof(BadRequestResult), typeof(ViewResult));
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(BadRequestResult), typeof(ViewResult));
 
             Action a = () => result.Should().BeBadRequestResult(Reason, ReasonArgs);
 
@@ -334,7 +354,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeChallengeResult_GivenNotChallengeResult_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("result", typeof(ChallengeResult), typeof(ViewResult));
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(ChallengeResult), typeof(ViewResult));
 
             Action a = () => result.Should().BeChallengeResult(Reason, ReasonArgs);
 
@@ -353,7 +373,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeAcceptedResult_GivenNotAccepted_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("result", typeof(AcceptedResult), typeof(ViewResult));
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(AcceptedResult), typeof(ViewResult));
 
             Action a = () => result.Should().BeAcceptedResult(Reason, ReasonArgs);
 
@@ -373,7 +393,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeNoContentResult_GivenNotNoContent_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("result", typeof(NoContentResult), typeof(ViewResult));
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(NoContentResult), typeof(ViewResult));
 
             Action a = () => result.Should().BeNoContentResult(Reason, ReasonArgs);
 
@@ -393,7 +413,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeNotFoundResult_GivenNotNotFound_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("result", typeof(NotFoundResult), typeof(ViewResult));
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(NotFoundResult), typeof(ViewResult));
 
             Action a = () => result.Should().BeNotFoundResult(Reason, ReasonArgs);
 
@@ -413,7 +433,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeUnauthorizedResult_GivenNotUnauthorized_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("result", typeof(UnauthorizedResult), typeof(ViewResult));
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(UnauthorizedResult), typeof(ViewResult));
 
             Action a = () => result.Should().BeUnauthorizedResult(Reason, ReasonArgs);
 
@@ -433,7 +453,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeSignOutResult_GivenNotSignOutResult_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("result", typeof(SignOutResult), typeof(ViewResult));
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(SignOutResult), typeof(ViewResult));
 
             Action a = () => result.Should().BeSignOutResult(Reason, ReasonArgs);
 
@@ -454,7 +474,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void BeLocalRedirectResult_GivenNotLocalRedirectResult_ShouldFail()
         {
             ActionResult result = new ViewResult();
-            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY("result", typeof(LocalRedirectResult), typeof(ViewResult));
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(LocalRedirectResult), typeof(ViewResult));
 
             Action a = () => result.Should().BeLocalRedirectResult(Reason, ReasonArgs);
 

@@ -1,6 +1,6 @@
-﻿using System;
-using FluentAssertions.Mvc.Tests.Helpers;
+﻿using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Tests
@@ -38,7 +38,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var result = new TestController().Accepted(TestUri, TestValue);
             var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY(
-                "AcceptedResultAssertions.Value", typeof(int), typeof(string));
+                "AcceptedResult.Value", typeof(int), typeof(string));
 
             Action a = () => result.Should().BeAcceptedResult().ValueAs<int>().Should().Be(2);
 
@@ -50,7 +50,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             ActionResult result = new AcceptedResult(TestUri, null);
             var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundNull(
-                "AcceptedResultAssertions.Value", typeof(object));
+                "AcceptedResult.Value", typeof(object));
 
             Action a = () => result.Should().BeAcceptedResult().ValueAs<object>();
 
@@ -69,7 +69,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithUri_GivenWrongUri_ShouldFail()
         {
             var result = new TestController().Accepted(TestWrongUri, TestValue);
-            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("AcceptedResultAssertions.Uri", TestUri.ToString(), TestWrongUri.ToString());
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("AcceptedResult.Uri", TestUri.ToString(), TestWrongUri.ToString());
 
             Action a = () => result.Should().BeAcceptedResult().WithUri(TestUri, Reason, ReasonArgs);
             
@@ -88,7 +88,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithUri_GivenWrongUriAsString_ShouldFail()
         {
             var result = new TestController().Accepted(TestWrongUriAsString, TestValue);
-            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("AcceptedResultAssertions.Uri", TestUriAsString, TestWrongUriAsString);
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("AcceptedResult.Uri", TestUriAsString, TestWrongUriAsString);
 
             Action a = () => result.Should().BeAcceptedResult().WithUri(TestUriAsString, Reason, ReasonArgs);
 
