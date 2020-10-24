@@ -1,7 +1,5 @@
-﻿using System.Diagnostics;
-using FluentAssertions.Execution;
-using FluentAssertions.Primitives;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace FluentAssertions.AspNetCore.Mvc
 {
@@ -9,7 +7,7 @@ namespace FluentAssertions.AspNetCore.Mvc
     /// Contains a number of methods to assert that a <see cref="OkObjectResult"/> is in the expected state.
     /// </summary>
     [DebuggerNonUserCode]
-    public class OkObjectResultAssertions : ObjectAssertions
+    public class OkObjectResultAssertions : ObjectResultAssertionsBase<OkObjectResult, OkObjectResultAssertions>
     {
         #region Public Constructors
 
@@ -21,43 +19,6 @@ namespace FluentAssertions.AspNetCore.Mvc
         {
         }
 
-        #endregion
-
-        #region Public Properties
-        /// <summary>
-        ///     The value on the OkObjectResult
-        /// </summary>
-        public object Value => OkObjectResultSubject.Value;
-
-        #endregion
-
-        #region Private Properties
-        private OkObjectResult OkObjectResultSubject => (OkObjectResult)Subject;
-
-        #endregion
-
-        #region Public Methods
-        /// <summary>
-        ///     Asserts the value is of the expected type.
-        /// </summary>
-        /// <typeparam name="TValue">The expected type.</typeparam>
-        /// <returns>The typed value.</returns>
-        public TValue ValueAs<TValue>()
-        {
-            var value = OkObjectResultSubject.Value;
-
-            if (value == null)
-                Execute.Assertion
-                    .WithDefaultIdentifier("OkObjectResult.Value")
-                    .FailWith(FailureMessages.CommonNullWasSuppliedFailMessage, typeof(TValue));
-
-            Execute.Assertion
-                .ForCondition(value is TValue)
-                .WithDefaultIdentifier("OkObjectResult.Value")
-                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(TValue), value.GetType());
-
-            return (TValue)value;
-        }
         #endregion
     }
 }
