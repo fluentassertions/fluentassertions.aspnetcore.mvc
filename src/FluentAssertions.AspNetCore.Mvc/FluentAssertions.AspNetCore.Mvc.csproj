@@ -10,7 +10,7 @@
     <TargetFrameworks>netstandard2.0;netcoreapp3.0</TargetFrameworks>
     <AssemblyName>FluentAssertions.AspNetCore.Mvc</AssemblyName>
     <PackageId>FluentAssertions.AspNetCore.Mvc</PackageId>
-    <PackageTags>TDD;TDD;Fluent;Mvc;AspNetMvc;aspnetcore;aspnetcoremvc</PackageTags>
+    <PackageTags>TDD;Fluent;Mvc;AspNetMvc;aspnetcore;aspnetcoremvc</PackageTags>
     <PackageReleaseNotes>See https://github.com/fluentassertions/fluentassertions.aspnetcore.mvc/releases </PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/fluentassertions/fluentassertions.aspnetcore.mvc</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/fluentassertions/fluentassertions.aspnetcore.mvc/blob/master/license.txt</PackageLicenseUrl>
