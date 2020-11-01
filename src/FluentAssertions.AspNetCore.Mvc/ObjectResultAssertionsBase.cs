@@ -241,6 +241,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </summary>
         /// <param name="predicate">
         /// The predicate which must be satisfied by the <see cref="ObjectResult.Value"/>.
+        /// </param>
         /// <param name="reason">
         ///     A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
         ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
