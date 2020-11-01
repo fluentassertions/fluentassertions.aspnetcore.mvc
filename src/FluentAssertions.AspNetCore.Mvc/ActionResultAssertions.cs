@@ -139,7 +139,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         }
 
         /// <summary>
-        /// Asserts that the subject is an <see cref="FileStreamResult"/>.
+        /// Asserts that the subject is an <see cref="PhysicalFileResult"/>.
         /// </summary>
         /// <param name="reason">
         /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
