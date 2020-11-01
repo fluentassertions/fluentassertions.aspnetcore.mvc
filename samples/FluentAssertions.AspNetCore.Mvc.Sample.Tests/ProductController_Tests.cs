@@ -1,6 +1,5 @@
 using FluentAssertions.AspNetCore.Mvc.Sample.Controllers;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Sample.Tests
@@ -26,7 +25,9 @@ namespace FluentAssertions.AspNetCore.Mvc.Sample.Tests
             var result = controller.GetActionResultOfT(model, returnError);
 
             result.Should().BeObjectResult()
-                .Value.Should().Be(model);
+                .WithValue(model) // Equals check
+                .WithValueEquivalentTo(model) // Equivalency check
+                .WithValueMatch<Models.ProductViewModel>(m => m.Id == 1); // match check.
         }
 
         [Fact]

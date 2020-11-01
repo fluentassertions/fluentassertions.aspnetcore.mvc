@@ -12,6 +12,11 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
     public class ObjectResultAssertions_Tests
     {
         private const string TestValue = "testValue";
+        private const string WrongValue = "wrongValue";
+
+        private readonly object TestObject = new { Value = "testValue" };
+        private readonly object GoodObject = new { Value = "testValue" };
+        private readonly object WrongObject = new { Value = "wrongValue" };
         public const string Reason = FailureMessageHelper.Reason;
         public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
 
@@ -219,5 +224,81 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
         }
+
+        [Fact]
+        public void WithValue_GivenExpected_ShouldPass()
+        {
+            var result = new ObjectResult(TestValue);
+
+            result.Should().BeObjectResult()
+                .WithValue(TestValue);
+        }
+
+        [Fact]
+        public void WithValue_GivenUnexpected_ShouldFail()
+        {
+            var result = new ObjectResult(WrongValue);
+            string failureMessage = FailureMessageHelper.ExpectedContextToBeXButY(
+                "ObjectResult.Value",
+                TestValue,
+                WrongValue);
+
+            Action a = () => result.Should().BeObjectResult().WithValue(TestValue, Reason, ReasonArgs);
+
+            a.Should().Throw<Exception>()
+                .WithMessage(failureMessage);
+        }
+        
+        [Fact]
+        public void WithValueEquivalentTo_GivenExpected_ShouldPass()
+        {
+            var result = new ObjectResult(TestObject);
+
+            result.Should().BeObjectResult()
+                .WithValueEquivalentTo(GoodObject);
+        }
+
+        [Fact]
+        public void WithValueEquivalentTo_GivenUnexpected_ShouldFail()
+        {
+            var result = new ObjectResult(WrongObject);
+            string failureMessage = @"Expected member Value to be 
+""testValue"" with a length of 9 because it is 10, but 
+""wrongValue"" has a length of 10.
+
+With configuration:
+- Use declared types and members
+- Compare enums by value
+- Match member by name (or throw)
+- Without automatic conversion.
+- Be strict about the order of items in byte arrays";
+
+            Action a = () => result.Should().BeObjectResult().WithValueEquivalentTo(GoodObject, Reason, ReasonArgs);
+
+            a.Should().Throw<Exception>()
+                .WithMessage(failureMessage);
+        }
+
+        [Fact]
+        public void WithValueMatch_GivenExpected_ShouldPass()
+        {
+            var result = new ObjectResult(TestValue);
+
+            result.Should().BeObjectResult()
+                .WithValueMatch<string>(value => value == TestValue);
+        }
+
+        [Fact]
+        public void WithValueMatch_GivenUnexpected_ShouldFail()
+        {
+            var result = new ObjectResult(WrongValue);
+            string failureMessage = "Expected ObjectResult.Value to match (value == \"testValue\") because it is 10, but found \"wrongValue\".";
+
+            Action a = () => result.Should().BeObjectResult().WithValueMatch<string>(value => value == TestValue, Reason, ReasonArgs);
+
+            a.Should().Throw<Exception>()
+                .WithMessage(failureMessage);
+        }
+
     }
 }
