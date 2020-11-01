@@ -25,8 +25,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Sample.Tests
 
             var result = controller.GetActionResultOfT(model, returnError);
 
-            result.Should().BeConvertibleTo<ObjectResult>()
-                .And.Value.Should().BeSameAs(model);
+            result.Should().BeObjectResult()
+                .Value.Should().Be(model);
         }
 
         [Fact]

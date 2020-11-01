@@ -79,6 +79,25 @@ namespace FluentAssertions.AspNetCore.Mvc
 
             return new AndWhichConstraint<ActionResultAssertions<TValue>, TActionResult>(this, (TActionResult)convertResult);
         }
+
+        /// <summary>
+        /// Asserts that the <see cref="ActionResult{TValue}.Result"/> is type of <see cref="ObjectResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        [CustomAssertion]
+        public ObjectResultAssertions BeObjectResult(string reason = "", params object[] reasonArgs)
+        {
+            var result = BeConvertibleTo<ObjectResult>(reason, reasonArgs).Which;
+
+            return new ObjectResultAssertions(result);
+        }
+
+        #endregion Public Methods
     }
-    #endregion Public Methods
 }
