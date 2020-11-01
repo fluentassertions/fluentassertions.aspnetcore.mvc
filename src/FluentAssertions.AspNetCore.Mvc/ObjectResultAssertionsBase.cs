@@ -1,4 +1,6 @@
-﻿using FluentAssertions.Execution;
+﻿using FluentAssertions.Common;
+using FluentAssertions.Equivalency;
+using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
@@ -157,14 +159,108 @@ namespace FluentAssertions.AspNetCore.Mvc
             var actual = ObjectResultSubject.DeclaredType;
 
             Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
                 .ForCondition(expectedDeclaredType == actual)
                 .WithDefaultIdentifier(Identifier + ".DeclaredType")
-                .BecauseOf(reason, reasonArgs)
                 .FailWith(FailureMessages.CommonTypeFailMessage, expectedDeclaredType, actual);
 
             return (TObjectResultAssertion)this;
         }
 
+        /// <summary>
+        /// Asserts that the <see cref="ObjectResult.Value"/> is the expected value.
+        /// </summary>
+        /// <param name="expectedValue">The expected value.</param>
+        /// <param name="reason">
+        ///     A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        public TObjectResultAssertion WithValue(object expectedValue, string reason = "", params object[] reasonArgs)
+        {
+            object actualValue = ObjectResultSubject.Value;
+
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(actualValue.IsSameOrEqualTo(expectedValue))
+                .WithDefaultIdentifier(Identifier + ".Value")
+                .FailWith(FailureMessages.CommonFailMessage, expectedValue, actualValue);
+
+            return (TObjectResultAssertion)this;
+        }
+
+        /// <summary>
+        /// Asserts that the <see cref="ObjectResult.Value"/> is equivalent to another object.
+        /// </summary>
+        /// <param name="expectation">The expected value.</param>
+        /// <param name="reason">
+        ///     A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        public TObjectResultAssertion WithValueEquivalentTo<TExpectation>(TExpectation expectation,
+            string reason = "", params object[] reasonArgs)
+        {
+            return WithValueEquivalentTo(expectation, config => config, reason, reasonArgs);
+        }
+
+        /// <summary>
+        /// Asserts that the <see cref="ObjectResult.Value"/> is equivalent to another object.
+        /// </summary>
+        /// <param name="expectation">The expected status code.</param>
+        /// <param name="config">
+        /// A reference to the <see cref="EquivalencyAssertionOptions{TSubject}"/> configuration object that can be used
+        /// to influence the way the object graphs are compared. You can also provide an alternative instance of the
+        /// <see cref="EquivalencyAssertionOptions{TSubject}"/> class. The global defaults are determined by the
+        /// <see cref="AssertionOptions"/> class.
+        /// </param>
+        /// <param name="reason">
+        ///     A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        public TObjectResultAssertion WithValueEquivalentTo<TExpectation>(TExpectation expectation,
+            Func<EquivalencyAssertionOptions<TExpectation>, EquivalencyAssertionOptions<TExpectation>> config, string reason = "", params object[] reasonArgs)
+        {
+            object actualValue = ObjectResultSubject.Value;
+
+            actualValue.Should().BeEquivalentTo(expectation, config, reason, reasonArgs);
+
+            return (TObjectResultAssertion)this;
+        }
+
+
+        /// <summary>
+        /// Asserts that the <see cref="ObjectResult.Value"/> statisfies the <paramref name="predicate"/>.
+        /// </summary>
+        /// <param name="predicate">
+        /// The predicate which must be satisfied by the <see cref="ObjectResult.Value"/>.
+        /// </param>
+        /// <param name="reason">
+        ///     A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        ///     is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        ///     Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        public TObjectResultAssertion WithValueMatch<TExpectation>(Expression<Func<TExpectation, bool>> predicate,
+            string reason = "", params object[] reasonArgs)
+        {
+            object actualValue = ValueAs<TExpectation>();
+
+            using(var scope = new AssertionScope(Identifier + ".Value"))
+            {
+                actualValue.Should().Match(predicate, reason, reasonArgs);
+            }
+
+            return (TObjectResultAssertion)this;
+        }
 
         /// <summary>
         /// Asserts that the <see cref="ObjectResult.StatusCode"/> is the expected status code.
@@ -182,9 +278,9 @@ namespace FluentAssertions.AspNetCore.Mvc
             var actual = ObjectResultSubject.StatusCode;
 
             Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
                 .ForCondition(expectedStatusCode == actual)
                 .WithDefaultIdentifier(Identifier + ".StatusCode")
-                .BecauseOf(reason, reasonArgs)
                 .FailWith(FailureMessages.CommonFailMessage, expectedStatusCode, actual);
 
             return (TObjectResultAssertion)this;

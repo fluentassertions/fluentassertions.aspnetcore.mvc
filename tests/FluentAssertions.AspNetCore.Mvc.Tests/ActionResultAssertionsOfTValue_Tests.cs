@@ -1,6 +1,5 @@
 using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 using System;
 using Xunit;
 
@@ -72,6 +71,28 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             actual.Should().BeSameAs(expectation);
         }
+
+        [Fact]
+        public void BeObjectResult_GivenActionResultWithObjectResult_ShouldPass()
+        {
+            var result = new ActionResult<object>(new object());
+
+            result.Should().BeObjectResult(Reason, ReasonArgs);
+        }
+
+        [Fact]
+        public void BeObjectResult_GivenActionResultWithNotObjectResult_ShouldFail()
+        {
+            var result = new ActionResult<object>(new BadRequestObjectResult(new object()));
+            var failureMessage = FailureMessageHelper.ExpectedContextToBeConvertible(
+                "result", typeof(ObjectResult).FullName, typeof(BadRequestObjectResult).FullName);
+
+            Action action = () => result.Should().BeObjectResult(Reason, ReasonArgs);
+
+            action.Should().Throw<Exception>()
+                .WithMessage(failureMessage);
+        }
+
         #endregion Public Methods
     }
 }
