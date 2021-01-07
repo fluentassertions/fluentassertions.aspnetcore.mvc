@@ -15,7 +15,7 @@ PM> Install-Package FluentAssertions.AspNetCore.Mvc
 
 ## Getting Started
 
-Write a unit test for your controller using one of the [supported test frameworks][fa-frameworks].  For exampe with NUnit:
+Write a unit test for your controller using one of the [supported test frameworks][fa-frameworks].  For example with NUnit:
 
 ```` C#
 [Test]
