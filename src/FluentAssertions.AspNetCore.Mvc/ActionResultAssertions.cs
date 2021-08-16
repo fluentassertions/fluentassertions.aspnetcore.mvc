@@ -18,7 +18,6 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// </summary>
         public ActionResultAssertions(IActionResult subject) : base(subject)
         {
-            Subject = subject;
         }
 
         #endregion Public Constructors

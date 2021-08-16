@@ -97,24 +97,24 @@ namespace FluentAssertions.Mvc.Tests.Helpers
 
 Microsoft.AspNetCore.Authentication.AuthenticationProperties
 {
-   AllowRefresh = <null>
-   ExpiresUtc = <null>
-   IsPersistent = False
-   IssuedUtc = <null>
-   Items = {empty}
-   Parameters = {empty}
-   RedirectUri = <null>
+    AllowRefresh = <null>, 
+    ExpiresUtc = <null>, 
+    IsPersistent = False, 
+    IssuedUtc = <null>, 
+    Items = {empty}, 
+    Parameters = {empty}, 
+    RedirectUri = <null>
 } because it is 10 but found 
 
 Microsoft.AspNetCore.Authentication.AuthenticationProperties
 {
-   AllowRefresh = <null>
-   ExpiresUtc = <null>
-   IsPersistent = False
-   IssuedUtc = <null>
-   Items = {empty}
-   Parameters = {empty}
-   RedirectUri = <null>
+    AllowRefresh = <null>, 
+    ExpiresUtc = <null>, 
+    IsPersistent = False, 
+    IssuedUtc = <null>, 
+    Items = {empty}, 
+    Parameters = {empty}, 
+    RedirectUri = <null>
 }.";
             return failureMessage;
         }

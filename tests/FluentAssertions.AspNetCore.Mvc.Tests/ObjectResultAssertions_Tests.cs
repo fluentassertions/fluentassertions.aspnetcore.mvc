@@ -262,16 +262,18 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithValueEquivalentTo_GivenUnexpected_ShouldFail()
         {
             var result = new ObjectResult(WrongObject);
-            string failureMessage = @"Expected member Value to be 
-""testValue"" with a length of 9 because it is 10, but 
-""wrongValue"" has a length of 10.
+            string failureMessage = @"Expected property actualValue.Value to be ""testValue"" with a length of 9 because it is 10, but ""wrongValue"" has a length of 10, differs near ""wro"" (index 0).
 
 With configuration:
 - Use declared types and members
 - Compare enums by value
+- Compare tuples by their properties
+- Compare anonymous types by their properties
+- Compare records by their members
 - Match member by name (or throw)
+- Be strict about the order of items in byte arrays
 - Without automatic conversion.
-- Be strict about the order of items in byte arrays";
+";
 
             Action a = () => result.Should().BeObjectResult().WithValueEquivalentTo(GoodObject, Reason, ReasonArgs);
 
