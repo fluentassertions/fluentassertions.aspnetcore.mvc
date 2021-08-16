@@ -262,7 +262,12 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithValueEquivalentTo_GivenUnexpected_ShouldFail()
         {
             var result = new ObjectResult(WrongObject);
-            string failureMessage = @"Expected property actualValue.Value to be ""testValue"" with a length of 9 because it is 10, but ""wrongValue"" has a length of 10, differs near ""wro"" (index 0).
+#if DEBUG
+            var actualRef = "actualValue";
+#else
+            var actualRef = "root";
+#endif
+            string failureMessage = $@"Expected property {actualRef}.Value to be ""testValue"" with a length of 9 because it is 10, but ""wrongValue"" has a length of 10, differs near ""wro"" (index 0).
 
 With configuration:
 - Use declared types and members
