@@ -56,7 +56,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         {
             var subjectTyped = Subject as CreatedAtRouteResult;
 
-            AssertionHelpers.AssertStringObjectDictionary(subjectTyped.RouteValues, "CreatedAtRouteResult.RouteValues", 
+            AssertionHelpers.AssertStringObjectDictionary(subjectTyped.RouteValues, "CreatedAtRouteResult.RouteValues",
                 key, expectedValue, reason, reasonArgs);
 
             return this;

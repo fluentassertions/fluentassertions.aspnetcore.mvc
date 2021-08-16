@@ -60,7 +60,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var expectedKey = "expectedKey";
 
-            var routeValues = new {myKey = "MyValue"};
+            var routeValues = new { myKey = "MyValue" };
             var result = new CreatedAtActionResult(string.Empty, string.Empty, routeValues, null);
             string failureMessage = FailureMessageHelper.ExpectedContextContainValueAtKeyButKeyNotFound(
                 "CreatedAtActionResult.RouteValues", "Val", expectedKey);
@@ -75,7 +75,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var expectedKey = "expectedKey";
             var expectedValue = "expectedValue";
-            var routeValues = new {expectedKey = expectedValue};
+            var routeValues = new { expectedKey = expectedValue };
             var result = new CreatedAtActionResult(string.Empty, string.Empty, routeValues, null);
 
             result.Should().BeCreatedAtActionResult().WithRouteValue(expectedKey, expectedValue);

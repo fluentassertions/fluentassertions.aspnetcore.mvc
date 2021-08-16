@@ -49,7 +49,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithFileDownloadName_GivenUnexpected_ShouldFail()
         {
             var actualValue = "file2.txt";
-            var expectedValue = "file1.txt"; 
+            var expectedValue = "file1.txt";
             var result = TestDataGenerator.CreateFileContentResult();
             result.FileDownloadName = actualValue;
             var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("FileResult.FileDownloadName", expectedValue, actualValue);

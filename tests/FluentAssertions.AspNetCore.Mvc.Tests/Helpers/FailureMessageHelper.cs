@@ -2,7 +2,6 @@
 using System;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 
 namespace FluentAssertions.Mvc.Tests.Helpers
 {

@@ -71,7 +71,7 @@ namespace FluentAssertions.AspNetCore.Mvc
 
         #region Private Properties
 
-        private SignOutResult SignOutResultSubject => (SignOutResult) Subject;
+        private SignOutResult SignOutResultSubject => (SignOutResult)Subject;
 
         #endregion
 
@@ -241,7 +241,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         {
             var actualItems = Items;
 
-            AssertionHelpers.AssertStringObjectDictionary(actualItems, "SignOutResult.AuthenticationProperties.Items", 
+            AssertionHelpers.AssertStringObjectDictionary(actualItems, "SignOutResult.AuthenticationProperties.Items",
                 expectedKey, expectedValue, reason, reasonArgs);
 
             return this;

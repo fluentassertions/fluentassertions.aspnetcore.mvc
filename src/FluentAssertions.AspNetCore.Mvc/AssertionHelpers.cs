@@ -1,5 +1,4 @@
-﻿using FluentAssertions.Common;
-using FluentAssertions.Execution;
+﻿using FluentAssertions.Execution;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -9,7 +8,7 @@ namespace FluentAssertions.AspNetCore.Mvc
     internal class AssertionHelpers
     {
         internal static void AssertStringObjectDictionary<TKey, TValue>(
-            IDictionary<TKey, TValue> dictionary, 
+            IDictionary<TKey, TValue> dictionary,
             string context,
             TKey key,
             TValue expectedValue,

@@ -7,7 +7,7 @@ namespace FluentAssertions.AspNetCore.Mvc
     /// <summary>
     /// Contains a number of methods to assert that a <see cref="VirtualFileResult"/> is in the expected state.
     /// </summary>
-    public class VirtualFileResultAssertions :  FileResultAssertionsBase<VirtualFileResult, VirtualFileResultAssertions>
+    public class VirtualFileResultAssertions : FileResultAssertionsBase<VirtualFileResult, VirtualFileResultAssertions>
     {
         #region Public Constructors
 

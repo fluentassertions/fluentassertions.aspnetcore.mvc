@@ -1,7 +1,7 @@
-﻿using System;
-using FluentAssertions.Mvc.Tests.Helpers;
+﻿using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System;
 using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Tests
@@ -48,7 +48,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         [Fact]
         public void ErrorAs_GivenWrongType_ShouldFail()
         {
-            var result = new TestController().BadRequest(TestError); 
+            var result = new TestController().BadRequest(TestError);
             var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundY(
                  "BadRequestObjectResult.Error", typeof(int), typeof(string));
 

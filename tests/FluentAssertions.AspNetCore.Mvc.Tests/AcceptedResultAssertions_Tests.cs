@@ -11,10 +11,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
 
         private const string TestValue = "testValue";
-        
+
         private const string TestUriAsString = "http://localhost:5000";
         private const string TestWrongUriAsString = "http://somedomain.com:5000";
-        
+
         private readonly Uri TestUri = new Uri(TestUriAsString);
         private readonly Uri TestWrongUri = new Uri(TestWrongUriAsString);
 
@@ -72,7 +72,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("AcceptedResult.Uri", TestUri.ToString(), TestWrongUri.ToString());
 
             Action a = () => result.Should().BeAcceptedResult().WithUri(TestUri, Reason, ReasonArgs);
-            
+
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
 

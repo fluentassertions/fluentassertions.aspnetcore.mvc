@@ -1,9 +1,9 @@
-﻿using System;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Net.Http.Headers;
+using System;
+using System.Security.Claims;
 
 namespace FluentAssertions.AspNetCore.Mvc.Sample.Controllers
 {

@@ -77,7 +77,7 @@ namespace FluentAssertions.AspNetCore.Mvc
 
         #region Private Properties
 
-        private SignInResult SignInResultSubject => (SignInResult) Subject;
+        private SignInResult SignInResultSubject => (SignInResult)Subject;
 
         #endregion
 
@@ -246,7 +246,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         public SignInResultAssertions ContainsItem(string expectedKey, string expectedValue, string reason = "", params object[] reasonArgs)
         {
             var actualItems = Items;
-            
+
             AssertionHelpers.AssertStringObjectDictionary(actualItems, "SignInResult.AuthenticationProperties.Items", expectedKey, expectedValue, reason, reasonArgs);
 
             return this;

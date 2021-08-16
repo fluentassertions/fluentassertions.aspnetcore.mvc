@@ -121,7 +121,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             mock.Setup(e => e.Convert()).Returns(expectation);
             var result = mock.Object;
 
-            var actual = 
+            var actual =
                 result.Should().BeConvertibleTo<OkObjectResult>(Reason, ReasonArgs).Which;
 
             actual.Should().BeSameAs(expectation);

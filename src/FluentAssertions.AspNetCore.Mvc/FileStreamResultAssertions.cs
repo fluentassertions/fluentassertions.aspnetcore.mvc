@@ -16,7 +16,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// Creates an instance of this class.
         /// </summary>
         /// <param name="fileResult">The testet instance.</param>
-        public FileStreamResultAssertions(FileStreamResult fileResult) 
+        public FileStreamResultAssertions(FileStreamResult fileResult)
             : base(fileResult)
         {
         }

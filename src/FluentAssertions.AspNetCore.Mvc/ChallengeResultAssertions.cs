@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.Linq;
-using FluentAssertions.Execution;
+﻿using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using AuthenticationProperties = Microsoft.AspNetCore.Authentication.AuthenticationProperties;
 
 namespace FluentAssertions.AspNetCore.Mvc
@@ -72,7 +71,7 @@ namespace FluentAssertions.AspNetCore.Mvc
 
         #region Private Properties
 
-        private ChallengeResult ChallengeResultSubject => (ChallengeResult) Subject;
+        private ChallengeResult ChallengeResultSubject => (ChallengeResult)Subject;
 
         #endregion
 
