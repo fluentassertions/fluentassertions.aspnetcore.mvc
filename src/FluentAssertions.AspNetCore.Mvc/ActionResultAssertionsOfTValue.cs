@@ -17,9 +17,8 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <summary>
         /// Initializes a new instance of the <see cref="ActionResultAssertions{TValue}" /> class.
         /// </summary>
-        public ActionResultAssertions(ActionResult<TValue> subject)
+        public ActionResultAssertions(ActionResult<TValue> subject) : base(subject)
         {
-            Subject = subject;
         }
 
         #endregion Public Constructors

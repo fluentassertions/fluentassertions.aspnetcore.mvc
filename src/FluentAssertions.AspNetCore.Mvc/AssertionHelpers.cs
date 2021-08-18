@@ -30,7 +30,7 @@ namespace FluentAssertions.AspNetCore.Mvc
                 {
                     Execute.Assertion
                         .BecauseOf(reason, reasonArgs)
-                        .ForCondition(actual.IsSameOrEqualTo(expectedValue))
+                        .ForCondition(Equals(actual, expectedValue))
                         .FailWith("Expected {context} to contain value {0} at key {1}{reason} but found {2}.", expectedValue, key, actual);
                 }
                 else

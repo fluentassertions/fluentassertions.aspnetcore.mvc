@@ -339,20 +339,16 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var excpectedClaimsPrincipal = new ClaimsPrincipal();
             ActionResult result = new SignInResult(TestAuthenticationScheme, TestClaimsPrincipal);
-            var failureMessage = @"Expected SignInResult.Principal to be 
-
-System.Security.Claims.ClaimsPrincipal
+            var failureMessage = @"Expected SignInResult.Principal to be System.Security.Claims.ClaimsPrincipal
 {
-   Claims = {empty}
-   Identities = {empty}
-   Identity = <null>
-} because it is 10 but found 
-
-System.Security.Claims.ClaimsPrincipal
+    Claims = {empty}, 
+    Identities = {empty}, 
+    Identity = <null>
+} because it is 10 but found System.Security.Claims.ClaimsPrincipal
 {
-   Claims = {empty}
-   Identities = {empty}
-   Identity = <null>
+    Claims = {empty}, 
+    Identities = {empty}, 
+    Identity = <null>
 }.";
 
             Action a = () => result.Should().BeSignInResult().WithPrincipal(excpectedClaimsPrincipal, Reason, ReasonArgs);

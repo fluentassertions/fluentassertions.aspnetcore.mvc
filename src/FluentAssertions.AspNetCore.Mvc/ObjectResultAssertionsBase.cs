@@ -184,7 +184,7 @@ namespace FluentAssertions.AspNetCore.Mvc
 
             Execute.Assertion
                 .BecauseOf(reason, reasonArgs)
-                .ForCondition(actualValue.IsSameOrEqualTo(expectedValue))
+                .ForCondition(Equals(actualValue, expectedValue))
                 .WithDefaultIdentifier(Identifier + ".Value")
                 .FailWith(FailureMessages.CommonFailMessage, expectedValue, actualValue);
 

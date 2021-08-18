@@ -13,9 +13,8 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <summary>
         /// Initializes a new instance of the <see cref="ConvertToActionResultAssertions" /> class.
         /// </summary>
-        public ConvertToActionResultAssertions(IConvertToActionResult subject)
+        public ConvertToActionResultAssertions(IConvertToActionResult subject) : base(subject)
         {
-            Subject = subject;
         }
 
         /// <inheritdoc />

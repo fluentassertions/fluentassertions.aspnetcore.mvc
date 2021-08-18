@@ -17,7 +17,6 @@ namespace FluentAssertions.AspNetCore.Mvc
         public RouteDataAssertions(RouteData subject)
             : base(subject)
         {
-            Subject = subject;
         }
 
         /// <summary>
