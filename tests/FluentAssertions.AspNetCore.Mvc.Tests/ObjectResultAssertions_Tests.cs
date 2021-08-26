@@ -1,10 +1,9 @@
-﻿using System;
-using System.Linq.Expressions;
-using System.Net.Http.Headers;
-using FluentAssertions.Mvc.Tests.Helpers;
+﻿using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Moq;
+using System;
+using System.Linq.Expressions;
 using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Tests
@@ -101,7 +100,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             };
             string failureMessage = FailureMessageHelper.ExpectedToHaveItemMatching(
                 "ObjectResult.Formatters",
-                result.Formatters, 
+                result.Formatters,
                 "False");
 
             Action a = () => result.Should().BeObjectResult().ContainsFormatter(formatter => false, Reason, ReasonArgs);
@@ -248,7 +247,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
         }
-        
+
         [Fact]
         public void WithValueEquivalentTo_GivenExpected_ShouldPass()
         {

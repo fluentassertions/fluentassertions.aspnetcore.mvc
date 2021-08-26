@@ -1,5 +1,4 @@
-﻿using FluentAssertions.Mvc.Tests.Fakes;
-using FluentAssertions.Mvc.Tests.Helpers;
+﻿using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using Xunit;
@@ -16,7 +15,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         [Fact]
         public void WithViewName_GivenExpectedValue_ShouldPass()
         {
-            ActionResult result = new ViewResult {
+            ActionResult result = new ViewResult
+            {
                 ViewName = "index",
             };
 
@@ -29,7 +29,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var actualViewName = "index";
             var expectedViewName = "xyz";
             var failureMessage = FailureMessageHelper.ExpectedContextToBeXButY("ViewResult.ViewName", expectedViewName, actualViewName);
-            ActionResult result = new ViewResult {
+            ActionResult result = new ViewResult
+            {
                 ViewName = actualViewName,
             };
 
@@ -171,7 +172,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         [Fact]
         public void WithDefaultViewName_GivenExpectedValue_ShouldPass()
         {
-            ActionResult result = new ViewResult {
+            ActionResult result = new ViewResult
+            {
                 ViewName = String.Empty
             };
 
@@ -184,7 +186,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             string viewName = "Something";
             var failureMessage = "Expected default view because it is 10, but view \"Something\" was rendered.";
 
-            ActionResult result = new ViewResult {
+            ActionResult result = new ViewResult
+            {
                 ViewName = viewName
             };
 

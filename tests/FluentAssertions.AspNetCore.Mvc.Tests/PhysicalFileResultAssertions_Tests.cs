@@ -1,8 +1,8 @@
-﻿using System;
-using System.Globalization;
-using FluentAssertions.Mvc.Tests.Helpers;
+﻿using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
+using System;
+using System.Globalization;
 using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Tests

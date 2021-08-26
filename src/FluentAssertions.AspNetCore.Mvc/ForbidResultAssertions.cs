@@ -192,7 +192,7 @@ namespace FluentAssertions.AspNetCore.Mvc
             var actualResult = ExpiresUtc;
 
             var expectedResult = AssertionHelpers.RoundToSeconds(expectedExpiresUtc);
-            
+
             Execute.Assertion
                 .ForCondition(expectedResult == actualResult)
                 .BecauseOf(reason, reasonArgs)

@@ -189,7 +189,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 FailureMessageHelper.RoundToSeconds(expectedExpiresUtc),
                 FailureMessageHelper.RoundToSeconds(actualExpiresUtc));
 
-            Action a = () => result.Should().BeSignOutResult().WithExpiresUtc(expectedExpiresUtc,Reason, ReasonArgs);
+            Action a = () => result.Should().BeSignOutResult().WithExpiresUtc(expectedExpiresUtc, Reason, ReasonArgs);
 
             a.Should().Throw<Exception>().WithMessage(failureMessage);
         }
@@ -325,8 +325,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         [Fact]
         public void WithAuthenticationSchemes_GivenUnexpected_ShouldFail()
         {
-            var actualAuthenticationSchemes = new List<string>() { "one", "two", "three"};
-            var expectedAuthenticationSchemes = new List<string> { "three", "four", "five"};
+            var actualAuthenticationSchemes = new List<string>() { "one", "two", "three" };
+            var expectedAuthenticationSchemes = new List<string> { "three", "four", "five" };
 
             ActionResult result = new SignOutResult(actualAuthenticationSchemes);
             var failureMessage = string.Format(FailureMessages.CommonListsNotIdentical, "SignOutResult.AuthenticationSchemes");
@@ -339,7 +339,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void ContainsScheme_GivenExpected_ShouldPass()
         {
             const string testScheme = "testScheme";
-            var actualSchemes = new List<string> {testScheme};
+            var actualSchemes = new List<string> { testScheme };
             ActionResult result = new SignOutResult(actualSchemes);
             result.Should().BeSignOutResult().ContainsScheme(testScheme);
         }

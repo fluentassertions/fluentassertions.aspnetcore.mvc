@@ -15,18 +15,18 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// Returns an <see cref="ActionResultAssertions"/> object that can be used to assert the
         /// current <see cref="ActionResult"/>.
         /// </summary>
-        public static ActionResultAssertions Should (this ActionResult actual)
+        public static ActionResultAssertions Should(this ActionResult actual)
         {
-            return new ActionResultAssertions (actual);
+            return new ActionResultAssertions(actual);
         }
 
         /// <summary>
         /// Returns an <see cref="ActionResultAssertions"/> object that can be used to assert the
         /// current <see cref="IActionResult"/>.
         /// </summary>
-        public static ActionResultAssertions Should (this IActionResult actual)
+        public static ActionResultAssertions Should(this IActionResult actual)
         {
-            return new ActionResultAssertions (actual);
+            return new ActionResultAssertions(actual);
         }
 
         /// <summary>

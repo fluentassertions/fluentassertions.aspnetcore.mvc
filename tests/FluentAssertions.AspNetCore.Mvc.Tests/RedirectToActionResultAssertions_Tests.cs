@@ -125,7 +125,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var expectedKey = "expectedKey";
             var failureMessage = FailureMessageHelper.ExpectedKeyButNotFound("RedirectToActionResult.RouteValues", expectedKey, "Val");
 
-            var routeValues = new {myKey = "MyValue"};
+            var routeValues = new { myKey = "MyValue" };
             RedirectToActionResult result = new RedirectToActionResult(string.Empty, string.Empty, routeValues);
 
             Action a = () => result.Should().BeRedirectToActionResult().WithRouteValue(expectedKey, "Val", Reason, ReasonArgs);
@@ -139,7 +139,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var expectedKey = "expectedKey";
             var expectedValue = "expectedValue";
-            var routeValues = new {expectedKey = expectedValue};
+            var routeValues = new { expectedKey = expectedValue };
 
             RedirectToActionResult result = new RedirectToActionResult(string.Empty, string.Empty, routeValues);
 

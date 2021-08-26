@@ -1,8 +1,8 @@
 ﻿using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using Microsoft.Net.Http.Headers;
+using System;
 
 namespace FluentAssertions.AspNetCore.Mvc
 {

@@ -1,5 +1,4 @@
-﻿using FluentAssertions.Common;
-using FluentAssertions.Equivalency;
+﻿using FluentAssertions.Equivalency;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
@@ -104,7 +103,7 @@ namespace FluentAssertions.AspNetCore.Mvc
 
             Execute.Assertion
                 .ForCondition(formatters.Any(func))
-                .WithDefaultIdentifier(Identifier+ ".Formatters")
+                .WithDefaultIdentifier(Identifier + ".Formatters")
                 .BecauseOf(reason, reasonArgs)
                 .FailWith("Expected {context} {0} to have an item matching {1}{reason}.", formatters, expectation.Body);
 
@@ -254,7 +253,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         {
             object actualValue = ValueAs<TExpectation>();
 
-            using(var scope = new AssertionScope(Identifier + ".Value"))
+            using (var scope = new AssertionScope(Identifier + ".Value"))
             {
                 actualValue.Should().Match(predicate, reason, reasonArgs);
             }

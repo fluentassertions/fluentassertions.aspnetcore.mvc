@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using FluentAssertions.AspNetCore.Mvc.Sample.Models;
+﻿using FluentAssertions.AspNetCore.Mvc.Sample.Models;
+using System.Collections.Generic;
 
 namespace FluentAssertions.AspNetCore.Mvc.Sample.Services
 {

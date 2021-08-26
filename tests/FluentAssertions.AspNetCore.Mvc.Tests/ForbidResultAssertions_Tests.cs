@@ -316,8 +316,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         [Fact]
         public void WithAuthenticationSchemes_GivenUnexpected_ShouldFail()
         {
-            var actualAuthenticationSchemes = new List<string>() { "one", "two", "three"};
-            var expectedAuthenticationSchemes = new List<string> { "three", "four", "five"};
+            var actualAuthenticationSchemes = new List<string>() { "one", "two", "three" };
+            var expectedAuthenticationSchemes = new List<string> { "three", "four", "five" };
             ActionResult result = new ForbidResult(actualAuthenticationSchemes);
             var failureMessage = string.Format(FailureMessages.CommonListsNotIdentical, "ForbidResult.AuthenticationSchemes");
 
@@ -330,7 +330,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void ContainsScheme_GivenExpected_ShouldPass()
         {
             const string testScheme = "testScheme";
-            var actualSchemes = new List<string> {testScheme};
+            var actualSchemes = new List<string> { testScheme };
             ActionResult result = new ForbidResult(actualSchemes);
 
             result.Should().BeForbidResult().ContainsScheme(testScheme);

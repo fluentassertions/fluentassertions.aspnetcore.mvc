@@ -1,6 +1,6 @@
-﻿using System;
-using FluentAssertions.Mvc.Tests.Helpers;
+﻿using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Tests

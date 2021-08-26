@@ -50,14 +50,15 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
                 .BeRedirectToRouteResult()
                 .WithRouteName("xyz", Reason, ReasonArgs);
             a.Should().Throw<Exception>()
-                .WithMessage(FailureMessageHelper.ExpectedContextToBeXButY("RedirectToRoute.RouteName","xyz", "default"));
+                .WithMessage(FailureMessageHelper.ExpectedContextToBeXButY("RedirectToRoute.RouteName", "xyz", "default"));
         }
 
         [Fact]
         public void WithRouteValue_GivenExpected_ShouldPass()
         {
             ActionResult result = new RedirectToRouteResult("", new RouteValueDictionary(
-                new {
+                new
+                {
                     Id = "22"
                 }));
 
@@ -70,7 +71,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithRouteValue_GivenUnexpected_ShouldFail()
         {
             ActionResult result = new RedirectToRouteResult("", new RouteValueDictionary(
-                new {
+                new
+                {
                     Id = "22"
                 }));
 
@@ -103,7 +105,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithController_GivenExpected_ShouldPass()
         {
             ActionResult result = new RedirectToRouteResult("", new RouteValueDictionary(
-                new {
+                new
+                {
                     Controller = "home"
                 }));
 
@@ -116,7 +119,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithController_GivenUnexpected_ShouldFail()
         {
             ActionResult result = new RedirectToRouteResult("", new RouteValueDictionary(
-                new {
+                new
+                {
                     Controller = "home"
                 }));
 
@@ -131,7 +135,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithAction_GivenExpected_ShouldPass()
         {
             ActionResult result = new RedirectToRouteResult("", new RouteValueDictionary(
-                new {
+                new
+                {
                     Action = "index"
                 }));
 
@@ -144,7 +149,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithAction_GivenUnexpected_ShouldFail()
         {
             ActionResult result = new RedirectToRouteResult("", new RouteValueDictionary(
-                new {
+                new
+                {
                     Action = "index"
                 }));
 
@@ -160,7 +166,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithArea_GivenExpected_ShouldPass()
         {
             ActionResult result = new RedirectToRouteResult("", new RouteValueDictionary(
-                new {
+                new
+                {
                     Area = "accounts"
                 }));
 
@@ -173,7 +180,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithArea_GivenUnexpected_ShouldFail()
         {
             ActionResult result = new RedirectToRouteResult("", new RouteValueDictionary(
-                new {
+                new
+                {
                     Area = "accounts"
                 }));
 

@@ -105,7 +105,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         {
             var actualTempData = ViewResultSubject.TempData;
 
-            AssertionHelpers.AssertStringObjectDictionary(actualTempData, "ViewResult.TempData", 
+            AssertionHelpers.AssertStringObjectDictionary(actualTempData, "ViewResult.TempData",
                 key, expectedValue, reason, reasonArgs);
 
             return this;

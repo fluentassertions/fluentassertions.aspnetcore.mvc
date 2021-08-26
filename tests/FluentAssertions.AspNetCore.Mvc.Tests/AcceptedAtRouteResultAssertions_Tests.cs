@@ -36,7 +36,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithRouteValue_GivenKeyDoesntExist_ShouldFail()
         {
             var expectedKey = "expectedKey";
-            var routeValues = new {myKey = "MyValue"};
+            var routeValues = new { myKey = "MyValue" };
             var result = new AcceptedAtRouteResult(string.Empty, routeValues, null);
             var failureMessage = FailureMessageHelper.ExpectedContextContainValueAtKeyButKeyNotFound(
                 "AcceptedAtRouteResult.RouteValues", "Val", expectedKey);
@@ -51,7 +51,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         {
             var expectedKey = "expectedKey";
             var expectedValue = "expectedValue";
-            var routeValues = new {expectedKey = expectedValue};
+            var routeValues = new { expectedKey = expectedValue };
 
             var result = new AcceptedAtRouteResult(string.Empty, routeValues, null);
 

@@ -82,7 +82,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithViewName_GivenExpectedValue_ShouldPass()
         {
             var expected = "Expected";
-            ActionResult result = new PartialViewResult {
+            ActionResult result = new PartialViewResult
+            {
                 ViewName = expected
             };
 

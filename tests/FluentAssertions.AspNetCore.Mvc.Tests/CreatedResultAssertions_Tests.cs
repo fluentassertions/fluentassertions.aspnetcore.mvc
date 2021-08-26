@@ -1,6 +1,6 @@
-﻿using System;
-using FluentAssertions.Mvc.Tests.Helpers;
+﻿using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using Xunit;
 
 namespace FluentAssertions.AspNetCore.Mvc.Tests
@@ -10,10 +10,10 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public const string Reason = FailureMessageHelper.Reason;
         public readonly static object[] ReasonArgs = FailureMessageHelper.ReasonArgs;
         private const string TestValue = "testValue";
-        
+
         private const string TestUriAsString = "http://localhost:5000";
         private const string TestWrongUriAsString = "http://somedomain.com:5000";
-        
+
         private readonly Uri TestUri = new Uri(TestUriAsString);
         private readonly Uri TestWrongUri = new Uri(TestWrongUriAsString);
 
@@ -69,7 +69,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithUri_GivenExpectedUri_ShouldPass()
         {
             var result = new TestController().Created(TestUri, TestValue);
-            
+
             result.Should().BeCreatedResult().WithUri(TestUri);
         }
 
@@ -88,7 +88,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         public void WithUri_GivenExpectedUriAsString_ShouldPass()
         {
             var result = new TestController().Created(TestUriAsString, TestValue);
-            
+
             result.Should().BeCreatedResult().WithUri(TestUriAsString);
         }
 

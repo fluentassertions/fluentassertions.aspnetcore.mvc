@@ -95,7 +95,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         [Fact]
         public void HaveArea_DoesntExist_ShouldFail()
         {
-            var area = "xyz"; 
+            var area = "xyz";
             var failureMessage = FailureMessageHelper.ExpectedAtKeyValueXButFoundY("RouteData.Values", "area", area, "admin");
 
             Action a = () => _routeData.Should().HaveArea(area, Reason, ReasonArgs);
@@ -107,8 +107,8 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         [Fact]
         public void HaveDataToken_KeyDoesExist_ShouldFail()
         {
-            var expectedKey = "xyz"; 
-            var failureMessage = FailureMessageHelper.ExpectedKeyButNotFound("RouteData.DataTokens",expectedKey, "Val");
+            var expectedKey = "xyz";
+            var failureMessage = FailureMessageHelper.ExpectedKeyButNotFound("RouteData.DataTokens", expectedKey, "Val");
 
             Action a = () => _routeData.Should().HaveDataToken(expectedKey, "Val", Reason, ReasonArgs);
 

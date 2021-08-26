@@ -1,5 +1,4 @@
-﻿using FluentAssertions.Mvc.Tests.Fakes;
-using FluentAssertions.Mvc.Tests.Helpers;
+﻿using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using Xunit;
