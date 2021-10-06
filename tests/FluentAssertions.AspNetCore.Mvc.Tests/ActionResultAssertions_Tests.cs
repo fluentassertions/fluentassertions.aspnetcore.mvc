@@ -343,6 +343,46 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
         }
 
         [Fact]
+        public void BeConflictResult_GivenConflict_ShouldPass()
+        {
+            ActionResult result = new ConflictResult();
+
+            result.Should().BeConflictResult();
+        }
+
+        [Fact]
+        public void BeConflictResult_GivenNotConflict_ShouldFail()
+        {
+            ActionResult result = new ViewResult();
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(ConflictResult), typeof(ViewResult));
+
+            Action a = () => result.Should().BeConflictResult(Reason, ReasonArgs);
+
+            a.Should().Throw<Exception>()
+                .WithMessage(failureMessage);
+        }
+
+        [Fact]
+        public void BeConflictObjectResult_GivenConflictObject_ShouldPass()
+        {
+            ActionResult result = new ConflictObjectResult("foo");
+
+            result.Should().BeConflictObjectResult();
+        }
+
+        [Fact]
+        public void BeConflictObjectResult_GivenNotConflictObject_ShouldFail()
+        {
+            ActionResult result = new ConflictResult();
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(ConflictObjectResult), typeof(ConflictResult));
+
+            Action a = () => result.Should().BeConflictObjectResult(Reason, ReasonArgs);
+
+            a.Should().Throw<Exception>()
+                .WithMessage(failureMessage);
+        }
+
+        [Fact]
         public void BeChallengeResult_GivenChallengeResult_ShouldPass()
         {
             ActionResult result = new ChallengeResult();

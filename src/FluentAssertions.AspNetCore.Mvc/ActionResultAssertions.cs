@@ -432,6 +432,48 @@ namespace FluentAssertions.AspNetCore.Mvc
         }
 
         /// <summary>
+        /// Asserts that the subject is an <see cref="ConflictResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        [CustomAssertion]
+        public ConflictResult BeConflictResult(string reason = "", params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is ConflictResult)
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(ConflictResult), Subject.GetType());
+
+            return Subject as ConflictResult;
+        }
+
+        /// <summary>
+        /// Asserts that the subject is a <see cref="ConflictObjectResult"/>.
+        /// </summary>
+        /// <param name="reason">
+        /// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+        /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+        /// </param>
+        /// <param name="reasonArgs">
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
+        /// </param>
+        [CustomAssertion]
+        public ConflictObjectResultAssertions BeConflictObjectResult(string reason = "", params object[] reasonArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(Subject is ConflictObjectResult)
+                .FailWith(FailureMessages.CommonTypeFailMessage, typeof(ConflictObjectResult), Subject.GetType());
+
+            return new ConflictObjectResultAssertions(Subject as ConflictObjectResult);
+        }
+
+        /// <summary>
         /// Asserts that the subject is a <see cref="CreatedResult"/>.
         /// </summary>
         /// <param name="reason">
