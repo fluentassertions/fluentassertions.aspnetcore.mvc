@@ -5,7 +5,7 @@
     <Copyright>Copyright 2018</Copyright>
     <AssemblyTitle>Fluent Assertions extensions for ASP.NET Core MVC</AssemblyTitle>
     <Title>Fluent Assertions for ASP.NET Core MVC</Title>
-    <VersionPrefix>4.1.0</VersionPrefix>
+    <VersionPrefix>4.2.0</VersionPrefix>
     <Authors>Casey Burns;Kevin Kuszyk</Authors>
     <TargetFrameworks>netstandard2.0;netcoreapp3.0</TargetFrameworks>
     <AssemblyName>FluentAssertions.AspNetCore.Mvc</AssemblyName>
