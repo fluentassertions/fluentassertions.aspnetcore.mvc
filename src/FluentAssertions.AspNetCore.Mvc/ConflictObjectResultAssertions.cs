@@ -1,5 +1,4 @@
 ﻿using FluentAssertions.Execution;
-using FluentAssertions.Primitives;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -9,7 +8,7 @@ namespace FluentAssertions.AspNetCore.Mvc
     /// Contains a number of methods to assert that a <see cref="ConflictObjectResult"/> is in the expected state.
     /// </summary>
     [DebuggerNonUserCode]
-    public class ConflictObjectResultAssertions : ObjectAssertions
+    public class ConflictObjectResultAssertions : ObjectResultAssertionsBase<ConflictObjectResult, ConflictObjectResultAssertions>
     {
         #region Public Constructors
         /// <summary>
