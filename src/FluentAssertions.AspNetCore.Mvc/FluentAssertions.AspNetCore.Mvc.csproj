@@ -5,9 +5,9 @@
     <Copyright>Copyright 2018</Copyright>
     <AssemblyTitle>Fluent Assertions extensions for ASP.NET Core MVC</AssemblyTitle>
     <Title>Fluent Assertions for ASP.NET Core MVC</Title>
-    <VersionPrefix>4.2.0</VersionPrefix>
+    <VersionPrefix>4.3.0</VersionPrefix>
     <Authors>Casey Burns;Kevin Kuszyk</Authors>
-    <TargetFrameworks>netstandard2.0;netcoreapp3.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netcoreapp3.0;net6.0</TargetFrameworks>
     <AssemblyName>FluentAssertions.AspNetCore.Mvc</AssemblyName>
     <PackageId>FluentAssertions.AspNetCore.Mvc</PackageId>
     <PackageTags>TDD;Fluent;Mvc;AspNetMvc;aspnetcore;aspnetcoremvc</PackageTags>
@@ -23,15 +23,18 @@
     <OutputPath>bin\$(Configuration)\$(TargetFramework)\</OutputPath>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="FluentAssertions" Version="6.0.0" />
-  </ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+		<PackageReference Include="FluentAssertions" Version="6.6.0" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+		<PackageReference Include="FluentAssertions" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.0'">
+		<PackageReference Include="FluentAssertions" Version="6.0.0" />
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
