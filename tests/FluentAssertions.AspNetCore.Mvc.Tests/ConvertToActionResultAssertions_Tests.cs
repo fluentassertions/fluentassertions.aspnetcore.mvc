@@ -29,7 +29,7 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
 
             var result = subject.Should().BeActionResult<object>();
 
-            result.Should().BeOfType<ActionResultAssertions<object>>();
+            Assert.IsType<ActionResultAssertions<object>>(result);
         }
 
         [Fact]

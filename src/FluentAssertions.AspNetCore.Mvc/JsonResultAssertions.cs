@@ -30,7 +30,7 @@ namespace FluentAssertions.AspNetCore.Mvc
         /// <summary>
         /// The <see cref="JsonResult.SerializerSettings"/> on the tested subject.
         /// </summary>
-#if NETCOREAPP3_0
+#if NETCOREAPP3_0_OR_GREATER
         public object SerializerSettings => JsonResultSubject.SerializerSettings;
 #else
         public Newtonsoft.Json.JsonSerializerSettings SerializerSettings => JsonResultSubject.SerializerSettings;
