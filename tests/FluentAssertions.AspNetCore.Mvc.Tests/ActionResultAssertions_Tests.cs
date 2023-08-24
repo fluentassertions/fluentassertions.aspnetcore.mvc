@@ -1,6 +1,7 @@
 using FluentAssertions.AspNetCore.Mvc.Tests.Helpers;
 using FluentAssertions.Mvc.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Routing;
 using System;
 using Xunit;
@@ -257,6 +258,26 @@ namespace FluentAssertions.AspNetCore.Mvc.Tests
             var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(ViewResult), typeof(RedirectResult));
 
             Action a = () => result.Should().BeViewResult(Reason, ReasonArgs);
+
+            a.Should().Throw<Exception>()
+                .WithMessage(failureMessage);
+        }
+
+        [Fact]
+        public void BePage_GivenPage_ShouldPass()
+        {
+            ActionResult result = new PageResult();
+
+            result.Should().BePageResult();
+        }
+
+        [Fact]
+        public void BePage_GivenNotPage_ShouldFail()
+        {
+            ActionResult result = new RedirectResult("/");
+            var failureMessage = FailureMessageHelper.ExpectedContextTypeXButFoundYWithReason("result", typeof(PageResult), typeof(RedirectResult));
+
+            Action a = () => result.Should().BePageResult(Reason, ReasonArgs);
 
             a.Should().Throw<Exception>()
                 .WithMessage(failureMessage);
